@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 
+<?php 
+	// require('../../../config/connectdb.php');
+	include_once("../../../config/connectdb.php");
+?>
+
 <head>
 	<meta charset="utf-8">
 	<title>Form-v10 by Colorlib</title>
@@ -62,12 +67,12 @@
 			position: bangkok
 		});
 		google.maps.event.addListener(marker, 'click', toggleBounce);
-		google.maps.event.addListener(marker, 'drag', function(event) {
+		google.maps.event.addListener(marker, 'drag', function (event) {
 			document.getElementById("lat").value = marker.getPosition().lat();
 			document.getElementById("lng").value = marker.getPosition().lng();
 		});
 
-		google.maps.event.addListener(marker, 'dragend', function(event) {
+		google.maps.event.addListener(marker, 'dragend', function (event) {
 			var point = marker.getPoint();
 			map.panTo(point);
 		});
@@ -94,36 +99,40 @@
 
 					<!-- ชื่อโรงคั่วกาแฟ  company -->
 					<div class="form-row">
-						<input type="text" name="company" class="company" id="company" placeholder="ชื่อโรงคั่วกาแฟ"
+						<input type="text" name="company" class="company input-name_roasters" id="company" placeholder="ชื่อโรงคั่วกาแฟ"
 							required>
 					</div>
 					<!-- เลขทะเบียนการค้า trade registration number -->
 					<div class="form-row">
-						<input type="text" name="company" class="company" id="company" placeholder="เลขทะเบียนการค้า" required>
+						<input type="text" name="company" class="company input-num_trade_reg" id="company" placeholder="เลขทะเบียนการค้า"
+							required>
 					</div>
 					<!-- ชื่อผู้ประกอบการ  -->
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="first_name" id="first_name" class="input-text"
+							<input type="text" name="first_name" id="first_name" class="input-text input-name"
 								placeholder="ชื่อผู้ประกอบการ" required>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="last_name" id="last_name" class="input-text"
+							<input type="text" name="last_name" id="last_name" class="input-text input-last_name"
 								placeholder="นามสกุลผู้ประกอบการ" required>
 						</div>
 					</div>
-
+					<div class="form-row">
+						<input type="email" name="company" class="company input-e_mail_roasters" id="company" placeholder="อีเมลโรงคั่วกาแฟ"
+							required>
+					</div>
+					<div class="form-row">
+						<input type="password" name="company" class="company input-pass_roasters" id="company" placeholder="รหัสผ่านโรงคั่วกาแฟ"
+							required>
+					</div>
 					<!-- รายละเอียดต่าง ๆ -->
 					<div class="form-row">
-						<input type="text" name="company" class="company" id="company" placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ" required>
+						<!-- <input type="text" name="company" class="company" id="company" placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ" required> -->
+						<textarea class="input-detail_roasters" placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ"></textarea>
+					</div>
 
-						<!-- <textarea width="100%"  placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ"></textarea> -->
-					</div>
-					
-					<div class="form-row">
-						<h3>เลือกตั้งโรงคั่วกาแฟ</h3>
-						<div id="map-canvas"></div>
-					</div>
+
 					<!-- 	ที่ตั้งสำนักงาน -->
 					<!-- <div class="form-row">
 						<input type="text" name="company" class="company" id="company" placeholder="ที่ตั้งสำนักงาน" required>
@@ -158,48 +167,50 @@
 							</span>
 						</div>
 					</div> -->
+
 				</div>
 				<div class="form-right">
 					<h2>รายละเอียดการติดต่อ</h2>
 					<h5>ที่ตั้งสำนักงาน</h5>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="first_name" id="first_name" class="input-text" placeholder="เลขที่"
+							<input type="text" name="" id="" class="input-text input-add_number" placeholder="เลขที่"
 								required>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="last_name" id="last_name" class="input-text" placeholder="ถนน"
+							<input type="text" name="last_name" id="last_name" class="input-text input-road" placeholder="ถนน"
 								required>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="first_name" id="first_name" class="input-text"
+							<input type="text" name="" id="" class="input-text input-sub-district"
 								placeholder="แขวง / ตำบล" required>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="last_name" id="last_name" class="input-text"
+							<input type="text" name="last_name" id="last_name" class="input-text input-district"
 								placeholder="เขต / อำเภอ" required>
 						</div>
 					</div>
 					<!-- <div class="form-row">
 						<input type="text" name="additional" class="additional" id="additional" placeholder="Additional Information" required>
 					</div> -->
-					
+
 
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="zip" class="zip" id="zip" placeholder="ไปรษณีย์" required>
+							<input type="text" name="zip" class="zip input-post-office" id="zip" placeholder="ไปรษณีย์" required>
 						</div>
 						<div class="form-row form-row-2">
-							<select name="place">
+							<select name="place" class="input-province">
 								<option value="" selected disabled>เลือกจังหวัด</option>
-								<option value="Street">Street</option>
-								<option value="District">District</option>
-								<option value="City">City</option>
-								<option value="place">Place</option>
-								<option value="Street">Street</option>
-
+								<?php 
+								 	foreach(Database::query("SELECT * FROM `provinces` Order by `name_provinces` ASC ",PDO::FETCH_ASSOC) as $row):
+								?>
+									<option value="<?php echo $row['id_provinces'] ?>"><?php echo $row['name_provinces']?></option>
+								<?php 
+									endforeach;
+								?>
 							</select>
 							<span class="select-btn">
 								<i class="zmdi zmdi-chevron-down"></i>
@@ -209,14 +220,20 @@
 
 					<!-- <strong>Latitude</strong> <input type="text" name="lat" id="lat" />-
 					<strong>Longitude</strong> <input type="text" name="lng" id="lng" /> -->
-					<div class="form-row">
-						<input type="text" name="company" class="company" id="lat" placeholder="ละติจูดโรงคั่วกาแฟ"
-							required>
+					<div class="form-group">
+						<div class="form-row form-row-1">
+							<input type="text" disabled name="company" class="company input-lat_roasters" id="lat" placeholder="ละติจูดโรงคั่วกาแฟ"
+								required>
+						</div>
+						<div class="form-row form-row-2">
+							<input type="text" disabled name="company" class="company input-lng_roasters" id="lng" placeholder="ลองจิจูดโรงคั่วกาแฟ"
+								required>
+						</div>
 					</div>
 					<div class="form-row">
-						<input type="text" name="company" class="company" id="lng" placeholder="ลองจิจูดโรงคั่วกาแฟ"
-							required>
+						<div id="map-canvas"></div>
 					</div>
+
 					<!-- <div class="form-row">
 						<select name="country">
 							<option value="country">Country</option>
@@ -239,7 +256,7 @@
 					<div class="form-row">
 						<input type="text" name="your_email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Your Email">
 					</div> -->
-					
+
 					<div class="form-checkbox">
 						<label class="container">
 							<p>I do accept the <a href="#" class="text">Terms and Conditions</a> of your site.</p>
@@ -247,11 +264,11 @@
 							<span class="checkmark"></span>
 						</label>
 						<script>
-							$(document).ready(function() {
+							$(document).ready(function () {
 								$('#mod_save').hide();
 
 							});
-							$('#check-box_ok').click(function() {
+							$('#check-box_ok').click(function () {
 								if ($('#check-box_ok').prop('checked') == true) {
 									// alert('OK');
 									$('#mod_save').show();
@@ -268,7 +285,53 @@
 						<!-- <button class="btn btn-primary register" type="button" id="sumit_register">Register Badge</button> -->
 						<script>
 							$('.register').on('click', function () {
-								alert('Register Badge');
+								// alert('Register Badge');
+
+								// general_information
+								var name_roasters = $('.input-name_roasters').val() == '' ? false : $('.input-name_roasters').val();
+								var num_trade_reg = $('.input-num_trade_reg').val() == '' ? false : $('.input-num_trade_reg').val();
+								var name = $('.input-name').val() == '' ? false : $('.input-name').val();
+								var last_name = $('.input-last_name').val() == '' ? false : $('.input-last_name').val();
+								var e_mail_roasters = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test($('.input-e_mail_roasters').val()) != true ? false : $('.input-e_mail_roasters').val();
+								var pass_roasters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/.test($('.input-pass_roasters').val()) != true  ? false : $('.input-pass_roasters').val();
+								var detail_roasters = $('.input-detail_roasters').val() == '' ? false : $('.input-detail_roasters').val();
+
+								// contact_details
+								var add_number = $('.input-add_number').val() == '' ? false : $('.input-add_number').val();
+								var road = $('.input-road').val() == '' ? false : $('.input-road').val();
+								var sub_district = $('.input-sub-district').val() == '' ? false : $('.input-sub-district').val();
+								var district = $('.input-district').val() == '' ? false : $('.input-district').val();
+
+								var post_office = $('.input-post-office').val() == '' ? false : $('.input-post-office').val();
+								var province = $('.input-province').val() == '' ? false : $('.input-province').val();
+
+								// ที่ตั้งสำนักงาน
+								var lat_roasters = $('.input-lat_roasters').val() == '' ? false : $('.input-lat_roasters').val();
+								var lng_roasters = $('.input-lng_roasters').val() == '' ? false : $('.input-lng_roasters').val();
+
+
+								// alert(name_roasters + "\n " + num_trade_reg + " \n" + name + "\n " + last_name + " \n" + e_mail_roasters + " \n" + pass_roasters + " \n" +detail_roasters );
+								// alert(add_number + "\n " + road + " \n" + sub_district +" \n "+ district + " \n" + post_office + " \n" + province + "\n " + lat_roasters + "\n " +lng_roasters );
+
+								var general_information_check = name_roasters == false || num_trade_reg == false || name == false || last_name == false || e_mail_roasters == false || pass_roasters == false || detail_roasters == false ? true : false;
+								var contact_details_check = add_number == false || road == false || sub_district == false || district == false || post_office == false || province == false || lat_roasters == false || lng_roasters == false ? true : false;
+								// if(name_roasters == false || num_trade_reg == false && name == false && last_name == false && e_mail_roasters == false && pass_roasters == false){
+								// 	 alert("กรุณาตรวจสอบข้อมูลทั่วไป");
+								// }else{
+								// 	alert("Please");
+								// }
+
+								if(general_information_check){
+									return alert("กรุณาตรวจสอบข้อมูลทั่วไป");
+								}else if(contact_details_check){
+									return alert("กรุณาตรวจสอบรายละเอียดการติดต่อ");
+								}
+								// alert('ข้อมูลถูกต้อง');
+
+
+
+
+
 							});
 						</script>
 					</div>

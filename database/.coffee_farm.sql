@@ -2,14 +2,14 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 05, 2021 at 09:40 PM
--- Server version: 8.0.27-0ubuntu0.20.04.1
--- PHP Version: 7.4.3
+-- Host: 127.0.0.1
+-- Generation Time: Dec 02, 2021 at 08:44 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+07:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -28,26 +28,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `farmers` (
-  `id_farmers` int NOT NULL COMMENT 'รหัสเกษตรกร',
+  `id_farmers` int(6) NOT NULL COMMENT 'รหัสเกษตรกร',
   `name_farmers` varchar(60) NOT NULL COMMENT 'ชื่อเกษตรกร',
   `email_farmers` varchar(100) NOT NULL COMMENT 'อีเมล์เกษตรกร',
   `pass_farmers` varchar(20) NOT NULL COMMENT 'รหัสเกษตรกร',
   `tel_farmers` varchar(10) NOT NULL COMMENT 'เบอร์โทรเกษตรกร',
-  `line_farmers` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'line เกษตรกร',
-  `face_farmers` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'facebook เกษตรกร',
+  `line_farmers` varchar(50) NOT NULL COMMENT 'line เกษตรกร',
+  `face_farmers` varchar(50) NOT NULL COMMENT 'facebook เกษตรกร',
   `address_farmers` text NOT NULL COMMENT 'ที่อยู่เกษตรกร',
-  `id_provinces` int NOT NULL COMMENT 'รหัสจังหวัด',
+  `id_provinces` int(4) NOT NULL COMMENT 'รหัสจังหวัด',
   `code_provinces` varchar(6) NOT NULL COMMENT 'รหัสไปรษณีย์',
   `image_farmers` varchar(200) NOT NULL COMMENT 'รูปเกษตรกร',
-  `num_farm` int NOT NULL COMMENT 'จำนวนพื้นที่เพาะปลูกไร่',
-  `num_field` int NOT NULL COMMENT 'จำนวนพื้นที่เพาะปลูกงาน',
+  `num_farm` int(6) NOT NULL COMMENT 'จำนวนพื้นที่เพาะปลูกไร่',
+  `num_field` int(2) NOT NULL COMMENT 'จำนวนพื้นที่เพาะปลูกงาน',
   `lat_farm` varchar(25) NOT NULL COMMENT 'ละติจูดฟาร์ม',
   `lng_farm` varchar(25) NOT NULL COMMENT 'ลองจิจูดฟาร์ม',
-  `organic_farm` int NOT NULL COMMENT '1 = อินทรีย์, 2 = ไม่อินทรีย์',
-  `type_sale` int NOT NULL COMMENT '1 = ขายแบบพันธะสัญญา, 2 = ขายแบบเดี่ยว ',
-  `detail_farm` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT 'อธิบายละเอียดต่างๆ เช่นช่วงเวลาเก็บเกี่ยว',
-  `status_farmers` int NOT NULL COMMENT 'สถานะเกษตรกร'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `organic_farm` int(2) NOT NULL COMMENT '1 = อินทรีย์, 2 = ไม่อินทรีย์',
+  `type_sale` int(2) NOT NULL COMMENT '1 = ขายแบบพันธะสัญญา, 2 = ขายแบบเดี่ยว ',
+  `detail_farm` text NOT NULL COMMENT 'อธิบายละเอียดต่างๆ เช่นช่วงเวลาเก็บเกี่ยว',
+  `status_farmers` int(2) NOT NULL COMMENT 'สถานะเกษตรกร'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -56,15 +56,15 @@ CREATE TABLE `farmers` (
 --
 
 CREATE TABLE `products` (
-  `id_products` int NOT NULL COMMENT 'รหัสสินค้า',
+  `id_products` int(6) NOT NULL COMMENT 'รหัสสินค้า',
   `name_products` varchar(50) NOT NULL COMMENT 'ชื่อสินค้ากาแฟ',
-  `id_typepro` int NOT NULL COMMENT 'ประเภทกาแฟ',
-  `num_stock` int NOT NULL COMMENT 'จำนวนคงเหลือ (kg)',
+  `id_typepro` int(4) NOT NULL COMMENT 'ประเภทกาแฟ',
+  `num_stock` int(6) NOT NULL COMMENT 'จำนวนคงเหลือ (kg)',
   `price_unit` float NOT NULL COMMENT 'ราคาต่อหน่วย (บาท/kg)',
-  `status_products` int NOT NULL COMMENT 'สถานะสินค้า',
-  `id_farmers` int NOT NULL,
+  `status_products` int(2) NOT NULL COMMENT 'สถานะสินค้า',
+  `id_farmers` int(6) NOT NULL,
   `image_pro` varchar(200) NOT NULL COMMENT 'รูปสินค้า'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -73,9 +73,9 @@ CREATE TABLE `products` (
 --
 
 CREATE TABLE `provinces` (
-  `id_provinces` int NOT NULL COMMENT 'รหัสจังหวัด',
+  `id_provinces` int(4) NOT NULL COMMENT 'รหัสจังหวัด',
   `name_provinces` varchar(60) NOT NULL COMMENT 'ชื่อจังหวัด'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `provinces`
@@ -167,19 +167,17 @@ INSERT INTO `provinces` (`id_provinces`, `name_provinces`) VALUES
 --
 
 CREATE TABLE `roasters` (
-  `id_roasters` int NOT NULL COMMENT 'รหัสโรงคั่วกาแฟ',
+  `id_roasters` int(4) NOT NULL COMMENT 'รหัสโรงคั่วกาแฟ',
   `name_roasters` varchar(60) NOT NULL COMMENT 'ชื่อโรงคั่วกาแฟ',
   `num_trade_reg` varchar(30) NOT NULL COMMENT 'เลขทะเบียนการค้า',
   `name_entrep` varchar(60) NOT NULL COMMENT 'ชื่อผู้ประกอบการ',
   `address_office` text NOT NULL COMMENT 'ที่ตั้งสำนักงาน',
-  `id_provinces` int NOT NULL COMMENT 'รหัสจังหวัด',
+  `id_provinces` int(4) NOT NULL COMMENT 'รหัสจังหวัด',
   `code_provinces` varchar(6) NOT NULL COMMENT 'ไปรษณีย์',
   `lat_roasters` varchar(30) NOT NULL COMMENT 'ละติจูดโรงคั่วกาแฟ',
   `lng_roasters` varchar(30) NOT NULL COMMENT 'ลองจิจูดโรงคั่วกาแฟ',
-  `detail_roasters` text NOT NULL COMMENT 'รายละเอียดต่างๆ ของโรงคั่วกาแฟ',
-  `e_mail_roasters` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'อีเมลโรงคั่วกาแฟ',
-  `pass_roasters` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'รหัสผ่านโรงคั่วกาแฟ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `detail_roasters` text NOT NULL COMMENT 'รายละเอียดต่างๆ ของโรงคั่วกาแฟ'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -188,13 +186,13 @@ CREATE TABLE `roasters` (
 --
 
 CREATE TABLE `transale` (
-  `id_transale` int NOT NULL COMMENT 'รหัสรายการขาย',
+  `id_transale` int(8) NOT NULL COMMENT 'รหัสรายการขาย',
   `date_transale` date NOT NULL COMMENT 'วันที่ทำรายการขาย',
-  `id_farmers` int NOT NULL COMMENT 'รหัสเกษตรกร',
-  `id_roasters` int NOT NULL COMMENT 'รหัสโรงคั่วกาแฟ',
+  `id_farmers` int(6) NOT NULL COMMENT 'รหัสเกษตรกร',
+  `id_roasters` int(4) NOT NULL COMMENT 'รหัสโรงคั่วกาแฟ',
   `sum_price` float NOT NULL COMMENT 'ราคายอดรวม',
-  `status_transale` int NOT NULL COMMENT 'สถานะ 1 = รอยืนยันคำสั่งขาย 2 = ยืนยันคำสั่งขายและดำเนินการ 3 = การซื้อขายเสร็จสิ้น 4 = ยกเลิกการซื้อขาย '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `status_transale` int(2) NOT NULL COMMENT 'สถานะ 1 = รอยืนยันคำสั่งขาย 2 = ยืนยันคำสั่งขายและดำเนินการ 3 = การซื้อขายเสร็จสิ้น 4 = ยกเลิกการซื้อขาย '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -203,12 +201,12 @@ CREATE TABLE `transale` (
 --
 
 CREATE TABLE `transalede` (
-  `id_transalede` int NOT NULL COMMENT 'รหัสรายละเอียดการขาย',
-  `id_transale` int NOT NULL COMMENT 'รหัสรายการขาย',
-  `id_products` int NOT NULL COMMENT 'รหัสสินค้า',
-  `num_item` int NOT NULL COMMENT 'จำนวนที่ขาย (kg)',
+  `id_transalede` int(10) NOT NULL COMMENT 'รหัสรายละเอียดการขาย',
+  `id_transale` int(8) NOT NULL COMMENT 'รหัสรายการขาย',
+  `id_products` int(6) NOT NULL COMMENT 'รหัสสินค้า',
+  `num_item` int(10) NOT NULL COMMENT 'จำนวนที่ขาย (kg)',
   `price_tran` float NOT NULL COMMENT 'ราคาสินค้า'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -217,10 +215,10 @@ CREATE TABLE `transalede` (
 --
 
 CREATE TABLE `typepro` (
-  `id_typepro` int NOT NULL COMMENT 'รหัสประเภทกาแฟ',
+  `id_typepro` int(4) NOT NULL COMMENT 'รหัสประเภทกาแฟ',
   `name_typepro` varchar(60) NOT NULL COMMENT 'ชื่อประเภทกาแฟ',
   `detail_typepro` text NOT NULL COMMENT 'รายละเอียดประเภทกาแฟ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -284,43 +282,43 @@ ALTER TABLE `typepro`
 -- AUTO_INCREMENT for table `farmers`
 --
 ALTER TABLE `farmers`
-  MODIFY `id_farmers` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสเกษตรกร';
+  MODIFY `id_farmers` int(6) NOT NULL AUTO_INCREMENT COMMENT 'รหัสเกษตรกร';
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id_products` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสสินค้า';
+  MODIFY `id_products` int(6) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสินค้า';
 
 --
 -- AUTO_INCREMENT for table `provinces`
 --
 ALTER TABLE `provinces`
-  MODIFY `id_provinces` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสจังหวัด', AUTO_INCREMENT=97;
+  MODIFY `id_provinces` int(4) NOT NULL AUTO_INCREMENT COMMENT 'รหัสจังหวัด', AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `roasters`
 --
 ALTER TABLE `roasters`
-  MODIFY `id_roasters` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสโรงคั่วกาแฟ';
+  MODIFY `id_roasters` int(4) NOT NULL AUTO_INCREMENT COMMENT 'รหัสโรงคั่วกาแฟ';
 
 --
 -- AUTO_INCREMENT for table `transale`
 --
 ALTER TABLE `transale`
-  MODIFY `id_transale` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการขาย';
+  MODIFY `id_transale` int(8) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการขาย';
 
 --
 -- AUTO_INCREMENT for table `transalede`
 --
 ALTER TABLE `transalede`
-  MODIFY `id_transalede` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายละเอียดการขาย';
+  MODIFY `id_transalede` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายละเอียดการขาย';
 
 --
 -- AUTO_INCREMENT for table `typepro`
 --
 ALTER TABLE `typepro`
-  MODIFY `id_typepro` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทกาแฟ';
+  MODIFY `id_typepro` int(4) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทกาแฟ';
 
 --
 -- Constraints for dumped tables

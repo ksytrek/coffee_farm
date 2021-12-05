@@ -1,7 +1,7 @@
 <?php
 // include_once('config.inc.php');
-// include_once('config.inc.php');
-require_once('config.inc.php');
+include_once('config.inc.php');
+// require_once('./config.inc.php');
 
 class Database {
     private static $link = null ;
