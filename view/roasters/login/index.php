@@ -48,6 +48,11 @@
 									<a href="#" style="color: #fff">Forgot Password</a>
 								</div>
 							</div>
+							<div class="form-group d-md-flex">
+								<div class="w-100 text-md-center">
+									<a href="../register/" style="color: #fff">Sign UP</a>
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
