@@ -26,31 +26,80 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 						<h3 class="mb-4 text-center">Roasters Login</h3>
-						<form action="#" class="signin-form">
+						<form action="javascript:login()" class="signin-form">
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Username" required>
+								<input type="text" id='email_roasters' class="form-control" placeholder="E-mail" required>
 							</div>
 							<div class="form-group">
-								<input id="password-field" type="password" class="form-control" placeholder="Password" required>
-								<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+								<input id="password_roasters" type="password" class="form-control" placeholder="Password" required>
+								<span toggle="#password_roasters" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+								<script>
+									function login(){
+										var e_mail_roasters = $('#email_roasters').val();
+										var pass_roasters = $('#password_roasters').val();
+
+										// alert(email_roasters + " " + password_roasters);
+										$.ajax({
+											url : './controller/login.php',
+											type : 'POST',
+											data:{
+												key: 'login_roasters',
+												e_mail_roasters: e_mail_roasters,
+												pass_roasters: pass_roasters
+											},success : function(result, textStatus,jqXHR){
+												alert(result);
+											},error : function(result, textStatus, jqXHR){
+
+											}
+										});
+									}
+								</script>
 							</div>
 							<div class="form-group d-md-flex">
 								<div class="w-50">
 									<label class="checkbox-wrap checkbox-primary">Remember Me
-										<input type="checkbox" checked>
+										<input type="checkbox" id="rememberMe_per" onclick="lsRememberMe()">
+										<!-- checked -->
 										<span class="checkmark"></span>
 									</label>
+									<script>
+										const rmCheck = document.getElementById("rememberMe_per"),
+											emailInput = document.getElementById("email_roasters"),
+											passwordInput = document.getElementById("password_roasters");
+
+										if (localStorage.checkbox && localStorage.checkbox !== "") {
+											rmCheck.setAttribute("checked", "checked");
+											emailInput.value = localStorage.username;
+											passwordInput.value = localStorage.password;
+										} else {
+											rmCheck.removeAttribute("checked");
+											emailInput.value = "";
+											passwordInput.value = "";
+										}
+
+										function lsRememberMe() {
+											if (rmCheck.checked && emailInput.value !== "") {
+												localStorage.username = emailInput.value;
+												localStorage.checkbox = rmCheck.value;
+												localStorage.password = passwordInput.value;
+											} else {
+												localStorage.username = "";
+												localStorage.checkbox = "";
+												localStorage.password = "";
+											}
+										}
+									</script>
 								</div>
 								<div class="w-50 text-md-right">
-									<a href="#" style="color: #fff">Forgot Password</a>
+									<a href="../register/" style="color: #fff">Sign UP</a>
 								</div>
 							</div>
 							<div class="form-group d-md-flex">
 								<div class="w-100 text-md-center">
-									<a href="../register/" style="color: #fff">Sign UP</a>
+									<!-- <a href="#" style="color: #fff">Forgot Password</a>	 -->
 								</div>
 							</div>
 						</form>
