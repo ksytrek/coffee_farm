@@ -63,95 +63,6 @@ include_once('./navbar.php');
     </div> -->
     <!-- END BEGIN STYLE CUSTOMIZER -->
 
-    <!-- BEGIN SLIDER -->
-    <!-- สไลด์ -->
-    <div class="page-slider margin-bottom-35">
-        <div id="carousel-example-generic" class="carousel slide carousel-slider">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <!-- First slide -->
-                <div class="item carousel-item-four active">
-                    <div class="container">
-                        <div class="carousel-position-four text-center">
-                            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
-                                Tones of <br /><span class="color-red-v2">Shop UI Features</span><br /> designed
-                            </h2>
-                            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">Lorem ipsum dolor sit amet constectetuer diam <br />
-                                adipiscing elit euismod ut laoreet dolore.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Second slide -->
-                <div class="item carousel-item-five">
-                    <div class="container">
-                        <div class="carousel-position-four text-center">
-                            <h2 class="animate-delay carousel-title-v4" data-animation="animated fadeInDown">
-                                Unlimted
-                            </h2>
-                            <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
-                                Layout Options
-                            </p>
-                            <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
-                                Fully Responsive
-                            </p>
-                            <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See More Details</a>
-                        </div>
-                        <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="assets/pages/img/shop-slider/slide2/price.png" alt="Price" data-animation="animated zoomIn">
-                    </div>
-                </div>
-
-                <!-- Third slide -->
-                <div class="item carousel-item-six">
-                    <div class="container">
-                        <div class="carousel-position-four text-center">
-                            <span class="carousel-subtitle-v3 margin-bottom-15" data-animation="animated fadeInDown">
-                                Full Admin &amp; Frontend
-                            </span>
-                            <p class="carousel-subtitle-v4" data-animation="animated fadeInDown">
-                                eCommerce UI
-                            </p>
-                            <p class="carousel-subtitle-v3" data-animation="animated fadeInDown">
-                                Is Ready For Your Project
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fourth slide -->
-                <div class="item carousel-item-seven">
-                    <div class="center-block">
-                        <div class="center-block-wrap">
-                            <div class="center-block-body">
-                                <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
-                                    The most <br />
-                                    wanted bijouterie
-                                </h2>
-                                <a class="carousel-btn" href="#" data-animation="animated fadeInUp">But It Now!</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
-                <i class="fa fa-angle-left" aria-hidden="true"></i>
-            </a>
-            <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-    <!-- END SLIDER -->
 
     <div class="main">
         <div class="container">
@@ -272,12 +183,12 @@ include_once('./navbar.php');
                 <!-- BEGIN SIDEBAR -->
                 <div class="sidebar col-md-3 col-sm-4">
                     <ul class="list-group margin-bottom-25 sidebar-menu">
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li>
-                        <li class="list-group-item clearfix dropdown">
-                            <a href="shop-product-list.html">
-                                <i class="fa fa-angle-right"></i>
-                                Mens
+                        <!-- <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li> -->
 
+                        <!-- <li class="list-group-item clearfix dropdown">
+                            <a href="javascript:void(0);">
+                                <i class="fa fa-angle-right"></i>
+                                ประเภทกาแฟ
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="list-group-item dropdown clearfix">
@@ -299,19 +210,26 @@ include_once('./navbar.php');
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Trainers</a></li>
+
                                 <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Jeans</a></li>
                                 <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Chinos</a></li>
                                 <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> T-Shirts</a></li>
                             </ul>
-                        </li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
+                        </li> -->
+
+                        <?php
+                        foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
+                        ?>
+                            <li class="list-group-item clearfix"><a href="shop-product-list.html"><?php echo $row['name_typepro'] ?></a></li>
+                        <?php endforeach; ?>
+                        
+                        <!-- <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
                         <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
                         <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
                         <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Brands</a></li>
                         <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Electronics</a></li>
                         <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Home & Garden</a></li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li> -->
                     </ul>
                 </div>
                 <!-- END SIDEBAR -->
@@ -597,9 +515,97 @@ include_once('./navbar.php');
         </div>
     </div>
 
+        <!-- BEGIN SLIDER -->
+    <!-- สไลด์ -->
+    <!-- <div class="page-slider margin-bottom-35">
+        <div id="carousel-example-generic" class="carousel slide carousel-slider">
 
-    <?php 
-        include_once("./footer.php");
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+
+
+            <div class="carousel-inner" role="listbox">
+
+                <div class="item carousel-item-four active">
+                    <div class="container">
+                        <div class="carousel-position-four text-center">
+                            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                                Tones of <br /><span class="color-red-v2">Shop UI Features</span><br /> designed
+                            </h2>
+                            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">Lorem ipsum dolor sit amet constectetuer diam <br />
+                                adipiscing elit euismod ut laoreet dolore.</p>
+                        </div>
+                    </div>
+                </div>
+
+ 
+                <div class="item carousel-item-five">
+                    <div class="container">
+                        <div class="carousel-position-four text-center">
+                            <h2 class="animate-delay carousel-title-v4" data-animation="animated fadeInDown">
+                                Unlimted
+                            </h2>
+                            <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
+                                Layout Options
+                            </p>
+                            <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
+                                Fully Responsive
+                            </p>
+                            <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See More Details</a>
+                        </div>
+                        <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="assets/pages/img/shop-slider/slide2/price.png" alt="Price" data-animation="animated zoomIn">
+                    </div>
+                </div>
+
+                <div class="item carousel-item-six">
+                    <div class="container">
+                        <div class="carousel-position-four text-center">
+                            <span class="carousel-subtitle-v3 margin-bottom-15" data-animation="animated fadeInDown">
+                                Full Admin &amp; Frontend
+                            </span>
+                            <p class="carousel-subtitle-v4" data-animation="animated fadeInDown">
+                                eCommerce UI
+                            </p>
+                            <p class="carousel-subtitle-v3" data-animation="animated fadeInDown">
+                                Is Ready For Your Project
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+ 
+                <div class="item carousel-item-seven">
+                    <div class="center-block">
+                        <div class="center-block-wrap">
+                            <div class="center-block-body">
+                                <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
+                                    The most <br />
+                                    wanted bijouterie
+                                </h2>
+                                <a class="carousel-btn" href="#" data-animation="animated fadeInUp">But It Now!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+            <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div> -->
+    <!-- END SLIDER -->
+
+
+    <?php
+    include_once("./footer.php");
     ?>
     <!-- END fast view of a product -->
 

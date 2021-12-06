@@ -18,7 +18,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- Head BEGIN -->
 
 <?php
-
+include_once('../../config/connectdb.php');
 session_start();
 $id_roasters = $_SESSION['user_id'];
 ?>
@@ -137,7 +137,14 @@ $id_roasters = $_SESSION['user_id'];
                         <li><a href="shop-account.html">บัญชีของฉัน</a></li>
                         <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
                         <li><a href="shop-checkout.html">Checkout</a></li>
-                        <!-- <li><a href="page-login.html">Log In</a></li> -->
+                        <?php
+                        if (!isset($id_roasters)) :
+                        ?>
+                            <li><a href="../roasters/login/">Log In</a></li>
+                        <?php elseif (isset($id_roasters)) : ?>
+                            <li><a href="./controllers/logout.php">Log Out</a></li>
+
+                        <?php endif; ?>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -149,7 +156,7 @@ $id_roasters = $_SESSION['user_id'];
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="shop-index.html"><img src="assets/corporate/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
+            <a class="site-logo" href="shop-index.html"><img src="assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
 
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
@@ -233,15 +240,39 @@ $id_roasters = $_SESSION['user_id'];
             <!-- BEGIN NAVIGATION -->
             <div class="header-navigation">
                 <ul>
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            Woman
-
+                            เมนู
                         </a>
 
+                        <ul class="dropdown-menu">
+                            <li><a href="shop-index.html">Home Default</a></li>
+                            <li class="active"><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
+                            <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
+                            <li><a href="shop-product-list.html">Product List</a></li>
+                            <li><a href="shop-search-result.html">Search Result</a></li>
+                            <li><a href="shop-item.html">Product Page</a></li>
+                            <li><a href="shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
+                            <li><a href="shop-shopping-cart.html">Shopping Cart</a></li>
+                            <li><a href="shop-checkout.html">Checkout</a></li>
+                            <li><a href="shop-about.html">About</a></li>
+                            <li><a href="shop-contacts.html">Contacts</a></li>
+                            <li><a href="shop-account.html">My account</a></li>
+                            <li><a href="shop-wishlist.html">My Wish List</a></li>
+                            <li><a href="shop-goods-compare.html">Product Comparison</a></li>
+                            <li><a href="shop-standart-forms.html">Standart Forms</a></li>
+                            <li><a href="shop-faq.html">FAQ</a></li>
+                            <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+                            สายพันธุ์เมล็ดกาแฟ
+                        </a>
                         <!-- BEGIN DROPDOWN MENU -->
                         <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
+                            <!-- <li class="dropdown-submenu">
                                 <a href="shop-product-list.html">Hi Tops <i class="fa fa-angle-right"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="shop-product-list.html">Second Level Link</a></li>
@@ -258,15 +289,21 @@ $id_roasters = $_SESSION['user_id'];
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
-                            <li><a href="shop-product-list.html">Running Shoes</a></li>
-                            <li><a href="shop-product-list.html">Jackets and Coats</a></li>
+                            </li> -->
+                            <?php
+                            foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
+                            ?>
+                                <li><a href="shop-product-list.html"><?php echo $row['name_typepro'] ?></a></li>
+                                <!-- <li><a href="shop-product-list.html">Jackets and Coats</a></li> -->
+                            <?php
+                            endforeach;
+                            ?>
                         </ul>
                         <!-- END DROPDOWN MENU -->
                     </li>
-                    <li class="dropdown dropdown-megamenu">
+                    <!-- <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            Man
+                            ประเภทกาแฟ
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -325,8 +362,8 @@ $id_roasters = $_SESSION['user_id'];
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li><a href="shop-item.html">Kids</a></li>
+                    </li> -->
+                    <!-- <li><a href="shop-item.html">Kids</a></li> -->
                     <li class="dropdown dropdown100 nav-catalogue">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                             สินค้าใหม่
@@ -342,7 +379,7 @@ $id_roasters = $_SESSION['user_id'];
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4 col-xs-6">
@@ -352,7 +389,7 @@ $id_roasters = $_SESSION['user_id'];
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4 col-xs-6">
@@ -362,7 +399,7 @@ $id_roasters = $_SESSION['user_id'];
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4 col-xs-6">
@@ -372,7 +409,7 @@ $id_roasters = $_SESSION['user_id'];
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -380,32 +417,7 @@ $id_roasters = $_SESSION['user_id'];
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown active">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            หน้า
-                        </a>
 
-                        <ul class="dropdown-menu">
-                            <li><a href="shop-index.html">Home Default</a></li>
-                            <li class="active"><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
-                            <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
-                            <li><a href="shop-product-list.html">Product List</a></li>
-                            <li><a href="shop-search-result.html">Search Result</a></li>
-                            <li><a href="shop-item.html">Product Page</a></li>
-                            <li><a href="shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
-                            <li><a href="shop-shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="shop-checkout.html">Checkout</a></li>
-                            <li><a href="shop-about.html">About</a></li>
-                            <li><a href="shop-contacts.html">Contacts</a></li>
-                            <li><a href="shop-account.html">My account</a></li>
-                            <li><a href="shop-wishlist.html">My Wish List</a></li>
-                            <li><a href="shop-goods-compare.html">Product Comparison</a></li>
-                            <li><a href="shop-standart-forms.html">Standart Forms</a></li>
-                            <li><a href="shop-faq.html">FAQ</a></li>
-                            <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
-                        </ul>
-                    </li>
                     <!-- BEGIN TOP SEARCH -->
                     <li class="menu-search">
                         <span class="sep"></span>
