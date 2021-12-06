@@ -50,9 +50,21 @@
 												e_mail_roasters: e_mail_roasters,
 												pass_roasters: pass_roasters
 											},success : function(result, textStatus,jqXHR){
-												alert(result);
-											},error : function(result, textStatus, jqXHR){
+												// alert(result);
+												
+												var json = JSON.parse(result);
+												if(json != ""){
+													alert('ยินดีตอนรับเข้าสู่ระบบ');
+													location.assign('../shop-index.php');
+												}else{
+													// alert(json[0].pass_roasters);
+													alert('รหัสผ่านไม่ถูกต้อง');
 
+												}
+												// var e_mail_roasters = json[0].e_mail_roasters;
+												// var pass_roasters = json[0].pass_roasters;
+											},error : function(result, textStatus, jqXHR){
+												alert('เกินข้อผิดพลาดทางระบบ'); 
 											}
 										});
 									}

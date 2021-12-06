@@ -18,6 +18,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- Head BEGIN -->
 <?php
 include_once('./navbar.php');
+
 ?>
 
 <head>
@@ -38,34 +39,6 @@ include_once('./navbar.php');
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
-    <link rel="shortcut icon" href="favicon.ico">
-
-    <!-- Fonts START -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
-    <!--- fonts for slider on the index page -->
-    <!-- Fonts END -->
-
-    <!-- Global styles START -->
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Global styles END -->
-
-    <!-- Page level plugin styles START -->
-    <link href="assets/pages/css/animate.css" rel="stylesheet">
-    <link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-    <link href="assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
-    <!-- Page level plugin styles END -->
-
-    <!-- Theme styles START -->
-    <link href="assets/pages/css/components.css" rel="stylesheet">
-    <link href="assets/pages/css/slider.css" rel="stylesheet">
-    <link href="assets/pages/css/style-shop.css" rel="stylesheet" type="text/css">
-    <link href="assets/corporate/css/style.css" rel="stylesheet">
-    <link href="assets/corporate/css/style-responsive.css" rel="stylesheet">
-    <link href="assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
-    <link href="assets/corporate/css/custom.css" rel="stylesheet">
-    <!-- Theme styles END -->
 </head>
 <!-- Head END -->
 
@@ -91,6 +64,7 @@ include_once('./navbar.php');
     <!-- END BEGIN STYLE CUSTOMIZER -->
 
     <!-- BEGIN SLIDER -->
+    <!-- สไลด์ -->
     <div class="page-slider margin-bottom-35">
         <div id="carousel-example-generic" class="carousel slide carousel-slider">
             <!-- Indicators -->
@@ -185,7 +159,7 @@ include_once('./navbar.php');
             <div class="row margin-bottom-40">
                 <!-- BEGIN SALE PRODUCT -->
                 <div class="col-md-12 sale-product">
-                    <h2>New Arrivals</h2>
+                    <h2>สินค้าใหม่ล่าสุด</h2>
                     <div class="owl-carousel owl-carousel5">
                         <div>
                             <div class="product-item">
@@ -198,7 +172,7 @@ include_once('./navbar.php');
                                 </div>
                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                 <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                 <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
@@ -634,27 +608,6 @@ include_once('./navbar.php');
     <!--[if lt IE 9]>
     <script src="assets/plugins/respond.min.js"></script>  
     <![endif]-->
-
-
-
-
-
-
-
-
-
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            Layout.init();
-            Layout.initOWL();
-            Layout.initImageZoom();
-            Layout.initTouchspin();
-            Layout.initTwitter();
-            Layout.initFixHeaderWithPreHeader();
-            Layout.initNavScrolling();
-        });
-    </script>
-    <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
 

@@ -17,6 +17,16 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <!-- Head BEGIN -->
 
+<?php
+
+session_start();
+$id_roasters = $_SESSION['user_id'];
+?>
+<script>
+    const ID_ROASTERS = '<?php echo $id_roasters; ?>';
+    // alert(ID_ROASTERS);
+</script>
+
 <head>
     <meta charset="utf-8">
     <title>Metronic Shop UI</title>
@@ -34,8 +44,6 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <meta property="og:type" content="website">
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
-
-    <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Fonts START -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
@@ -94,16 +102,21 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li>
+                        <!-- <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li> -->
                         <!-- BEGIN CURRENCIES -->
-                        <li class="shop-currencies">
+
+
+                        <!-- <li class="shop-currencies">
                             <a href="javascript:void(0);">€</a>
                             <a href="javascript:void(0);">£</a>
                             <a href="javascript:void(0);" class="current">$</a>
-                        </li>
+                        </li> -->
+
                         <!-- END CURRENCIES -->
                         <!-- BEGIN LANGS -->
-                        <li class="langs-block">
+
+                        <!-- เลือกภาษาใช้เเสดง -->
+                        <!-- <li class="langs-block">
                             <a href="javascript:void(0);" class="current">English </a>
                             <div class="langs-block-others-wrapper">
                                 <div class="langs-block-others">
@@ -112,7 +125,8 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                     <a href="javascript:void(0);">Turkish</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
+
                         <!-- END LANGS -->
                     </ul>
                 </div>
@@ -120,10 +134,10 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><a href="shop-account.html">My Account</a></li>
-                        <li><a href="shop-wishlist.html">My Wishlist</a></li>
+                        <li><a href="shop-account.html">บัญชีของฉัน</a></li>
+                        <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
                         <li><a href="shop-checkout.html">Checkout</a></li>
-                        <li><a href="page-login.html">Log In</a></li>
+                        <!-- <li><a href="page-login.html">Log In</a></li> -->
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -253,7 +267,6 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                     <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                             Man
-
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -316,8 +329,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                     <li><a href="shop-item.html">Kids</a></li>
                     <li class="dropdown dropdown100 nav-catalogue">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            New
-
+                            สินค้าใหม่
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -370,8 +382,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                     </li>
                     <li class="dropdown active">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            Pages
-
+                            หน้า
                         </a>
 
                         <ul class="dropdown-menu">
@@ -395,10 +406,6 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                             <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
                         </ul>
                     </li>
-
-
-                    <li><a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes&amp;utm_source=download&amp;utm_medium=banner&amp;utm_campaign=metronic_frontend_freebie" target="_blank">Admin theme</a></li>
-
                     <!-- BEGIN TOP SEARCH -->
                     <li class="menu-search">
                         <span class="sep"></span>
@@ -424,36 +431,10 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 
 
-    
-    <script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
 
-    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-    <script src="assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
-    <script src='assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
-    <script src="assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
 
-    <script src="assets/corporate/scripts/layout.js" type="text/javascript"></script>
-    <script src="assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            Layout.init();
-            Layout.initOWL();
-            Layout.initImageZoom();
-            Layout.initTouchspin();
-            Layout.initTwitter();
-
-            Layout.initFixHeaderWithPreHeader();
-            Layout.initNavScrolling();
-        });
-    </script>
-    <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 
 <!-- END BODY -->
+
 </html>
