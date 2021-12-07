@@ -423,14 +423,26 @@ $id_roasters = $_SESSION['user_id'];
                         <span class="sep"></span>
                         <i class="fa fa-search search-btn"></i>
                         <div class="search-box">
-                            <form action="#">
+                            <form action="javascript:search()">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Search" class="form-control">
+                                    <input type="text" placeholder="Search" class="form-control input-search">
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit">Search</button>
                                     </span>
                                 </div>
                             </form>
+
+                            <script>
+                                function search(){
+                                    // alert( );
+                                    var search_text = $('.input-search').val();
+                                    if(search_text == ''){
+                                        location.assign('./shop-search-result.php');
+                                    }else{
+                                        location.assign('./shop-search-result.php?search=' + search_text);
+                                    }
+                                }
+                            </script>
                         </div>
                     </li>
                     <!-- END TOP SEARCH -->
