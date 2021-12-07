@@ -20,7 +20,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <?php
 include_once('../../config/connectdb.php');
 session_start();
-$id_roasters = $_SESSION['user_id'];
+$id_roasters = null;
+if(isset($_SESSION['user_id'])){
+    $id_roasters = $_SESSION['user_id'];
+}
+
 ?>
 <script>
     const ID_ROASTERS = '<?php echo $id_roasters; ?>';
@@ -151,11 +155,12 @@ $id_roasters = $_SESSION['user_id'];
                     <ul class="list-unstyled list-inline pull-right">
                         <li><a href="shop-account.html">บัญชีของฉัน</a></li>
                         <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
-                        <li><a href="shop-checkout.html">Checkout</a></li>
+                        <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
                         <?php
                         if (!isset($id_roasters)) :
                         ?>
-                            <li><a href="../roasters/login/">Log In</a></li>
+                            <li><a href="../roasters/login/">Sign In</a></li>
+                            <li><a href="../roasters/register/">Sign UP</a></li>
                         <?php elseif (isset($id_roasters)) : ?>
                             <li><a href="./controllers/logout.php">Log Out</a></li>
 
