@@ -15,15 +15,13 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <html lang="en">
 <!--<![endif]-->
 <?php
-include_once('./navbar.php');
-
+    include_once('./navbar.php');
 ?>
-
 <!-- Head BEGIN -->
 
 <head>
     <meta charset="utf-8">
-    <title>Search result | Metronic Shop UI</title>
+    <title>Men category | Metronic Shop UI</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -38,7 +36,8 @@ include_once('./navbar.php');
     <meta property="og:type" content="website">
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
-    <!-- Theme styles END -->
+
+
 </head>
 <!-- Head END -->
 
@@ -46,20 +45,75 @@ include_once('./navbar.php');
 
 <body class="ecommerce">
 
+
+
+
+    <div class="title-wrapper">
+        <div class="container">
+            <div class="container-inner">
+                <h1><span>MEN</span> CATEGORY</h1>
+                <em>Over 4000 Items are available here</em>
+            </div>
+        </div>
+    </div>
+
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="">Store</a></li>
-                <li class="active">Search result</li>
+                <li class="active">Men category</li>
             </ul>
             <!-- BEGIN SIDEBAR & CONTENT -->
             <div class="row margin-bottom-40">
                 <!-- BEGIN SIDEBAR -->
                 <div class="sidebar col-md-3 col-sm-5">
+                    <ul class="list-group margin-bottom-25 sidebar-menu">
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li>
+                        <li class="list-group-item clearfix dropdown active">
+                            <a href="javascript:void(0);" class="collapsed">
+                                <i class="fa fa-angle-right"></i>
+                                Mens
+
+                            </a>
+                            <ul class="dropdown-menu" style="display:block;">
+                                <li class="list-group-item dropdown clearfix active">
+                                    <a href="javascript:void(0);" class="collapsed"><i class="fa fa-angle-right"></i> Shoes </a>
+                                    <ul class="dropdown-menu" style="display:block;">
+                                        <li class="list-group-item dropdown clearfix">
+                                            <a href="javascript:void(0);"><i class="fa fa-angle-right"></i> Classic </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 1</a></li>
+                                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="list-group-item dropdown clearfix active">
+                                            <a href="javascript:void(0);" class="collapsed"><i class="fa fa-angle-right"></i> Sport </a>
+                                            <ul class="dropdown-menu" style="display:block;">
+                                                <li class="active"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 1</a></li>
+                                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 2</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Trainers</a></li>
+                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Jeans</a></li>
+                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Chinos</a></li>
+                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> T-Shirts</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Brands</a></li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Electronics</a></li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Home & Garden</a></li>
+                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li>
+                    </ul>
+
                     <div class="sidebar-filter margin-bottom-25">
-                        <h2>ค้นหาหมวดหมู่</h2>
-                        <h3>มีจำหน่าย</h3>
+                        <h2>Filter</h2>
+                        <h3>Availability</h3>
                         <div class="checkbox-list">
                             <label><input type="checkbox"> Not Available (3)</label>
                             <label><input type="checkbox"> In Stock (26)</label>
@@ -67,43 +121,14 @@ include_once('./navbar.php');
 
                         <h3>Price</h3>
                         <p>
-                            <label for="amount">Range:</label> &nbsp;&nbsp;
-                            ค้นหาจาก 0 - <span id="sliderStatusMin">200</span>
-                            <br/> 
-                            <input type="range" id="amount" min="0" max="200" value="200" style="border:0; color:#f6931f; font-weight:bold;" onChange="sliderChange(this.value)">
-                            
+                            <label for="amount">Range:</label>
+                            <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
                         </p>
-                        <script>
-                            function sliderChange(val) {
-
-                                document.getElementById('sliderStatusMin').innerHTML = val;
-
-                                function displayItem(val) {
-                                    // $('.item').filter(function() {
-                                    //     var price = $(this).data('price');
-                                    //     if (price < val) {
-                                    //         return price;
-                                    //     }
-
-                                    // }).hide();
-
-                                    // $('.item').filter(function() {
-                                    //     var price = $(this).data('price');
-                                    //     if (price > val) {
-                                    //         return price;
-                                    //     }
-
-                                    // }).show();
-                                }
-
-                                displayItem(val);
-                            }
-                        </script>
-                        <!-- <div id="slider-range"></div> -->
+                        <div id="slider-range"></div>
                     </div>
 
                     <div class="sidebar-products clearfix">
-                        <h2>ขายดี</h2>
+                        <h2>Bestsellers</h2>
                         <div class="item">
                             <a href="shop-item.html"><img src="assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
                             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
@@ -124,23 +149,6 @@ include_once('./navbar.php');
                 <!-- END SIDEBAR -->
                 <!-- BEGIN CONTENT -->
                 <div class="col-md-9 col-sm-7">
-                    <div class="content-search margin-bottom-20">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1>ผลการค้นหา <em><?php if(isset($_GET['search'])) :  echo $_GET['search']; endif; ?></em></h1>
-                            </div>
-                            <div class="col-md-6">
-                                <form action="#">
-                                    <div class="input-group">
-                                        <input type="text" placeholder="ค้นหาอีกครั้ง" class="form-control">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="submit">ค้นหา</button>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row list-view-sorting clearfix">
                         <div class="col-md-2 col-sm-2 list-view">
                             <a href="javascript:;"><i class="fa fa-th-large"></i></a>
@@ -148,7 +156,7 @@ include_once('./navbar.php');
                         </div>
                         <div class="col-md-10 col-sm-10">
                             <div class="pull-right">
-                                <label class="control-label">แสดง:</label>
+                                <label class="control-label">Show:</label>
                                 <select class="form-control input-sm">
                                     <option value="#?limit=24" selected="selected">24</option>
                                     <option value="#?limit=25">25</option>
@@ -158,7 +166,7 @@ include_once('./navbar.php');
                                 </select>
                             </div>
                             <div class="pull-right">
-                                <label class="control-label">จัดเรียง:</label>
+                                <label class="control-label">Sort&nbsp;By:</label>
                                 <select class="form-control input-sm">
                                     <option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
                                     <option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
@@ -185,7 +193,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.html">Berry Lace Dress Berry Lace Dress</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -235,7 +243,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.html">Berry Lace Dress Berry Lace Dress</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -350,30 +358,9 @@ include_once('./navbar.php');
         </div>
     </div>
 
-    <!-- BEGIN BRANDS -->
-    <div class="brands">
-        <div class="container">
-            <div class="owl-carousel owl-carousel6-brands">
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-                <a href="shop-product-list.html"><img src="assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
-            </div>
-        </div>
-    </div>
-
-    <?php
+<?php 
     include_once("./footer.php");
-    ?>
-    <!-- END BRANDS -->
+?>
 </body>
 <!-- END BODY -->
 

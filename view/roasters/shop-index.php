@@ -81,10 +81,10 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
-                                <div class="sticker sticker-sale"></div>
+                                <!-- <div class="sticker sticker-sale"></div> -->
                             </div>
                         </div>
                         <div>
@@ -96,7 +96,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress2</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -110,7 +110,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress2</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -127,7 +127,7 @@ include_once('./navbar.php');
                                 <h3><a href="javascript:;">Berry Lace Dress4</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                                <div class="sticker sticker-new"></div>
+                                <!-- <div class="sticker sticker-new"></div> -->
                             </div>
                         </div>
                         <div>
@@ -139,7 +139,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress5</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -153,7 +153,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress3</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -167,7 +167,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress3</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -179,9 +179,10 @@ include_once('./navbar.php');
             <!-- END SALE PRODUCT & NEW ARRIVALS -->
 
             <!-- BEGIN SIDEBAR & CONTENT -->
-            <div class="row margin-bottom-40 ">
+            <div class="row margin-bottom-40  " style="background: #fff; padding-top: 20px;">
                 <!-- BEGIN SIDEBAR -->
                 <div class="sidebar col-md-3 col-sm-4">
+                    <h2>สายพันธุ์เมล็ดกาแฟ</h2>
                     <ul class="list-group margin-bottom-25 sidebar-menu">
                         <!-- <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li> -->
 
@@ -220,9 +221,9 @@ include_once('./navbar.php');
                         <?php
                         foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
                         ?>
-                            <li class="list-group-item clearfix"><a href="shop-product-list.html"><?php echo $row['name_typepro'] ?></a></li>
+                            <li class="list-group-item clearfix"><a href="./shop-index.php?type=<?php echo $row['name_typepro'] ?>">&nbsp;<i class="fa fa-angle-right"></i><?php echo $row['name_typepro'] ?></a></li>
                         <?php endforeach; ?>
-                        
+
                         <!-- <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
                         <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
                         <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
@@ -235,7 +236,9 @@ include_once('./navbar.php');
                 <!-- END SIDEBAR -->
                 <!-- BEGIN CONTENT -->
                 <div class="col-md-9 col-sm-8">
-                    <h2>Three items</h2>
+                    <h2>สายพันธุ์เมล็ดกาแฟ <em style="color:chocolate"> <?php if (isset($_GET['type'])) {
+                                                                            echo $_GET['type'];
+                                                                        } ?> </em></h2>
                     <div class="owl-carousel owl-carousel3">
                         <div>
                             <div class="product-item">
@@ -246,7 +249,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                                 <div class="sticker sticker-new"></div>
@@ -261,7 +264,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress2</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -275,7 +278,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress3</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -289,7 +292,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress4</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                                 <div class="sticker sticker-sale"></div>
@@ -304,7 +307,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress5</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -318,61 +321,7 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END CONTENT -->
-            </div>
-            <!-- END SIDEBAR & CONTENT -->
-
-            <!-- BEGIN TWO PRODUCTS & PROMO -->
-            <div class="row margin-bottom-35 ">
-                <!-- BEGIN TWO PRODUCTS -->
-                <div class="col-md-6 two-items-bottom-items">
-                    <h2>Two items</h2>
-                    <div class="owl-carousel owl-carousel2">
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress6</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -386,21 +335,22 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                <div class="sticker sticker-new"></div>
                             </div>
                         </div>
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress2</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
@@ -414,19 +364,155 @@ include_once('./navbar.php');
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.php">Berry Lace Dress3</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress4</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                <div class="sticker sticker-sale"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress5</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress6</a></h3>
                                 <div class="pi-price">$29.00</div>
                                 <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- END TWO PRODUCTS -->
-                <!-- BEGIN PROMO -->
+                <!-- END CONTENT -->
+            </div>
+            <!-- END SIDEBAR & CONTENT -->
+
+            <!-- BEGIN TWO PRODUCTS & PROMO -->
+            <!-- <div class="row margin-bottom-35 ">
+                <div class="col-md-6 two-items-bottom-items">
+                    <h2>Two items</h2>
+                    <div class="owl-carousel owl-carousel2">
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <h3><a href="shop-item.php">Berry Lace Dress</a></h3>
+                                <div class="pi-price">$29.00</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-6 shop-index-carousel">
                     <div class="content-slider">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
                             <ol class="carousel-indicators">
                                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                                 <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -446,9 +532,8 @@ include_once('./navbar.php');
                         </div>
                     </div>
                 </div>
-                <!-- END PROMO -->
-            </div>
-            <!-- END TWO PRODUCTS & PROMO -->
+            </div> -->
+
         </div>
     </div>
 
@@ -506,7 +591,7 @@ include_once('./navbar.php');
                             <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
                         </div>
                         <button class="btn btn-primary" type="submit">Add to cart</button>
-                        <a href="shop-item.html" class="btn btn-default">More details</a>
+                        <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
                     </div>
                 </div>
 
@@ -515,7 +600,7 @@ include_once('./navbar.php');
         </div>
     </div>
 
-        <!-- BEGIN SLIDER -->
+    <!-- BEGIN SLIDER -->
     <!-- สไลด์ -->
     <!-- <div class="page-slider margin-bottom-35">
         <div id="carousel-example-generic" class="carousel slide carousel-slider">
@@ -555,7 +640,7 @@ include_once('./navbar.php');
                             <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
                                 Fully Responsive
                             </p>
-                            <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See More Details</a>
+                            <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See แสดงรายละเอียดเพิ่มเติม</a>
                         </div>
                         <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="assets/pages/img/shop-slider/slide2/price.png" alt="Price" data-animation="animated zoomIn">
                     </div>

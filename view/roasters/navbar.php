@@ -46,10 +46,25 @@ $id_roasters = $_SESSION['user_id'];
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
     <!-- Fonts START -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300&display=swap" rel="stylesheet"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
     <!--- fonts for slider on the index page -->
     <!-- Fonts END -->
+    <style type="text/css">
+        /* .ecommerce{
+            font-family: 'Kodchasan', sans-serif;
+            font-family: 'Maitree', serif;
+        } */
+    </style>
 
     <!-- Global styles START -->
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -156,14 +171,12 @@ $id_roasters = $_SESSION['user_id'];
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="shop-index.html"><img src="assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
-
+            <a class="site-logo" href="shop-index.php"><img src="assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-
             <!-- BEGIN CART -->
             <div class="top-cart-block">
                 <div class="top-cart-info">
-                    <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
+                    <a href="javascript:void(0);" class="top-cart-info-count">3 สินค้า</a>
                     <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
                 </div>
                 <i class="fa fa-shopping-cart"></i>
@@ -227,10 +240,108 @@ $id_roasters = $_SESSION['user_id'];
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
                         </ul>
                         <div class="text-right">
-                            <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
-                            <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
+                            <a href="shop-shopping-cart.php" class="btn btn-default">ตะกร้าสินค้า</a>
+                            <a href="shop-checkout.php" class="btn btn-primary">Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -240,9 +351,11 @@ $id_roasters = $_SESSION['user_id'];
             <!-- BEGIN NAVIGATION -->
             <div class="header-navigation">
                 <ul>
-                    <li class="dropdown active">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            เมนู
+                    <!-- active -->
+                    <li><a href="./shop-index.php">หน้าหลัก</a></li>
+                    <!-- <li class="dropdown "> 
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
+                            หน้าหลัก
                         </a>
 
                         <ul class="dropdown-menu">
@@ -265,7 +378,7 @@ $id_roasters = $_SESSION['user_id'];
                             <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
                             <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                             สายพันธุ์เมล็ดกาแฟ
@@ -293,7 +406,7 @@ $id_roasters = $_SESSION['user_id'];
                             <?php
                             foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
                             ?>
-                                <li><a href="shop-product-list.html"><?php echo $row['name_typepro'] ?></a></li>
+                                <li><a href="./shop-search-result.php?search=<?php echo $row['name_typepro'] ?>"><?php echo $row['name_typepro'] ?></a></li>
                                 <!-- <li><a href="shop-product-list.html">Jackets and Coats</a></li> -->
                             <?php
                             endforeach;
@@ -364,8 +477,9 @@ $id_roasters = $_SESSION['user_id'];
                         </ul>
                     </li> -->
                     <!-- <li><a href="shop-item.html">Kids</a></li> -->
+                    <li><a href="shop-product-list.php">รายการสินค้า</a></li>
                     <li class="dropdown dropdown100 nav-catalogue">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             สินค้าใหม่
                         </a>
                         <ul class="dropdown-menu">
