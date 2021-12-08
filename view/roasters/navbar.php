@@ -21,7 +21,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 include_once('../../config/connectdb.php');
 session_start();
 $id_roasters = null;
-if(isset($_SESSION['user_id'])){
+if (isset($_SESSION['user_id'])) {
     $id_roasters = $_SESSION['user_id'];
 }
 
@@ -153,15 +153,15 @@ if(isset($_SESSION['user_id'])){
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><a href="shop-account.html">บัญชีของฉัน</a></li>
-                        <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
-                        <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
                         <?php
                         if (!isset($id_roasters)) :
                         ?>
                             <li><a href="../roasters/login/">Sign In</a></li>
                             <li><a href="../roasters/register/">Sign UP</a></li>
                         <?php elseif (isset($id_roasters)) : ?>
+                            <li><a href="shop-account.html">บัญชีของฉัน</a></li>
+                            <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
+                            <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
                             <li><a href="./controllers/logout.php">Log Out</a></li>
 
                         <?php endif; ?>
@@ -552,12 +552,12 @@ if(isset($_SESSION['user_id'])){
                             </form>
 
                             <script>
-                                function search(){
+                                function search() {
                                     // alert( );
                                     var search_text = $('.input-search').val();
-                                    if(search_text == ''){
+                                    if (search_text == '') {
                                         location.assign('./shop-search-result.php');
-                                    }else{
+                                    } else {
                                         location.assign('./shop-search-result.php?search=' + search_text);
                                     }
                                 }
