@@ -192,10 +192,10 @@ include_once('./navbar.php');
                                                     border-radius: 5px;
                                                     border: 1px solid #ccc;
                                                     box-shadow: 1px 1px 1px #999;
-                                                    height:10rem
+                                                    /* height:10rem */
                                                 }
                                             </style>
-                                            <textarea width="100%" ></textarea>
+                                            <textarea class="form-control" ></textarea>
                                             <!-- <input type="text" id="fax" class="form-control">
                                          -->
                                         </div>
@@ -212,53 +212,42 @@ include_once('./navbar.php');
                                             <input type="text" id="password-confirm" class="form-control">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 col-sm-6">
+                                        
                                         <h3>ที่อยู่เกษตรกร</h3>
                                         <div class="form-group">
-                                            <label for="company">Company</label>
+                                            <label for="company">เลทที่/หมูที่</label>
                                             <input type="text" id="company" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="address1">Address 1</label>
+                                            <label for="address1">ซอย/ถนน</label>
                                             <input type="text" id="address1" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="address2">Address 2</label>
+                                            <label for="address2">แขวง/ตำบล</label>
                                             <input type="text" id="address2" class="form-control">
                                         </div>
+                                        
                                         <div class="form-group">
-                                            <label for="city">City <span class="require">*</span></label>
-                                            <input type="text" id="city" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="post-code">Post Code
+                                            <label for="post-code">รหัสไปรษณี
                                                 <span class="require">*</span></label>
                                             <input type="text" id="post-code" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="country">Country
+                                            <label for="country">จังหวัด
                                                 <span class="require">*</span></label>
-                                            <select class="form-control
-                                                    input-sm" id="country">
-                                                <option value=""> --- Please
-                                                    Select --- </option>
-                                                <option value="244">Aaland
-                                                    Islands</option>
+                                            <select class="form-control input-sm" id="country">
+                                                <option value=""> --- PleaseSelect --- </option>
+                                                <option value="244">AalandIslands</option>
                                                 <option value="1">Afghanistan</option>
                                                 <option value="2">Albania</option>
                                             </select>
                                         </div>
+                                        
                                         <div class="form-group">
-                                            <label for="region-state">Region/State
-                                                <span class="require">*</span></label>
-                                            <select class="form-control
-                                                    input-sm" id="region-state">
-                                                <option value=""> --- Please
-                                                    Select --- </option>
-                                                <option value="3513">Aberdeen</option>
-                                                <option value="3514">Aberdeenshire</option>
-                                                <option value="3515">Anglesey</option>
-                                            </select>
+                                            <label for="city"> <span class="require">*</span></label>
+                                            <input type="text" id="city" class="form-control">
                                         </div>
                                     </div>
                                     <hr>
