@@ -16,6 +16,66 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!--<![endif]-->
 
 <!-- Head BEGIN -->
+<script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
+<style type="text/css" media="all">
+    /* body {
+		background-color: #fff;
+	} */
+    .map-canvas {
+        display: block;
+        /* margin: 10px auto; */
+        height: 400px;
+        width: 100%;
+        background-color: #ccc;
+    }
+</style>
+
+<!-- <script src="./js/jquery.min.js"></script> -->
+
+<script>
+    var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
+    var marker;
+    var map;
+
+    function initialize() {
+        var mapOptions = {
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: bangkok
+        };
+
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position: bangkok
+        });
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+        google.maps.event.addListener(marker, 'drag', function(event) {
+            document.getElementById("lat").value = marker.getPosition().lat();
+            document.getElementById("lng").value = marker.getPosition().lng();
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            var point = marker.getPoint();
+            map.panTo(point);
+        });
+    }
+
+    function toggleBounce() {
+        if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+
 <?php
 include_once('./navbar.php');
 
@@ -176,6 +236,39 @@ include_once('./navbar.php');
                                             <label for="fax">facebook เกษตรกร</label>
                                             <input type="text" id="fax" class="form-control">
                                         </div>
+
+                                        <h3>ข้อมูลฟาร์ม</h3>
+
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
+                                                <div class="form-group">
+                                                    <label for="fax">จำนวนพื้นที่เพาะปลูกไร่ <span class="require">*</span></label>
+                                                    <input type="text" id="fax" class="form-control">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
+                                                <div class="form-group">
+                                                    <label for="fax">จำนวนพื้นที่เพาะปลูกไร่</label>
+                                                    <input type="text" id="fax" class="form-control">
+                                                </div>
+                                            </div> -->
+                                            <!-- <div style="margin-left: 0; margin-right:"></div> -->
+                                            <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
+                                                <div class="form-group">
+                                                    <label for="fax">จำนวนพื้นที่เพาะปลูกงาน <span class="require">*</span></label>
+                                                    <input type="text" id="fax" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <label for="password-confirm">Password
+                                                Confirm <span class="require">*</span></label>
+                                            <input type="text" id="password-confirm" class="form-control">
+                                        </div> -->
+
+
                                         <div class="form-group">
                                             <label for="fax">อธิบายละเอียดต่างๆ เช่นช่วงเวลาเก็บเกี่ยว</label>
                                             <style type="text/css">
@@ -185,7 +278,7 @@ include_once('./navbar.php');
                                                 }
 
                                                 textarea {
-                                                    min-width:100%;
+                                                    min-width: 100%;
                                                     padding: 10px;
                                                     max-width: 100%;
                                                     line-height: 1.5;
@@ -195,29 +288,61 @@ include_once('./navbar.php');
                                                     /* height:10rem */
                                                 }
                                             </style>
-                                            <textarea class="form-control" ></textarea>
+                                            <textarea class="form-control"></textarea>
                                             <!-- <input type="text" id="fax" class="form-control">
                                          -->
                                         </div>
 
-                                        <h3>Your Password</h3>
                                         <div class="form-group">
-                                            <label for="password">Password
-                                                <span class="require">*</span></label>
+                                            <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
+                                                <div class="form-group">
+                                                    <label for="fax">เกษตรอินทรีย์ <span class="require">*</span></label>
+                                                    <div class="radio-list">
+                                                        <label>
+                                                            <input type="radio" name="organic_farm" value="1"> อินทรีย์
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="organic_farm" value="2"> ไม่อินทรีย์
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
+                                                <div class="form-group">
+                                                    <label for="fax">รูปแบบการขาย <span class="require">*</span></label>
+                                                    <div class="radio-list">
+                                                        <label>
+                                                            <input type="radio" name="type_sale" value="1"> ขายแบบพันธะสัญญา
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="type_sale" value="2"> ขายแบบเดี่ยว
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                                                                
+                                        <h3>ข้อมูลเข้าระบบ</h3>
+                                        <div class="form-group">
+                                            <label for="password"> E-Mail <span class="require">*</span></label>
                                             <input type="password" id="password" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="password-confirm">Password
-                                                Confirm <span class="require">*</span></label>
+                                            <label for="password-confirm">Password <span class="require">*</span></label>
                                             <input type="text" id="password-confirm" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-sm-6">
-                                        
+
                                         <h3>ที่อยู่เกษตรกร</h3>
                                         <div class="form-group">
-                                            <label for="company">เลทที่/หมูที่</label>
+                                            <label for="company">เลทที่/หมูที่ <span class="require">*</span></label>
                                             <input type="text" id="company" class="form-control">
                                         </div>
                                         <div class="form-group">
@@ -225,31 +350,59 @@ include_once('./navbar.php');
                                             <input type="text" id="address1" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="address2">แขวง/ตำบล</label>
+                                            <label for="address2">แขวง/ตำบล <span class="require">*</span></label>
                                             <input type="text" id="address2" class="form-control">
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label for="city"> เขต/อำเภอ <span class="require">*</span></label>
+                                            <input type="text" id="city" class="form-control">
+                                        </div>
                                         <div class="form-group">
                                             <label for="post-code">รหัสไปรษณี
                                                 <span class="require">*</span></label>
                                             <input type="text" id="post-code" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="country">จังหวัด
-                                                <span class="require">*</span></label>
+                                            <label for="country">จังหวัด<span class="require">*</span></label>
                                             <select class="form-control input-sm" id="country">
                                                 <option value=""> --- PleaseSelect --- </option>
-                                                <option value="244">AalandIslands</option>
-                                                <option value="1">Afghanistan</option>
-                                                <option value="2">Albania</option>
+                                                <?php
+                                                foreach (Database::query("SELECT * FROM `provinces` Order by `name_provinces` ASC ", PDO::FETCH_ASSOC) as $row) :
+                                                ?>
+                                                    <option value="<?php echo $row['id_provinces'] ?>"><?php echo $row['name_provinces'] ?></option>
+                                                <?php
+                                                endforeach;
+                                                ?>
+
                                             </select>
                                         </div>
-                                        
+
+                                        <h3>ข้อมูลพิกัด</h3>
                                         <div class="form-group">
-                                            <label for="city"> <span class="require">*</span></label>
-                                            <input type="text" id="city" class="form-control">
+                                            <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
+                                                <div class="form-group">
+                                                    <label for="city"> ละติจูดฟาร์ม </label>
+                                                    <input id='lat' disabled type="text" id="city" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
+                                                <div class="form-group">
+                                                    <label for="city"> ลองจิจูดฟาร์ม </label>
+                                                    <input id='lng' disabled type="text" id="city" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="city"> เลือกที่ตั้งฟามร์ม <span class="require">*</span></label>
+                                                <div id="map-canvas" class="map-canvas"></div>
                                         </div>
                                     </div>
+
+
+
                                     <hr>
                                     <div class="col-md-12">
                                         <div class="checkbox">
@@ -266,17 +419,13 @@ include_once('./navbar.php');
                                                 addresses are the same.
                                             </label>
                                         </div>
-                                        <button class="btn btn-primary
-                                                pull-right" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-address-content" id="button-payment-address">Continue</button>
-                                        <div class="checkbox pull-right">
-                                            <label>
-                                                <input type="checkbox"> I
-                                                have read and agree to the
-                                                <a title="Privacy Policy" href="javascript:;">Privacy
-                                                    Policy</a>
-                                                &nbsp;&nbsp;&nbsp;
-                                            </label>
-                                        </div>
+                                        <button class="btn btn-primary pull-right" type="submit"  id="button-payment-address">Continue</button>
+                                        <script>
+                                            $("#button-payment-address").click(function() {
+                                                alert("Register Farmes");
+                                            });
+                                        </script>
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -156,8 +156,8 @@ if (isset($_SESSION['user_id'])) {
                         <?php
                         if (!isset($id_roasters)) :
                         ?>
-                            <li><a href="../roasters/login/">Sign In</a></li>
-                            <li><a href="../roasters/register/">Sign UP</a></li>
+                            <li><a href="./shope-login.php">Sign In</a></li>
+                            <li><a href="./shope-login.php">Sign UP</a></li>
                         <?php elseif (isset($id_roasters)) : ?>
                             <li><a href="shop-account.html">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
@@ -179,7 +179,7 @@ if (isset($_SESSION['user_id'])) {
             <a class="site-logo" href="shop-index.php"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
             <!-- BEGIN CART -->
-            <div class="top-cart-block">
+            <!-- <div class="top-cart-block">
                 <div class="top-cart-info">
                     <a href="javascript:void(0);" class="top-cart-info-count">3 สินค้า</a>
                     <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
@@ -350,13 +350,16 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!--END CART -->
 
             <!-- BEGIN NAVIGATION -->
             <div class="header-navigation">
                 <ul>
                     <!-- active -->
+                    <?php
+                        if (isset($id_roasters)) :
+                    ?>
                     <li><a href="./shop-index.php">หน้าหลัก</a></li>
                     <!-- <li class="dropdown "> 
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
@@ -384,6 +387,7 @@ if (isset($_SESSION['user_id'])) {
                             <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
                         </ul>
                     </li> -->
+                    
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                             สายพันธุ์เมล็ดกาแฟ
@@ -537,8 +541,11 @@ if (isset($_SESSION['user_id'])) {
                         </ul>
                     </li>
 
+                    <?php elseif (!isset($id_roasters)) : ?>
+                        <li><a href="./shope-login.php">หน้าหลัก</a></li>
+                    <?php endif; ?>
                     <!-- BEGIN TOP SEARCH -->
-                    <li class="menu-search">
+                    <!-- <li class="menu-search">
                         <span class="sep"></span>
                         <i class="fa fa-search search-btn"></i>
                         <div class="search-box">
@@ -563,7 +570,7 @@ if (isset($_SESSION['user_id'])) {
                                 }
                             </script>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- END TOP SEARCH -->
                 </ul>
             </div>
