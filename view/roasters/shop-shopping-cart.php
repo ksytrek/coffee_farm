@@ -67,7 +67,7 @@ include_once('./navbar.php');
                                         </tr>
                                         <tr>
                                             <td class="goods-page-image">
-                                                <a href="javascript:;"><img src="assets/pages/img/products/model3.jpg" alt="Berry Lace Dress"></a>
+                                                <a href="javascript:;"><img src="../../script/assets/pages/img/products/model3.jpg" alt="Berry Lace Dress"></a>
                                             </td>
                                             <td class="goods-page-description">
                                                 <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
@@ -94,7 +94,7 @@ include_once('./navbar.php');
                                         </tr>
                                         <tr>
                                             <td class="goods-page-image">
-                                                <a href="javascript:;"><img src="assets/pages/img/products/model4.jpg" alt="Berry Lace Dress"></a>
+                                                <a href="javascript:;"><img src="../../script/assets/pages/img/products/model4.jpg" alt="Berry Lace Dress"></a>
                                             </td>
                                             <td class="goods-page-description">
                                                 <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
@@ -155,9 +155,9 @@ include_once('./navbar.php');
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -170,9 +170,9 @@ include_once('./navbar.php');
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -184,9 +184,9 @@ include_once('./navbar.php');
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -198,9 +198,9 @@ include_once('./navbar.php');
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -213,9 +213,9 @@ include_once('./navbar.php');
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -227,9 +227,9 @@ include_once('./navbar.php');
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>

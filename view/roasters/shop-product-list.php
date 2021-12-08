@@ -130,17 +130,17 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                     <div class="sidebar-products clearfix">
                         <h2>Bestsellers</h2>
                         <div class="item">
-                            <a href="shop-item.html"><img src="assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <a href="shop-item.html"><img src="../../script/assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
                             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
                             <div class="price">$31.00</div>
                         </div>
                         <div class="item">
-                            <a href="shop-item.html"><img src="assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <a href="shop-item.html"><img src="../../script/assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
                             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
                             <div class="price">$23.00</div>
                         </div>
                         <div class="item">
-                            <a href="shop-item.html"><img src="assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <a href="shop-item.html"><img src="../../script/assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
                             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
                             <div class="price">$86.00</div>
                         </div>
@@ -187,9 +187,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -203,9 +203,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -219,9 +219,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model6.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model6.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model6.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model6.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -237,9 +237,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -253,9 +253,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model5.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model5.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model5.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model5.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -270,9 +270,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model3.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model3.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model3.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -288,9 +288,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model7.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model7.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model7.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model7.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -304,9 +304,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -320,9 +320,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>

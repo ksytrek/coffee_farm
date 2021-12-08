@@ -71,24 +71,24 @@ if (isset($_SESSION['user_id'])) {
     </style>
 
     <!-- Global styles START -->
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../script/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../script/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Global styles END -->
 
     <!-- Page level plugin styles START -->
-    <link href="assets/pages/css/animate.css" rel="stylesheet">
-    <link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-    <link href="assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
+    <link href="../../script/assets/pages/css/animate.css" rel="stylesheet">
+    <link href="../../script/assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+    <link href="../../script/assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
     <!-- Page level plugin styles END -->
 
     <!-- Theme styles START -->
-    <link href="assets/pages/css/components.css" rel="stylesheet">
-    <link href="assets/pages/css/slider.css" rel="stylesheet">
-    <link href="assets/pages/css/style-shop.css" rel="stylesheet" type="text/css">
-    <link href="assets/corporate/css/style.css" rel="stylesheet">
-    <link href="assets/corporate/css/style-responsive.css" rel="stylesheet">
-    <link href="assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
-    <link href="assets/corporate/css/custom.css" rel="stylesheet">
+    <link href="../../script/assets/pages/css/components.css" rel="stylesheet">
+    <link href="../../script/assets/pages/css/slider.css" rel="stylesheet">
+    <link href="../../script/assets/pages/css/style-shop.css" rel="stylesheet" type="text/css">
+    <link href="../../script/assets/corporate/css/style.css" rel="stylesheet">
+    <link href="../../script/assets/corporate/css/style-responsive.css" rel="stylesheet">
+    <link href="../../script/assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
+    <link href="../../script/assets/corporate/css/custom.css" rel="stylesheet">
     <!-- Theme styles END -->
 </head>
 <!-- Head END -->
@@ -176,7 +176,7 @@ if (isset($_SESSION['user_id'])) {
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="shop-index.php"><img src="assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
+            <a class="site-logo" href="shop-index.php"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
             <!-- BEGIN CART -->
             <div class="top-cart-block">
@@ -190,154 +190,154 @@ if (isset($_SESSION['user_id'])) {
                     <div class="top-cart-content">
                         <ul class="scroller" style="height: 250px;">
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
                             <li>
-                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
@@ -469,11 +469,11 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
                                         <div class="col-md-12 nav-brands">
                                             <ul>
-                                                <li><a href="shop-product-list.html"><img title="esprit" alt="esprit" src="assets/pages/img/brands/esprit.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="gap" alt="gap" src="assets/pages/img/brands/gap.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="next" alt="next" src="assets/pages/img/brands/next.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="puma" alt="puma" src="assets/pages/img/brands/puma.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="zara" alt="zara" src="assets/pages/img/brands/zara.jpg"></a></li>
+                                                <li><a href="shop-product-list.html"><img title="esprit" alt="esprit" src="../../script/assets/pages/img/brands/esprit.jpg"></a></li>
+                                                <li><a href="shop-product-list.html"><img title="gap" alt="gap" src="../../script/assets/pages/img/brands/gap.jpg"></a></li>
+                                                <li><a href="shop-product-list.html"><img title="next" alt="next" src="../../script/assets/pages/img/brands/next.jpg"></a></li>
+                                                <li><a href="shop-product-list.html"><img title="puma" alt="puma" src="../../script/assets/pages/img/brands/puma.jpg"></a></li>
+                                                <li><a href="shop-product-list.html"><img title="zara" alt="zara" src="../../script/assets/pages/img/brands/zara.jpg"></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -494,7 +494,7 @@ if (isset($_SESSION['user_id'])) {
                                         <div class="col-md-3 col-sm-4 col-xs-6">
                                             <div class="product-item">
                                                 <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
+                                                    <a href="shop-item.html"><img src="../../script/assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
@@ -504,7 +504,7 @@ if (isset($_SESSION['user_id'])) {
                                         <div class="col-md-3 col-sm-4 col-xs-6">
                                             <div class="product-item">
                                                 <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="assets/pages/img/products/model3.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
+                                                    <a href="shop-item.html"><img src="../../script/assets/pages/img/products/model3.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
@@ -514,7 +514,7 @@ if (isset($_SESSION['user_id'])) {
                                         <div class="col-md-3 col-sm-4 col-xs-6">
                                             <div class="product-item">
                                                 <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="assets/pages/img/products/model7.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
+                                                    <a href="shop-item.html"><img src="../../script/assets/pages/img/products/model7.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
@@ -524,7 +524,7 @@ if (isset($_SESSION['user_id'])) {
                                         <div class="col-md-3 col-sm-4 col-xs-6">
                                             <div class="product-item">
                                                 <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
+                                                    <a href="shop-item.html"><img src="../../script/assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>

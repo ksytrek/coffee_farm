@@ -17,6 +17,20 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <!-- Head BEGIN -->
 
+<?php
+include_once('../../config/connectdb.php');
+session_start();
+$id_roasters = null;
+if (isset($_SESSION['user_id'])) {
+    $id_roasters = $_SESSION['user_id'];
+}
+
+?>
+<script>
+    const ID_ROASTERS = '<?php echo $id_roasters; ?>';
+    // alert(ID_ROASTERS);
+</script>
+
 <head>
     <meta charset="utf-8">
     <title>Metronic Shop UI</title>
@@ -35,13 +49,26 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
-    <link rel="shortcut icon" href="favicon.ico">
-
     <!-- Fonts START -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300&display=swap" rel="stylesheet"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
     <!--- fonts for slider on the index page -->
     <!-- Fonts END -->
+    <style type="text/css">
+        /* .ecommerce{
+            font-family: 'Kodchasan', sans-serif;
+            font-family: 'Maitree', serif;
+        } */
+    </style>
 
     <!-- Global styles START -->
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -94,16 +121,21 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li>
+                        <!-- <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li> -->
                         <!-- BEGIN CURRENCIES -->
-                        <li class="shop-currencies">
+
+
+                        <!-- <li class="shop-currencies">
                             <a href="javascript:void(0);">€</a>
                             <a href="javascript:void(0);">£</a>
                             <a href="javascript:void(0);" class="current">$</a>
-                        </li>
+                        </li> -->
+
                         <!-- END CURRENCIES -->
                         <!-- BEGIN LANGS -->
-                        <li class="langs-block">
+
+                        <!-- เลือกภาษาใช้เเสดง -->
+                        <!-- <li class="langs-block">
                             <a href="javascript:void(0);" class="current">English </a>
                             <div class="langs-block-others-wrapper">
                                 <div class="langs-block-others">
@@ -112,7 +144,8 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                     <a href="javascript:void(0);">Turkish</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
+
                         <!-- END LANGS -->
                     </ul>
                 </div>
@@ -120,10 +153,18 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><a href="shop-account.html">My Account</a></li>
-                        <li><a href="shop-wishlist.html">My Wishlist</a></li>
-                        <li><a href="shop-checkout.html">Checkout</a></li>
-                        <li><a href="page-login.html">Log In</a></li>
+                        <?php
+                        if (!isset($id_roasters)) :
+                        ?>
+                            <li><a href="../roasters/login/">Sign In</a></li>
+                            <li><a href="../roasters/register/">Sign UP</a></li>
+                        <?php elseif (isset($id_roasters)) : ?>
+                            <li><a href="shop-account.html">บัญชีของฉัน</a></li>
+                            <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
+                            <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
+                            <li><a href="./controllers/logout.php">Log Out</a></li>
+
+                        <?php endif; ?>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -135,14 +176,12 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="shop-index.html"><img src="assets/corporate/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
-
+            <a class="site-logo" href="shop-index.php"><img src="assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-
             <!-- BEGIN CART -->
             <div class="top-cart-block">
                 <div class="top-cart-info">
-                    <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
+                    <a href="javascript:void(0);" class="top-cart-info-count">3 สินค้า</a>
                     <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
                 </div>
                 <i class="fa fa-shopping-cart"></i>
@@ -206,10 +245,108 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                             </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
                         </ul>
                         <div class="text-right">
-                            <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
-                            <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
+                            <a href="shop-shopping-cart.php" class="btn btn-default">ตะกร้าสินค้า</a>
+                            <a href="shop-checkout.php" class="btn btn-primary">Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -219,15 +356,41 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
             <!-- BEGIN NAVIGATION -->
             <div class="header-navigation">
                 <ul>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            Woman
-
+                    <!-- active -->
+                    <li><a href="./shop-index.php">หน้าหลัก</a></li>
+                    <!-- <li class="dropdown "> 
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
+                            หน้าหลัก
                         </a>
 
+                        <ul class="dropdown-menu">
+                            <li><a href="shop-index.html">Home Default</a></li>
+                            <li class="active"><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
+                            <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
+                            <li><a href="shop-product-list.html">Product List</a></li>
+                            <li><a href="shop-search-result.html">Search Result</a></li>
+                            <li><a href="shop-item.html">Product Page</a></li>
+                            <li><a href="shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
+                            <li><a href="shop-shopping-cart.html">Shopping Cart</a></li>
+                            <li><a href="shop-checkout.html">Checkout</a></li>
+                            <li><a href="shop-about.html">About</a></li>
+                            <li><a href="shop-contacts.html">Contacts</a></li>
+                            <li><a href="shop-account.html">My account</a></li>
+                            <li><a href="shop-wishlist.html">My Wish List</a></li>
+                            <li><a href="shop-goods-compare.html">Product Comparison</a></li>
+                            <li><a href="shop-standart-forms.html">Standart Forms</a></li>
+                            <li><a href="shop-faq.html">FAQ</a></li>
+                            <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
+                        </ul>
+                    </li> -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+                            สายพันธุ์เมล็ดกาแฟ
+                        </a>
                         <!-- BEGIN DROPDOWN MENU -->
                         <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
+                            <!-- <li class="dropdown-submenu">
                                 <a href="shop-product-list.html">Hi Tops <i class="fa fa-angle-right"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="shop-product-list.html">Second Level Link</a></li>
@@ -244,16 +407,21 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
-                            <li><a href="shop-product-list.html">Running Shoes</a></li>
-                            <li><a href="shop-product-list.html">Jackets and Coats</a></li>
+                            </li> -->
+                            <?php
+                            foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
+                            ?>
+                                <li><a href="./shop-search-result.php?search=<?php echo $row['name_typepro'] ?>"><?php echo $row['name_typepro'] ?></a></li>
+                                <!-- <li><a href="shop-product-list.html">Jackets and Coats</a></li> -->
+                            <?php
+                            endforeach;
+                            ?>
                         </ul>
                         <!-- END DROPDOWN MENU -->
                     </li>
-                    <li class="dropdown dropdown-megamenu">
+                    <!-- <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            Man
-
+                            ประเภทกาแฟ
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -312,12 +480,12 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li><a href="shop-item.html">Kids</a></li>
+                    </li> -->
+                    <!-- <li><a href="shop-item.html">Kids</a></li> -->
+                    <li><a href="shop-product-list.php">รายการสินค้า</a></li>
                     <li class="dropdown dropdown100 nav-catalogue">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            New
-
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
+                            สินค้าใหม่
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -330,7 +498,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4 col-xs-6">
@@ -340,7 +508,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4 col-xs-6">
@@ -350,7 +518,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4 col-xs-6">
@@ -360,7 +528,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                                 </div>
                                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                                 <div class="pi-price">$29.00</div>
-                                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                                <a href="javascript:void(0);" class="btn btn-default add2cart">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -368,50 +536,32 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown active">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            Pages
-
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="shop-index.html">Home Default</a></li>
-                            <li class="active"><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
-                            <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
-                            <li><a href="shop-product-list.html">Product List</a></li>
-                            <li><a href="shop-search-result.html">Search Result</a></li>
-                            <li><a href="shop-item.html">Product Page</a></li>
-                            <li><a href="shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
-                            <li><a href="shop-shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="shop-checkout.html">Checkout</a></li>
-                            <li><a href="shop-about.html">About</a></li>
-                            <li><a href="shop-contacts.html">Contacts</a></li>
-                            <li><a href="shop-account.html">My account</a></li>
-                            <li><a href="shop-wishlist.html">My Wish List</a></li>
-                            <li><a href="shop-goods-compare.html">Product Comparison</a></li>
-                            <li><a href="shop-standart-forms.html">Standart Forms</a></li>
-                            <li><a href="shop-faq.html">FAQ</a></li>
-                            <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li><a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes&amp;utm_source=download&amp;utm_medium=banner&amp;utm_campaign=metronic_frontend_freebie" target="_blank">Admin theme</a></li>
 
                     <!-- BEGIN TOP SEARCH -->
                     <li class="menu-search">
                         <span class="sep"></span>
                         <i class="fa fa-search search-btn"></i>
                         <div class="search-box">
-                            <form action="#">
+                            <form action="javascript:search()">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Search" class="form-control">
+                                    <input type="text" placeholder="Search" class="form-control input-search">
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit">Search</button>
                                     </span>
                                 </div>
                             </form>
+
+                            <script>
+                                function search() {
+                                    // alert( );
+                                    var search_text = $('.input-search').val();
+                                    if (search_text == '') {
+                                        location.assign('./shop-search-result.php');
+                                    } else {
+                                        location.assign('./shop-search-result.php?search=' + search_text);
+                                    }
+                                }
+                            </script>
                         </div>
                     </li>
                     <!-- END TOP SEARCH -->
@@ -424,36 +574,10 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 
 
-    
-    <script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
 
-    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-    <script src="assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
-    <script src='assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
-    <script src="assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
 
-    <script src="assets/corporate/scripts/layout.js" type="text/javascript"></script>
-    <script src="assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            Layout.init();
-            Layout.initOWL();
-            Layout.initImageZoom();
-            Layout.initTouchspin();
-            Layout.initTwitter();
-
-            Layout.initFixHeaderWithPreHeader();
-            Layout.initNavScrolling();
-        });
-    </script>
-    <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 
 <!-- END BODY -->
+
 </html>

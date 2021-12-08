@@ -3,19 +3,29 @@ Template Name: Metronic - Responsive Website Template build with Twitter Bootstr
 */
 
 /* General body settings */
+
 body { 
-	color: #3e4d5c; 
+	color: #070808; 
 	direction: ltr;
-	font: 400 13px 'Open Sans', Arial, sans-serif;
+	font: 400 13px 'Kodchasan', Arial, sans-serif;
 	background: #fff;
+	/* font-family: 'Kodchasan', sans-serif */
+	/* font-family: 'Kodchasan', sans-serif;
+	font-family: 'Maitree', serif; */
+
 }
 
 /***
 General typography 
 ***/
+ul , li{
+	font: 300 'Kodchasan', sans-serif;
+	font-family: 'Kodchasan', sans-serif
+}
 h1, h2, h3, h4, h5, h6 {
-	font: 300 'Open Sans', sans-serif;
+	font: 300 'Kodchasan', sans-serif;
 	margin: 0 0 10px;
+	font-family: 'Kodchasan', sans-serif
 }
 h1 {
 	margin-bottom: 15px;
@@ -330,7 +340,7 @@ Pre-Header and pre-header elements
 	border-bottom: 1px solid #eee;
 	padding-top: 10px;
 	line-height: 1.2;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Kodchasan', sans-serif;
 	font-weight: 300;
 	background: #fff;
 }
@@ -483,7 +493,7 @@ body.page-header-fixed {
 
 /* Navigation */
 .header-navigation {
-	font: 15px "Open Sans", sans-serif;
+	font: 15px "Kodchasan", sans-serif;
 	margin: 0 10px 0 0;
 	padding: 0;
 	float: left;
@@ -540,7 +550,7 @@ body.page-header-fixed {
   border: none;  
   box-shadow: 5px 5px rgba(91, 91, 91, 0.2);
   text-transform: none;
-  font: 13px "Open Sans", sans-serif;
+  font: 13px "Kodchasan", sans-serif;
   letter-spacing: 0;
   border-radius: 0;
   z-index: 9999;
@@ -625,7 +635,7 @@ body.page-header-fixed {
 }
 .header-navigation-content h4,
 .ecommerce .header-navigation-content h4 {
-  font: bold 15px 'Open Sans', Arial, sans-serif;
+  font: bold 15px 'Kodchasan', Arial, sans-serif;
   margin: 0 0 6px;
   padding: 10px 10px 5px;
   border-bottom: solid 1px #f0f0f0;
@@ -1116,7 +1126,7 @@ steps block and steps block elements
 	float: left;
 }
 .ecommerce .title-wrapper h1, .title-wrapper em {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Kodchasan', sans-serif;
 	color: #fff;
 	font-weight: 400;
 }
@@ -1140,7 +1150,7 @@ steps block and steps block elements
 .breadcrumb {
 	background: none;
 	padding: 0;
-	font: 14px "Open Sans", sans-serif;
+	font: 14px "Kodchasan", sans-serif;
 	color: #5f6d7b;
 	margin-bottom: 22px;
 }
@@ -1229,7 +1239,7 @@ steps block and steps block elements
 }
 .content-page h5, 
 .content-page h6 {
-	font: 700 15px 'Open Sans', Arial, sans-serif;
+	font: 700 15px 'Kodchasan', Arial, sans-serif;
 	margin-bottom: 2px;
 }
 .content-page p,
@@ -1807,7 +1817,7 @@ Custom icon buttons
 }
 
 .icon-btn div {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Kodchasan', sans-serif;
   margin-top: 5px;
   margin-bottom: 10px;  
   color: #000;
@@ -1817,7 +1827,7 @@ Custom icon buttons
 
 .icon-btn .badge {
   position: absolute;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Kodchasan', sans-serif;
   font-size: 11px !important;
   font-weight: 300;
   top: -5px;
@@ -2780,7 +2790,7 @@ Demo Utils
 
 .front-steps-wrapper .front-step:before {	
 	color: #fff;
-	font: 300 125px 'Open Sans', sans-serif;
+	font: 300 125px 'Kodchasan', sans-serif;
 	font-weight: bold;
 	display: block;
 	position: absolute;

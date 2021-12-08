@@ -104,17 +104,17 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                     <div class="sidebar-products clearfix">
                         <h2>Bestsellers</h2>
                         <div class="item">
-                            <a href="shop-item.html"><img src="assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <a href="shop-item.html"><img src="../../script/assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
                             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
                             <div class="price">$31.00</div>
                         </div>
                         <div class="item">
-                            <a href="shop-item.html"><img src="assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <a href="shop-item.html"><img src="../../script/assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
                             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
                             <div class="price">$23.00</div>
                         </div>
                         <div class="item">
-                            <a href="shop-item.html"><img src="assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <a href="shop-item.html"><img src="../../script/assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
                             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
                             <div class="price">$86.00</div>
                         </div>
@@ -128,12 +128,12 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="product-main-image">
-                                    <img src="assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
+                                    <img src="../../script/assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="../../script/assets/pages/img/products/model7.jpg">
                                 </div>
                                 <div class="product-other-images">
-                                    <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model3.jpg"></a>
-                                    <a href="assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model4.jpg"></a>
-                                    <a href="assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model5.jpg"></a>
+                                    <a href="../../script/assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model3.jpg"></a>
+                                    <a href="../../script/assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model4.jpg"></a>
+                                    <a href="../../script/assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model5.jpg"></a>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -296,9 +296,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -311,9 +311,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -325,9 +325,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -339,9 +339,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -354,9 +354,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
@@ -368,9 +368,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../script/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="../../script/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
                                         <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
