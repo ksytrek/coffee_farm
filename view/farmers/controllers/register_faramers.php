@@ -7,6 +7,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
     // echo $_POST['data'];
     // $input = json_decode($_POST['data'], true);
     $input = $_POST['data'];
+    // 
 
     $name_farmers = $input['name_farmers'];
     $email_farmers = $input['email_farmers'];
@@ -14,7 +15,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
     $tel_farmers = $input['tel_farmers'];
     $line_farmers = $input['line_farm'];
     $face_farmers = $input['face_farmers'];
-    
+
     $address_farmers = $input['address_farmers'];
     $id_provinces = $input['id_provinces'];
     $code_provinces = $input['code_provinces'];
