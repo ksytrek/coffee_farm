@@ -16,7 +16,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!--<![endif]-->
 
 <!-- Head BEGIN -->
-<script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
+<!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script> -->
 <style type="text/css" media="all">
     /* body {
 		background-color: #fff;
@@ -78,7 +78,6 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <?php
 include_once('./navbar.php');
-
 ?>
 
 <head>
@@ -197,8 +196,7 @@ include_once('./navbar.php');
                         <!-- END CHECKOUT -->
 
                         <!-- BEGIN PAYMENT ADDRESS -->
-                        <div id="payment-address" class="panel
-                                panel-default ">
+                        <div id="payment-address" class="panel panel-default ">
                             <div class="panel-heading">
                                 <h2 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content" class="accordion-toggle">
@@ -207,34 +205,34 @@ include_once('./navbar.php');
                                 </h2>
                             </div>
                             <div id="payment-address-content" class="panel-collapse collapse in">
-                                <div class="panel-body row">
+                                <form id="form_register_farmers" action="javascript:void(0)" method="post"" <div class=" panel-body row">
                                     <div class="col-md-6 col-sm-6">
                                         <h3>ข้อมูลส่วนเกษตรกร</h3>
                                         <div class="form-group">
                                             <label for="firstname"> ชื่อเกษตรกร <span class="require">*</span></label>
-                                            <input type="text" id="firstname" class="form-control">
+                                            <input name="input-name" value="1" type="text" id="firstname455554" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="lastname">นามสกุลเกษตรกร
                                                 <span class="require">*</span></label>
-                                            <input type="text" id="lastname" class="form-control">
+                                            <input name="input-last_name" value="2" type="text" id="lastname" class="form-control">
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label for="email">E-Mail <span class="require">*</span></label>
-                                            <input type="text" id="email" class="form-control">
-                                        </div>
+                                            <input name="input-email_farmers" type="email" id="email" class="form-control">
+                                        </div> -->
                                         <div class="form-group">
                                             <label for="telephone">เบอร์โทรเกษตรกร
                                                 <span class="require">*</span></label>
-                                            <input type="text" id="telephone" class="form-control">
+                                            <input name="input-tel_farmers" value="3"  type="text" id="telephone" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="fax">line เกษตรกร</label>
-                                            <input type="text" id="fax" class="form-control">
+                                            <input name="input-line_farmers" value="4"  type="text"  class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="fax">facebook เกษตรกร</label>
-                                            <input type="text" id="fax" class="form-control">
+                                            <input name="input-face_farmers" value="5"   type="text"  class="form-control">
                                         </div>
 
                                         <h3>ข้อมูลฟาร์ม</h3>
@@ -245,20 +243,20 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกไร่ <span class="require">*</span></label>
-                                                    <input type="text" id="fax" class="form-control">
+                                                    <input name="input-num_farm" value="6"  type="text"  class="form-control">
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกไร่</label>
-                                                    <input type="text" id="fax" class="form-control">
+                                                    <input type="text"  class="form-control">
                                                 </div>
                                             </div> -->
                                             <!-- <div style="margin-left: 0; margin-right:"></div> -->
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกงาน <span class="require">*</span></label>
-                                                    <input type="text" id="fax" class="form-control">
+                                                    <input name="input-num_field" value="7"  type="text"  class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -288,21 +286,20 @@ include_once('./navbar.php');
                                                     /* height:10rem */
                                                 }
                                             </style>
-                                            <textarea class="form-control"></textarea>
-                                            <!-- <input type="text" id="fax" class="form-control">
+                                            <textarea name="input-detail_farm"    class="form-control">8</textarea>
+                                            <!-- <input type="text"  class="form-control">
                                          -->
                                         </div>
-
                                         <div class="form-group">
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">เกษตรอินทรีย์ <span class="require">*</span></label>
                                                     <div class="radio-list">
                                                         <label>
-                                                            <input type="radio" name="organic_farm" value="1"> อินทรีย์
+                                                            <input name="input-organic_farm" type="radio"  value="9" checked> อินทรีย์
                                                         </label>
                                                         <label>
-                                                            <input type="radio" name="organic_farm" value="2"> ไม่อินทรีย์
+                                                            <input name="input-organic_farm" type="radio"  value="9"> ไม่อินทรีย์
                                                         </label>
                                                     </div>
                                                 </div>
@@ -313,10 +310,10 @@ include_once('./navbar.php');
                                                     <label for="fax">รูปแบบการขาย <span class="require">*</span></label>
                                                     <div class="radio-list">
                                                         <label>
-                                                            <input type="radio" name="type_sale" value="1"> ขายแบบพันธะสัญญา
+                                                            <input name="input-type_sale" type="radio"  value="10" checked> ขายแบบพันธะสัญญา
                                                         </label>
                                                         <label>
-                                                            <input type="radio" name="type_sale" value="2"> ขายแบบเดี่ยว
+                                                            <input name="input-type_sale" type="radio"  value="10"> ขายแบบเดี่ยว
                                                         </label>
                                                     </div>
                                                 </div>
@@ -326,15 +323,15 @@ include_once('./navbar.php');
 
 
 
-                                                                                
+
                                         <h3>ข้อมูลเข้าระบบ</h3>
                                         <div class="form-group">
                                             <label for="password"> E-Mail <span class="require">*</span></label>
-                                            <input type="password" id="password" class="form-control">
+                                            <input name="input-email_farmers" value="11"  type="text" id="password" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="password-confirm">Password <span class="require">*</span></label>
-                                            <input type="text" id="password-confirm" class="form-control">
+                                            <input name="input-pass_farmers" value="12"  type="text" id="password-confirm" class="form-control">
                                         </div>
                                     </div>
 
@@ -343,29 +340,30 @@ include_once('./navbar.php');
                                         <h3>ที่อยู่เกษตรกร</h3>
                                         <div class="form-group">
                                             <label for="company">เลทที่/หมูที่ <span class="require">*</span></label>
-                                            <input type="text" id="company" class="form-control">
+                                            <input name="input-add_number" value="13-1" type="text" id="company" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="address1">ซอย/ถนน</label>
-                                            <input type="text" id="address1" class="form-control">
+                                            <input name="input-road" type="text" value="13-2" id="address1" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="address2">แขวง/ตำบล <span class="require">*</span></label>
-                                            <input type="text" id="address2" class="form-control">
+                                            <input name="input-sub_district" value="13-3" type="text" id="address2" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="city"> เขต/อำเภอ <span class="require">*</span></label>
-                                            <input type="text" id="city" class="form-control">
+                                            <input name="input-district" value="13-4" type="text" id="city" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="post-code">รหัสไปรษณี
                                                 <span class="require">*</span></label>
-                                            <input type="text" id="post-code" class="form-control">
+                                            <input name="input-post_office" value="14" type="text" id="post-code" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="country">จังหวัด<span class="require">*</span></label>
-                                            <select class="form-control input-sm" id="country">
-                                                <option value=""> --- PleaseSelect --- </option>
+                                            <select  name="input-province"  class="form-control input-sm" id="country">
+                                                <option value="15 "> 15</option>
+                                                <!-- --- PleaseSelect ---  -->
                                                 <?php
                                                 foreach (Database::query("SELECT * FROM `provinces` Order by `name_provinces` ASC ", PDO::FETCH_ASSOC) as $row) :
                                                 ?>
@@ -382,14 +380,14 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="city"> ละติจูดฟาร์ม </label>
-                                                    <input id='lat' disabled type="text" id="city" class="form-control">
+                                                    <input  name="input-lat_farm" value="16" id='lat' value="100.265437234" disabled type="text" id="city" class="form-control">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="city"> ลองจิจูดฟาร์ม </label>
-                                                    <input id='lng' disabled type="text" id="city" class="form-control">
+                                                    <input  name="input-lng_farm" value="17" id='lng' value="100.265437234" disabled type="text" id="city" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -397,7 +395,7 @@ include_once('./navbar.php');
 
                                         <div class="form-group">
                                             <label for="city"> เลือกที่ตั้งฟามร์ม <span class="require">*</span></label>
-                                                <div id="map-canvas" class="map-canvas"></div>
+                                            <div id="map-canvas" class="map-canvas"></div>
                                         </div>
                                     </div>
 
@@ -405,7 +403,7 @@ include_once('./navbar.php');
 
                                     <hr>
                                     <div class="col-md-12">
-                                        <div class="checkbox">
+                                        <!-- <div class="checkbox">
                                             <label>
                                                 <input type="checkbox"> I
                                                 wish to subscribe to the OXY
@@ -418,20 +416,100 @@ include_once('./navbar.php');
                                                 delivery and billing
                                                 addresses are the same.
                                             </label>
+                                        </div>                                 <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> I
+                                                wish to subscribe to the OXY
+                                                newsletter.
+                                            </label>
                                         </div>
-                                        <button class="btn btn-primary pull-right" type="submit"  id="button-payment-address">Continue</button>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" checked="checked"> My
+                                                delivery and billing
+                                                addresses are the same.
+                                            </label>
+                                        </div> -->
+                                        <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">Continue</button>
                                         <script>
                                             $("#button-payment-address").click(function() {
-                                                alert("Register Farmes");
+                                                // alert("Register Farmes");
                                             });
                                         </script>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- <div id="shipping-address" class="panel
+                                    </div>
+                            </div>
+                            </form>
+
+                            <script>
+                                $("#form_register_farmers").keypress((e) => {
+                                    if (e.which === 13) {
+                                        // $("#form_register_farmers").submit();
+                                        // alert('Form submitted successfully.')
+                                    }
+                                })
+
+                                $("#form_register_farmers").submit(function() {
+                                    // get all the inputs into an array.
+                                    var $inputs = $("#form_register_farmers :input");
+                                    var values = {};
+                                    $inputs.each(function() {
+                                        values[this.name] = $(this).val();
+                                    });
+
+                                    // console.log(JSON.stringify(values));
+                                    $.ajax({
+                                        url: "./controllers/register_faramers.php",
+                                        type: "POST",
+                                        data: {
+                                            key: "form_register_farmers",
+                                            data: values
+                                        },success: function(result, textStatus, jqXHR) {
+                                            console.log(result);
+                                            console.log(JSON.stringify(values));
+                                        },error: function(jqXHR, textStatus, errorThrown){
+
+                                        }
+                                    });
+
+                                    // alert(values['input-name']);
+
+
+
+                                });
+                                // $("#form_register_farmers").submit(function() {
+                                //     alert('Please');
+                                //     var values = {};
+                                //     $.each($("#form_register_farmers").serializeArray(), function(i, field) {
+                                //         // values[field.name] = field.value;
+                                //         alert(field.value);
+                                //     });
+
+                                //     $.each(values, function(i, field) {
+                                //         alert(field[i]);
+                                //     });
+                                // });
+
+                                // })
+                            </script>
+
+                            <script>
+                                // $('#form_register_farmers').submit(function(event) {
+                                //     // alert($(this).elements['firstname455554']);
+
+                                //     // alert($( "input" ).first().val());
+
+                                // });
+
+
+                                // function form_register_farmers() {
+                                //     // alert("Register Farmers");
+                                // }
+                            </script>
+                        </div>
+                    </div>
+
+                    <!-- <div id="shipping-address" class="panel
                                 panel-default">
                             <div class="panel-heading">
                                 <h2 class="panel-title">
@@ -705,12 +783,12 @@ include_once('./navbar.php');
                             </div>
                         </div> -->
 
-                    </div>
-                    <!-- END CHECKOUT PAGE -->
                 </div>
-                <!-- END CONTENT -->
+                <!-- END CHECKOUT PAGE -->
             </div>
+            <!-- END CONTENT -->
         </div>
+    </div>
     </div>
 
 

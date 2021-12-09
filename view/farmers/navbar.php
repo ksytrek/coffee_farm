@@ -20,15 +20,15 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <?php
 include_once('../../config/connectdb.php');
 session_start();
-$id_roasters = null;
+$id_farmers = null;
 if (isset($_SESSION['user_id'])) {
-    $id_roasters = $_SESSION['user_id'];
+    $id_farmers = $_SESSION['user_id'];
 }
 
 ?>
 <script>
-    const ID_ROASTERS = '<?php echo $id_roasters; ?>';
-    // alert(ID_ROASTERS);
+    const ID_FARMERS = '<?php echo $id_farmers; ?>';
+    // alert(ID_farmers);
 </script>
 
 <head>
@@ -154,11 +154,11 @@ if (isset($_SESSION['user_id'])) {
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
                         <?php
-                        if (!isset($id_roasters)) :
+                        if (!isset($id_farmers)) :
                         ?>
                             <li><a href="./shope-login.php">Sign In</a></li>
                             <li><a href="./shope-login.php">Sign UP</a></li>
-                        <?php elseif (isset($id_roasters)) : ?>
+                        <?php elseif (isset($id_farmers)) : ?>
                             <li><a href="shop-account.html">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
                             <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
@@ -358,7 +358,7 @@ if (isset($_SESSION['user_id'])) {
                 <ul>
                     <!-- active -->
                     <?php
-                        if (isset($id_roasters)) :
+                        if (isset($id_farmers)) :
                     ?>
                     <li><a href="./shop-index.php">หน้าหลัก</a></li>
                     <!-- <li class="dropdown "> 
@@ -541,7 +541,7 @@ if (isset($_SESSION['user_id'])) {
                         </ul>
                     </li>
 
-                    <?php elseif (!isset($id_roasters)) : ?>
+                    <?php elseif (!isset($id_farmers)) : ?>
                         <li><a href="./shope-login.php">หน้าหลัก</a></li>
                     <?php endif; ?>
                     <!-- BEGIN TOP SEARCH -->
