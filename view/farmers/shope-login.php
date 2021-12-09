@@ -205,17 +205,17 @@ include_once('./navbar.php');
                                 </h2>
                             </div>
                             <div id="payment-address-content" class="panel-collapse collapse in">
-                                <form id="form_register_farmers" action="javascript:void(0)" method="post"" <div class=" panel-body row">
+                                <form id="form_register_farmers" action="javascript:void(0)" method="post" enctype="multipart/form-data" class="panel-body row">
                                     <div class="col-md-6 col-sm-6">
                                         <h3>ข้อมูลส่วนเกษตรกร</h3>
                                         <div class="form-group">
                                             <label for="firstname"> ชื่อเกษตรกร <span class="require">*</span></label>
-                                            <input name="input-name" value="1" type="text" id="firstname455554" class="form-control">
+                                            <input name="input-name" value="1" type="text" id="firstname455554" class="form-control" required >
                                         </div>
                                         <div class="form-group">
                                             <label for="lastname">นามสกุลเกษตรกร
                                                 <span class="require">*</span></label>
-                                            <input name="input-last_name" value="2" type="text" id="lastname" class="form-control">
+                                            <input name="input-last_name" value="2" type="text" id="lastname" class="form-control" required>
                                         </div>
                                         <!-- <div class="form-group">
                                             <label for="email">E-Mail <span class="require">*</span></label>
@@ -224,15 +224,72 @@ include_once('./navbar.php');
                                         <div class="form-group">
                                             <label for="telephone">เบอร์โทรเกษตรกร
                                                 <span class="require">*</span></label>
-                                            <input name="input-tel_farmers" value="3"  type="text" id="telephone" class="form-control">
+                                            <input name="input-tel_farmers" value="3" type="text" id="telephone" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="fax">line เกษตรกร</label>
-                                            <input name="input-line_farmers" value="4"  type="text"  class="form-control">
+                                            <input name="input-line_farmers" value="4" type="text" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="fax">facebook เกษตรกร</label>
-                                            <input name="input-face_farmers" value="5"   type="text"  class="form-control">
+                                            <input name="input-face_farmers" value="5" type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
+                                                <div class="form-group">
+                                                    <label for="fax">รูปเกษตรกร <span class="require">*</span></label>
+                                                    <input id='input-image_farmers' name="input-image_farmers" value="C:\\fakepath\\1.png" type="file" accept="image/*" class="form-control">
+
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
+                                                <div class="form-group">
+                                                    <label for="fax">จำนวนพื้นที่เพาะปลูกไร่</label>
+                                                    <input type="text"  class="form-control">
+                                                </div>
+                                            </div> -->
+                                            <!-- <div style="margin-left: 0; margin-right:"></div> -->
+                                            <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
+                                                <div class="form-group">
+                                                    <img width="100%" height="30%" id="img" src="../../script/assets/img/logos/person.png" alt="" />
+                                                </div>
+                                            </div>
+                                            <script>
+                                                // get a reference to the file input
+                                                const imageElement = document.querySelector("img[id=img]");
+                                                var  base64StringImg = null;
+                                                // get a reference to the file input
+                                                const fileInput = document.querySelector("input[type=file]");
+
+                                                // listen for the change event so we can capture the file
+                                                fileInput.addEventListener("change", (e) => {
+                                                    // get a reference to the file
+                                                    const file = e.target.files[0];
+
+                                                    console.log(file);
+                                                    // var fi = e.files[0];
+
+
+                                                    // set file as image source
+                                                    imageElement.src = URL.createObjectURL(file);
+
+
+                                                    const reader = new FileReader();
+                                                    reader.onloadend = () => {
+                                                        // use a regex to remove data url part
+                                                        const base64String = reader.result
+                                                            .replace("data:", "")
+                                                            .replace(/^.+,/, "");
+
+                                                        // log to console
+                                                        // logs wL2dvYWwgbW9yZ...
+                                                        // console.log(base64String);
+                                                        base64StringImg = base64String;
+
+                                                    };
+                                                    reader.readAsDataURL(file);
+                                                });
+                                            </script>
                                         </div>
 
                                         <h3>ข้อมูลฟาร์ม</h3>
@@ -243,7 +300,7 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกไร่ <span class="require">*</span></label>
-                                                    <input name="input-num_farm" value="6"  type="text"  class="form-control">
+                                                    <input name="input-num_farm" value="6" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
@@ -256,7 +313,7 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกงาน <span class="require">*</span></label>
-                                                    <input name="input-num_field" value="7"  type="text"  class="form-control">
+                                                    <input name="input-num_field" value="7" type="text" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -281,12 +338,12 @@ include_once('./navbar.php');
                                                     max-width: 100%;
                                                     line-height: 1.5;
                                                     border-radius: 5px;
-                                                    border: 1px solid #ccc;
+                                                    border: 0.02px solid #ccc;
                                                     box-shadow: 1px 1px 1px #999;
-                                                    /* height:10rem */
+                                                    height: 80px
                                                 }
                                             </style>
-                                            <textarea name="input-detail_farm"    class="form-control">8</textarea>
+                                            <textarea name="input-detail_farm" class="">8</textarea>
                                             <!-- <input type="text"  class="form-control">
                                          -->
                                         </div>
@@ -296,10 +353,10 @@ include_once('./navbar.php');
                                                     <label for="fax">เกษตรอินทรีย์ <span class="require">*</span></label>
                                                     <div class="radio-list">
                                                         <label>
-                                                            <input name="input-organic_farm" type="radio"  value="9" checked> อินทรีย์
+                                                            <input name="input-organic_farm" type="radio" value="9" checked> อินทรีย์
                                                         </label>
                                                         <label>
-                                                            <input name="input-organic_farm" type="radio"  value="9"> ไม่อินทรีย์
+                                                            <input name="input-organic_farm" type="radio" value="9"> ไม่อินทรีย์
                                                         </label>
                                                     </div>
                                                 </div>
@@ -310,10 +367,10 @@ include_once('./navbar.php');
                                                     <label for="fax">รูปแบบการขาย <span class="require">*</span></label>
                                                     <div class="radio-list">
                                                         <label>
-                                                            <input name="input-type_sale" type="radio"  value="10" checked> ขายแบบพันธะสัญญา
+                                                            <input name="input-type_sale" type="radio" value="10" checked> ขายแบบพันธะสัญญา
                                                         </label>
                                                         <label>
-                                                            <input name="input-type_sale" type="radio"  value="10"> ขายแบบเดี่ยว
+                                                            <input name="input-type_sale" type="radio" value="10"> ขายแบบเดี่ยว
                                                         </label>
                                                     </div>
                                                 </div>
@@ -327,11 +384,11 @@ include_once('./navbar.php');
                                         <h3>ข้อมูลเข้าระบบ</h3>
                                         <div class="form-group">
                                             <label for="password"> E-Mail <span class="require">*</span></label>
-                                            <input name="input-email_farmers" value="11"  type="text" id="password" class="form-control">
+                                            <input name="input-email_farmers" value="11" type="text" id="password" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="password-confirm">Password <span class="require">*</span></label>
-                                            <input name="input-pass_farmers" value="12"  type="text" id="password-confirm" class="form-control">
+                                            <input name="input-pass_farmers" value="12" type="text" id="password-confirm" class="form-control">
                                         </div>
                                     </div>
 
@@ -361,7 +418,7 @@ include_once('./navbar.php');
                                         </div>
                                         <div class="form-group">
                                             <label for="country">จังหวัด<span class="require">*</span></label>
-                                            <select  name="input-province"  class="form-control input-sm" id="country">
+                                            <select name="input-province" class="form-control input-sm" id="country">
                                                 <option value="15 "> 15</option>
                                                 <!-- --- PleaseSelect ---  -->
                                                 <?php
@@ -380,14 +437,14 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="city"> ละติจูดฟาร์ม </label>
-                                                    <input  name="input-lat_farm" value="16" id='lat' value="100.265437234" disabled type="text" id="city" class="form-control">
+                                                    <input name="input-lat_farm" value="16" id='lat' value="100.265437234" disabled type="text" id="city" class="form-control">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="city"> ลองจิจูดฟาร์ม </label>
-                                                    <input  name="input-lng_farm" value="17" id='lng' value="100.265437234" disabled type="text" id="city" class="form-control">
+                                                    <input name="input-lng_farm" value="17" id='lng' value="100.265437234" disabled type="text" id="city" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -435,81 +492,83 @@ include_once('./navbar.php');
                                             $("#button-payment-address").click(function() {
                                                 // alert("Register Farmes");
                                             });
-                                        </script>
 
+                                            $("#form_register_farmers").keypress((e) => {
+                                                if (e.which === 13) {
+                                                    // $("#form_register_farmers").submit();
+                                                    // alert('Form submitted successfully.')
+                                                }
+                                            })
+
+                                            $("#form_register_farmers").submit(function() {
+                                                // get all the inputs into an array.
+                                                var $inputs = $("#form_register_farmers :input");
+                                                var values = {};
+                                                $inputs.each(function() {
+                                                    values[this.name] = $(this).val();
+                                                });
+
+                                                // var file_data = $("#input-image_farmers").prop('files')[0];
+                                                // var form_data = new FormData();
+                                                // form_data.append('file', file_data);
+
+                                                // console.log(JSON.stringify(values));
+                                                // alert(values['input-image_farmers']);
+                                                values['input-image_farmers'] = base64StringImg;
+                                                $.ajax({
+                                                    url: "./controllers/register_faramers.php",
+                                                    type: "POST",
+                                                    // dataType: 'text',
+                                                    data: {
+                                                        key: "form_register_farmers",
+                                                        data: values,
+                                                        // form_data: form_data
+                                                    },
+                                                    success: function(result, textStatus, jqXHR) {
+                                                        console.log(result);
+                                                        // console.log(JSON.stringify(values));
+                                                    },
+                                                    error: function(jqXHR, textStatus, errorThrown) {
+
+                                                    }
+                                                });
+
+                                                // alert(values['input-name']);
+
+
+
+                                            });
+                                            // $("#form_register_farmers").submit(function() {
+                                            //     alert('Please');
+                                            //     var values = {};
+                                            //     $.each($("#form_register_farmers").serializeArray(), function(i, field) {
+                                            //         // values[field.name] = field.value;
+                                            //         alert(field.value);
+                                            //     });
+
+                                            //     $.each(values, function(i, field) {
+                                            //         alert(field[i]);
+                                            //     });
+                                            // });
+
+                                            // })
+
+                                            // $('#form_register_farmers').submit(function(event) {
+                                            //     // alert($(this).elements['firstname455554']);
+
+                                            //     // alert($( "input" ).first().val());
+
+                                            // });
+
+
+                                            // function form_register_farmers() {
+                                            //     // alert("Register Farmers");
+                                            // }
+                                        </script>
                                     </div>
                             </div>
-                            </form>
 
-                            <script>
-                                $("#form_register_farmers").keypress((e) => {
-                                    if (e.which === 13) {
-                                        // $("#form_register_farmers").submit();
-                                        // alert('Form submitted successfully.')
-                                    }
-                                })
-
-                                $("#form_register_farmers").submit(function() {
-                                    // get all the inputs into an array.
-                                    var $inputs = $("#form_register_farmers :input");
-                                    var values = {};
-                                    $inputs.each(function() {
-                                        values[this.name] = $(this).val();
-                                    });
-
-                                    // console.log(JSON.stringify(values));
-                                    $.ajax({
-                                        url: "./controllers/register_faramers.php",
-                                        type: "POST",
-                                        data: {
-                                            key: "form_register_farmers",
-                                            data: values
-                                        },success: function(result, textStatus, jqXHR) {
-                                            console.log(result);
-                                            console.log(JSON.stringify(values));
-                                        },error: function(jqXHR, textStatus, errorThrown){
-
-                                        }
-                                    });
-
-                                    // alert(values['input-name']);
-
-
-
-                                });
-                                // $("#form_register_farmers").submit(function() {
-                                //     alert('Please');
-                                //     var values = {};
-                                //     $.each($("#form_register_farmers").serializeArray(), function(i, field) {
-                                //         // values[field.name] = field.value;
-                                //         alert(field.value);
-                                //     });
-
-                                //     $.each(values, function(i, field) {
-                                //         alert(field[i]);
-                                //     });
-                                // });
-
-                                // })
-                            </script>
-
-                            <script>
-                                // $('#form_register_farmers').submit(function(event) {
-                                //     // alert($(this).elements['firstname455554']);
-
-                                //     // alert($( "input" ).first().val());
-
-                                // });
-
-
-                                // function form_register_farmers() {
-                                //     // alert("Register Farmers");
-                                // }
-                            </script>
-                        </div>
-                    </div>
-
-                    <!-- <div id="shipping-address" class="panel
+                            <!-- <div id="shipping-address" class="panel
                                 panel-default">
                             <div class="panel-heading">
                                 <h2 class="panel-title">
@@ -783,23 +842,23 @@ include_once('./navbar.php');
                             </div>
                         </div> -->
 
+                        </div>
+                        <!-- END CHECKOUT PAGE -->
+                    </div>
+                    <!-- END CONTENT -->
                 </div>
-                <!-- END CHECKOUT PAGE -->
             </div>
-            <!-- END CONTENT -->
         </div>
-    </div>
-    </div>
 
 
-    <?php
-    include_once("./footer.php");
-    ?>
-    <!-- END fast view of a product -->
+        <?php
+        include_once("./footer.php");
+        ?>
+        <!-- END fast view of a product -->
 
-    <!-- Load javascripts at bottom, this will reduce page load time -->
-    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
-    <!--[if lt IE 9]>
+        <!-- Load javascripts at bottom, this will reduce page load time -->
+        <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+        <!--[if lt IE 9]>
     <script src="../../script/assets/plugins/respond.min.js"></script>  
     <![endif]-->
 </body>
