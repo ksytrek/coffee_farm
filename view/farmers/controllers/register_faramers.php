@@ -13,7 +13,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
     $line_farmers = $input['input-line_farmers'];
     $face_farmers = $input['input-face_farmers'];
 
-    $address_farmers = "เลขที่/หมูที่ ".$input['input-add_number']."ซอย/ถนน ".$input['input-road']."แขวง/ ตำบล ".$input['input-sub_district']."เขต/อำเภอ ".$input['input-district'];
+    $address_farmers = "เลขที่/หมูที่ ".$input['input-add_number']." ซอย/ถนน ".$input['input-road']." แขวง/ ตำบล ".$input['input-sub_district']." เขต/อำเภอ ".$input['input-district'];
     $id_provinces = $input['input-province'];
     $code_provinces = $input['input-post_office'];
 
@@ -28,47 +28,37 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
     $organic_farm = $input['input-organic_farm'];
     $type_sale = $input['input-type_sale'];
     $detail_farm = $input['input-detail_farm'];
-    $status_farmers = $input['input-status_farm'];
+    
+    // $status_farmers = $input['input-status_farm'];
 
 
     
-    file_put_contents('../image_farmers/img1.png', base64_decode($image_farmers));
+    $name_image = upload_image($image_farmers);
 
-    // echo $image_farmers;
-    
-    // if ( 0 < $_FILES['file']['error'] ) {
-    //     echo 'Error: ' . $_FILES['file']['error'] . '<br>';
-    // }
-    // else {
-    //     move_uploaded_file($_FILES['file']['tmp_name'], './' . $_FILES['file']['name']);
-    // }
+    $sql_insert_farmers = "INSERT INTO `farmers` (`id_farmers`, `name_farmers`, `email_farmers`, `pass_farmers`, `tel_farmers`, `line_farmers`, `face_farmers`, `address_farmers`, `id_provinces`, `code_provinces`, `image_farmers`, `num_farm`, `num_field`, `lat_farm`, `lng_farm`, `organic_farm`, `type_sale`, `detail_farm`, `status_farmers`) 
+                                        VALUES (NULL, '$name_farmers', '$email_farmers', '$pass_farmers', '$tel_farmers', '$line_farmers', '$face_farmers', '$address_farmers', '$id_provinces', '$code_provinces', '$name_image', '$num_farm', '$num_field', '$lat_farm', '$lng_farm', '$organic_farm', '$type_sale', '$detail_farm', '0');";
 
-    
-    // echo $input['input-'];
+    try{
+        if(Database::query($sql_insert_farmers,PDO::FETCH_ASSOC)){
+            echo "success";
+        }else{
+            echo "error";
+        }
+    }catch(Exception $e){
+        echo "error";
+    }
 
-    // $str = " ";
-    // foreach($input as $item) { //foreach element in $arr
-    //     // $uses = $item['var1']; //etc
-    //     $str = $str." , ".$item;
-    // }
+   
+// $sql_insert_farmers = "INSERT INTO `farmers` (`id_farmers`, `name_farmers`, `email_farmers`, `pass_farmers`, `tel_farmers`, `line_farmers`, `face_farmers`, `address_farmers`, `id_provinces`, `code_provinces`, `image_farmers`, `num_farm`, `num_field`, `lat_farm`, `lng_farm`, `organic_farm`, `type_sale`, `detail_farm`, `status_farmers`) 
+//                         VALUES (NULL, '1-1', '2@gmail.com', '3', '04', '5', '6', '7', '8', '9', '10.png', '11', '12', '13', '14', '15', '16', '17', '18');";
 
-    // move_uploaded_file($_FILES[$image_farmers]["tmp_name"],$_FILES[$image_farmers]["name"]);
-    // echo $image_farmers;
-    // file_put_contents("", file_get_contents($image_farmers));
+}
 
+function upload_image($image_farmers):string {
 
-    // echo $image_upload = str_replace( "\\", '/', $image_farmers);
-    // $fileName = $_FILES[$input['input-image_farmers']]['name'];
-    // //$fileExt = pathinfo($_FILES["inputFile"]["name"], PATHINFO_EXTENSION);
-    // $filePath = $fileName;
-    // if (move_uploaded_file($_FILES[$input['input-image_farmers']]["tmp_name"], $filePath)) {
-    //     echo "Upload success";
-    // } else {
-    //     echo "Upload failed";
-    // }
-
-    // echo $_FILES[$image_farmers]["tmp_name"];    
-    // echo $form_data['file'];
+    $name_date = date("Y_m_d_H_i_s").".png";
+    file_put_contents('../image_farmers/'.$name_date, base64_decode($image_farmers));
+    return $name_date;
 }
 
 ?>
