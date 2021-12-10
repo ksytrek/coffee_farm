@@ -24,6 +24,9 @@ $id_farmers = null;
 if (isset($_SESSION['user_id'])) {
     $id_farmers = $_SESSION['user_id'];
 }
+if(!isset($_SESSION['user_id']) &&  "/coffee_farm/view/farmers/shope-login.php" != $_SERVER['REQUEST_URI']){
+    header("Location:shope-login.php");
+}
 
 ?>
 <script>
@@ -156,8 +159,10 @@ if (isset($_SESSION['user_id'])) {
                         <?php
                         if (!isset($id_farmers)) :
                         ?>
-                            <li><a href="./shope-login.php">Sign In</a></li>
-                            <li><a href="./shope-login.php">Sign UP</a></li>
+                            <li><a id="signIN" href="./shope-login.php">Sign In</a></li>
+                            <li><a id="signUP"href="./shope-login.php">Sign UP</a></li>
+
+
                         <?php elseif (isset($id_farmers)) : ?>
                             <li><a href="shop-account.html">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
@@ -166,6 +171,9 @@ if (isset($_SESSION['user_id'])) {
 
                         <?php endif; ?>
                     </ul>
+                    <script>
+                    
+                    </script>
                 </div>
                 <!-- END TOP BAR MENU -->
             </div>
