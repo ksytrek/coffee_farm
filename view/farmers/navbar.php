@@ -24,9 +24,12 @@ $id_farmers = null;
 if (isset($_SESSION['user_id'])) {
     $id_farmers = $_SESSION['user_id'];
 }
-if(!isset($_SESSION['user_id']) &&  "/coffee_farm/view/farmers/shope-login.php" != $_SERVER['REQUEST_URI']){
+
+if ( !isset($id_farmers)  && strpos( $_SERVER['REQUEST_URI'], "shope-login.php" ) != true ) {
     header("Location:shope-login.php");
 }
+
+
 
 ?>
 <script>
