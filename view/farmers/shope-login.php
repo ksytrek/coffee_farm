@@ -154,14 +154,14 @@ include_once('./navbar.php');
                                     <div class="col-md-12 col-sm-12">
                                         <h3>Login Farmers</h3>
                                         <p>I am a returning customer.</p>
-                                        <form role="form" action="javascript:loginfarmers();">
+                                        <form id="form_loging" role="form" action="javascript:loginfarmers();">
                                             <div class="form-group">
                                                 <label for="email-login">E-Mail<span class="require">*</span></label>
-                                                <input type="email" id="email-login" class="form-control" required>
+                                                <input type="email" id="email-login" class="form-control" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="password-login">Password<span class="require">*</span></label>
-                                                <input type="password" id="password-login" class="form-control" required>
+                                                <input type="password" id="password-login" class="form-control" >
                                             </div>
                                             <label style="margin-bottom: 10px"><input type="checkbox"> จดจำฉันไว้ </label>
                                             <br>
@@ -171,9 +171,13 @@ include_once('./navbar.php');
                                             </div>
 
                                             <script>
-                                                function loginfarmers() {
-                                                    alert("Loging farmes");
-                                                }
+                                                // function loginfarmers() {
+                                                //     alert("Loging farmes");
+                                                // }
+                                                $("#form_loging").submit(function() {
+
+                                                    alert("Loging farmes"); 
+                                                });
                                             </script>
                                             <!-- <hr> -->
                                             <!-- <div class="login-socio">
@@ -196,6 +200,7 @@ include_once('./navbar.php');
                         <!-- END CHECKOUT -->
 
                         <!-- BEGIN PAYMENT ADDRESS -->
+                        
                         <div id="payment-address" class="panel panel-default ">
                             <div class="panel-heading">
                                 <h2 class="panel-title">
@@ -251,7 +256,7 @@ include_once('./navbar.php');
                                             <!-- <div style="margin-left: 0; margin-right:"></div> -->
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
-                                                    <img id="img" width="100%" src="../../script/assets/img/logos/person.png" alt="" />
+                                                    <img id="img" width="100%" height="150px" src="../../script/assets/img/logos/person.png" alt="" />
                                                 </div>
                                             </div>
                                             <script>
@@ -498,7 +503,10 @@ include_once('./navbar.php');
                                             </label>
                                         </div> -->
                                         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">ลงทะเบียน</button>
-                                        <script>
+                                        
+                                    </div>
+                            </div>
+                            <script>
                                             // $("#button-payment-address").click(function() {
                                             //     // alert("Register Farmes");
                                             // });
@@ -538,6 +546,7 @@ include_once('./navbar.php');
                                                         if (result == "success") {
                                                             alert("สมัครสมาชิกสำเร็จ");
                                                             $("#form_register_farmers").trigger("reset");
+                                                            location.reload();
 
                                                         }else{
                                                             alert("เกิดข้อผิดพลาดบางอย่าง");
@@ -582,9 +591,6 @@ include_once('./navbar.php');
                                             //     // alert("Register Farmers");
                                             // }
                                         </script>
-                                    </div>
-                            </div>
-
                             <!-- <div id="shipping-address" class="panel
                                 panel-default">
                             <div class="panel-heading">
@@ -679,6 +685,7 @@ include_once('./navbar.php');
                                     </div>
                                 </div>
                             </div>
+                       
                         </div>
                         <div id="shipping-method" class="panel
                                 panel-default">

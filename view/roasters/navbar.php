@@ -357,7 +357,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="header-navigation">
                 <ul>
                     <!-- active -->
-                    <li><a href="./shop-index.php">หน้าหลัก</a></li>
+                    <li><a href="./shop-index.php">รายการสินค้า</a></li>
                     <!-- <li class="dropdown "> 
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             หน้าหลัก
@@ -482,7 +482,7 @@ if (isset($_SESSION['user_id'])) {
                         </ul>
                     </li> -->
                     <!-- <li><a href="shop-item.html">Kids</a></li> -->
-                    <li><a href="shop-product-list.php">รายการสินค้า</a></li>
+                    <!-- <li><a href="shop-product-list.php">รายการสินค้า</a></li> -->
                     <li class="dropdown dropdown100 nav-catalogue">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             สินค้าใหม่

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2021 at 02:40 PM
+-- Generation Time: Dec 13, 2021 at 03:06 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -38,7 +38,7 @@ CREATE TABLE `farmers` (
   `address_farmers` text NOT NULL COMMENT 'ที่อยู่เกษตรกร',
   `id_provinces` int(11) NOT NULL COMMENT 'รหัสจังหวัด',
   `code_provinces` varchar(6) NOT NULL COMMENT 'รหัสไปรษณีย์',
-  `image_farmers` varchar(200) NOT NULL COMMENT 'รูปเกษตรกร',
+  `image_farmers` text NOT NULL COMMENT 'รูปเกษตรกร',
   `num_farm` int(11) NOT NULL COMMENT 'จำนวนพื้นที่เพาะปลูกไร่',
   `num_field` int(11) NOT NULL COMMENT 'จำนวนพื้นที่เพาะปลูกงาน',
   `lat_farm` varchar(25) NOT NULL COMMENT 'ละติจูดฟาร์ม',
@@ -46,7 +46,7 @@ CREATE TABLE `farmers` (
   `organic_farm` int(11) NOT NULL COMMENT '1 = อินทรีย์, 2 = ไม่อินทรีย์',
   `type_sale` int(11) NOT NULL COMMENT '1 = ขายแบบพันธะสัญญา, 2 = ขายแบบเดี่ยว ',
   `detail_farm` text DEFAULT NULL COMMENT 'อธิบายละเอียดต่างๆ เช่นช่วงเวลาเก็บเกี่ยว',
-  `status_farmers` int(11) NOT NULL COMMENT 'สถานะเกษตรกร'
+  `status_farmers` int(11) NOT NULL DEFAULT 1 COMMENT 'สถานะเกษตรกร'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
