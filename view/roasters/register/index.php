@@ -364,6 +364,8 @@ include_once("../../../config/connectdb.php");
 								if (general_information_check) {
 									return swal("", "กรุณาตรวจสอบข้อมูลทั่วไป!", "error");
 									// return alert("กรุณาตรวจสอบข้อมูลทั่วไป");
+								}else if(pass_roasters == false){
+									return swal("", "กรุณาตรวจสอบรหัสผ่าน", "error");
 								}else if(check_num_trade_reg == false) {
 									return swal("", "กรุณาตรวจสอบเลขทะเบียนการค้า", "error");
 									// กรุณาตรวจสอบเลขทะเบียนการค้า

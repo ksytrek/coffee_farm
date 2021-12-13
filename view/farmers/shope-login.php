@@ -116,7 +116,7 @@ include_once('./navbar.php');
             <div class="row margin-bottom-40">
                 <!-- BEGIN CONTENT -->
                 <div class="col-md-12 col-sm-12">
-                    <h1>LOGIN</h1>
+                    <h1>หน้าหลัก</h1>
                     <!-- BEGIN CHECKOUT PAGE -->
                     <div class="panel-group checkout-page accordion scrollable" id="checkout-page">
 
@@ -125,7 +125,7 @@ include_once('./navbar.php');
                             <div class="panel-heading">
                                 <h2 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#checkout-page" href="#checkout-content" class="accordion-toggle">
-                                        LOGIN FARMERS
+                                        ล็อกอินสำหรับเกษตรกร
                                     </a>
                                 </h2>
                             </div>
@@ -152,32 +152,101 @@ include_once('./navbar.php');
                                         <button class="btn btn-primary" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-address-content">Continue</button>
                                     </div> -->
                                     <div class="col-md-12 col-sm-12">
-                                        <h3>Login Farmers</h3>
-                                        <p>I am a returning customer.</p>
+                                        <h3>เข้าสู่ระบบเกษตรกร</h3>
+                                        <!-- <p>I am a returning customer.</p> -->
                                         <form id="form_loging" role="form" action="javascript:loginfarmers();">
                                             <div class="form-group">
                                                 <label for="email-login">E-Mail<span class="require">*</span></label>
-                                                <input type="email" id="email-login" class="form-control" >
+                                                <input type="email" id="email-login" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="password-login">Password<span class="require">*</span></label>
-                                                <input type="password" id="password-login" class="form-control" >
+                                                <input type="password" id="password-login" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" class="form-control" placeholder="อักษร 8-12 และ A-Za-z0-9!@#$%^&*_=+-">
                                             </div>
-                                            <label style="margin-bottom: 10px"><input type="checkbox"> จดจำฉันไว้ </label>
+                                            <!-- อย่างน้อย 1 ตัวพิมพ์ใหญ่
+                                            อย่างน้อย 1 ตัวพิมพ์เล็ก
+                                            อย่างน้อย 1 หมายเลข
+                                            อนุญาตให้ใช้สัญลักษณ์อย่างน้อย 1 สัญลักษณ์  !@#$%^&*_=+-
+                                            ขั้นต่ำ 8 ตัวอักษรและสูงสุด 12 ตัวอักษร -->
+                                            <label style="margin-bottom: 10px"><input id="Login_farmers" onclick="lsRememberMe()" type="checkbox"> จดจำฉันไว้ </label>
                                             <br>
                                             <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content">ฉันยังไม่มีรหัสเข้าสู่ระบบ</a>
                                             <div class="padding-top-20 text-right">
                                                 <button class="btn btn-primary" type="submit">Login</button>
                                             </div>
-
                                             <script>
                                                 // function loginfarmers() {
                                                 //     alert("Loging farmes");
                                                 // }
-                                                $("#form_loging").submit(function() {
+                                                $("#form_loging").keypress((e) => {
+                                                    if (e.which === 13) {
 
-                                                    alert("Loging farmes"); 
+                                                    }
+                                                })
+                                                $("#form_loging").submit(function() {
+                                                    var e_mail_frame = $("#email-login").val();
+                                                    var pass_farmers = $("#password-login").val();
+
+                                                    // alert(e_mail_frame + ": " + pass_farmers);
+
+
+
+
+                                                    if (confirm("ต้องการล็อกอินเข้าสู่ระบบใช่หรือไม่?")) {
+                                                        $.ajax({
+                                                            url: "./controllers/login_farmers.php",
+                                                            type: "POST",
+                                                            data: {
+                                                                key: "login_farmers",
+                                                                email_farmers: e_mail_frame,
+                                                                pass_farmers: pass_farmers
+                                                            },
+                                                            success: function(result, textStatus, jqXHR) {
+                                                                // alert(result);
+                                                                if(result == '1'){
+                                                                    alert("ยินดีตอนรับเข้าสู่ระบบ");
+                                                                    location.assign('./framers-index.php');
+
+                                                                }else{
+                                                                    alert('รหัสผ่านไม่ถูกต้อง');
+                                                                    // alert(result);
+                                                                }
+                                                            },
+                                                            error: function(result, textStatus, jqXHR) {
+
+                                                            }
+                                                        });
+                                                    }
+
+
                                                 });
+                                            </script>
+                                            <script>
+                                                const rmCheck_framers = document.getElementById("Login_farmers"),
+                                                    emailInput_framers = document.getElementById("email-login"),
+                                                    passwordInput_framers = document.getElementById("password-login");
+
+                                                if (localStorage.checkbox_framers && localStorage.checkbox_framers !== "") {
+                                                    rmCheck_framers.setAttribute("checked", "checked");
+                                                    emailInput_framers.value = localStorage.username_framers;
+                                                    passwordInput_framers.value = localStorage.password_framers;
+                                                } else {
+                                                    rmCheck_framers.removeAttribute("checked");
+                                                    emailInput_framers.value = "";
+                                                    passwordInput_framers.value = "";
+                                                }
+
+                                                function lsRememberMe() {
+                                                    if (rmCheck_framers.checked && emailInput_framers.value !== "") {
+                                                        localStorage.username_framers = emailInput_framers.value;
+                                                        localStorage.checkbox_framers = rmCheck_framers.value;
+                                                        localStorage.password_framers = passwordInput_framers.value;
+                                                    } else {
+                                                        localStorage.username_framers = "";
+                                                        localStorage.checkbox_framers = "";
+                                                        localStorage.password_framers = "";
+                                                    }
+                                                }
                                             </script>
                                             <!-- <hr> -->
                                             <!-- <div class="login-socio">
@@ -200,12 +269,12 @@ include_once('./navbar.php');
                         <!-- END CHECKOUT -->
 
                         <!-- BEGIN PAYMENT ADDRESS -->
-                        
+
                         <div id="payment-address" class="panel panel-default ">
                             <div class="panel-heading">
                                 <h2 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content" class="accordion-toggle">
-                                        Register Account Farmers
+                                        ลงทะเบียนบัญชีเกษตรกร
                                     </a>
                                 </h2>
                             </div>
@@ -395,7 +464,7 @@ include_once('./navbar.php');
 
 
 
-
+                                                <!-- ยังไม่เช็ค อีเมล์เกษตรกร ว่ามีการซ้ำกันหรือไม่  -->
                                         <h3>ข้อมูลเข้าระบบ</h3>
                                         <div class="form-group">
                                             <label for="password"> E-Mail <span class="require">*</span></label>
@@ -503,94 +572,94 @@ include_once('./navbar.php');
                                             </label>
                                         </div> -->
                                         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">ลงทะเบียน</button>
-                                        
+
                                     </div>
                             </div>
                             <script>
-                                            // $("#button-payment-address").click(function() {
-                                            //     // alert("Register Farmes");
-                                            // });
+                                // $("#button-payment-address").click(function() {
+                                //     // alert("Register Farmes");
+                                // });
 
-                                            $("#form_register_farmers").keypress((e) => {
-                                                if (e.which === 13) {
-                                                    // $("#form_register_farmers").submit();
-                                                    // alert('Form submitted successfully.')
-                                                }
-                                            })
+                                $("#form_register_farmers").keypress((e) => {
+                                    if (e.which === 13) {
+                                        // $("#form_register_farmers").submit();
+                                        // alert('Form submitted successfully.')
+                                    }
+                                })
 
-                                            $("#form_register_farmers").submit(function() {
-                                                // get all the inputs into an array.
-                                                var $inputs = $("#form_register_farmers :input");
-                                                var values = {};
-                                                $inputs.each(function() {
-                                                    values[this.name] = $(this).val();
-                                                });
+                                $("#form_register_farmers").submit(function() {
+                                    // get all the inputs into an array.
+                                    var $inputs = $("#form_register_farmers :input");
+                                    var values = {};
+                                    $inputs.each(function() {
+                                        values[this.name] = $(this).val();
+                                    });
 
-                                                // set values
-                                                values['input-image_farmers'] = base64StringImg;
-                                                values['input-organic_farm'] = $('input[name=input-organic_farm]:checked', $(this)).val();
-                                                values['input-type_sale'] = $('input[name=input-type_sale]:checked', $(this)).val();
-                                                // alert(
-                                                // console.log(JSON.stringify(values));
-                                                $.ajax({
-                                                    url: "./controllers/register_faramers.php",
-                                                    type: "POST",
-                                                    // dataType: 'text',
-                                                    data: {
-                                                        key: "form_register_farmers",
-                                                        data: values,
-                                                        // form_data: form_data
-                                                    },
-                                                    success: function(result, textStatus, jqXHR) {
-                                                        // console.log(result);
-                                                        if (result == "success") {
-                                                            alert("สมัครสมาชิกสำเร็จ");
-                                                            $("#form_register_farmers").trigger("reset");
-                                                            location.reload();
+                                    // set values
+                                    values['input-image_farmers'] = base64StringImg;
+                                    values['input-organic_farm'] = $('input[name=input-organic_farm]:checked', $(this)).val();
+                                    values['input-type_sale'] = $('input[name=input-type_sale]:checked', $(this)).val();
+                                    // alert(
+                                    // console.log(JSON.stringify(values));
+                                    $.ajax({
+                                        url: "./controllers/register_faramers.php",
+                                        type: "POST",
+                                        // dataType: 'text',
+                                        data: {
+                                            key: "form_register_farmers",
+                                            data: values,
+                                            // form_data: form_data
+                                        },
+                                        success: function(result, textStatus, jqXHR) {
+                                            // console.log(result);
+                                            if (result == "success") {
+                                                alert("สมัครสมาชิกสำเร็จ");
+                                                $("#form_register_farmers").trigger("reset");
+                                                location.reload();
 
-                                                        }else{
-                                                            alert("เกิดข้อผิดพลาดบางอย่าง");
-                                                            location.reload();
-                                                        }
-                                                        // console.log(JSON.stringify(values));
-                                                    },
-                                                    error: function(jqXHR, textStatus, errorThrown) {
+                                            } else {
+                                                alert("เกิดข้อผิดพลาดบางอย่าง");
+                                                location.reload();
+                                            }
+                                            // console.log(JSON.stringify(values));
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown) {
 
-                                                    }
-                                                });
+                                        }
+                                    });
 
-                                                // alert(values['input-name']);
-
-
-
-                                            });
-                                            // $("#form_register_farmers").submit(function() {
-                                            //     alert('Please');
-                                            //     var values = {};
-                                            //     $.each($("#form_register_farmers").serializeArray(), function(i, field) {
-                                            //         // values[field.name] = field.value;
-                                            //         alert(field.value);
-                                            //     });
-
-                                            //     $.each(values, function(i, field) {
-                                            //         alert(field[i]);
-                                            //     });
-                                            // });
-
-                                            // })
-
-                                            // $('#form_register_farmers').submit(function(event) {
-                                            //     // alert($(this).elements['firstname455554']);
-
-                                            //     // alert($( "input" ).first().val());
-
-                                            // });
+                                    // alert(values['input-name']);
 
 
-                                            // function form_register_farmers() {
-                                            //     // alert("Register Farmers");
-                                            // }
-                                        </script>
+
+                                });
+                                // $("#form_register_farmers").submit(function() {
+                                //     alert('Please');
+                                //     var values = {};
+                                //     $.each($("#form_register_farmers").serializeArray(), function(i, field) {
+                                //         // values[field.name] = field.value;
+                                //         alert(field.value);
+                                //     });
+
+                                //     $.each(values, function(i, field) {
+                                //         alert(field[i]);
+                                //     });
+                                // });
+
+                                // })
+
+                                // $('#form_register_farmers').submit(function(event) {
+                                //     // alert($(this).elements['firstname455554']);
+
+                                //     // alert($( "input" ).first().val());
+
+                                // });
+
+
+                                // function form_register_farmers() {
+                                //     // alert("Register Farmers");
+                                // }
+                            </script>
                             <!-- <div id="shipping-address" class="panel
                                 panel-default">
                             <div class="panel-heading">

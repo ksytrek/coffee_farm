@@ -36,7 +36,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
     $name_image = upload_image($image_farmers);
 
     $sql_insert_farmers = "INSERT INTO `farmers` (`id_farmers`, `name_farmers`, `email_farmers`, `pass_farmers`, `tel_farmers`, `line_farmers`, `face_farmers`, `address_farmers`, `id_provinces`, `code_provinces`, `image_farmers`, `num_farm`, `num_field`, `lat_farm`, `lng_farm`, `organic_farm`, `type_sale`, `detail_farm`, `status_farmers`) 
-                                        VALUES (NULL, '$name_farmers', '$email_farmers', '$pass_farmers', '$tel_farmers', '$line_farmers', '$face_farmers', '$address_farmers', '$id_provinces', '$code_provinces', '$name_image', '$num_farm', '$num_field', '$lat_farm', '$lng_farm', '$organic_farm', '$type_sale', '$detail_farm', '0');";
+                                        VALUES (NULL, '$name_farmers', '$email_farmers', '$pass_farmers', '$tel_farmers', '$line_farmers', '$face_farmers', '$address_farmers', '$id_provinces', '$code_provinces', '$name_image', '$num_farm', '$num_field', '$lat_farm', '$lng_farm', '$organic_farm', '$type_sale', '$detail_farm', '1');";
 
     try{
         if(Database::query($sql_insert_farmers,PDO::FETCH_ASSOC)){

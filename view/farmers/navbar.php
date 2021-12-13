@@ -21,20 +21,39 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 include_once('../../config/connectdb.php');
 session_start();
 $id_farmers = null;
-if (isset($_SESSION['user_id'])) {
+// $_SESSION['user_id']= "ddd";
+if ($_SESSION['key'] == 'framers') {
     $id_farmers = $_SESSION['user_id'];
+    // echo $_SESSION['key'];
 }
+// echo $_SESSION['user_id'];
+// if (!isset($id_farmers)  && strpos( $_SERVER['REQUEST_URI'], "shope-login.php" ) == true ) {
+//     // header("Location:shope-login.php");
+//     echo "shope-login.php";
+// }else{
+//     // echo $_SERVER['REQUEST_URI'];
+//     header("Location:shope-login.php");
+// }
 
-if ( !isset($id_farmers)  && strpos( $_SERVER['REQUEST_URI'], "shope-login.php" ) != true ) {
+// echo $_SERVER['REQUEST_URI'];
+// echo strpos( $_SERVER['REQUEST_URI'], "shope-login.php" );
+
+$myString = $_SERVER['REQUEST_URI'];
+if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
     header("Location:shope-login.php");
+    // echo "fonts";
+} else if(strpos($myString, 'shope-login.php') && $id_farmers != null) {
+    // echo "Not found";
+    // echo $id_farmers;
+    // echo $_SESSION['user_id'];
+    header("Location:framers-index.php");
+}else{
+    // echo $_SESSION['user_id'];
 }
-
-
 
 ?>
 <script>
     const ID_FARMERS = '<?php echo $id_farmers; ?>';
-    // alert(ID_farmers);
 </script>
 
 <head>
