@@ -186,9 +186,9 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
 
 
                         <?php elseif (isset($id_farmers)) : ?>
-                            <li><a href="shop-account.html">บัญชีของฉัน</a></li>
+                            <li><a href="javascript:void(0);">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
-                            <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
+                            <li><a href="javascript:void(0);">เมนู 1</a></li>
                             <li><a href="./controllers/logout.php">Log Out</a></li>
 
                         <?php endif; ?>
@@ -390,7 +390,7 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
                     <?php
                         if (isset($id_farmers)) :
                     ?>
-                    <li><a href="./shop-index.php">หน้าหลัก</a></li>
+                    <li><a href="javascript:void(0);">หน้าหลัก</a></li>
                     <!-- <li class="dropdown "> 
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             หน้าหลัก
@@ -418,41 +418,6 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
                         </ul>
                     </li> -->
                     
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            สายพันธุ์เมล็ดกาแฟ
-                        </a>
-                        <!-- BEGIN DROPDOWN MENU -->
-                        <ul class="dropdown-menu">
-                            <!-- <li class="dropdown-submenu">
-                                <a href="shop-product-list.html">Hi Tops <i class="fa fa-angle-right"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="shop-product-list.html">Second Level Link</a></li>
-                                    <li><a href="shop-product-list.html">Second Level Link</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                                            Second Level Link
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                            <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                            <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> -->
-                            <?php
-                            foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
-                            ?>
-                                <li><a href="./shop-search-result.php?search=<?php echo $row['name_typepro'] ?>"><?php echo $row['name_typepro'] ?></a></li>
-                                <!-- <li><a href="shop-product-list.html">Jackets and Coats</a></li> -->
-                            <?php
-                            endforeach;
-                            ?>
-                        </ul>
-                        <!-- END DROPDOWN MENU -->
-                    </li>
                     <!-- <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                             ประเภทกาแฟ
@@ -516,60 +481,14 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
                         </ul>
                     </li> -->
                     <!-- <li><a href="shop-item.html">Kids</a></li> -->
-                    <li><a href="shop-product-list.php">รายการสินค้า</a></li>
-                    <li class="dropdown dropdown100 nav-catalogue">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
-                            สินค้าใหม่
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="header-navigation-content">
-                                    <div class="row">
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="../../script/pictures/3.jpeg"" class="img-responsive" alt="Berry Lace Dress"></a>
-                                                </div>
-                                                <h3><a href="shop-item.html">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="../../script/pictures/3.jpeg"" class="img-responsive" alt="Berry Lace Dress"></a>
-                                                </div>
-                                                <h3><a href="shop-item.html">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="../../script/pictures/3.jpeg"" class="img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
-                                                </div>
-                                                <h3><a href="shop-item.html">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.html"><img src="../../script/pictures/3.jpeg"" class="img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
-                                                </div>
-                                                <h3><a href="shop-item.html">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+                    <li><a href="javascript:void(0);">เมนู 2</a></li>
+                    <li><a href="javascript:void(0);">เมนู 3</a></li>
+                    <li><a href="javascript:void(0);">เมนู 4</a></li>
+                    <li><a href="javascript:void(0);">เมนู 5</a></li>
+                    
+
+
+
 
                     <?php elseif (!isset($id_farmers)) : ?>
                         <li><a href="./shope-login.php">หน้าหลัก</a></li>
