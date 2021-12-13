@@ -55,7 +55,7 @@
 												var json = JSON.parse(result);
 												if(json != ""){
 													alert('ยินดีตอนรับเข้าสู่ระบบ');
-													location.assign('../shop-index.php');
+													location.assign('../shop-product-list.php');
 												}else{
 													// alert(json[0].pass_roasters);
 													alert('รหัสผ่านไม่ถูกต้อง');
