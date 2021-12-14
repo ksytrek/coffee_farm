@@ -18,10 +18,10 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- Head BEGIN -->
 
 <?php
-include_once('../../config/connectdb.php');
+include('../../config/connectdb.php');
 session_start();
 $id_roasters = null;
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     $id_roasters = $_SESSION['user_id'];
 }
 

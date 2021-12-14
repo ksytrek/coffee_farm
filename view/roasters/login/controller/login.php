@@ -14,7 +14,7 @@ if(isset($_POST['key']) && $_POST['key'] == 'login_roasters'){
         if ($show_tebelig = Database::query($sql, PDO::FETCH_ASSOC)) {
             foreach ($show_tebelig  as $row) {
                 array_push($resultArray, $row);
-                $_SESSION['login_key'] = 'roasters';
+                $_SESSION['key'] = 'roasters';
                 $_SESSION['user_id'] = $row['id_roasters'];
             }
             echo json_encode($resultArray);

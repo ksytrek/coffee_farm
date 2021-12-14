@@ -22,7 +22,7 @@ include_once('../../config/connectdb.php');
 session_start();
 $id_farmers = null;
 // $_SESSION['user_id']= "ddd";
-if ($_SESSION['key'] == 'framers') {
+if (isset($_SESSION['key']) && $_SESSION['key'] == 'framers') {
     $id_farmers = $_SESSION['user_id'];
     // echo $_SESSION['key'];
 }
@@ -41,11 +41,7 @@ if ($_SESSION['key'] == 'framers') {
 $myString = $_SERVER['REQUEST_URI'];
 if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     header("Location:shope-login.php");
-    // echo "fonts";
 } else if (strpos($myString, 'shope-login.php') && $id_farmers != null) {
-    // echo "Not found";
-    // echo $id_farmers;
-    // echo $_SESSION['user_id'];
     header("Location:framers-index.php");
 } else {
     // echo $_SESSION['user_id'];
@@ -206,7 +202,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="shop-index.php"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
+            <a class="site-logo" href="<?php if (!isset($id_farmers)) : echo "./shope-login.php" ; else : echo "./framers-index.php" ; endif ;?>"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
             <!-- BEGIN CART -->
             <!-- <div class="top-cart-block">
@@ -514,14 +510,20 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
         </div>
     </div>
     <!-- Header END -->
-    <div class="title-wrapper">
-        <div class="container">
-            <div class="container-inner">
-                <h1><span>ล็อกอินโดย</span> <?php echo $id_farmers; ?></h1>
-                <!-- <em>Over 4000 Items are available here</em> -->
+    <?php
+    if (isset($id_farmers)) :
+    ?>
+        <div class="title-wrapper">
+            <div class="container">
+                <div class="container-inner">
+                    <h1><span>ล็อกอินโดย</span></h1>
+                    <em> <?php echo $id_farmers; ?></em>
+                </div>
             </div>
         </div>
-    </div>
+
+    <?php endif; ?>
+
 
 
 

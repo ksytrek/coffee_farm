@@ -68,7 +68,7 @@ include_once('./navbar.php');
                 <div class="sidebar col-md-3 col-sm-5">
 
                     <!-- <div class="sidebar-filter margin-bottom-25"> -->
-                        <!-- <h2>กรอง</h2>
+                    <!-- <h2>กรอง</h2>
 
                         <h3>ราคา</h3>
                         <p>
@@ -153,171 +153,174 @@ include_once('./navbar.php');
                     </div>
                     <!-- BEGIN PRODUCT LIST -->
                     <h2>สินค้าของคุณที่กำลังประกาศขาย </h2>
-                    <div class="row product-list">
 
+                    <div class="row product-list">
                         <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
+                        <?php
+                        // for ($i = 0; $i < 5; $i++) :
+                        $page = null;
+                        $pagesize = 5;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
+                        $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
 
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/6.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/6.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                        if (isset($_GET['page'])) {
+                            $page = $_GET['page'];
+                            $start = ($page - 1) * $pagesize  ; //นี้เป็นสูตรการคำนวนครับ
+                        } else {
+                            $page = 0;
+                            $start = 0;
+                        }
+
+                        $sql_count = "SELECT * FROM `products` WHERE id_farmers LIKE '1';";
+
+                        $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
+                        $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
+                        $totalpage =  ceil($num_rowsx / $pagesize);
+                        //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
+                        $sql_data = "SELECT * FROM products WHERE id_farmers LIKE '1' ORDER BY id_products ASC LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+                        //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
+                        $result_data =  Database::query($sql_data, PDO::FETCH_ASSOC);
+                        $num_rows = $result_data->rowCount();
+
+                        // echo  $page;
+
+
+                        // $sql_count = "SELECT COUNT(*) FROM `products` WHERE id_farmers LIKE '1'";
+                        // $query = Database::query($sql_count, PDO::FETCH_ASSOC);
+                        // $row = count($query->fetch());
+
+                        // $rows = $row;
+
+                        // $page_rows = 6;  //จำนวนข้อมูลที่ต้องการให้แสดงใน 1 หน้า  ตย. 5 record / หน้า 
+
+                        // $last = ceil($rows / $page_rows);
+
+                        // if ($last < 1) {
+                        //     $last = 1;
+                        // }
+
+                        // $pagenum = 1;
+
+                        // if (isset($_GET['pn'])) {
+                        //     // $pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
+                        //     $pagenum = $_GET['pn'];
+                        // }
+
+                        // if ($pagenum < 1) {
+                        //     $pagenum = 1;
+                        // } else if ($pagenum > $last) {
+                        //     $pagenum = $last;
+                        // }
+
+                        // $limit = 'LIMIT ' . ($pagenum - 1) * $page_rows . ',' . $page_rows;
+
+                        // $nquery = Database::query("SELECT * FROM `products` $limit", PDO::FETCH_ASSOC);
+
+
+
+
+                        foreach ($result_data as $row) :
+                        ?>
+
+
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="product-item">
+                                    <div class="pi-img-wrapper">
+                                        <img src="../../script/pictures/<?php echo $row['image_pro']; ?>" class="img-responsive" alt="Berry Lace Dress">
+                                        <div>
+                                            <a href="../../script/pictures/<?php echo $row['image_pro']; ?>" class="btn btn-default fancybox-button">Zoom</a>
+                                            <a href="#product-pop-up-<?php echo '1'; ?>" class="btn btn-default fancybox-fast-view">View</a>
+                                        </div>
+                                    </div>
+                                    <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
+                                    <div class="pi-price">฿29.00</div>
+                                    <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
+                                </div>
+                            </div>
+
+                            <div id="product-pop-up-<?php echo '1'; ?>" style="display: none; width: 700px;">
+                                <div class="product-page product-pop-up">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-3">
+                                            <div class="product-main-image">
+                                                <img src="../../script/pictures/<?php echo $row['image_pro']; ?>" alt="Cool green dress with red bell" class="img-responsive">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <h1>ชื่อรายการสินค้า</h1>
+                                            <div class="price-availability-block clearfix">
+                                                <div class="price">
+                                                    <strong><span>&#3647;</span>47.00</strong>
+                                                </div>
+
+                                            </div>
+                                            <div class="description">
+                                                <p>รายละเอียดของรายการสินค้า</p>
+                                            </div>
+
+                                            <div class="product-page-cart">
+
+                                                <button class="btn btn-primary" type="submit">เพิ่มสินค้า</button>
+                                                <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">฿29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                             </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/2.jpeg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/2.jpeg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/8.jpeg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/8.jpeg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
+
+                        <?php //endfor; 
+                        endforeach;
+                        ?>
+
                     </div>
-                    <div class="row product-list">
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/6.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/6.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">฿29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/2.jpeg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/2.jpeg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="./shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/8.jpeg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/8.jpeg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                    </div>
-                    <div class="row product-list">
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/6.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/6.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">฿29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/2.jpeg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/2.jpeg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                        <!-- PRODUCT ITEM START -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/pictures/8.jpeg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/pictures/8.jpeg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                            </div>
-                        </div>
-                        <!-- PRODUCT ITEM END -->
-                    </div>
-                    <!-- END PRODUCT LIST -->
-                    <!-- BEGIN PAGINATOR -->
                     <div class="row">
-                        <div class="col-md-4 col-sm-4 items-info">รายการที่ 1 ถึง 9 of 10 รายการ</div>
+                        <!--  -->
+                        <div class="col-md-4 col-sm-4 items-info"> รายการที่ <?php echo $start+1 ; ?> ถึง <?php echo $start + $pagesize > $num_rowsx ? $num_rowsx: $start + $pagesize ; ?> of <?php echo $num_rowsx ?> รายการ</div>
                         <div class="col-md-8 col-sm-8">
                             <ul class="pagination pull-right">
-                                <li><a href="javascript:;">&laquo;</a></li>
-                                <li><a href="javascript:;">1</a></li>
+                                <?php
+                                if ($page > 1) //ถ้า ค่า page มากกว่า 1 แสดงปุ่ม ย้อนกลับ Previuos
+                                {
+                                    $pg = $page - 1;
+                                    //echo "<a href='news.php?page=$pg'>Previuos</a>"; //ส่งค่า page ที่ลดลง 1 เมื่อกดปุ่ม next
+                                    echo "<li><a href='framers-index.php?page=$pg'>Previuos &laquo;</a></li>";
+                                }
+                                ?>
+
+                                <!-- <li><a href='javascript:;'>&laquo;</a></li> -->
+                                <?php
+                                // echo $totalpage;
+                                for ($i = 1; $i <= $totalpage; $i++) :
+
+                                    if (isset($_GET['page']) && $_GET['page'] == $i) {
+                                        echo "<li><span>$i</span></li>";
+                                    }else if(!isset($_GET['page']) && $i == 1){
+                                        echo "<li><span>1</span></li>";
+                                    } else {
+                                        echo "<li><a href='framers-index.php?page=$i'>$i</a></li>";
+                                    }
+                                    // $page++;
+                                endfor;
+                                ?>
+
+                                <!-- <li><a href="javascript:;">1</a></li>
                                 <li><span>2</span></li>
                                 <li><a href="javascript:;">3</a></li>
                                 <li><a href="javascript:;">4</a></li>
-                                <li><a href="javascript:;">5</a></li>
-                                <li><a href="javascript:;">&raquo;</a></li>
+                                <li><a href="javascript:;">5</a></li> -->
+                                
+
+                                <?php
+                                //next
+                                if ($page < $totalpage) //ถ้า ค่า page น้อยกว่า page ทั้งหมด(page ท้ายสุด) แสดงปุ่ม  Next
+                                {
+                                    $pg = $page + 1;
+                                    //echo "<a href='news.php?page=$pg'>Previuos</a>"; //ส่งค่า page ที่ลดลง 1 เมื่อกดปุ่ม next
+                                    echo "<li><a href='framers-index.php?page=$pg'>Next &raquo;</a></li>";
+                                }
+
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -329,64 +332,7 @@ include_once('./navbar.php');
         </div>
     </div>
 
-    <div id="product-pop-up" style="display: none; width: 700px;">
-        <div class="product-page product-pop-up">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-3">
-                    <div class="product-main-image">
-                        <img src="../../script/pictures/6.jpg" alt="Cool green dress with red bell" class="img-responsive">
-                    </div>
-                    <!-- <div class="product-other-images"> -->
-                    <!-- <a href="javascript:;" class="active"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model3.jpg"></a>
-                        <a href="javascript:;"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model4.jpg"></a>
-                        <a href="javascript:;"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model5.jpg"></a> -->
-                    <!-- </div> -->
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-9">
-                    <h1>ชื่อรายการสินค้า</h1>
-                    <div class="price-availability-block clearfix">
-                        <div class="price">
-                            <strong><span>&#3647;</span>47.00</strong>
-                            <!-- <em>&#3647;<span>62.00</span></em> -->
-                        </div>
-                        <!-- <div class="availability">
-                            Availability: <strong>In Stock</strong>
-                        </div> -->
-                    </div>
-                    <div class="description">
-                        <p>รายละเอียดของรายการสินค้า</p>
-                    </div>
-                    <!-- <div class="product-page-options">
-                        <div class="pull-left">
-                            <label class="control-label">Size:</label>
-                            <select class="form-control input-sm">
-                                <option>L</option>
-                                <option>M</option>
-                                <option>XL</option>
-                            </select>
-                        </div>
-                        <div class="pull-left">
-                            <label class="control-label">Color:</label>
-                            <select class="form-control input-sm">
-                                <option>Red</option>
-                                <option>Blue</option>
-                                <option>Black</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <div class="product-page-cart">
-                        <div class="product-quantity">
-                            <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
-                        </div>
-                        <button class="btn btn-primary" type="submit">เพิ่มสินค้า</button>
-                        <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
-                    </div>
-                </div>
 
-                <!-- <div class="sticker sticker-sale"></div> -->
-            </div>
-        </div>
-    </div>
     <?php
     include_once("./footer.php");
     ?>
