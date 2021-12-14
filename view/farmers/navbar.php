@@ -391,18 +391,19 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                     if (isset($id_farmers)) :
                     ?>
                         <li><a href="javascript:void(0);">หน้าหลัก</a></li>
-                        <li class="dropdown "> 
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
-                            จัดการสินค้า
-                        </a>
-                    
-                        <ul class="dropdown-menu">
-                            <!-- class="active" -->
-                            <li><a href="javascript:void(0);">รายการสินค้า</a></li>
-                            <li ><a href="javascript:void(0);">เพิ่มสินค้า</a></li>
-                            
-                        </ul>
-                    </li>
+                        <li class="dropdown ">
+                            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
+                                จัดการสินค้า
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <!-- class="active" -->
+                                <li><a href="javascript:void(0);">รายการสินค้า</a></li>
+                                <li><a href="javascript:void(0);">เพิ่มสินค้า</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0);">รายละเอียดสั่งซื้อ</a></li>
 
                         <!-- <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
@@ -467,7 +468,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                         </ul>
                     </li> -->
                         <!-- <li><a href="shop-item.html">Kids</a></li> -->
-                        <li><a href="javascript:void(0);">เมนู 2</a></li>
+                        <li><a href="javascript:void(0);">รายการจัดส่งแล้ว</a></li>
                         <li><a href="javascript:void(0);">เมนู 3</a></li>
                         <li><a href="javascript:void(0);">เมนู 4</a></li>
                         <li><a href="javascript:void(0);">เมนู 5</a></li>
