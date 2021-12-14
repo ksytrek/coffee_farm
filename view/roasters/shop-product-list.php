@@ -37,12 +37,15 @@ include_once('./navbar.php');
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
+    <!-- <link rel="stylesheet" href="./scripts/range/rangeSlider.css" />
+    <link rel="stylesheet" href="./scripts/range/style.css" /> -->
 
-
+    <link rel="stylesheet" href="scripts/css/rSlider.min.css">
+    <script src="scripts/js/rSlider.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="scripts/demo.css" />  -->
-    <link rel="stylesheet" href="scripts/wrunner-default-theme.css">
+    <!-- <link rel="stylesheet" href="scripts/wrunner-default-theme.css">
     <script src="scripts/wrunner-native.js"></script>
-    <script src="scripts/wrunner-jquery.js"></script>
+    <script src="scripts/wrunner-jquery.js"></script> -->
 </head>
 <!-- Head END -->
 
@@ -144,19 +147,38 @@ include_once('./navbar.php');
                             <label for="amount">ช่วงราคา:</label> &nbsp;&nbsp;
                             ค้นหาจาก 0 - <span id="sliderStatusMin">200</span>
                             <br />
-                            <!-- <input type="range" id="amount" min="0" max="200" value="200" style="border:0; color:#f6931f; font-weight:bold;" onChange="sliderChange(this.value)"> -->
-                        <div class="my-js-slider"></div>
-                        </p>
-                        <script>
-                            //Range slider initialization with Vanilla JavaScript    
-                            var setting = {
-                                roots: document.querySelector('.my-js-slider'),
-                                type: 'range',
-                                step: 1,
-                            }
-                            var slider = wRunner(setting);
-                        </script>
 
+                            <!-- <input type="range" id="amount" min="0" max="200" value="200" style="border:0; color:#f6931f; font-weight:bold;" onChange="sliderChange(this.value)"> -->
+                            <!-- <div class="my-js-slider"></div> -->
+                        </p>
+                        <input type="text" id="sampleSlider" />
+                        <script>
+                            var mySlider = new rSlider({
+                                target: '#sampleSlider',
+                                values: {
+                                    min: 1,
+                                    max: 100
+                                },
+                                range: true,
+                                step: 10,
+                                tooltip: true,
+                                scale: true,
+                                labels: true,
+                                set: [0, 100],
+                                disabled: false,
+                            });
+                            mySlider.onChange(function(values) { // argument values represents current values 
+                                // alert(mySlider.getValue());
+                                alert(values);
+
+                            });
+                            // alert(mySlider.getValue());
+                            // mySlider.setValues(0, 80);
+                            $(document).ready(function(){
+                                // alert(mySlider.getValue());
+                                alert("dkfjlsdjf");
+                            });
+                        </script>
 
                         <script>
                             function sliderChange(val) {
@@ -183,7 +205,7 @@ include_once('./navbar.php');
                                 displayItem(val);
                             }
                         </script>
-                        <div id="slider-range"></div>
+                        <!-- <div id="slider-range"></div> -->
                     </div>
 
                     <!-- <div class="sidebar-products clearfix">
@@ -534,12 +556,12 @@ include_once('./navbar.php');
     </div>
 
 
-    <!-- END fa
 
     <?php
     include_once("./footer.php");
     ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </body>
-<!-- END BODY -->
+
 
 </html>
