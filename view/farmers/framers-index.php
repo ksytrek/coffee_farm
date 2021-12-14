@@ -21,7 +21,9 @@ include_once('./navbar.php');
 
 <head>
     <meta charset="utf-8">
-    <title>Men category | Metronic Shop UI</title>
+    <title><?php
+            echo $id_farmers;
+            ?></title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -47,23 +49,13 @@ include_once('./navbar.php');
 
 
 
-
-    <div class="title-wrapper">
-        <div class="container">
-            <div class="container-inner">
-                <!-- <h1><span>MEN</span></h1>
-                <em>Over 4000 Items are available here</em> -->
-            </div>
-        </div>
-    </div>
-
     <script>
         window.onload = function() {
             // alert(ID_FARMERS);
         }
     </script>
 
-<div class="main">
+    <div class="main">
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="./framers-index.php">Home</a></li>
@@ -75,7 +67,7 @@ include_once('./navbar.php');
                 <!-- BEGIN SIDEBAR -->
                 <div class="sidebar col-md-3 col-sm-5">
 
-                    <div class="sidebar-filter margin-bottom-25">
+                    <!-- <div class="sidebar-filter margin-bottom-25"> -->
                         <!-- <h2>กรอง</h2>
 
                         <h3>ราคา</h3>
@@ -98,7 +90,7 @@ include_once('./navbar.php');
                             }
                         </script>
                         <div id="slider-range"></div> -->
-                    </div>
+                    <!-- </div> -->
 
                     <!-- <div class="sidebar-products clearfix">
                         <h2>Bestsellers</h2>
@@ -130,7 +122,7 @@ include_once('./navbar.php');
                         <div class="col-md-10 col-sm-10">
 
                             <div class="pull-right">
-                                
+
                                 <label class="control-label">แสดง:</label>
                                 <select class="form-control input-sm">
                                     <option value="#?limit=24" selected="selected">24</option>
@@ -139,10 +131,10 @@ include_once('./navbar.php');
                                     <option value="#?limit=75">75</option>
                                     <option value="#?limit=100">100</option>
                                 </select>
-                                
+
                             </div>
 
-                            
+
                             <div class="pull-right">
                                 <label class="control-label">จัดเรียง&nbsp;โดย:</label>
                                 <select class="form-control input-sm">
@@ -162,10 +154,10 @@ include_once('./navbar.php');
                     <!-- BEGIN PRODUCT LIST -->
                     <h2>สินค้าของคุณที่กำลังประกาศขาย </h2>
                     <div class="row product-list">
-                    
+
                         <!-- PRODUCT ITEM START -->
                         <div class="col-md-4 col-sm-6 col-xs-12">
-                        
+
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
                                     <img src="../../script/pictures/6.jpg" class="img-responsive" alt="Berry Lace Dress">
@@ -345,7 +337,7 @@ include_once('./navbar.php');
                         <img src="../../script/pictures/6.jpg" alt="Cool green dress with red bell" class="img-responsive">
                     </div>
                     <!-- <div class="product-other-images"> -->
-                        <!-- <a href="javascript:;" class="active"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model3.jpg"></a>
+                    <!-- <a href="javascript:;" class="active"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model3.jpg"></a>
                         <a href="javascript:;"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model4.jpg"></a>
                         <a href="javascript:;"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model5.jpg"></a> -->
                     <!-- </div> -->

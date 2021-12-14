@@ -39,15 +39,15 @@ if ($_SESSION['key'] == 'framers') {
 // echo strpos( $_SERVER['REQUEST_URI'], "shope-login.php" );
 
 $myString = $_SERVER['REQUEST_URI'];
-if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
+if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     header("Location:shope-login.php");
     // echo "fonts";
-} else if(strpos($myString, 'shope-login.php') && $id_farmers != null) {
+} else if (strpos($myString, 'shope-login.php') && $id_farmers != null) {
     // echo "Not found";
     // echo $id_farmers;
     // echo $_SESSION['user_id'];
     header("Location:framers-index.php");
-}else{
+} else {
     // echo $_SESSION['user_id'];
 }
 
@@ -182,7 +182,7 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
                         if (!isset($id_farmers)) :
                         ?>
                             <li><a id="signIN" href="./shope-login.php">Sign In</a></li>
-                            <li><a id="signUP"href="./shope-login.php">Sign UP</a></li>
+                            <li><a id="signUP" href="./shope-login.php">Sign UP</a></li>
 
 
                         <?php elseif (isset($id_farmers)) : ?>
@@ -194,7 +194,7 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
                         <?php endif; ?>
                     </ul>
                     <script>
-                    
+
                     </script>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -388,37 +388,23 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
                 <ul>
                     <!-- active -->
                     <?php
-                        if (isset($id_farmers)) :
+                    if (isset($id_farmers)) :
                     ?>
-                    <li><a href="javascript:void(0);">หน้าหลัก</a></li>
-                    <!-- <li class="dropdown "> 
+                        <li><a href="javascript:void(0);">หน้าหลัก</a></li>
+                        <li class="dropdown "> 
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
-                            หน้าหลัก
+                            จัดการสินค้า
                         </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="shop-index.html">Home Default</a></li>
-                            <li class="active"><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
-                            <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
-                            <li><a href="shop-product-list.html">Product List</a></li>
-                            <li><a href="shop-search-result.html">Search Result</a></li>
-                            <li><a href="shop-item.html">Product Page</a></li>
-                            <li><a href="shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
-                            <li><a href="shop-shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="shop-checkout.html">Checkout</a></li>
-                            <li><a href="shop-about.html">About</a></li>
-                            <li><a href="shop-contacts.html">Contacts</a></li>
-                            <li><a href="shop-account.html">My account</a></li>
-                            <li><a href="shop-wishlist.html">My Wish List</a></li>
-                            <li><a href="shop-goods-compare.html">Product Comparison</a></li>
-                            <li><a href="shop-standart-forms.html">Standart Forms</a></li>
-                            <li><a href="shop-faq.html">FAQ</a></li>
-                            <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
-                        </ul>
-                    </li> -->
                     
-                    <!-- <li class="dropdown dropdown-megamenu">
+                        <ul class="dropdown-menu">
+                            <!-- class="active" -->
+                            <li><a href="javascript:void(0);">รายการสินค้า</a></li>
+                            <li ><a href="javascript:void(0);">เพิ่มสินค้า</a></li>
+                            
+                        </ul>
+                    </li>
+
+                        <!-- <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                             ประเภทกาแฟ
                         </a>
@@ -480,12 +466,12 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
                             </li>
                         </ul>
                     </li> -->
-                    <!-- <li><a href="shop-item.html">Kids</a></li> -->
-                    <li><a href="javascript:void(0);">เมนู 2</a></li>
-                    <li><a href="javascript:void(0);">เมนู 3</a></li>
-                    <li><a href="javascript:void(0);">เมนู 4</a></li>
-                    <li><a href="javascript:void(0);">เมนู 5</a></li>
-                    
+                        <!-- <li><a href="shop-item.html">Kids</a></li> -->
+                        <li><a href="javascript:void(0);">เมนู 2</a></li>
+                        <li><a href="javascript:void(0);">เมนู 3</a></li>
+                        <li><a href="javascript:void(0);">เมนู 4</a></li>
+                        <li><a href="javascript:void(0);">เมนู 5</a></li>
+
 
 
 
@@ -527,6 +513,14 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
         </div>
     </div>
     <!-- Header END -->
+    <div class="title-wrapper">
+        <div class="container">
+            <div class="container-inner">
+                <h1><span>ล็อกอินโดย</span> <?php echo $id_farmers; ?></h1>
+                <!-- <em>Over 4000 Items are available here</em> -->
+            </div>
+        </div>
+    </div>
 
 
 
@@ -538,33 +532,33 @@ if (!strpos( $myString, 'shope-login.php') && $id_farmers == null) {
 
 </html>
 <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>   
+<script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-    <!-- topcontrol -->
-    <script src="../../script/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
+<!-- topcontrol -->
+<script src="../../script/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
 
-    <script src="../../script/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
+<script src="../../script/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
 
-    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-    <script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
-    <script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
-    <script src="../../script/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+<script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+<script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+<script src="../../script/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
 
-    <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
-    <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
+<script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
+<script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
 
 
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            Layout.init();    
-            Layout.initOWL();
-            Layout.initImageZoom();
-            Layout.initTouchspin();
-            Layout.initTwitter();
-            Layout.initFixHeaderWithPreHeader();
-            Layout.initNavScrolling();
-        });
-    </script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Layout.init();
+        Layout.initOWL();
+        Layout.initImageZoom();
+        Layout.initTouchspin();
+        Layout.initTwitter();
+        Layout.initFixHeaderWithPreHeader();
+        Layout.initNavScrolling();
+    });
+</script>
