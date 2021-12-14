@@ -39,10 +39,10 @@ include_once('./navbar.php');
 
 
 
-    <link rel="stylesheet" type="text/css" href="demo.css" />
-    <link rel="stylesheet" href="wrunner-default-theme.css">
-    <script src="scripts1/wrunner-native.js"></script>
-    <script src="scripts1/wrunner-jquery.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="scripts/demo.css" />  -->
+    <link rel="stylesheet" href="scripts/wrunner-default-theme.css">
+    <script src="scripts/wrunner-native.js"></script>
+    <script src="scripts/wrunner-jquery.js"></script>
 </head>
 <!-- Head END -->
 
@@ -75,9 +75,6 @@ include_once('./navbar.php');
                 <div class="sidebar col-md-3 col-sm-5">
                     <script>
                         function search_type(object) {
-                            // var count = 0;
-                            // alert(object);
-                            // 
                             if (queryString.includes("?")) {
                                 location.assign(window.location.href + "&type=" + object);
                             } else {
@@ -147,10 +144,9 @@ include_once('./navbar.php');
                             <label for="amount">ช่วงราคา:</label> &nbsp;&nbsp;
                             ค้นหาจาก 0 - <span id="sliderStatusMin">200</span>
                             <br />
-                            <input type="range" id="amount" min="0" max="200" value="200" style="border:0; color:#f6931f; font-weight:bold;" onChange="sliderChange(this.value)">
-                            <div class="my-js-slider"></div>
+                            <!-- <input type="range" id="amount" min="0" max="200" value="200" style="border:0; color:#f6931f; font-weight:bold;" onChange="sliderChange(this.value)"> -->
+                        <div class="my-js-slider"></div>
                         </p>
-
                         <script>
                             //Range slider initialization with Vanilla JavaScript    
                             var setting = {
@@ -160,21 +156,6 @@ include_once('./navbar.php');
                             }
                             var slider = wRunner(setting);
                         </script>
-                        <script>
-                            $(document).ready(function() {
-                                //wRunner plugin initialization in jQuery
-                                $('.my-jquery-slider').wRunner({
-                                    type: 'range',
-                                    rangeValue: {
-                                        minValue: 30,
-                                        maxValue: 100,
-                                    },
-                                    step: 1,
-                                })
-                            })
-                        </script>
-
-                        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
 
                         <script>
@@ -264,17 +245,6 @@ include_once('./navbar.php');
                                 </select>
                             </div>
 
-                            <script>
-                                function select() {
-                                    // $('#select_limit[name^="select_limit"] option:selected').attr("selected", null);
-                                    // // $('#select_limit[name^="select_limit"] option[value="&amp;limit=50"]').attr("selected","selected");
-                                    // alert($('#select_limit option[value^="&amp;limit=50"').val());
-                                    // alert($('#select_limit option[text^="50"').text());
-                                    $("#select_limit option[value='&amp;limit=25']").prop('selected', true);
-
-
-                                }
-                            </script>
                             <div class="pull-right">
                                 <label class="control-label">จัดเรียง&nbsp;โดย:</label>
                                 <select id='sort_by' class="form-control input-sm" onChange="select_sort_by(this);">
@@ -314,16 +284,19 @@ include_once('./navbar.php');
 
 
 
-                        $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
-                        $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
-                        $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+
 
                         // echo $pagesize;
 
                         $page = null;
                         $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
 
-                        $type = isset($_GET['type']) ? $_GET['type'] : null;
+                        $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
+                        $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
+                        $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+                        $type = isset($_GET['type']) ? $_GET['type'] : '%%';
+
+
                         $sql_count = "SELECT * FROM `products` WHERE id_typepro LIKE '$type'";
                         $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                         $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
