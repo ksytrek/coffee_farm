@@ -70,6 +70,8 @@ include_once('./navbar.php');
                 <!-- BEGIN SIDEBAR -->
                 <div class="sidebar col-md-3 col-sm-5">
                     <script>
+                        const queryString = window.location.search;
+
                         function search_type(object) {
                             if (queryString.includes("?")) {
                                 location.assign(window.location.href + "&type=" + object);
@@ -147,9 +149,24 @@ include_once('./navbar.php');
                             <!-- <input type="range" multiple value="0,100" > -->
                             <!-- <div class="my-js-slider"></div> -->
                         </p>
-                        <input type="text" id="sampleSlider"  />
+                        <input type="text" id="sampleSlider" />
+
+                        <!-- <input type="text" id="sampleSlider" />
+                        <button id="sliderChange" class="btn btn-default" type="button" >dsfljsdlkfdsf</button> -->
+                        <?php
+                        // $sql_max = "SELECT MAX(price_unit) as 'max' FROM products";
+                        // $result_max = Database::query($sql_max, PDO::FETCH_ASSOC)->fetch();
+                        // $max_price =  $result_max['max'];
+                        // echo $max_price
+                        ?>
+
                         <script>
-                            var mySlider = new rSlider({
+
+                            // var max_price = '';
+                            // alert(max_price);
+                            var mySlider = null;
+                            // $(document).ready(function() {
+                            mySlider = new rSlider({
                                 target: '#sampleSlider',
                                 values: {
                                     min: 0,
@@ -160,29 +177,37 @@ include_once('./navbar.php');
                                 labels: false,
                                 range: true,
                                 tooltip: true,
-                                set: [0,1000],
+                                // set: [0, 333],
                                 scale: true,
                                 onChange: function(vals) {
                                     // console.log(vals);
-                                    sliderChange(vals.replace(","," - "));
+
+
+                                    const arrStr = vals.split(",");
+                                    sliderChange(arrStr[0] + " - " + arrStr[1]);
+
+                                    const min = arrStr[0];
+                                    const max = arrStr[1];
+
+                                    if (count_bee == 1) {
+                                        if (queryString.includes("?")) {
+                                            location.assign(window.location.href + "&between_min=" + min + "&between_max=" + max);
+                                        } else {
+                                            location.assign(window.location.href + "?" + "between_min=" + min + "&between_max=" + max);
+                                        }
+                                    }
+                                    // alert(count_bee);;
+                                    count_bee++;
+
                                 },
                             });
-
-                            mySlider.setValues(50, 900);
-                        </script>
-                        <!-- <input type="text" id="sampleSlider" />
-                        <button id="sliderChange" class="btn btn-default" type="button" >dsfljsdlkfdsf</button> -->
-
-                        <script>
-                            $(document).ready(function() {
-
-                                // var rangeSlider = wRunner(setting);
+                            // var rangeSlider = wRunner(setting);
 
 
-                                // $("#SliderBar").onValueUpdate({});
+                            // $("#SliderBar").onValueUpdate({});
 
-                                // alert( slider.getValue());
-                            });
+                            // alert( slider.getValue());
+                            // });
 
 
                             window.onload = (event) => {
@@ -248,7 +273,6 @@ include_once('./navbar.php');
 
 
                         <script>
-                            const queryString = window.location.search;
                             window.onload = (event) => {
                                 var url = window.location.href;
                                 const urlParams = new URLSearchParams(queryString);
@@ -256,11 +280,24 @@ include_once('./navbar.php');
                                 const order = urlParams.get('order');
                                 const limit = urlParams.get('limit');
                                 const page = urlParams.get('page');
+                                const min_bee = urlParams.get('between_min');
+                                const max_bee = urlParams.get('between_max');
 
                             };
 
+                            const min_bee = <?php echo  isset($_GET['between_min']) ? $_GET['between_min'] : null; ?>;
+                            const max_bee = <?php echo  isset($_GET['between_max']) ? $_GET['between_max'] : null; ?>;
+
+                            // alert(mi + " " + mx);
+                            <?php if (isset($_GET['between_min']) && isset($_GET['between_max'])) : ?>
+                                mySlider.setValues(min_bee, max_bee);
+                                // alert(mySlider.getValue());/
+
+                            <?php endif; ?>
+
+                            count_bee = 0;
                             $(document).ready(function() {
-                                // alert("lsdjfje");
+
                                 // you need to specify id of combo to set right combo, if more than one combo
                             });
                         </script>
@@ -328,8 +365,14 @@ include_once('./navbar.php');
                         $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
                         $type = isset($_GET['type']) ? $_GET['type'] : '%%';
 
+                        $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
+                        $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
+                        $between = " price_unit BETWEEN $between_min AND $between_max ";
+                        $newtype = "  id_typepro LIKE '%%' ";
 
-                        $sql_count = "SELECT * FROM `products` WHERE id_typepro LIKE '$type'";
+                        $sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between";
+                        $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' AND $between  ORDER BY id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+
                         $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                         $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
                         $totalpage =  ceil($num_rowsx / $pagesize);
@@ -352,7 +395,6 @@ include_once('./navbar.php');
 
 
                         //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
-                        $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' ORDER BY id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
                         //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
                         $result_data = null;
                         $num_rows = null;
