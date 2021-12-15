@@ -574,6 +574,7 @@ include_once('./navbar.php');
                                         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">ลงทะเบียน</button>
 
                                     </div>
+                                <!-- </form> -->
                             </div>
                             <script>
                                 // $("#button-payment-address").click(function() {

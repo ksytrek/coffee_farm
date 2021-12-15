@@ -161,24 +161,24 @@ include_once('./navbar.php');
                         ?>
 
                         <script>
-
                             // var max_price = '';
                             // alert(max_price);
                             var mySlider = null;
+                            var count_bee = 0;
                             // $(document).ready(function() {
                             mySlider = new rSlider({
                                 target: '#sampleSlider',
                                 values: {
                                     min: 0,
-                                    max: 1000
+                                    max: 100
                                 },
                                 width: null,
                                 step: 10,
                                 labels: false,
                                 range: true,
-                                tooltip: true,
+                                tooltip: false,
                                 // set: [0, 333],
-                                scale: true,
+                                scale: false,
                                 onChange: function(vals) {
                                     // console.log(vals);
 
@@ -190,6 +190,7 @@ include_once('./navbar.php');
                                     const max = arrStr[1];
 
                                     if (count_bee == 1) {
+                                        count_bee = 0;
                                         if (queryString.includes("?")) {
                                             location.assign(window.location.href + "&between_min=" + min + "&between_max=" + max);
                                         } else {
@@ -201,13 +202,7 @@ include_once('./navbar.php');
 
                                 },
                             });
-                            // var rangeSlider = wRunner(setting);
 
-
-                            // $("#SliderBar").onValueUpdate({});
-
-                            // alert( slider.getValue());
-                            // });
 
 
                             window.onload = (event) => {
@@ -290,16 +285,14 @@ include_once('./navbar.php');
 
                             // alert(mi + " " + mx);
                             <?php if (isset($_GET['between_min']) && isset($_GET['between_max'])) : ?>
+                                // mySlider.setValues({min:0, max: 10000});
                                 mySlider.setValues(min_bee, max_bee);
+
                                 // alert(mySlider.getValue());/
 
                             <?php endif; ?>
 
-                            count_bee = 0;
-                            $(document).ready(function() {
-
-                                // you need to specify id of combo to set right combo, if more than one combo
-                            });
+                            // count_bee = 0;
                         </script>
 
                         <div class="col-md-10 col-sm-10">
@@ -348,15 +341,8 @@ include_once('./navbar.php');
                     </div>
 
                     <div class="row product-list">
+
                         <?php
-                        // for ($i = 0; $i < 5; $i++) :
-
-
-
-
-
-                        // echo $pagesize;
-
                         $page = null;
                         $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
 
@@ -453,9 +439,9 @@ include_once('./navbar.php');
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
-                                        <img src="../../script/pictures/<?php echo $row['image_pro']; ?>" class="img-responsive" alt="Berry Lace Dress">
+                                        <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" class="img-responsive" alt="Berry Lace Dress">
                                         <div>
-                                            <a href="../../script/pictures/<?php echo $row['image_pro']; ?>" class="btn btn-default fancybox-button">Zoom</a>
+                                            <a href="../../pictures/product/<?php echo $row['image_pro']; ?>" class="btn btn-default fancybox-button">Zoom</a>
                                             <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view">View</a>
                                         </div>
                                     </div>
@@ -470,7 +456,7 @@ include_once('./navbar.php');
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-3">
                                             <div class="product-main-image">
-                                                <img src="../../script/pictures/<?php echo $row['image_pro']; ?>" alt="Cool green dress with red bell" class="img-responsive">
+                                                <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" alt="Cool green dress with red bell" class="img-responsive">
                                             </div>
                                             <!-- <div class="product-other-images"> -->
                                             <!-- <a href="javascript:;" class="active"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model3.jpg"></a>

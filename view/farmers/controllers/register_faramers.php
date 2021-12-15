@@ -57,7 +57,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
 function upload_image($image_farmers):string {
 
     $name_date = date("Y_m_d_H_i_s").".png";
-    file_put_contents('../image_farmers/'.$name_date, base64_decode($image_farmers));
+    file_put_contents('../../../pictures/farmers/'.$name_date, base64_decode($image_farmers));
     return $name_date;
 }
 

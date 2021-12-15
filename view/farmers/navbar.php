@@ -21,9 +21,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 include_once('../../config/connectdb.php');
 session_start();
 $id_farmers = null;
+$email_farmers = null;
 // $_SESSION['user_id']= "ddd";
 if (isset($_SESSION['key']) && $_SESSION['key'] == 'framers') {
-    $id_farmers = $_SESSION['user_id'];
+    $id_farmers = $_SESSION['id'];
+    $email_farmers = $_SESSION['user_id'];
     // echo $_SESSION['key'];
 }
 // echo $_SESSION['user_id'];
@@ -70,13 +72,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
-    <!-- Fonts START -->
-    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"> -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300&display=swap" rel="stylesheet"> -->
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -111,6 +107,49 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <link href="../../script/assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
     <link href="../../script/assets/corporate/css/custom.css" rel="stylesheet">
     <!-- Theme styles END -->
+
+    <!-- Script -->
+    <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script>
+    <!-- <script src="../../script/assets/plugins/jquery.minGGG.js" type="text/javascript"></script> -->
+    <script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="../../script/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
+
+    <script src="../../script/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+    <script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+    <script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+    <script src="../../script/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+
+    <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
+    <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
+
+
+    <style type="text/css" media="all">
+        /* .modal-fullscreen { */
+        .modal-dialog_fullscreen {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .modal-content_fullscreen {
+            height: auto;
+            min-height: 100%;
+            border: 0 none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* } */
+    </style>
+
+
+
+
 </head>
 <!-- Head END -->
 
@@ -202,182 +241,11 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="<?php if (!isset($id_farmers)) : echo "./shope-login.php" ; else : echo "./framers-index.php" ; endif ;?>"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
+            <a class="site-logo" href="<?php if (!isset($id_farmers)) : echo "./shope-login.php";
+                                        else : echo "./framers-index.php";
+                                        endif; ?>"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-            <!-- BEGIN CART -->
-            <!-- <div class="top-cart-block">
-                <div class="top-cart-info">
-                    <a href="javascript:void(0);" class="top-cart-info-count">3 สินค้า</a>
-                    <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
-                </div>
-                <i class="fa fa-shopping-cart"></i>
 
-                <div class="top-cart-content-wrapper">
-                    <div class="top-cart-content">
-                        <ul class="scroller" style="height: 250px;">
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item.html"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                        </ul>
-                        <div class="text-right">
-                            <a href="shop-shopping-cart.php" class="btn btn-default">ตะกร้าสินค้า</a>
-                            <a href="shop-checkout.php" class="btn btn-primary">Checkout</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!--END CART -->
 
             <!-- BEGIN NAVIGATION -->
             <div class="header-navigation">
@@ -395,11 +263,11 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                             <ul class="dropdown-menu">
                                 <!-- class="active" -->
                                 <li><a href="javascript:void(0);">รายการสินค้า</a></li>
-                                <li><a href="javascript:void(0);">เพิ่มสินค้า</a></li>
+                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addProduct">เพิ่มสินค้า</a></li>
 
                             </ul>
                         </li>
-                        <li><a href="javascript:void(0);">รายละเอียดสั่งซื้อ</a></li>
+                        <li><a href="javascript:void(0);">รายการขาย</a></li>
 
                         <!-- <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
@@ -464,10 +332,10 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                         </ul>
                     </li> -->
                         <!-- <li><a href="shop-item.html">Kids</a></li> -->
-                        <li><a href="javascript:void(0);">รายการจัดส่งแล้ว</a></li>
+                        <li><a href="javascript:void(0);">รายการขายสำเร็จ</a></li>
                         <li><a href="javascript:void(0);">เมนู 3</a></li>
                         <li><a href="javascript:void(0);">เมนู 4</a></li>
-                        <li><a href="javascript:void(0);">เมนู 5</a></li>
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addProduct">เมนู 5</a></li>
 
 
 
@@ -506,8 +374,157 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                     <!-- END TOP SEARCH -->
                 </ul>
             </div>
-            <!-- END NAVIGATION -->
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
+            <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">เพิ่มรายการสินค้า</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form_addProduct" role="form" action="javascript:farmers_addProduct();">
+                                <input type="hidden" name="id_farmers" value="<?php echo $id_farmers?>">
+                                <div class="form-group">
+                                    <label for=""> ชื่อสินค้ากาแฟ <span class="require">*</span></label>
+                                
+                                    <input type="text" name="name_products" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""> ประเภทกาแฟ <span class="require">*</span></label>
+                                    <select class="form-control" name="id_typepro">
+                                        <option disabled selected>--- Please Select ---</option>
+                                        <?php
+                                        $result = Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC);
+                                        foreach ($result as $row) :
+                                        ?>
+                                            <option value="<?php echo $row['id_typepro'] ?>"><?php echo $row['name_typepro'] ?></option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">จำนวนคงเหลือ(kg) <span class="require">*</span></label>
+                                    <input type="number" name="num_stock" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""> ราคาต่อหน่วย (บาท/kg) <span class="require">*</span></label>
+                                    <input type="number" name="price_unit" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""> รูปสินค้า <span class="require">*</span></label>
+                                    <input type="file" name="image_pro" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <img id="img_product" src="../../script/pictures/1.jpeg" width="100%" height="180px">
+                                </div>
+                                <script>
+                                    // get a reference to the file input
+                                    const imageElement = document.querySelector("img[id=img_product]");
+                                    var base64StringImg_product = null;
+                                    // get a reference to the file input
+                                    const fileInput = document.querySelector("input[type=file]");
+
+                                    var canvas;
+                                    // listen for the change event so we can capture the file
+                                    fileInput.addEventListener("change", (e) => {
+                                        // get a reference to the file
+                                        const file = e.target.files[0];
+                                        // console.log(file);
+                                        // var fi = e.files[0];
+                                        // set file as image source
+
+
+                                        const reader = new FileReader();
+                                        reader.onloadend = (e) => {
+                                            var img = document.createElement("img");
+                                            img.onload = function(event) {
+                                                // Dynamically create a canvas element
+                                                var canvas = document.createElement("canvas");
+                                                canvas.width = 960;
+                                                canvas.height = 720;
+                                                // var canvas = document.getElementById("canvas");
+                                                var ctx = canvas.getContext("2d");
+                                                // Actual resizing
+                                                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                                                // Show resized image in preview element
+                                                var dataurl = canvas.toDataURL(file.type);
+                                                // document.getElementById("preview").src = dataurl;
+                                                imageElement.src = dataurl;
+
+                                                // console.log(dataurl.replace(/^data:image\/(png|jpg);base64,/, ""));
+                                                const base64String = dataurl
+                                                    .replace("data:", "")
+                                                    .replace(/^.+,/, "");
+                                                base64StringImg_product = base64String;
+
+                                                // console.log(base64String);
+                                            }
+                                            img.src = e.target.result;
+                                        };
+                                        reader.readAsDataURL(file);
+                                    });
+                                </script>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิกโพสต์ขายสินค้า</button>
+                            <button type="submit" class="btn btn-primary">โพสต์ขายสินค้า</button>
+                        </div>
+                        </form>
+                    </div>
+
+                    <script>
+                        $("#form_addProduct").submit(function() {
+                            // alert("Add Product");
+                            var $inputs = $("#form_addProduct :input");
+                            var values = {};
+                            $inputs.each(function() {
+                                values[this.name] = $(this).val();
+                            });
+
+                            values['image_pro'] = base64StringImg_product;
+
+                            // console.log(JSON.stringify(values));
+                            $.ajax({
+                                url: "./controllers/mg_product.php",
+                                type: "POST",
+                                // dataType: 'text',
+                                data: {
+                                    key: "form_addProduct",
+                                    data: values,
+                                    // form_data: form_data
+                                },
+                                success: function(result, textStatus, jqXHR) {
+                                    // console.log(result);
+                                    // alert(result);
+
+                                    if (result == "success") {
+                                        alert("เพิ่มสินค้าสำเร็จ");
+                                        $("#form_addProduct").trigger("reset");
+                                        location.reload();
+
+                                    } else {
+                                        alert("เกิดข้อผิดพลาดบางอย่าง");
+                                        location.reload();
+                                    }
+                                    // console.log(JSON.stringify(values));
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+
+                                }
+                            });
+
+                        });
+                    </script>
+                </div>
+            </div>
         </div>
+
+        <!-- Modal Fullscreen -->
+    </div>
     </div>
     <!-- Header END -->
     <?php
@@ -517,7 +534,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
             <div class="container">
                 <div class="container-inner">
                     <h1><span>ล็อกอินโดย</span></h1>
-                    <em> <?php echo $id_farmers; ?></em>
+                    <em> <?php echo $email_farmers; ?></em>
                 </div>
             </div>
         </div>
@@ -534,34 +551,4 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
 <!-- END BODY -->
 
 </html>
-<script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-<script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-
-<!-- topcontrol -->
-<script src="../../script/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
-
-<script src="../../script/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-
-<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-<script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-<script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
-<script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
-<script src="../../script/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
-
-<script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
-<script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
-
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        Layout.init();
-        Layout.initOWL();
-        Layout.initImageZoom();
-        Layout.initTouchspin();
-        Layout.initTwitter();
-        Layout.initFixHeaderWithPreHeader();
-        Layout.initNavScrolling();
-    });
 </script>

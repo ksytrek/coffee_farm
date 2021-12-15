@@ -97,13 +97,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
     <script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-    <!-- topcontrol -->
     <script src="../../script/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
 
     <script src="../../script/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
 
-    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
     <script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
     <script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
     <script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
