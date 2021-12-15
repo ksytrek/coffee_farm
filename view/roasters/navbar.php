@@ -90,6 +90,28 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <link href="../../script/assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
     <link href="../../script/assets/corporate/css/custom.css" rel="stylesheet">
     <!-- Theme styles END -->
+
+    <!-- Script -->
+    <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script>
+    <!-- <script src="../../script/assets/plugins/jquery.minGGG.js" type="text/javascript"></script> -->
+    <script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!-- topcontrol -->
+    <script src="../../script/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
+
+    <script src="../../script/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+    <script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+    <script src="../../script/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+
+    <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
+    <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
+
 </head>
 <!-- Head END -->
 
@@ -490,11 +512,11 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="header-navigation-content">
-                                <div class="row">
+                                    <div class="row">
                                         <div class="col-md-3 col-sm-4 col-xs-6">
                                             <div class="product-item">
                                                 <div class="pi-img-wrapper">
-                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class="img-responsive" alt="Berry Lace Dress"></a>
+                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class=" img-responsive" alt="Berry Lace Dress"></a>
                                                 </div>
                                                 <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
                                                 <div class="pi-price">฿29.00</div>
@@ -514,7 +536,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                                         <div class="col-md-3 col-sm-4 col-xs-6">
                                             <div class="product-item">
                                                 <div class="pi-img-wrapper">
-                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class="img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
+                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class=" img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
                                                 </div>
                                                 <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
                                                 <div class="pi-price">฿29.00</div>
@@ -524,7 +546,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                                         <div class="col-md-3 col-sm-4 col-xs-6">
                                             <div class="product-item">
                                                 <div class="pi-img-wrapper">
-                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class="img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
+                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class=" img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
                                                 </div>
                                                 <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
                                                 <div class="pi-price">฿29.00</div>
