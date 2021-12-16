@@ -109,6 +109,39 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
     <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
 
+    <script>
+        //  COOKie function 
+        function createCookie(name, value, days = 1) { // date /1 วัน
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var name1 = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(name1) == 0) {
+                    return c.substring(name1.length, c.length);
+                }
+            }
+            return null;
+        }
+
+        function removeCookie(name) {
+            createCookie(name, "", -1);
+        }
+    </script>
+
 </head>
 <!-- Head END -->
 

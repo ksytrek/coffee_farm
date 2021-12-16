@@ -62,6 +62,65 @@ include_once('./navbar.php');
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="./shop-product-list.php">Home</a></li>
+                <li><a href="javascript:cookie();">cookie</a></li>
+                <li><a href="javascript:cookie_add();">add</a></li>
+                <script>
+                    function cookie_add() {
+                        var b = [];
+                        var x = readCookie('name');
+                        
+                        b = JSON.parse(x);
+
+                        b.push(['4', '2', '112']);
+                        createCookie("name", JSON.stringify(b));
+
+                        const json = readCookie('name');
+                        const obj = JSON.parse(json);
+
+                        console.log(obj.length);
+                        obj.forEach(element => {
+                            alert(element[0]);
+                        });
+                    }
+                    function cookie() {
+                        var product = [
+                            [
+                                '1', '2', '112'
+                            ],
+                            [
+                                '2', '2', '112'
+                            ]
+                        ];
+                        product.push(['3', '2', '112'])
+
+
+
+                        createCookie("name", JSON.stringify(product));
+                        
+                        const json = readCookie('name');
+                        const obj = JSON.parse(json);
+
+                        console.log(obj.length);
+                        obj.forEach(element => {
+                            // alert(element[0]);
+                        });
+                        // expected output: 42
+
+                        // console.log(obj.result);
+                        // expected output: true
+
+                        // alert( getByteSize(document.cookie));
+                        // product.length+
+
+                    }
+
+                    function getByteSize(s) {
+                        return encodeURIComponent('<q></q>' + s).length;
+                    }
+
+                    $()
+                </script>
+
                 <!-- <li><a href="">Store</a></li> -->
                 <!-- <li class="active">Men category</li> -->
             </ul>
@@ -245,22 +304,12 @@ include_once('./navbar.php');
                                 const order = urlParams.get('order');
                                 const limit = urlParams.get('limit');
                                 const page = urlParams.get('page');
-                                const min_bee = urlParams.get('between_min');
-                                const max_bee = urlParams.get('between_max');
+                                // const min_bee = urlParams.get('between_min');
+                                // const max_bee = urlParams.get('between_max');
 
                             };
 
-                            const min_bee = <?php echo  isset($_GET['between_min']) ? $_GET['between_min'] : null; ?>;
-                            const max_bee = <?php echo  isset($_GET['between_max']) ? $_GET['between_max'] : null; ?>;
 
-                            // alert(mi + " " + mx);
-                            <?php if (isset($_GET['between_min']) && isset($_GET['between_max'])) : ?>
-                                // mySlider.setValues({min:0, max: 10000});
-                                mySlider.setValues(min_bee, max_bee);
-
-                                // alert(mySlider.getValue());/
-
-                            <?php endif; ?>
 
                             // count_bee = 0;
                         </script>
@@ -269,7 +318,7 @@ include_once('./navbar.php');
                             <div class="pull-right">
                                 <button id="btn_reset" type="button" class="btn btn-default btn-sm ">คืนค่าเริ่มต้น</button>
                                 <script>
-                                    $("#btn_reset").click(function(){
+                                    $("#btn_reset").click(function() {
                                         location.assign("<?php echo $_SERVER['PHP_SELF'] ?>");
                                     });
                                 </script>

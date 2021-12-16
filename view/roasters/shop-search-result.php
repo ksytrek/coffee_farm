@@ -49,65 +49,101 @@ include_once('./navbar.php');
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="">Store</a></li>
+                <li><a href="javascript:addCookie();">Home</a></li>
+                <li><a href="javascript:cookie() ;">Store</a></li>
                 <li class="active">Search result</li>
+
+                <script>
+                    function addCookie(){
+                        var myAry = [1, 2, 3];
+                        setCookie('name', JSON.stringify(myAry));
+                    }
+                    function cookie() {
+                        var myAry = [1, 2, 3];
+                        // setCookie('name', JSON.stringify(myAry));
+                        alert(JSON.parse(getCookie('name')));
+                        // console.log(JSON.parse(getCookie('name')));
+                    }
+
+                    function setCookie(cname, cvalue, exdays) {
+                        const d = new Date();
+                        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                        // let expires = "expires=" + d.toUTCString();
+                        document.cookie = came + "=" + cvalue + ";";
+                    }
+
+                    function getCookie(cname) {
+                        let name = cname + "=";
+                        let decodedCookie = decodeURIComponent(document.cookie);
+                        let ca = decodedCookie.split(';');
+                        for (let i = 0; i < ca.length; i++) {
+                            let c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                                c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                                return c.substring(name.length, c.length);
+                            }
+                        }
+                        return "";
+                    }
+                </script>
             </ul>
             <!-- BEGIN SIDEBAR & CONTENT -->
             <div class="row margin-bottom-40">
                 <!-- BEGIN SIDEBAR -->
                 <div class="sidebar col-md-3 col-sm-5">
-                    
+
                     <!-- <div class="sidebar-filter margin-bottom-25"> -->
-                        <h2>ค้นหาหมวดหมู่</h2>
-                        <!-- <h3>มีจำหน่าย</h3> -->
-                        <ul class="list-group margin-bottom-25 sidebar-menu">
-                            <?php
-                            foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
-                            ?>
-                                <li class="list-group-item clearfix"><a href="./shop-search-result.php?search=<?php echo $row['name_typepro'] ?>">&nbsp;<i class="fa fa-angle-right"></i><?php echo $row['name_typepro'] ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                        <!-- <div class="checkbox-list">
+                    <h2>ค้นหาหมวดหมู่</h2>
+                    <!-- <h3>มีจำหน่าย</h3> -->
+                    <ul class="list-group margin-bottom-25 sidebar-menu">
+                        <?php
+                        foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
+                        ?>
+                            <li class="list-group-item clearfix"><a href="./shop-search-result.php?search=<?php echo $row['name_typepro'] ?>">&nbsp;<i class="fa fa-angle-right"></i><?php echo $row['name_typepro'] ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <!-- <div class="checkbox-list">
                             <label><input type="checkbox"> Not Available (3)</label>
                             <label><input type="checkbox"> In Stock (26)</label>
                         </div> -->
 
-                        <h3>ราคา</h3>
-                        <p>
-                            <label for="amount">Range:</label> &nbsp;&nbsp;
-                            ค้นหาจาก 0 - <span id="sliderStatusMin">200</span>
-                            <br />
-                            <input type="range" id="amount" min="0" max="200" value="200" style="border:0; color:#f6931f; font-weight:bold;" onChange="sliderChange(this.value)">
+                    <h3>ราคา</h3>
+                    <p>
+                        <label for="amount">Range:</label> &nbsp;&nbsp;
+                        ค้นหาจาก 0 - <span id="sliderStatusMin">200</span>
+                        <br />
+                        <input type="range" id="amount" min="0" max="200" value="200" style="border:0; color:#f6931f; font-weight:bold;" onChange="sliderChange(this.value)">
 
-                        </p>
-                        <script>
-                            function sliderChange(val) {
+                    </p>
+                    <script>
+                        function sliderChange(val) {
 
-                                document.getElementById('sliderStatusMin').innerHTML = val;
+                            document.getElementById('sliderStatusMin').innerHTML = val;
 
-                                function displayItem(val) {
-                                    // $('.item').filter(function() {
-                                    //     var price = $(this).data('price');
-                                    //     if (price < val) {
-                                    //         return price;
-                                    //     }
+                            function displayItem(val) {
+                                // $('.item').filter(function() {
+                                //     var price = $(this).data('price');
+                                //     if (price < val) {
+                                //         return price;
+                                //     }
 
-                                    // }).hide();
+                                // }).hide();
 
-                                    // $('.item').filter(function() {
-                                    //     var price = $(this).data('price');
-                                    //     if (price > val) {
-                                    //         return price;
-                                    //     }
+                                // $('.item').filter(function() {
+                                //     var price = $(this).data('price');
+                                //     if (price > val) {
+                                //         return price;
+                                //     }
 
-                                    // }).show();
-                                }
-
-                                displayItem(val);
+                                // }).show();
                             }
-                        </script>
-                        <!-- <div id="slider-range"></div> -->
+
+                            displayItem(val);
+                        }
+                    </script>
+                    <!-- <div id="slider-range"></div> -->
                     <!-- </div> -->
                     <!-- 
                     <div class="sidebar-products clearfix">
@@ -169,7 +205,7 @@ include_once('./navbar.php');
                             <div class="pull-right">
                                 <label class="control-label">จัดเรียง:</label>
                                 <select class="form-control input-sm">
-                                <option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
+                                    <option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
                                     <option value="#?sort=pd.name&amp;order=ASC">ชื่อ (A - Z)</option>
                                     <option value="#?sort=pd.name&amp;order=DESC">ชื่อ (Z - A)</option>
                                     <option value="#?sort=p.price&amp;order=ASC">ราคา (ต่ำ &gt; สูง)</option>
@@ -360,7 +396,7 @@ include_once('./navbar.php');
                         <img src="../../script/pictures/6.jpg" alt="Cool green dress with red bell" class="img-responsive">
                     </div>
                     <!-- <div class="product-other-images"> -->
-                        <!-- <a href="javascript:;" class="active"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model3.jpg"></a>
+                    <!-- <a href="javascript:;" class="active"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model3.jpg"></a>
                         <a href="javascript:;"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model4.jpg"></a>
                         <a href="javascript:;"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model5.jpg"></a> -->
                     <!-- </div> -->
