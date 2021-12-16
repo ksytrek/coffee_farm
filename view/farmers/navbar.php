@@ -23,7 +23,7 @@ session_start();
 $id_farmers = null;
 $email_farmers = null;
 // $_SESSION['user_id']= "ddd";
-if (isset($_SESSION['key']) && $_SESSION['key'] == 'framers') {
+if (isset($_SESSION['key']) && $_SESSION['key'] == 'framers' && isset($_SESSION['id'])) {
     $id_farmers = $_SESSION['id'];
     $email_farmers = $_SESSION['user_id'];
     // echo $_SESSION['key'];
@@ -416,7 +416,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                                     <input type="file" name="image_pro" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <img id="img_product" src="../../script/pictures/1.jpeg" width="100%" height="180px">
+                                    <img id="img_product" src="../../script/pictures/default_image.jpg" width="100%" height="180px">
                                 </div>
                                 <script>
                                     // get a reference to the file input

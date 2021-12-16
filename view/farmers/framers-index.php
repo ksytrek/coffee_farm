@@ -115,155 +115,63 @@ include_once('./navbar.php');
                 <!-- END SIDEBAR -->
                 <!-- BEGIN CONTENT -->
                 <div class="col-md-12 col-sm-12">
-                    <div class="row list-view-sorting clearfix">
-                        <div class="col-md-2 col-sm-2 list-view">
-                            <a href="javascript:;"><i class="fa fa-th-large"></i></a>
-                            <a href="javascript:;"><i class="fa fa-th-list"></i></a>
-                        </div>
-                        <div class="col-md-10 col-sm-10">
-                            <div class="pull-right">
-                                <label class="control-label">แสดง:</label>
-                                <select id="select_limit" name="select_limit" class="form-control input-sm" onChange="select_sort_by(this);">
-                                    <option value="&amp;limit=10" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 10 ?   'selected="selected "' : " " ?>>10</option>
-                                    <option value="&amp;limit=25" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 25 ?   'selected="selected "' : " " ?>>25</option>
-                                    <option value="&amp;limit=50" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 50 ?   'selected="selected "' : " " ?>>50</option>
-                                    <option value="&amp;limit=75" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 75 ?   'selected="selected "' : " " ?>>75</option>
-                                    <option value="&amp;limit=100" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 100 ?   'selected="selected "' : " " ?>>100</option>
-                                </select>
-                            </div>
-
-                            <div class="pull-right">
-                                <label class="control-label">จัดเรียง&nbsp;โดย:</label>
-                                <select id='sort_by' class="form-control input-sm" onChange="select_sort_by(this);">
-                                    <option value="&amp;sort=id_productsr&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'id_productsr' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>Default</option>
-                                    <option value="&amp;sort=name_products&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ชื่อ (A - Z)</option>
-                                    <option value="&amp;sort=name_products&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ชื่อ (Z - A)</option>
-                                    <option value="&amp;sort=price_unit&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ราคา (ต่ำ &gt; สูง)</option>
-                                    <option value="&amp;sort=price_unit&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ราคา (สูง &gt; ต่ำ)</option>
-                                </select>
-
-                                <script>
-                                    function select_sort_by(object) {
-                                        var count = 0;
-                                        // 
-                                        if (queryString.includes("?")) {
-                                            location.assign(window.location.href + object.value);
-                                        } else {
-                                            location.assign(window.location.href + "?" + object.value);
-                                        }
-                                    }
-
-                                    function select_limit(object) {
-                                        if (queryString.includes("?")) {
-                                            location.assign(window.location.href + object.value);
-                                        } else {
-                                            location.assign(window.location.href + "?" + object.value);
-                                        }
-                                    }
-                                </script>
-                            </div>
-                        </div>
-                    </div>
                     <!-- BEGIN PRODUCT LIST -->
-                    <h2>สินค้าของคุณที่กำลังประกาศขาย </h2>
+                    <?php
+                    $page = null;
+                    $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
 
-                    <div class="row product-list">
-                        
-                        <?php
-                        $page = null;
-                        $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
+                    $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
+                    $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
+                    $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+                    $type = isset($_GET['type']) ? $_GET['type'] : '%%';
 
-                        $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
-                        $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
-                        $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
-                        $type = isset($_GET['type']) ? $_GET['type'] : '%%';
+                    $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
+                    $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
+                    $between = " price_unit BETWEEN $between_min AND $between_max ";
+                    $newtype = "  id_typepro LIKE '%%' ";
 
-                        $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
-                        $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
-                        $between = " price_unit BETWEEN $between_min AND $between_max ";
-                        $newtype = "  id_typepro LIKE '%%' ";
+                    $sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers'";
+                    $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' AND $between AND id_farmers = '$id_farmers'  ORDER BY id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
-                        $sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers'";
-                        $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' AND $between AND id_farmers = '$id_farmers'  ORDER BY id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
-
-                        $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
-                        $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
-                        $totalpage =  ceil($num_rowsx / $pagesize);
+                    $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
+                    $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
+                    $totalpage =  ceil($num_rowsx / $pagesize);
 
 
-                        if (isset($_GET['page'])) {
-                            $page = $_GET['page'];
-                            $start = ($page - 1) * $pagesize; //นี้เป็นสูตรการคำนวนครับ
-                            // 2 -1 * 50
-                            if ($num_rowsx < $start) {
-                                $start = 0;
-                            }
-                        } else {
-                            $page = 0;
+                    if (isset($_GET['page'])) {
+                        $page = $_GET['page'];
+                        $start = ($page - 1) * $pagesize; //นี้เป็นสูตรการคำนวนครับ
+                        // 2 -1 * 50
+                        if ($num_rowsx < $start) {
                             $start = 0;
                         }
+                    } else {
+                        $page = 0;
+                        $start = 0;
+                    }
 
-                        // echo $_GET['page'];
-
-
-
-                        //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
-                        //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
-                        $result_data = null;
-                        $num_rows = null;
-
-                        try {
-                            // $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' ORDER BY id_products $order LIMIT $start,$pagesize";
-                            $result_data =  Database::query($sql_data, PDO::FETCH_ASSOC);
-                            $num_rows = $result_data->rowCount();
-                        } catch (Exception $e) {
-                        }
+                    // echo $_GET['page'];
 
 
 
+                    //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
+                    //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
+                    $result_data = null;
+                    $num_rows = null;
 
-                        // echo  $_GET['sort'];
-
-                        // echo $_SERVER['PHP_SELF'];
-
-                        // $sql_count = "SELECT COUNT(*) FROM `products` WHERE id_farmers LIKE '1'";
-                        // $query = Database::query($sql_count, PDO::FETCH_ASSOC);
-                        // $row = count($query->fetch());
-
-                        // $rows = $row;
-
-                        // $page_rows = 6;  //จำนวนข้อมูลที่ต้องการให้แสดงใน 1 หน้า  ตย. 5 record / หน้า 
-
-                        // $last = ceil($rows / $page_rows);
-
-                        // if ($last < 1) {
-                        //     $last = 1;
-                        // }
-
-                        // $pagenum = 1;
-
-                        // if (isset($_GET['pn'])) {
-                        //     // $pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
-                        //     $pagenum = $_GET['pn'];
-                        // }
-
-                        // if ($pagenum < 1) {
-                        //     $pagenum = 1;
-                        // } else if ($pagenum > $last) {
-                        //     $pagenum = $last;
-                        // }
-
-                        // $limit = 'LIMIT ' . ($pagenum - 1) * $page_rows . ',' . $page_rows;
-
-                        // $nquery = Database::query("SELECT * FROM `products` $limit", PDO::FETCH_ASSOC);
+                    try {
+                        // $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' ORDER BY id_products $order LIMIT $start,$pagesize";
+                        $result_data =  Database::query($sql_data, PDO::FETCH_ASSOC);
+                        $popup = Database::query($sql_data, PDO::FETCH_ASSOC);
+                        $num_rows = $result_data->rowCount();
+                    } catch (Exception $e) {
+                    }
 
 
+                    // foreach ($result_data as $row) :
+                    ?>
 
-
-                        foreach ($result_data as $row) :
-                        ?>
-
-                            <div class="col-md-4 col-sm-6 col-xs-12">
+                    <!-- <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
                                         <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" class="img-responsive" alt="Berry Lace Dress">
@@ -285,44 +193,20 @@ include_once('./navbar.php');
                                             <div class="product-main-image">
                                                 <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" alt="Cool green dress with red bell" class="img-responsive">
                                             </div>
-                                            <!-- <div class="product-other-images"> -->
-                                            <!-- <a href="javascript:;" class="active"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model3.jpg"></a>
-                            <a href="javascript:;"><img alt="กาแฟโลโกกาญจนบุรี" src="../../script/assets/pages/img/products/model4.jpg"></a>
-                            <a href="javascript:;"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model5.jpg"></a> -->
-                                            <!-- </div> -->
+
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-9">
                                             <h1>ชื่อรายการสินค้า</h1>
                                             <div class="price-availability-block clearfix">
                                                 <div class="price">
                                                     <strong><span>&#3647;</span>47.00</strong>
-                                                    <!-- <em>&#3647;<span>62.00</span></em> -->
                                                 </div>
-                                                <!-- <div class="availability">
-                            Availability: <strong>In Stock</strong>
-                            </div> -->
+
                                             </div>
                                             <div class="description">
                                                 <p>รายละเอียดของรายการสินค้า</p>
                                             </div>
-                                            <!-- <div class="product-page-options">
-                         <div class="pull-left">
-                            <label class="control-label">Size:</label>
-                            <select class="form-control input-sm">
-                                <option>L</option>
-                                <option>M</option>
-                                <option>XL</option>
-                            </select>
-                            </div>
-                            <div class="pull-left">
-                            <label class="control-label">Color:</label>
-                            <select class="form-control input-sm">
-                                <option>Red</option>
-                                <option>Blue</option>
-                                <option>Black</option>
-                            </select>
-                            </div>
-                            </div> -->
+
                                             <div class="product-page-cart">
                                                 <div class="product-quantity">
                                                     <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
@@ -331,19 +215,249 @@ include_once('./navbar.php');
                                                 <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
                                             </div>
                                         </div>
-
-                                        <!-- <div class="sticker sticker-sale"></div> -->
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                        <?php //endfor; 
-                        endforeach;
-                        ?>
+                    <?php //endfor; 
+                    // endforeach;
+                    ?>
+
+                    <div class="row product-list">
+                        <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
+                        <div class="product-page-content">
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active"><a href="#Description" data-toggle="tab">Description</a></li>
+                                <li class="" ><a href="#Information" data-toggle="tab">Information</a></li>
+                                <li class="" ><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="Description">
+                                    <p>Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed sit nonumy nibh sed
+                                        euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis
+                                        molestie at dolore. Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed
+                                        sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat
+                                        Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore
+                                        adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna
+                                        aliquarm erat sit volutpat Nostrud duis molestie at dolore. </p>
+                                </div>
+                                <div class="tab-pane fade" id="Information">
+                                    <table class="datasheet">
+                                        <tr>
+                                            <th colspan="2">Additional features</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="datasheet-features-type">Value 1</td>
+                                            <td>21 cm</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="datasheet-features-type">Value 2</td>
+                                            <td>700 gr.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="datasheet-features-type">Value 3</td>
+                                            <td>10 person</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="datasheet-features-type">Value 4</td>
+                                            <td>14 cm</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="datasheet-features-type">Value 5</td>
+                                            <td>plastic</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade " id="Reviews">
+                                    <!--<p>There are no reviews for this product.</p>-->
+                                    <div class="review-item clearfix">
+                                        <div class="review-item-submitted">
+                                            <strong>Bob</strong>
+                                            <em>30/12/2013 - 07:37</em>
+                                            <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                                        </div>
+                                        <div class="review-item-content">
+                                            <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis
+                                                natoque penatibus et magnis dis parturient montes, nascetur
+                                                ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in
+                                                orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies
+                                                tristique, enim mauris bibendum orci, a sodales lectus purus ut
+                                                lorem.</p>
+                                        </div>
+                                    </div>
+                                    <div class="review-item clearfix">
+                                        <div class="review-item-submitted">
+                                            <strong>Mary</strong>
+                                            <em>13/12/2013 - 17:49</em>
+                                            <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                                        </div>
+                                        <div class="review-item-content">
+                                            <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis
+                                                natoque penatibus et magnis dis parturient montes, nascetur
+                                                ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in
+                                                orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies
+                                                tristique, enim mauris bibendum orci, a sodales lectus purus ut
+                                                lorem.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- BEGIN FORM-->
+                                    <form action="#" class="reviews-form" role="form">
+                                        <h2>Write a review</h2>
+                                        <div class="form-group">
+                                            <label for="name">Name <span class="require">*</span></label>
+                                            <input type="text" class="form-control" id="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" id="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="review">Review <span class="require">*</span></label>
+                                            <textarea class="form-control" rows="8" id="review"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Rating</label>
+                                            <input type="range" value="4" step="0.25" id="backing5">
+                                            <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
+                                            </div>
+                                        </div>
+                                        <div class="padding-top-20">
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </form>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 
 
+
+                    <!-- <div class="row margin-bottom-40 "> -->
+
+                    <div class="row product-list">
+                        <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
+                        <div class="row list-view-sorting clearfix">
+                            <div class="col-md-4 col-sm-4 ">
+                                <!-- class=" list-view " ซ่อนการแสดง-->
+                                <h2 class="pull-left">สินค้าของคุณที่กำลังประกาศขาย </h2>
+                            </div>
+                            <div class="col-md-8 col-sm-8">
+
+                                <div class="pull-right">
+                                    <label class="control-label">แสดง:</label>
+                                    <select id="select_limit" name="select_limit" class="form-control input-sm" onChange="select_sort_by(this);">
+                                        <option value="&amp;limit=10" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 10 ?   'selected="selected "' : " " ?>>10</option>
+                                        <option value="&amp;limit=25" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 25 ?   'selected="selected "' : " " ?>>25</option>
+                                        <option value="&amp;limit=50" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 50 ?   'selected="selected "' : " " ?>>50</option>
+                                        <option value="&amp;limit=75" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 75 ?   'selected="selected "' : " " ?>>75</option>
+                                        <option value="&amp;limit=100" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 100 ?   'selected="selected "' : " " ?>>100</option>
+                                    </select>
+                                </div>
+
+                                <div class="pull-right">
+                                    <label class="control-label">จัดเรียง&nbsp;โดย:</label>
+                                    <select id='sort_by' class="form-control input-sm" onChange="select_sort_by(this);">
+                                        <option value="&amp;sort=id_productsr&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'id_productsr' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>Default</option>
+                                        <option value="&amp;sort=name_products&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ชื่อ (A - Z)</option>
+                                        <option value="&amp;sort=name_products&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ชื่อ (Z - A)</option>
+                                        <option value="&amp;sort=price_unit&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ราคา (ต่ำ &gt; สูง)</option>
+                                        <option value="&amp;sort=price_unit&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ราคา (สูง &gt; ต่ำ)</option>
+                                    </select>
+
+                                    <script>
+                                        function select_sort_by(object) {
+                                            var count = 0;
+                                            // 
+                                            if (queryString.includes("?")) {
+                                                location.assign(window.location.href + object.value);
+                                            } else {
+                                                location.assign(window.location.href + "?" + object.value);
+                                            }
+                                        }
+
+                                        function select_limit(object) {
+                                            if (queryString.includes("?")) {
+                                                location.assign(window.location.href + object.value);
+                                            } else {
+                                                location.assign(window.location.href + "?" + object.value);
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-carousel owl-carousel5">
+                            <?php
+
+                            foreach ($result_data as $row) :
+                            ?>
+
+                                <div>
+                                    <div class="product-item">
+                                        <div class="pi-img-wrapper">
+                                            <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" class="img-responsive" alt="Berry Lace Dress">
+                                            <div>
+                                                <a href="../../pictures/product/<?php echo $row['image_pro']; ?>" class="btn btn-default fancybox-button">Zoom</a>
+                                                <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view">View</a>
+                                            </div>
+                                        </div>
+                                        <h3><a href="shop-item.html"><?php echo $row['name_products'] ?></a></h3>
+                                        <div class="pi-price">฿<?php echo $row['price_unit'] ?></div>
+                                        <a href="javascript:;" class="btn btn-default add2cart">แก้ไข</a>
+                                    </div>
+                                </div>
+
+                            <?php
+                            endforeach;
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                    foreach ($popup as $row) :
+                    ?>
+                        <div id="product-pop-up-<?php echo $row['id_products']; ?>" style="display: none; width: 700px;">
+                            <div class="product-page product-pop-up">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-3">
+                                        <div class="product-main-image">
+                                            <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" alt="Cool green dress with red bell" class="img-responsive">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <h1>ชื่อรายการสินค้า</h1>
+                                        <div class="price-availability-block clearfix">
+                                            <div class="price">
+                                                <strong><span>&#3647;</span>47.00</strong>
+                                                <!-- <em>&#3647;<span>62.00</span></em> -->
+                                            </div>
+
+                                        </div>
+                                        <div class="description">
+                                            <p>รายละเอียดของรายการสินค้า</p>
+                                        </div>
+
+                                        <div class="product-page-cart">
+                                            <div class="product-quantity">
+                                                <!-- <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm"> -->
+                                            </div>
+                                            <button class="btn btn-primary" type="submit">เพิ่มสินค้า</button>
+                                            <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="sticker sticker-sale"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endforeach;
+                    // foreach ($result_data as $row) :
+                    ?>
+                    <!-- </div> -->
 
 
                     <div class="row">
