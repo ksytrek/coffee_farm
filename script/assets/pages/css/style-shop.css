@@ -434,6 +434,10 @@ Header and header elements
     background: url(../../pages/img/sale.png) no-repeat;
 }
 
+.sticker-unsale {
+    background: url(../../img/logos/ey.png) no-repeat;
+}
+
 .sticker-new {
     background: url(../../pages/img/new.png) no-repeat;
     left: auto;
