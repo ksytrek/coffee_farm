@@ -5,7 +5,14 @@
             <!-- <h2 class="pull-left">สินค้าของคุณที่กำลังประกาศขาย </h2> -->
         </div>
         <div class="col-md-8 col-sm-8">
-
+            <div class="pull-right">
+                <button id="btn_reset" type="button" class="btn btn-default btn-sm ">คืนค่าเริ่มต้น</button>
+                <script>
+                    $("#btn_reset").click(function() {
+                        location.assign("<?php echo $_SERVER['PHP_SELF'] ?>");
+                    });
+                </script>
+            </div>
             <div class="pull-right">
                 <label class="control-label">แสดง:</label>
                 <select id="select_limit" name="select_limit" class="form-control input-sm" onChange="select_sort_by(this);">
@@ -117,10 +124,6 @@
             }
         </script>
     </div>
-
-
-
-
 
 
     <div class="row">
