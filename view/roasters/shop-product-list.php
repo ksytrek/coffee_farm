@@ -461,7 +461,8 @@ include_once('./navbar.php');
                                     </div>
                                     <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
                                     <div class="pi-price">฿<?php echo $row['price_unit'] ?></div>
-                                    <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,1, '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
+                                    <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
+                                    <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input__product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                 </div>
                             </div>
 
@@ -496,9 +497,9 @@ include_once('./navbar.php');
                                             </div>
                                             <div class="product-page-cart">
                                                 <div class="product-quantity">
-                                                    <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
+                                                    <input id="input_item_product-<?php echo $row['id_products'];  ?>" onchange="count_ch(this.value)" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
                                                 </div>
-                                                <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,$('#product-quantity').val());" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
+                                                <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products'];  ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
                                                 <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
                                             </div>
                                             <script>
@@ -515,10 +516,25 @@ include_once('./navbar.php');
                         endforeach;
                         ?>
                         <script>
+                            var count_item = 0;
+                            function count_ch(value) {
+                                // alert(value);
+                            }
+                            // $("#product-quantity").change(function(){
+                            //     // alert($(this.val()));
+                            //     alert($("#product-quantity").val());
+                            // });
+
+                            // $("#product-quantity").on('change', function(){
+
+                            // });
+                            
                             function add_product(id_products, id_farmers, price_unit, num_item, name_products, image_pro) {
                                 var product = [];
                                 var int_i = 0;
-                                var num_item_new = parseInt(num_item);
+                                var num_item_new = parseInt($("#"+num_item).val());
+   
+                                // alert($("#"+num_item).val());
 
                                 product_new = {
                                         id_products: id_products,
@@ -530,7 +546,6 @@ include_once('./navbar.php');
                                     };
 
                                 if (readCookie('product') == null) {
-                                    // alert( readCookie('product'));
                                     createCookie("product", JSON.stringify(product));
                                     
                                     product.push(product_new);
@@ -540,7 +555,6 @@ include_once('./navbar.php');
                                 } else {
                                     product = JSON.parse(readCookie('product')); // array type
                                     product.forEach(function(value, i) {
-                                        // alert(i);
                                         if (value.id_products == id_products) {
                                             int_i += 1;
                                             product[i].num_item += num_item_new;
@@ -553,14 +567,13 @@ include_once('./navbar.php');
                                         createCookie("product", JSON.stringify(product));
 
                                         update_product();
-                                        // alert(int_i);
                                     } else {
                                         createCookie("product", JSON.stringify(product));
                                         update_product();
                                     }
 
                                 }
-
+                                $("#"+num_item).val(1);
                             }
                         </script>
                     </div>

@@ -92,7 +92,12 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <!-- Theme styles END -->
 
     <!-- Script -->
-    <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- v1.11.2  -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+    <!-- <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script> -->
     <!-- <script src="../../script/assets/plugins/jquery.minGGG.js" type="text/javascript"></script> -->
     <script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
     <script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -105,7 +110,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
     <script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
 
-    
+
     <script src="../../script/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
 
     <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
@@ -142,6 +147,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
         function removeCookie(name) {
             createCookie(name, "", -1);
         }
+
+        
     </script>
 
 </head>
@@ -236,7 +243,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
             <div class="top-cart-block">
                 <div class="top-cart-info">
                     <a id="sum_product" href="javascript:update_product();" class="top-cart-info-count"><span id="sum_item"> </span> สินค้า</a>
-                    <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
+                    <a href="javascript:void(0);" class="top-cart-info-value">$<span id="sum_product_price"></span></a>
                     <script>
                         function update_product() {
                             // var product = json.parse(readCookie('product'));
@@ -247,6 +254,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             console.log(product.length);
 
                             var str = "";
+                            var munny = 0;
                             product.forEach(function(value, i) {
                                 str += '<li>' +
                                     '<a href="shop-item.php"><img src="../../pictures/product/' + value.image_pro + '" alt="Rolex Classic Watch" width="37" height="34"></a> ' +
@@ -255,8 +263,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                                     '<em>$' + value.price_unit + '</em>' +
                                     '<a href="javascript:del_items(' + i + ');" class="del-goods">&nbsp;</a>' +
                                     ' </li>';
+                                munny += (value.price_unit * value.num_item);
                             });
                             $("#cart_list_product").html(str);
+                            $("#sum_product_price").html(munny);
                         }
 
                         function del_items(index) {
@@ -264,10 +274,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             const json = readCookie('product');
                             const product = JSON.parse(json);
 
-                            product.splice(0, 1);
+                            product.splice(index, 1);
 
                             createCookie("product", JSON.stringify(product));
-                            
+
                             update_product();
                         }
 
@@ -311,6 +321,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                 <ul>
                     <!-- active -->
                     <li><a href="./shop-product-list.php">รายการสินค้า</a></li>
+                    
                     <!-- <li class="dropdown "> 
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             หน้าหลัก
@@ -489,7 +500,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             </li>
                         </ul>
                     </li>
-
+                    <li><a href="./shop-product-list.php">ที่ตั้งฟาร์ม</a></li>
                     <!-- BEGIN TOP SEARCH -->
                     <li class="menu-search">
                         <span class="sep"></span>

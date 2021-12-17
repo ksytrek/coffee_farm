@@ -341,7 +341,7 @@ var Layout = function() {
 
         initTouchspin: function() {
 
-            // select product all items
+
             $(".product-quantity .form-control").TouchSpin({
                 buttondown_class: "btn quantity-down",
                 buttonup_class: "btn quantity-up"
@@ -349,17 +349,6 @@ var Layout = function() {
             $(".quantity-down").html("<i class='fa fa-angle-down'></i>");
             $(".quantity-up").html("<i class='fa fa-angle-up'></i>");
 
-
-            // $(".product-quantity-cart-item .form-control").TouchSpin({
-            //     buttondown_class: "btn quantity-down",
-            //     buttonup_class: "btn quantity-up"
-            // });
-            // $(".quantity-down").html("<i class='fa fa-angle-down'></i>");
-            // $(".quantity-up").html("<i class='fa fa-angle-up'></i>");
-
-            // $(".quantity-up").click(function() {
-            //     alert("up");
-            // });
 
 
         },
