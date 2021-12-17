@@ -62,9 +62,9 @@ include_once('./navbar.php');
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="./shop-product-list.php">Home</a></li>
-                <!-- <li><a href="javascript:cookie();">cookie</a></li>
+                <li><a href="javascript:cookie();">cookie</a></li>
                 <li><a href="javascript:cookie_add();">add</a></li>
-                <li><a href="javascript:cookie_json();">add</a></li> -->
+                <li><a href="javascript:cookie_json();">add</a></li>
                 <script>
                     function cookie_json() {
                         var myObject = {
@@ -83,28 +83,40 @@ include_once('./navbar.php');
 
                         b = JSON.parse(x);
 
-                        b.push(['4', '2', '112']);
+                        b.push({
+                            i: '4',
+                            d: '2',
+                            f: '112'
+                        });
                         createCookie("name", JSON.stringify(b));
 
                         const json = readCookie('name');
                         const obj = JSON.parse(json);
 
-                        console.log(obj.length);
-                        obj.forEach(element => {
-                            alert(element[0]);
-                        });
+                        // console.log(obj.length);
+                        // obj.forEach(element => {
+                        //     alert(element[0]);
+                        // });
                     }
 
                     function cookie() {
                         var product = [
-                            [
-                                '1', '2', '112'
-                            ],
-                            [
-                                '2', '2', '112'
-                            ]
+                            [{
+                                i: '1',
+                                d: '2',
+                                f: '112'
+                            }],
+                            [{
+                                i: '2',
+                                d: '2',
+                                f: '112'
+                            }]
                         ];
-                        product.push(['3', '2', '112'])
+                        product.push({
+                            i: '4',
+                            d: '2',
+                            f: '112'
+                        })
 
 
 
@@ -449,7 +461,7 @@ include_once('./navbar.php');
                                     </div>
                                     <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
                                     <div class="pi-price">฿<?php echo $row['price_unit'] ?></div>
-                                    <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,1);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
+                                    <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,1, '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                 </div>
                             </div>
 
@@ -490,7 +502,7 @@ include_once('./navbar.php');
                                                 <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
                                             </div>
                                             <script>
-                                               
+
                                             </script>
                                         </div>
 
@@ -503,34 +515,50 @@ include_once('./navbar.php');
                         endforeach;
                         ?>
                         <script>
-                            function add_product(id_products, id_farmers, price_unit, num_item) {
+                            function add_product(id_products, id_farmers, price_unit, num_item, name_products, image_pro) {
                                 var product = [];
                                 var int_i = 0;
                                 var num_item_new = parseInt(num_item);
-                                if (readCookie('product') == null) {
-                                    // alert( readCookie('product'));
-                                    createCookie("product", JSON.stringify(product));
-                                    product_new = {
+
+                                product_new = {
                                         id_products: id_products,
                                         id_farmers: id_farmers,
                                         price_unit: price_unit,
-                                        num_item: num_item_new
+                                        num_item: num_item_new,
+                                        name_products: name_products,
+                                        image_pro: image_pro
                                     };
 
+                                if (readCookie('product') == null) {
+                                    // alert( readCookie('product'));
+                                    createCookie("product", JSON.stringify(product));
+                                    
                                     product.push(product_new);
                                     createCookie("product", JSON.stringify(product));
+                                    update_product();
 
                                 } else {
                                     product = JSON.parse(readCookie('product')); // array type
                                     product.forEach(function(value, i) {
                                         // alert(i);
                                         if (value.id_products == id_products) {
-                                            int_i = i;
+                                            int_i += 1;
+                                            product[i].num_item += num_item_new;
                                         }
                                     });
 
-                                    product[int_i].num_item += num_item_new;
-                                    createCookie("product", JSON.stringify(product));
+                                    if (int_i == 0) {
+
+                                        product.push(product_new);
+                                        createCookie("product", JSON.stringify(product));
+
+                                        update_product();
+                                        // alert(int_i);
+                                    } else {
+                                        createCookie("product", JSON.stringify(product));
+                                        update_product();
+                                    }
+
                                 }
 
                             }

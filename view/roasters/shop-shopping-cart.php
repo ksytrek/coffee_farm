@@ -36,6 +36,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
 
+    <script>
+        var total = 0;
+    </script>
     <!-- Theme styles END -->
 </head>
 <!-- Head END -->
@@ -43,8 +46,13 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 include_once('./navbar.php');
 ?>
 <!-- Body BEGIN -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
 
 <body class="ecommerce">
+
 
     <div class="main">
         <div class="container">
@@ -53,95 +61,96 @@ include_once('./navbar.php');
                 <!-- BEGIN CONTENT -->
                 <div class="col-md-12 col-sm-12">
                     <h1>ตะกร้าสินค้า</h1>
-                        <div class="goods-page">
-                            <div class="goods-data clearfix">
-                                <div class="table-wrapper-responsive">
-                                    <table summary="Shopping cart">
-                                        <tr>
-                                            <th class="goods-page-image">ภาพ</th>
-                                            <th class="goods-page-description">รายละเอียด</th>
-                                            <th class="goods-page-ref-no">หมายเลขอ้างอิง</th>
-                                            <th class="goods-page-quantity">ปริมาณ</th>
-                                            <th class="goods-page-price">ราคาต่อหน่วย</th>
-                                            <th class="goods-page-total" colspan="2">รวม</th>
-                                        </tr>
-                                        <tr>
-                                            <td class="goods-page-image">
-                                                <a href="javascript:;"><img src="../../script/assets/pages/img/products/model3.jpg" alt="Berry Lace Dress"></a>
-                                            </td>
-                                            <td class="goods-page-description">
-                                                <h3><a href="javascript:;">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <!-- <p><strong>รายละเอียด</strong> เพิ่มเติม</p> -->
-                                                <em>รายละเอียดเพิ่มเติม</em>
-                                            </td>
-                                            <td class="goods-page-ref-no">
-                                                javc2133
-                                            </td>
-                                            <td class="goods-page-quantity">
-                                                <div class="product-quantity">
-                                                    <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                                                </div>
-                                            </td>
-                                            <td class="goods-page-price">
-                                                <strong><span>฿</span>47.00</strong>
-                                            </td>
-                                            <td class="goods-page-total">
-                                                <strong><span>฿</span>47.00</strong>
-                                            </td>
-                                            <td class="del-goods-col">
-                                                <a class="del-goods" href="javascript:;">&nbsp;</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="goods-page-image">
-                                                <a href="javascript:;"><img src="../../script/assets/pages/img/products/model4.jpg" alt="Berry Lace Dress"></a>
-                                            </td>
-                                            <td class="goods-page-description">
-                                                <h3><a href="javascript:;">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <!-- <p><strong>Item 1</strong> - Color: Green; Size: S</p> -->
-                                                <em>รายละเอียดเพิ่มเติม</em>
-                                            </td>
-                                            <td class="goods-page-ref-no">
-                                                javc2133
-                                            </td>
-                                            <td class="goods-page-quantity">
-                                                <div class="product-quantity">
-                                                    <input id="product-quantity2" type="text" value="1" readonly class="form-control input-sm">
-                                                </div>
-                                            </td>
-                                            <td class="goods-page-price">
-                                                <strong><span>฿</span>47.00</strong>
-                                            </td>
-                                            <td class="goods-page-total">
-                                                <strong><span>฿</span>47.00</strong>
-                                            </td>
-                                            <td class="del-goods-col">
-                                                <a class="del-goods" href="javascript:;">&nbsp;</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                    <div class="goods-page">
+                        <div class="goods-data clearfix">
+                            <div class="table-wrapper-responsive">
+                                <table summary="Shopping cart" id="product_item_all">
+                                    <thead>
+                                        <th class="goods-page-image">ภาพ</th>
+                                        <th class="goods-page-description">รายละเอียด</th>
+                                        <th class="goods-page-quantity">ปริมาณ</th>
+                                        <th class="goods-page-price">ราคาต่อหน่วย</th>
+                                        <th class="goods-page-total" colspan="2">รวม</th>
+                                    </thead>
+                                    <tbody id="tbb_product_item_all">
 
-                                <div class="shopping-total">
-                                    <ul>
-                                        <li>
-                                            <em>Sub total</em>
-                                            <strong class="price"><span>฿</span>47.00</strong>
-                                        </li>
-                                        <li>
-                                            <em>Shipping cost</em>
-                                            <strong class="price"><span>฿</span>3.00</strong>
-                                        </li>
-                                        <li class="shopping-total-price">
-                                            <em>Total</em>
-                                            <strong class="price"><span>฿</span>50.00</strong>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    </tbody>
+
+                                </table>
+                                <script>
+                                    
+
+                                    function product_item_all() {
+                                        var str_items = "";
+
+                                        const json = readCookie('product');
+                                        const product = JSON.parse(json);
+
+                                        var sum_total = 0;
+
+
+                                        product.forEach(function(value, index) {
+                                            sum_total = value.price_unit*value.num_item;
+                                            total += sum_total;
+                                            str_items += '<tr>' +
+                                                '<td class="goods-page-image">' +
+                                                '<a href="javascript:;"><img src="../../pictures/product/' + value.image_pro + '" alt="Berry Lace Dress"></a>' +
+                                                '</td>' +
+                                                '<td class="goods-page-description">' +
+                                                '<h3><a href="javascript:;">'+  value.name_products +'</a></h3>' +
+                                                '<em>รายละเอียดเพิ่มเติม</em>' +
+                                                '</td>' +
+                                                '<td class="goods-page-quantity">' +
+                                                '<div class="product-quantity click">' +
+                                                '<input id="product-quantity" onclick="" type="text" value="' + value.num_item + '" readonly class="form-control input-sm">' +
+                                                '</div>' +
+                                                '</td>' +
+                                                '<td class="goods-page-price">' +
+                                                '<strong><span>฿</span>'+ value.price_unit +'</strong>' +
+                                                '</td>' +
+                                                '<td class="goods-page-total">' +
+                                                '<strong><span>฿</span>'+ sum_total + '</strong>' +
+                                                '</td>' +
+                                                '<td class="del-goods-col">' +
+                                                '<a class="del-goods" href="javascript:;">&nbsp;</a>' +
+                                                '</td>' +
+                                                '</tr>';
+
+                                                
+
+                                        });
+
+                                        // $('#tbb_product_item_all > tbody:last').append(str_items);
+                                        $('#tbb_product_item_all').html(str_items);
+                                    }
+                                    $("#tbb_product_item_all").on("click", ".goods-page-quantity", function(event) {
+                                        console.log('clicked');
+                                    });
+
+
+                                    $(document).ready(function() {
+                                        product_item_all();
+                                        $("#total").html("<span>฿</span>" + total );
+                                    });
+                                </script>
                             </div>
-                            <button class="btn btn-default" type="submit">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
-                            <button class="btn btn-primary" type="submit">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
+
+                            <div class="shopping-total">
+                                <ul>
+                                    <li class="shopping-total-price">
+                                        <em>Total</em>
+                                        <strong id="total" class="price"></strong>
+                                    </li>
+                                </ul>
+
+                                <script>
+                                    
+                                </script>
+                            </div>
                         </div>
+                        <button class="btn btn-default" type="submit">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
+                        <button class="btn btn-primary" type="submit">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
+                    </div>
                 </div>
                 <!-- END CONTENT -->
             </div>
@@ -149,6 +158,7 @@ include_once('./navbar.php');
 
         </div>
     </div>
+
 
 
 

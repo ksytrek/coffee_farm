@@ -104,6 +104,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
     <script src="../../script/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
     <script src='../../script/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+
+    
     <script src="../../script/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
 
     <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
@@ -233,22 +235,50 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
             <!-- BEGIN CART -->
             <div class="top-cart-block">
                 <div class="top-cart-info">
-                    <a id="sum_product" href="javascript:update_product();" class="top-cart-info-count"><span id="sumtxt_pro"> </span> สินค้า</a>
+                    <a id="sum_product" href="javascript:update_product();" class="top-cart-info-count"><span id="sum_item"> </span> สินค้า</a>
                     <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
                     <script>
                         function update_product() {
-                            var product = json.parse(readCookie('product'));
+                            // var product = json.parse(readCookie('product'));
+                            const json = readCookie('product');
+                            const product = JSON.parse(json);
+                            var sum_item = product.length;
+                            $("#sum_item").html(sum_item);
+                            console.log(product.length);
 
-                            $('#sumtxt_pro').html (product.length);
+                            var str = "";
+                            product.forEach(function(value, i) {
+                                str += '<li>' +
+                                    '<a href="shop-item.php"><img src="../../pictures/product/' + value.image_pro + '" alt="Rolex Classic Watch" width="37" height="34"></a> ' +
+                                    '<span class="cart-content-count">x ' + value.num_item + '</span>' +
+                                    '<strong><a href="shop-item.php">' + value.name_products + '</a></strong>' +
+                                    '<em>$' + value.price_unit + '</em>' +
+                                    '<a href="javascript:del_items(' + i + ');" class="del-goods">&nbsp;</a>' +
+                                    ' </li>';
+                            });
+                            $("#cart_list_product").html(str);
                         }
 
+                        function del_items(index) {
+
+                            const json = readCookie('product');
+                            const product = JSON.parse(json);
+
+                            product.splice(0, 1);
+
+                            createCookie("product", JSON.stringify(product));
+                            
+                            update_product();
+                        }
+
+                        $(document).ready(function() {
+                            update_product();
+                        });
                         // $("#sum_product").click(function() {
                         //     var htmlString = $(this).html();
                         //     // $(this).text(htmlString);
                         //     alert(htmlString);
                         // });
-
-
                     </script>
 
                 </div>
@@ -256,16 +286,17 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
                 <div class="top-cart-content-wrapper">
                     <div class="top-cart-content">
-                        <ul class="scroller" style="height: 250px;">
-                            <li>
+                        <ul id="cart_list_product" class="scroller" style="height: 250px;">
+                            <!-- <li>
                                 <a href="shop-item.php"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                                 <span class="cart-content-count">x 1</span>
                                 <strong><a href="shop-item.php">Rolex Classic Watch</a></strong>
                                 <em>$1230</em>
                                 <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            
+                            </li> -->
                         </ul>
+
+
                         <div class="text-right">
                             <a href="shop-shopping-cart.php" class="btn btn-default">ตะกร้าสินค้า</a>
                             <!-- <a href="shop-checkout.php" class="btn btn-primary">Checkout</a> -->
