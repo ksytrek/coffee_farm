@@ -148,7 +148,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
             createCookie(name, "", -1);
         }
 
-        
+        let THB = Intl.NumberFormat("th-TH", {
+            style: "currency",
+            currency: "THB",
+        });
     </script>
 
 </head>
@@ -243,7 +246,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
             <div class="top-cart-block">
                 <div class="top-cart-info">
                     <a id="sum_product" href="javascript:update_product();" class="top-cart-info-count"><span id="sum_item"> </span> สินค้า</a>
-                    <a href="javascript:void(0);" class="top-cart-info-value">$<span id="sum_product_price"></span></a>
+                    <a href="javascript:void(0);" class="top-cart-info-value"><span id="sum_product_price"></span></a>
                     <script>
                         function update_product() {
                             // var product = json.parse(readCookie('product'));
@@ -260,13 +263,13 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                                     '<a href="shop-item.php"><img src="../../pictures/product/' + value.image_pro + '" alt="Rolex Classic Watch" width="37" height="34"></a> ' +
                                     '<span class="cart-content-count">x ' + value.num_item + '</span>' +
                                     '<strong><a href="shop-item.php">' + value.name_products + '</a></strong>' +
-                                    '<em>$' + value.price_unit + '</em>' +
+                                    '<em>' + THB.format(value.price_unit) + '</em>' +
                                     '<a href="javascript:del_items(' + i + ');" class="del-goods">&nbsp;</a>' +
                                     ' </li>';
                                 munny += (value.price_unit * value.num_item);
                             });
                             $("#cart_list_product").html(str);
-                            $("#sum_product_price").html(munny);
+                            $("#sum_product_price").html(THB.format(munny));
                         }
 
                         function del_items(index) {
@@ -321,7 +324,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                 <ul>
                     <!-- active -->
                     <li><a href="./shop-product-list.php">รายการสินค้า</a></li>
-                    
+
                     <!-- <li class="dropdown "> 
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             หน้าหลัก

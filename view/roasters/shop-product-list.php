@@ -460,7 +460,7 @@ include_once('./navbar.php');
                                         </div>
                                     </div>
                                     <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
-                                    <div class="pi-price">฿<?php echo $row['price_unit'] ?></div>
+                                    <div class="pi-price">฿<?php echo $row['price_unit'].'.'.'00' ?></div>
                                     <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
                                     <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input__product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                 </div>
@@ -479,7 +479,7 @@ include_once('./navbar.php');
                                             <h1><?php echo $row['name_products'] ?></h1>
                                             <div class="price-availability-block clearfix">
                                                 <div class="price">
-                                                    <strong><span>&#3647;</span><?php echo $row['price_unit'] ?></strong>
+                                                    <strong><span>&#3647;</span><?php echo $row['price_unit'].'.'.'00' ?></strong>
                                                     <!-- <em>&#3647;<span>62.00</span></em>   จากราคา -->
                                                 </div>
 

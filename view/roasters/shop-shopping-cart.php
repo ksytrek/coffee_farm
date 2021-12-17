@@ -62,7 +62,7 @@ include_once('./navbar.php');
                     <h1>ตะกร้าสินค้า</h1>
                     <div class="goods-page">
                         <div id="div-product" class="goods-data clearfix">
-                            <div  class="table-wrapper-responsive">
+                            <div class="table-wrapper-responsive">
                                 <!-- <table id="myTable" summary="Shopping cart"  class="display" style="width: 100%;">
                                     <thead>
                                         <tr>
@@ -136,10 +136,10 @@ include_once('./navbar.php');
                                                 '</div>' +
                                                 '</td>' +
                                                 '<td class="goods-page-price">' +
-                                                '<strong><span>฿</span>' + value.price_unit + '</strong>' +
+                                                '<strong><span></span>' + THB.format(value.price_unit) + '</strong>' +
                                                 '</td>' +
                                                 '<td class="goods-page-total">' +
-                                                '<strong><span>฿</span>' + sum_total + '</strong>' +
+                                                '<strong><span></span>' + THB.format(sum_total) + '</strong>' +
                                                 '</td>' +
                                                 '<td class="del-goods-col">' +
                                                 '<a  class="del-goods" href="javascript:del_items_ca(' + index + ');">&nbsp;</a>' +
@@ -148,7 +148,7 @@ include_once('./navbar.php');
 
                                         });
 
-                                        if(product == ''){
+                                        if (product == '') {
                                             // $("#product_item_all").hide();
                                             // $(".shopping-total").hide();
                                             // $("#div-product").hide();
@@ -202,7 +202,12 @@ include_once('./navbar.php');
 
                                     $(document).ready(function() {
                                         product_item_all();
-                                        $("#total").html("<span>฿</span>" + total);
+
+                                        // Format the price above to USD, INR, EUR using their locales.
+                                        
+                                        // $("#total").html("<span>฿</span>" + total);
+                                        // dollarUS.format(price)
+                                        $("#total").html( THB.format(total));
 
                                         // $("input[name='demo_vertical']").TouchSpin({
                                         //     verticalbuttons: true
@@ -227,7 +232,7 @@ include_once('./navbar.php');
                                 </script>
                             </div>
                         </div>
-                        <button class="btn btn-default" type="button" onclick="window.location.assign('shop-product-list.php')" >ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
+                        <button class="btn btn-default" type="button" onclick="window.location.assign('shop-product-list.php')">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
                         <button class="btn btn-primary" type="submit">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
                     </div>
                 </div>
