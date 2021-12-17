@@ -62,13 +62,25 @@ include_once('./navbar.php');
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="./shop-product-list.php">Home</a></li>
-                <li><a href="javascript:cookie();">cookie</a></li>
+                <!-- <li><a href="javascript:cookie();">cookie</a></li>
                 <li><a href="javascript:cookie_add();">add</a></li>
+                <li><a href="javascript:cookie_json();">add</a></li> -->
                 <script>
+                    function cookie_json() {
+                        var myObject = {
+                            'name': 'Kasun',
+                            'address': 'columbo',
+                            'age': '29'
+                        }
+
+                        var count = Object.keys(myObject).length;
+                        console.log(count);
+                    }
+
                     function cookie_add() {
                         var b = [];
                         var x = readCookie('name');
-                        
+
                         b = JSON.parse(x);
 
                         b.push(['4', '2', '112']);
@@ -82,6 +94,7 @@ include_once('./navbar.php');
                             alert(element[0]);
                         });
                     }
+
                     function cookie() {
                         var product = [
                             [
@@ -96,7 +109,7 @@ include_once('./navbar.php');
 
 
                         createCookie("name", JSON.stringify(product));
-                        
+
                         const json = readCookie('name');
                         const obj = JSON.parse(json);
 
@@ -306,7 +319,6 @@ include_once('./navbar.php');
                                 const page = urlParams.get('page');
                                 // const min_bee = urlParams.get('between_min');
                                 // const max_bee = urlParams.get('between_max');
-
                             };
 
 
@@ -437,7 +449,7 @@ include_once('./navbar.php');
                                     </div>
                                     <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
                                     <div class="pi-price">฿<?php echo $row['price_unit'] ?></div>
-                                    <a href="javascript:;" class="btn btn-default add2cart">เพิ่มสินค้า</a>
+                                    <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,1);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                 </div>
                             </div>
 
@@ -474,9 +486,12 @@ include_once('./navbar.php');
                                                 <div class="product-quantity">
                                                     <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
                                                 </div>
-                                                <button class="btn btn-primary" type="submit">เพิ่มสินค้า</button>
+                                                <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,$('#product-quantity').val());" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
                                                 <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
                                             </div>
+                                            <script>
+                                               
+                                            </script>
                                         </div>
 
                                         <!-- <div class="sticker sticker-sale"></div> -->
@@ -487,6 +502,39 @@ include_once('./navbar.php');
                         <?php //endfor; 
                         endforeach;
                         ?>
+                        <script>
+                            function add_product(id_products, id_farmers, price_unit, num_item) {
+                                var product = [];
+                                var int_i = 0;
+                                var num_item_new = parseInt(num_item);
+                                if (readCookie('product') == null) {
+                                    // alert( readCookie('product'));
+                                    createCookie("product", JSON.stringify(product));
+                                    product_new = {
+                                        id_products: id_products,
+                                        id_farmers: id_farmers,
+                                        price_unit: price_unit,
+                                        num_item: num_item_new
+                                    };
+
+                                    product.push(product_new);
+                                    createCookie("product", JSON.stringify(product));
+
+                                } else {
+                                    product = JSON.parse(readCookie('product')); // array type
+                                    product.forEach(function(value, i) {
+                                        // alert(i);
+                                        if (value.id_products == id_products) {
+                                            int_i = i;
+                                        }
+                                    });
+
+                                    product[int_i].num_item += num_item_new;
+                                    createCookie("product", JSON.stringify(product));
+                                }
+
+                            }
+                        </script>
                     </div>
 
 
