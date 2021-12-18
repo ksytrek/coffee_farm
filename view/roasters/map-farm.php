@@ -37,14 +37,15 @@ include_once('./navbar.php');
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
-    <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th" ></script>
+    <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> <!-- &sensor=false -->
+    <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=GtuOframRJFxrA13qh79g)5iFSeQZHnX)woFM2oq5S1D462QaqsxgnbFbEmYlw1X1iWaNxYNMydBE0FKaI4n26W=====2&v=weekly&sensor=false&language=th" ></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&libraries=places&language=en" async defer></script> -->
     <!-- <script src="./register/js/jquery.min.js"></script> -->
     <style type="text/css" media="all">
         #map-canvas {
             display: block;
             margin: 10px auto;
-            height: 400px;
+            height: 600px;
             width: 100%;
             background-color: #ccc;
         }
@@ -61,6 +62,7 @@ include_once('./navbar.php');
 
         var marker;
         var map;
+        var infoWindow;
 
         function initialize() {
             var mapOptions = {
@@ -70,7 +72,9 @@ include_once('./navbar.php');
             };
 
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
+            infoWindow = new google.maps.InfoWindow({
+                content: '<div style="font-size: 10px;color: red">ข้อมูลฟาร์ม</div>'
+            });
 
             locations.forEach(function(e, i) {
                 // alert(e+ " " + i);
@@ -82,7 +86,8 @@ include_once('./navbar.php');
                     animation: google.maps.Animation.DROP,
                     position: new google.maps.LatLng(e[1], e[2]),
                     title: e[0],
-                    'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
+                    icon: '../../script/assets/img/logos/farm.png',
+                    // 'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
                 });
 
                 // google.maps.event.addListener(marker, 'click', toggleBounce);
@@ -94,6 +99,10 @@ include_once('./navbar.php');
                 google.maps.event.addListener(marker, 'dragend', function(event) {
                     var point = marker.getPoint();
                     map.panTo(point);
+                });
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    infoWindow.open(map, marker);
                 });
 
             });
@@ -108,7 +117,7 @@ include_once('./navbar.php');
         }
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-   
+
 </head>
 
 
