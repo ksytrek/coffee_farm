@@ -93,7 +93,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
     <!-- Script -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- 1.11.2 -->
     <!-- <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script> -->
     <!-- <script src="../../script/assets/plugins/jquery.minGGG.js" type="text/javascript"></script> -->

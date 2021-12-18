@@ -39,7 +39,7 @@ include_once('./navbar.php');
 
     <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th" ></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&libraries=places&language=en" async defer></script> -->
-    <script src="./register/js/jquery.min.js"></script>
+    <!-- <script src="./register/js/jquery.min.js"></script> -->
     <style type="text/css" media="all">
         #map-canvas {
             display: block;
