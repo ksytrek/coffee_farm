@@ -37,10 +37,12 @@ include_once('./navbar.php');
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
-    <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> <!-- &sensor=false -->
-    <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=GtuOframRJFxrA13qh79g)5iFSeQZHnX)woFM2oq5S1D462QaqsxgnbFbEmYlw1X1iWaNxYNMydBE0FKaI4n26W=====2&v=weekly&sensor=false&language=th" ></script> -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&libraries=places&language=en" async defer></script> -->
-    <!-- <script src="./register/js/jquery.min.js"></script> -->
+
+
+    <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> -->
+    <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD54JsxlZ79EsLprTywJdM8zs1CvMp3I08&v=weekly&language=th"></script>  
+
+
     <style type="text/css" media="all">
         #map-canvas {
             display: block;
@@ -53,18 +55,24 @@ include_once('./navbar.php');
     <script>
         var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
         var locations = [
-            ['วัดลาดปลาเค้า', 13.846876, 100.604481],
-            ['หมู่บ้านอารียา', 13.847766, 100.605768],
-            ['สปีดเวย์', 13.845235, 100.602711],
-            ['สเต็ก ลุงหนวด', 13.862970, 100.613834],
-            ['bangkok', 13.730995466424108, 100.51986257812496],
+            ['วัดลาดปลาเค้า', 13.846876, 100.604481, 'e1'],
+            ['หมู่บ้านอารียา', 13.847766, 100.605768, 'e2'],
+            ['สปีดเวย์', 13.845235, 100.602711, 'e3'],
+            ['สเต็ก ลุงหนวด', 13.862970, 100.613834, 'e4'],
+            ['bangkok', 13.730995466424108, 100.51986257812496, 'e5'],
         ];
 
-        var marker;
+        // var marker;
         var map;
+        var marker;
         var infoWindow;
 
+
+
+
         function initialize() {
+
+
             var mapOptions = {
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -72,50 +80,75 @@ include_once('./navbar.php');
             };
 
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            infoWindow = new google.maps.InfoWindow({
-                content: '<div style="font-size: 10px;color: red">ข้อมูลฟาร์ม</div>'
-            });
 
+            var marker;
             locations.forEach(function(e, i) {
                 // alert(e+ " " + i);
+                var loan = locations[i][0]
+                var lat = locations[i][1]
+                var long = locations[i][2]
+                var add = locations[i][3]
 
-
-                marker = new google.maps.Marker({
+                var position = new google.maps.LatLng(lat, long);
+                var marker = new google.maps.Marker({
                     map: map,
-                    // draggable: false, // ไม่สามารถเครื่อนย้ายได้
+                    draggable: false, // ไม่สามารถเครื่อนย้ายได้
                     animation: google.maps.Animation.DROP,
-                    position: new google.maps.LatLng(e[1], e[2]),
-                    title: e[0],
+                    position: position,
+                    title: loan,
                     icon: '../../script/assets/img/logos/farm.png',
                     // 'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
                 });
 
+                // var marker = new google.maps.Marker({
+                //     map: map,
+                //     title: loan,
+                //     position: latlngset,
+                //     icon: '../../script/assets/img/logos/farm.png',
+                // });
+
+
+                var content = "ข้อมูลฟาร์ม <a href='./shop-product-list.php'>ค้นหาเส้นทาง</a>" ;
+                var infowindow = new google.maps.InfoWindow()
+
+
+                google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+                    return function() {
+                        if (marker.getAnimation() != null) {
+                            marker.setAnimation(null);
+                            infowindow.close();
+                        } else {
+                            marker.setAnimation(google.maps.Animation.BOUNCE);
+                            infowindow.setContent(content);
+                            infowindow.open(map, marker);
+                        }
+                    };
+                })(marker, content, infowindow));
+
+
                 // google.maps.event.addListener(marker, 'click', toggleBounce);
-                google.maps.event.addListener(marker, 'drag', function(event) {
-                    // document.getElementById("lat").value = marker.getPosition().lat();
-                    // document.getElementById("lng").value = marker.getPosition().lng();
-                });
+                // google.maps.event.addListener(marker, 'drag', function(event) {
+                //     // document.getElementById("lat").value = marker.getPosition().lat();
+                //     // document.getElementById("lng").value = marker.getPosition().lng();
+                // });
+                // google.maps.event.addListener(marker, 'dragend', function(event) {
+                //     var point = marker.getPoint();
+                //     map.panTo(point);
+                // });
 
-                google.maps.event.addListener(marker, 'dragend', function(event) {
-                    var point = marker.getPoint();
-                    map.panTo(point);
-                });
 
-                google.maps.event.addListener(marker, 'click', function() {
-                    infoWindow.open(map, marker);
-                });
+                // google.maps.event.addListener(marker, 'click', function() {
+                //     infoWindow.open(map, marker);
+                // });
 
             });
+
+
+            // setMarkers(map, locations);
         }
 
-        function toggleBounce() {
-            if (marker.getAnimation() != null) {
-                marker.setAnimation(null);
-            } else {
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-            }
-        }
         google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
 
 </head>
@@ -215,9 +248,7 @@ include_once('./navbar.php');
 
             <div>
                 <div id="map-canvas"></div>
-                <script>
-
-                </script>
+                <!-- <iframe src="https://www.google.co.th/maps/"></iframe> -->
                 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap" async defer></script> -->
 
             </div>

@@ -33,3 +33,5 @@ transalede รายละเอียดของรายการสินค
     และสั่งซื้อจำนวนเเละประริมาณ
 
     API Goole Map Service ::::  AIzaSyDF4oooDYDVQS_m8XL62vzjh-bUDdGgYlg
+                                AIzaSyD54JsxlZ79EsLprTywJdM8zs1CvMp3I08
+

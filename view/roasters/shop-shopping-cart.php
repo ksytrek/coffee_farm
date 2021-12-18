@@ -59,182 +59,217 @@ include_once('./navbar.php');
                 <!-- BEGIN CONTENT -->
 
                 <div class="col-md-12 col-sm-12">
-                    <h1>ตะกร้าสินค้า</h1>
-                    <div class="goods-page">
-                        <div id="div-product" class="goods-data clearfix">
-                            <div class="table-wrapper-responsive">
-                                <!-- <table id="myTable" summary="Shopping cart"  class="display" style="width: 100%;">
-                                    <thead>
-                                        <tr>
-                                        <th class="goods-page-image">ภาพ</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                       
-                                    </tbody>
-                                </table> -->
-                                <script>
-                                    $(document).ready(function() {
-                                        // $("#myTable").DataTable();
-                                    });
-                                </script>
-                                <table summary="Shopping cart" id="product_item_all">
-                                    <thead>
-                                        <th class="goods-page-image">ภาพ</th>
-                                        <th class="goods-page-description">รายละเอียด</th>
-                                        <th class="goods-page-quantity">ปริมาณ</th>
-                                        <th class="goods-page-price">ราคาต่อหน่วย</th>
-                                        <th class="goods-page-total" colspan="2">รวม</th>
-                                    </thead>
-                                    <tbody id="tbb_product_item_all">
+                    <!-- <h1>ตะกร้าสินค้า</h1> -->
+                    <div class="row product-list">
+                        <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
+                        <div class="product-page-content">
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active"><a href="#product_all" data-toggle="tab">ตะกร้าสินค้าสินค้าทั้งหมด</a></li>
+                                <li class=""><a href="#wait_for_sale" data-toggle="tab">รอยืนยันจากผู้ขาย</a></li>
+                                <li class=""><a href="#confirm_sales_orders" data-toggle="tab">รอดำเนินการ</a></li>
+                                <li class=""><a href="#trade_complete" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
+                                <li class=""><a href="#cancel_trade" data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
+                            </ul>
 
-                                    </tbody>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="product_all">
+                                    <div class="goods-page">
+                                        <div id="div-product" class="goods-data clearfix">
+                                            <div class="table-wrapper-responsive">
+                                                <script>
+                                                    $(document).ready(function() {
+                                                        // $("#myTable").DataTable();
+                                                    });
+                                                </script>
+                                                <table summary="Shopping cart" id="product_item_all">
+                                                    <thead>
+                                                        <th class="goods-page-image">ภาพ</th>
+                                                        <th class="goods-page-description">ชื่อสินค้า</th>
+                                                        <th class="goods-page-quantity">ปริมาณ</th>
+                                                        <th class="goods-page-price">ราคาต่อหน่วย</th>
+                                                        <th class="goods-page-total" colspan="2">รวม</th>
+                                                    </thead>
+                                                    <tbody id="tbb_product_item_all">
 
-                                </table>
-                                <script>
-                                    function product_item_all() {
-                                        var str_items = "";
+                                                    </tbody>
 
-                                        const json = readCookie('product');
-                                        const product = JSON.parse(json);
+                                                </table>
+                                                <script>
+                                                    function product_item_all() {
+                                                        var str_items = "";
 
-                                        var sum_total = 0;
+                                                        const json = readCookie('product');
+                                                        const product = JSON.parse(json);
 
-                                        $('#tbb_product_item_all').empty();
-                                        // tb_mg_room.clear();
-                                        product.forEach(function(value, index) {
-                                            // alert(index);
-                                            sum_total = value.price_unit * value.num_item;
-                                            total += sum_total;
-                                            str_items += '<tr>' +
-                                                '<td class="goods-page-image">' +
-                                                '<a href="javascript:;"><img src="../../pictures/product/' + value.image_pro + '" alt="Berry Lace Dress"></a>' +
-                                                '</td>' +
-                                                '<td class="goods-page-description">' +
-                                                '<h3><a href="javascript:;">' + value.name_products + '</a></h3>' +
-                                                '<em>รายละเอียดเพิ่มเติม</em>' +
-                                                '</td>' +
-                                                '<td class="goods-page-quantity">' +
-                                                '<div class="product-quantity">' +
-                                                // '<div>' +
-                                                // '<input id="demo_vertical" type="text" value="" name="demo_vertical">' +
-                                                // '</div>' +
-                                                '<input  onchange="add_item(' + value.id_products + ',this.value,' + index + ')" type="text" value="' + value.num_item + '" readonly class="form-control input-sm">' +
-                                                '</div>' +
-                                                '</td>' +
-                                                '<td class="goods-page-price">' +
-                                                '<strong><span></span>' + THB.format(value.price_unit) + '</strong>' +
-                                                '</td>' +
-                                                '<td class="goods-page-total">' +
-                                                '<strong><span></span>' + THB.format(sum_total) + '</strong>' +
-                                                '</td>' +
-                                                '<td class="del-goods-col">' +
-                                                '<a  class="del-goods" href="javascript:del_items_ca(' + index + ');">&nbsp;</a>' +
-                                                '</td>' +
-                                                '</tr>';
+                                                        var sum_total = 0;
 
-                                        });
+                                                        $('#tbb_product_item_all').empty();
+                                                        // tb_mg_room.clear();
+                                                        product.forEach(function(value, index) {
+                                                            // alert(index);
+                                                            sum_total = value.price_unit * value.num_item;
+                                                            total += sum_total;
+                                                            str_items += '<tr>' +
+                                                                '<td class="goods-page-image">' +
+                                                                '<a href="javascript:;"><img src="../../pictures/product/' + value.image_pro + '" alt="Berry Lace Dress"></a>' +
+                                                                '</td>' +
+                                                                '<td class="goods-page-description">' +
+                                                                '<h3><a href="javascript:;">' + value.name_products + '</a></h3>' +
+                                                                // '<em>รายละเอียดเพิ่มเติม</em>' +
+                                                                '</td>' +
+                                                                '<td class="goods-page-quantity">' +
+                                                                '<div class="product-quantity">' +
+                                                                // '<div>' +
+                                                                // '<input id="demo_vertical" type="text" value="" name="demo_vertical">' +
+                                                                // '</div>' +
+                                                                '<input  onchange="add_item(' + value.id_products + ',this.value,' + index + ')" type="text" value="' + value.num_item + '" readonly class="form-control input-sm">' +
+                                                                '</div>' +
+                                                                '</td>' +
+                                                                '<td class="goods-page-price">' +
+                                                                '<strong><span></span>' + THB.format(value.price_unit) + '</strong>' +
+                                                                '</td>' +
+                                                                '<td class="goods-page-total">' +
+                                                                '<strong><span></span>' + THB.format(sum_total) + '</strong>' +
+                                                                '</td>' +
+                                                                '<td class="del-goods-col">' +
+                                                                '<a  class="del-goods" href="javascript:del_items_ca(' + index + ');">&nbsp;</a>' +
+                                                                '</td>' +
+                                                                '</tr>';
 
-                                        if (product == '') {
-                                            // $("#product_item_all").hide();
-                                            // $(".shopping-total").hide();
-                                            // $("#div-product").hide();
-                                            $("#div-product").html('ตะกร้าสินค้าของคุณ ไม่มีสินค้า <a href="shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a>');
-                                        }
+                                                        });
 
-                                        $('#tbb_product_item_all').html(str_items);
+                                                        if (product == '') {
+                                                            // $("#product_item_all").hide();
+                                                            // $(".shopping-total").hide();
+                                                            // $("#div-product").hide();
+                                                            $("#div-product").html('ตะกร้าสินค้าของคุณ ไม่มีสินค้า <a href="shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a>');
+                                                        }
 
-                                    }
+                                                        $('#tbb_product_item_all').html(str_items);
 
-                                    function del_items_ca(index) {
+                                                    }
 
-                                        const json = readCookie('product');
-                                        const product = JSON.parse(json);
+                                                    function del_items_ca(index) {
 
-                                        product.splice(index, 1);
+                                                        const json = readCookie('product');
+                                                        const product = JSON.parse(json);
 
-                                        createCookie("product", JSON.stringify(product));
+                                                        product.splice(index, 1);
 
-                                        // update_product();
-                                        window.location.reload();
-                                    }
+                                                        createCookie("product", JSON.stringify(product));
 
-                                    function add_item(id_products, item, index) {
-                                        // alert(item);
-                                        if (item == 0) {
-                                            del_items(index);
-                                        } else {
-                                            var int_i = 0;
-                                            var product = [];
-                                            var num_item_new = parseInt(item);
+                                                        // update_product();
+                                                        window.location.reload();
+                                                    }
 
-                                            product = JSON.parse(readCookie('product')); // array type
-                                            product.forEach(function(value, i) {
-                                                // alert(i);
-                                                if (value.id_products == id_products) {
-                                                    int_i += 1;
-                                                    product[i].num_item = num_item_new;
-                                                }
+                                                    function add_item(id_products, item, index) {
+                                                        // alert(item);
+                                                        if (item == 0) {
+                                                            del_items(index);
+                                                        } else {
+                                                            var int_i = 0;
+                                                            var product = [];
+                                                            var num_item_new = parseInt(item);
+
+                                                            product = JSON.parse(readCookie('product')); // array type
+                                                            product.forEach(function(value, i) {
+                                                                // alert(i);
+                                                                if (value.id_products == id_products) {
+                                                                    int_i += 1;
+                                                                    product[i].num_item = num_item_new;
+                                                                }
+                                                            });
+
+                                                            createCookie("product", JSON.stringify(product));
+                                                            // update_product();
+                                                        }
+                                                        window.location.reload();
+                                                    }
+
+                                                    window.onload = function() {
+                                                        // product_item_all();
+                                                    };
+
+                                                    $(document).ready(function() {
+                                                        product_item_all();
+
+                                                        // Format the price above to USD, INR, EUR using their locales.
+
+                                                        // $("#total").html("<span>฿</span>" + total);
+                                                        // dollarUS.format(price)
+                                                        $("#total").html(THB.format(total));
+
+                                                        // $("input[name='demo_vertical']").TouchSpin({
+                                                        //     verticalbuttons: true
+                                                        // });
+                                                    });
+                                                </script>
+
+                                            </div>
+
+                                            <div class="shopping-total">
+
+                                                <ul>
+                                                    <li class="shopping-total-price">
+                                                        <em>Total</em>
+
+                                                        <strong id="total" class="price"></strong>
+                                                    </li>
+                                                </ul>
+
+                                                <script>
+
+                                                </script>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-default" type="button" onclick="window.location.assign('shop-product-list.php')">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
+                                        <button id="confirm_sales_orders" class="btn btn-primary" type="button">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
+                                        <script>
+                                            $("#confirm_sales_orders").click(function() {
+                                                // alert("Please");
+                                                const json = readCookie('product');
+                                                const product = JSON.parse(json);
+
+                                                
+
+
+                                                // removeCookie('product');
+
                                             });
+                                        </script>
+                                    </div>
+                                </div>
 
-                                            createCookie("product", JSON.stringify(product));
-                                            // update_product();
-                                        }
-                                        window.location.reload();
-                                    }
+                                <div class="tab-pane fade" id="wait_for_sale">
+                                    <!--รอยืนยันคำสั่งขาย  -->
+                                    <?php //include_once("./page/wait_for_sale.php"); 
+                                    ?>
+                                </div>
 
-                                    window.onload = function() {
-                                        // product_item_all();
-                                    };
+                                <div class="tab-pane fade " id="confirm_sales_orders">
+                                    <!--  ยืนยันคำสั่งขายและดำเนินการ  -->
+                                    <?php //include_once("./page/confirm_sales_orders.php"); 
+                                    ?>
 
-                                    $(document).ready(function() {
-                                        product_item_all();
+                                </div>
+                                <div class="tab-pane fade " id="trade_complete">
+                                    <!--  การซื้อขายเสร็จสิ้น  -->
+                                    <?php //include_once("./page/trade_complete.php"); 
+                                    ?>
 
-                                        // Format the price above to USD, INR, EUR using their locales.
-                                        
-                                        // $("#total").html("<span>฿</span>" + total);
-                                        // dollarUS.format(price)
-                                        $("#total").html( THB.format(total));
+                                </div>
+                                <div class="tab-pane fade " id="cancel_trade">
+                                    <!--  ยกเลิกการซื้อขาย  -->
+                                    <?php //include_once("./page/cancel_trade.php"); 
+                                    ?>
 
-                                        // $("input[name='demo_vertical']").TouchSpin({
-                                        //     verticalbuttons: true
-                                        // });
-                                    });
-                                </script>
+                                </div>
 
-                            </div>
 
-                            <div class="shopping-total">
-
-                                <ul>
-                                    <li class="shopping-total-price">
-                                        <em>Total</em>
-
-                                        <strong id="total" class="price"></strong>
-                                    </li>
-                                </ul>
-
-                                <script>
-
-                                </script>
                             </div>
                         </div>
-                        <button class="btn btn-default" type="button" onclick="window.location.assign('shop-product-list.php')">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
-                        <button class="btn btn-primary" type="submit">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
                     </div>
+
                 </div>
                 <!-- END CONTENT -->
             </div>

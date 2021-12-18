@@ -156,13 +156,21 @@ include_once('./navbar.php');
                 <div class="sidebar col-md-3 col-sm-5">
 
                     <script>
-                        const queryString = window.location.search;
-
                         function search_type(object) {
                             if (queryString.includes("?")) {
                                 location.assign(window.location.href + "&type=" + object);
                             } else {
                                 location.assign(window.location.href + "?type=" + object);
+                            }
+                        }
+
+                        function search_name(object) {
+                            var name = $("#" + object).val();
+
+                            if (queryString.includes("?")) {
+                                location.assign(window.location.href + "&name=" + name);
+                            } else {
+                                location.assign(window.location.href + "?name=" + name);
                             }
                         }
                     </script>
@@ -175,145 +183,31 @@ include_once('./navbar.php');
                         ?>
                             <li class="list-group-item clearfix"><a href="javascript:search_type(<?php echo $row['id_typepro'] ?>); ">&nbsp;<i class="fa fa-angle-right"></i><?php echo $row['name_typepro'] ?></a></li>
                         <?php endforeach; ?>
-                        <!-- <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li>
-                        <li class="list-group-item clearfix dropdown active">
-                            <a href="javascript:void(0);" class="collapsed">
-                                <i class="fa fa-angle-right"></i>
-                                Mens
 
-                            </a>
-                            <ul class="dropdown-menu" style="display:block;">
-                                <li class="list-group-item dropdown clearfix active">
-                                    <a href="javascript:void(0);" class="collapsed"><i class="fa fa-angle-right"></i> Shoes </a>
-                                    <ul class="dropdown-menu" style="display:block;">
-                                        <li class="list-group-item dropdown clearfix">
-                                            <a href="javascript:void(0);"><i class="fa fa-angle-right"></i> Classic </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 1</a></li>
-                                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 2</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="list-group-item dropdown clearfix active">
-                                            <a href="javascript:void(0);" class="collapsed"><i class="fa fa-angle-right"></i> Sport </a>
-                                            <ul class="dropdown-menu" style="display:block;">
-                                                <li class="active"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 1</a></li>
-                                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 2</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Trainers</a></li>
-                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Jeans</a></li>
-                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Chinos</a></li>
-                                <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> T-Shirts</a></li>
-                            </ul>
-                        </li> -->
-                        <!-- <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Brands</a></li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Electronics</a></li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Home & Garden</a></li>
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li> -->
                     </ul>
 
-                    <!-- <div class="sidebar-filter margin-bottom-25">
-                        <h2>กรอง</h2>
-                        <h3>ราคา</h3>
-                        <p>
-                            <label for="amount">ช่วงราคา:</label> &nbsp;&nbsp;
-                            ค้นหาจาก <span id="sliderStatusMin"></span>
-                            <br />
-                            <br />
-                        </p>
-                        <input type="text" id="sampleSlider" />
-
-                        <script>
-                            // var max_price = '';
-                            // alert(max_price);
-                            var mySlider = null;
-                            var count_bee = 0;
-                            // $(document).ready(function() {
-                            mySlider = new rSlider({
-                                target: '#sampleSlider',
-                                values: {
-                                    min: 0,
-                                    max: 100
-                                },
-                                width: null,
-                                step: 10,
-                                labels: false,
-                                range: true,
-                                tooltip: false,
-                                // set: [0, 333],
-                                scale: false,
-                                onChange: function(vals) {
-                                    // console.log(vals);
-
-
-                                    const arrStr = vals.split(",");
-                                    sliderChange(arrStr[0] + " - " + arrStr[1]);
-
-                                    const min = arrStr[0];
-                                    const max = arrStr[1];
-
-                                    if (count_bee == 1) {
-                                        count_bee = 0;
-                                        if (queryString.includes("?")) {
-                                            location.assign(window.location.href + "&between_min=" + min + "&between_max=" + max);
-                                        } else {
-                                            location.assign(window.location.href + "?" + "between_min=" + min + "&between_max=" + max);
-                                        }
-                                    }
-                                    // alert(count_bee);;
-                                    count_bee++;
-
-                                },
-                            });
-
-
-
-                            window.onload = (event) => {
-
-                            };
-                        </script>
-
-                        <script>
-                            function sliderChange(val) {
-                                document.getElementById('sliderStatusMin').innerHTML = val;
-
-                                function displayItem(val) {
-
-                                }
-
-                                displayItem(val);
-                            }
-                        </script>
-
-                    </div> -->
-
-                    <!-- <div class="sidebar-products clearfix">
-                        <h2>Bestsellers</h2>
-                        <div class="item">
-                            <a href="shop-item.php"><img src="../../script/assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                            <h3><a href="shop-item.php">Some Shoes in Animal with Cut Out</a></h3>
-                            <div class="price">$31.00</div>
-                        </div>
-                        <div class="item">
-                            <a href="shop-item.php"><img src="../../script/assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                            <h3><a href="shop-item.php">Some Shoes in Animal with Cut Out</a></h3>
-                            <div class="price">$23.00</div>
-                        </div>
-                        <div class="item">
-                            <a href="shop-item.php"><img src="../../script/assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                            <h3><a href="shop-item.php">Some Shoes in Animal with Cut Out</a></h3>
-                            <div class="price">$86.00</div>
-                        </div>
-                    </div> -->
                 </div>
-                <!-- END SIDEBAR -->
-                <!-- BEGIN CONTENT -->
+
                 <div class="col-md-9 col-sm-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- <h1>ผลการค้นหา <em><?php if (isset($_GET['search'])) :  echo $_GET['search'];
+                                                    endif; ?></em></h1> -->
+                        </div>
+                        <div class="col-md-6" style="margin-bottom: 10px;">
+                            <form action="#">
+                                <div class="input-group">
+                                    <input id="search-name" value="<?php if (isset($_GET['name'])) : echo $_GET['name'];
+                                                                    endif; ?>" type="text" placeholder="ค้นหาจากชื่อ" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button onclick="search_name('search-name')" class="btn btn-primary" type="button">ค้นหา</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
                     <div class="row list-view-sorting clearfix">
                         <div class="col-md-2 col-sm-2 list-view">
                             <a href="javascript:;"><i class="fa fa-th-large"></i></a>
@@ -395,6 +289,7 @@ include_once('./navbar.php');
                     <div class="row product-list">
 
                         <?php
+
                         $page = null;
                         $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
 
@@ -402,17 +297,18 @@ include_once('./navbar.php');
                         $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
                         $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
                         $type = isset($_GET['type']) ? $_GET['type'] : '%%';
+                        $name = isset($_GET['name']) ? $_GET['name'] : '%%';
 
                         // $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
                         // $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
                         // $between = " price_unit BETWEEN $between_min AND $between_max ";
                         // $newtype = "  id_typepro LIKE '%%' ";
 
-                        $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' ";
+                        $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' AND name_products LIKE '%$name%' ";
                         $sql_data = "SELECT * FROM products as pro 
                                                 INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
                                                 INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
-                                                WHERE pro.id_typepro LIKE '%$type%'   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+                                                WHERE pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%'   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
                         $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                         $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
@@ -437,6 +333,12 @@ include_once('./navbar.php');
 
                         //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
                         //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
+
+                        // $num = 8456.22;
+
+
+
+
                         $result_data = null;
                         $num_rows = null;
 
@@ -447,7 +349,17 @@ include_once('./navbar.php');
                         } catch (Exception $e) {
                         }
 
+                        
+                        // $fmt = new NumberFormatter('th_TH', NumberFormatter::CURRENCY);
+                        // echo $ft->formatCurrency(100, 'THB');
+
+                        // setlocale(LC_MONETARY, "en_US.UTF-8");
+                        // echo money_format("%i", $number);
+
                         foreach ($result_data as $row) :
+                            // $fmt = new NumberFormatter( 'de_DE', NumberFormatter::CURRENCY );
+                            // echo $fmt->formatCurrency(1234567.891234567890000, "EUR")."\n";
+                            // echo $fmt->formatCurrency(1234567.891234567890000, "RUR")."\n";
                         ?>
 
                             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -460,7 +372,8 @@ include_once('./navbar.php');
                                         </div>
                                     </div>
                                     <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
-                                    <div class="pi-price">฿<?php echo $row['price_unit'].'.'.'00' ?></div>
+                                    <div class="pi-price">฿<?php echo $row['price_unit']. '.' . '00'?></div>
+    
                                     <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
                                     <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input__product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                 </div>
@@ -479,7 +392,7 @@ include_once('./navbar.php');
                                             <h1><?php echo $row['name_products'] ?></h1>
                                             <div class="price-availability-block clearfix">
                                                 <div class="price">
-                                                    <strong><span>&#3647;</span><?php echo $row['price_unit'].'.'.'00' ?></strong>
+                                                    <strong><span>&#3647;</span><?php echo $row['price_unit']. '.' . '00'?></strong>
                                                     <!-- <em>&#3647;<span>62.00</span></em>   จากราคา -->
                                                 </div>
 
@@ -488,8 +401,8 @@ include_once('./navbar.php');
                                                 <p>ประเภทกาแฟ :
                                                     <strong> <?php echo $row['name_typepro']; ?></strong>
                                                 </p>
-                                                <p>คนขาย :
-                                                    <strong> <?php echo $row['name_farmers']; ?></strong>
+                                                <p>ชื่อฟาร์มที่ขาย :
+                                                    <strong><a href="./information-farm.php"><?php echo $row['name_farmers']; ?></a></strong>
                                                 </p>
                                             </div>
                                             <div class="product-page-options">
@@ -517,6 +430,7 @@ include_once('./navbar.php');
                         ?>
                         <script>
                             var count_item = 0;
+
                             function count_ch(value) {
                                 // alert(value);
                             }
@@ -528,26 +442,26 @@ include_once('./navbar.php');
                             // $("#product-quantity").on('change', function(){
 
                             // });
-                            
+
                             function add_product(id_products, id_farmers, price_unit, num_item, name_products, image_pro) {
                                 var product = [];
                                 var int_i = 0;
-                                var num_item_new = parseInt($("#"+num_item).val());
-   
+                                var num_item_new = parseInt($("#" + num_item).val());
+
                                 // alert($("#"+num_item).val());
 
                                 product_new = {
-                                        id_products: id_products,
-                                        id_farmers: id_farmers,
-                                        price_unit: price_unit,
-                                        num_item: num_item_new,
-                                        name_products: name_products,
-                                        image_pro: image_pro
-                                    };
+                                    id_products: id_products,
+                                    id_farmers: id_farmers,
+                                    price_unit: price_unit,
+                                    num_item: num_item_new,
+                                    name_products: name_products,
+                                    image_pro: image_pro
+                                };
 
                                 if (readCookie('product') == null) {
                                     createCookie("product", JSON.stringify(product));
-                                    
+
                                     product.push(product_new);
                                     createCookie("product", JSON.stringify(product));
                                     update_product();
@@ -573,7 +487,7 @@ include_once('./navbar.php');
                                     }
 
                                 }
-                                $("#"+num_item).val(1);
+                                $("#" + num_item).val(1);
                             }
                         </script>
                     </div>

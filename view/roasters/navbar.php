@@ -19,6 +19,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <?php
 include('../../config/connectdb.php');
+include('./scripts/php_li.php');
 session_start();
 $id_roasters = null;
 if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
@@ -94,7 +95,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <!-- Script -->
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-<!-- 1.11.2 -->
+    <!-- 1.11.2 -->
     <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script>
     <!-- <script src="../../script/assets/plugins/jquery.minGGG.js" type="text/javascript"></script> -->
     <script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
@@ -150,6 +151,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
             style: "currency",
             currency: "THB",
         });
+
+        function GetFilename(url) {
+            if (url) {
+                var m = url.toString().match(/.*\/(.+?)\./);
+                if (m && m.length > 1) {
+                    return m[1];
+                }
+            }
+            return "";
+        }
+
+        const queryString = window.location.search;
+        const name_file = GetFilename(window.location.href);
+
+
+        
     </script>
 
 </head>
@@ -350,9 +367,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         </ul>
                     </li> -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            สายพันธุ์เมล็ดกาแฟ
-                        </a>
+                        <!-- <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">สายพันธุ์เมล็ดกาแฟ</a>  -->
                         <!-- BEGIN DROPDOWN MENU -->
                         <ul class="dropdown-menu">
                             <!-- <li class="dropdown-submenu">
@@ -509,21 +524,29 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         <div class="search-box">
                             <form action="javascript:search()">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Search" class="form-control input-search">
+                                    <input id="input-bar-search" value="<?php if (isset($_GET['name'])) : echo $_GET['name'];
+                                                                        endif; ?>" type="text" placeholder="Search" class="form-control input-search">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="submit">Search</button>
+                                        <button onclick="search_name_nabar('input-bar-search')" class="btn btn-primary" type="button">Search</button>
                                     </span>
                                 </div>
                             </form>
 
                             <script>
-                                function search() {
-                                    // alert( );
-                                    var search_text = $('.input-search').val();
-                                    if (search_text == '') {
-                                        location.assign('./shop-search-result.php');
-                                    } else {
-                                        location.assign('./shop-search-result.php?search=' + search_text);
+                                // alert(name_file)
+                                function search_name_nabar(object) {
+                                    var name = $("#" + object).val();
+
+                                    if (name_file == "shop-product-list") {
+                                        // alert(name_file);
+                                        if (queryString.includes("?")) {
+                                            location.assign(window.location.href + "&name=" + name);
+                                        } else {
+                                            location.assign(window.location.href + "?name=" + name);
+                                        }
+                                    }else{
+                                        // alert(name_file);
+                                        location.assign("./shop-product-list.php" + "?name=" + name);
                                     }
                                 }
                             </script>
