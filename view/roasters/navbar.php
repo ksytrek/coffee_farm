@@ -93,10 +93,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
     <!-- Script -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- v1.11.2  -->
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 1.11.2 -->
     <!-- <script src="../../script/assets/plugins/jquery.min.js" type="text/javascript"></script> -->
     <!-- <script src="../../script/assets/plugins/jquery.minGGG.js" type="text/javascript"></script> -->
     <script src="../../script/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
@@ -503,7 +501,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             </li>
                         </ul>
                     </li>
-                    <li><a href="./shop-product-list.php">ที่ตั้งฟาร์ม</a></li>
+                    <li><a href="./map-farm.php">ที่ตั้งฟาร์ม</a></li>
                     <!-- BEGIN TOP SEARCH -->
                     <li class="menu-search">
                         <span class="sep"></span>
