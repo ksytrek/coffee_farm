@@ -38,6 +38,7 @@ include_once('./navbar.php');
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script> -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
 
     <style type="text/css" media="all">
         #map-canvas {
@@ -49,28 +50,111 @@ include_once('./navbar.php');
         }
     </style>
     <script>
-
-
         const urlParams = new URLSearchParams(queryString);
         const latB = urlParams.get('lat');
         const lngB = urlParams.get('lng');
+        const searchPA = urlParams.get('searchPA');
+
 
         // alert(latB);
 
         var latA = '',
             lngA = '';
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
+        // alert(searchPA);
 
-                latA = position.coords.latitude;
-                lngA = position.coords.longitude;
-
-            }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
+        function search_addPA(id) {
+            var address = document.getElementById(id).value;
+            geocoder.geocode({
+                'address': address
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
             });
         }
 
+        function search_nameE(name, lat, lng) {
+            // if (queryString.includes("?")) {
+                location.assign(insertParam(name, lat, lng));
+            // } else {
+            //     location.assign(window.location.href + "?searchPA=" + name + "&latA=" + lat + "&lngA=" + lng);
+            // }
+            // alert( insertParam('name', name));
+            // var stul = " " + insertParam('name', name)
+            // stul += insertParam('latA', lat);
+            // stul += insertParam('latA', lat);
+            // alert( insertParam(name, lat, lng))
+            // alert(window.location.href);
+        }
+
+        function insertParam(name, lat, lng) {
+            const u = new URL(window.location.href + "&searchPA=qwe&latA=0&lngA=0");
+            u.searchParams.set("searchPA", name);
+            u.searchParams.set("latA", lat);
+            u.searchParams.set("lngA", lng);
+            return u.toString();
+        }
+
+
+        if (searchPA == null) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    latA = position.coords.latitude;
+                    lngA = position.coords.longitude;
+
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            }
+        } else {
+            // searchPA = name city
+
+
+            var url = new URL(window.location.href);
+
+            url.searchParams.get("lngA");
+
+
+            const G_latA = url.searchParams.get("latA");
+            const G_lngA = url.searchParams.get("lngA");
+
+
+            latA = G_latA;
+            lngA = G_lngA;
+
+            // alert(G_latA + " " + G_lngA);
+            // if (navigator.geolocation) {
+            //     navigator.geolocation.getCurrentPosition(function(position) {
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    latA = G_latA;
+                    lngA = G_lngA;
+
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            }
+
+        }
+
+
+
+        // alert(window.location.href)
+
+        // var pointA = new google.maps.LatLng(latA, lngA);
+
         function initialize() {
+
+            Search_initialize();
             var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
 
             var pointA = new google.maps.LatLng(latA, lngA),
@@ -92,21 +176,54 @@ include_once('./navbar.php');
 
 
                 markerA = new google.maps.Marker({
+                    draggable: true, // ไม่สามารถเครื่อนย้ายได้
+                    animation: google.maps.Animation.DROP,
                     position: pointA,
                     title: "point A",
-                    label: "A",
+                    // label: "A",
                     map: map
                 }),
                 markerB = new google.maps.Marker({
+                    draggable: false, // ไม่สามารถเครื่อนย้ายได้
+                    animation: google.maps.Animation.DROP,
                     position: pointB,
                     title: "point B",
                     label: "B",
-                    map: map
+                    map: map,
+                    icon: '../../script/assets/img/logos/farm.png',
                 });
 
-            // get route from A to B
+
+
             calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+
+            // google.maps.event.addListener(markerA, 'drag', function(event) {
+            //     // document.getElementById("lat").value = marker.getPosition().lat();
+            //     // document.getElementById("lng").value = marker.getPosition().lng();
+            //     pointA = new google.maps.LatLng(markerA.getPosition().lat(), markerA.getPosition().lng());
+            //     calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+            // });
+            // google.maps.event.addListener(markerA, 'dragend', function(event) {
+            //     var point = marker.getPoint();
+            //     map.panTo(point);
+            // });
+            // get route from A to B
         }
+
+        function Search_initialize() {
+            var input = document.getElementById('searchTextField');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+                var name = document.getElementById('city_name').value = place.name;
+                var lat = document.getElementById('city_Lat').value = place.geometry.location.lat();
+                var lng = document.getElementById('city_Lng').value = place.geometry.location.lng();
+                search_nameE(name, lat, lng);
+                // alert(place.name + ' ' + place.geometry.location.lat() + ' ' + place.geometry.location.lng());
+            });
+        }
+
+
 
         function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
             directionsService.route({
@@ -124,6 +241,8 @@ include_once('./navbar.php');
                 }
             });
         }
+
+
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
@@ -144,17 +263,28 @@ include_once('./navbar.php');
             </ul>
 
             <div class="row">
+                <div class="alert-danger">
+                    <p class="text-nowrap">** หมายเหตุ : การใช้งานบนโทรศัพมือถือ -> กรุณาเปิด GPS <br> การใช้งานบนคอมพิวเตอร์หรือโน๊ตบุค -> หากพบว่าไม่เป็นที่อยู่ปัจจุบน สามารถค้นหาสถานที่ใกล้เคียงจากช่องกรอกข้อมูล
+                    </p>
+                </div>
+            </div>
+            <div class="row">
                 <!-- <div id="map-canvas"></div> -->
                 <div class="col-md-8">
                     <div id="map-canvas"></div>
                 </div>
                 <div class="col-md-4">
                     <div class="row">
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" placeholder="Enter Location You">
+                        <div class="col-md-8" style="padding-left: 0px; padding-right: 0px;">
+                            <div class="form-group">
+                                <input id="searchTextField" class="form-control" type="text" placeholder="Enter a location" autocomplete="on" runat="server" />
+                                <input type="hidden" id="city_name" name="city2" />
+                                <input type="hidden" id="city_Lat" name="cityLat" />
+                                <input type="hidden" id="city_Lng" name="cityLng" />
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-default btn-sm">ค้นหา</button>
+                            <button onclick="search_addPA('input_addPA')" type="button" class="btn btn-default btn-sm">ค้นหา</button>
                         </div>
 
                     </div>

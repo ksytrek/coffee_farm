@@ -87,7 +87,7 @@ include_once('./navbar.php');
 
 
 
-            var content = "ข้อมูลฟาร์ม <a href='./map-farm.php'>ค้นหาเส้นทาง</a>";
+            var content = "ข้อมูลฟาร์ม <a href='./directions-map-farm.php?lat=13.730995466424108&lng=100.51986257812496'>ค้นหาเส้นทาง</a>";
             var infowindow = new google.maps.InfoWindow()
 
 
