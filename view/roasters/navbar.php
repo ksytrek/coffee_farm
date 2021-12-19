@@ -115,6 +115,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
     <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
 
+
+
+    <!-- AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E -->
+    <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> -->
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script>  
+
     <script>
         //  COOKie function 
         function createCookie(name, value, days = 1) { // date /1 วัน
@@ -164,9 +173,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
         const queryString = window.location.search;
         const name_file = GetFilename(window.location.href);
-
-
-        
     </script>
 
 </head>
@@ -544,7 +550,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                                         } else {
                                             location.assign(window.location.href + "?name=" + name);
                                         }
-                                    }else{
+                                    } else {
                                         // alert(name_file);
                                         location.assign("./shop-product-list.php" + "?name=" + name);
                                     }

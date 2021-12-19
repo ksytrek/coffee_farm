@@ -37,118 +37,96 @@ include_once('./navbar.php');
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
-
-
-
-
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script> -->
 
     <style type="text/css" media="all">
         #map-canvas {
             display: block;
-            margin: 10px auto;
+            margin-bottom: 20px;
             height: 600px;
             width: 100%;
             background-color: #ccc;
         }
     </style>
     <script>
-        var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
-        var locations = [
-            ['วัดลาดปลาเค้า', 13.846876, 100.604481, 'e1'],
-            ['หมู่บ้านอารียา', 13.847766, 100.605768, 'e2'],
-            ['สปีดเวย์', 13.845235, 100.602711, 'e3'],
-            ['สเต็ก ลุงหนวด', 13.862970, 100.613834, 'e4'],
-            ['bangkok', 13.730995466424108, 100.51986257812496, 'e5'],
-        ];
-
-        // var marker;
-        var map;
-        var marker;
-        var infoWindow;
 
 
+        const urlParams = new URLSearchParams(queryString);
+        const latB = urlParams.get('lat');
+        const lngB = urlParams.get('lng');
 
+        // alert(latB);
 
-        function initialize() {
+        var latA = '',
+            lngA = '';
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
 
+                latA = position.coords.latitude;
+                lngA = position.coords.longitude;
 
-            var mapOptions = {
-                zoom: 10,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                center: bangkok
-            };
-
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-            var marker;
-            locations.forEach(function(e, i) {
-                // alert(e+ " " + i);
-                var loan = locations[i][0]
-                var lat = locations[i][1]
-                var long = locations[i][2]
-                var add = locations[i][3]
-
-                var position = new google.maps.LatLng(lat, long);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    draggable: false, // ไม่สามารถเครื่อนย้ายได้
-                    animation: google.maps.Animation.DROP,
-                    position: position,
-                    title: loan,
-                    icon: '../../script/assets/img/logos/farm.png',
-                    // 'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
-                });
-
-                // var marker = new google.maps.Marker({
-                //     map: map,
-                //     title: loan,
-                //     position: latlngset,
-                //     icon: '../../script/assets/img/logos/farm.png',
-                // });
-
-
-                var content = "ข้อมูลฟาร์ม <a href='./directions-map-farm.php?lat="+lat+"&lng="+long+"'>ค้นหาเส้นทาง</a>" ;
-                var infowindow = new google.maps.InfoWindow()
-
-
-                google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
-                    return function() {
-                        if (marker.getAnimation() != null) {
-                            marker.setAnimation(null);
-                            infowindow.close();
-                        } else {
-                            marker.setAnimation(google.maps.Animation.BOUNCE);
-                            infowindow.setContent(content);
-                            infowindow.open(map, marker);
-                        }
-                    };
-                })(marker, content, infowindow));
-
-
-                // google.maps.event.addListener(marker, 'click', toggleBounce);
-                // google.maps.event.addListener(marker, 'drag', function(event) {
-                //     // document.getElementById("lat").value = marker.getPosition().lat();
-                //     // document.getElementById("lng").value = marker.getPosition().lng();
-                // });
-                // google.maps.event.addListener(marker, 'dragend', function(event) {
-                //     var point = marker.getPoint();
-                //     map.panTo(point);
-                // });
-
-
-                // google.maps.event.addListener(marker, 'click', function() {
-                //     infoWindow.open(map, marker);
-                // });
-
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
             });
-
-
-            // setMarkers(map, locations);
         }
 
-        google.maps.event.addDomListener(window, 'load', initialize);
+        function initialize() {
+            var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
 
+            var pointA = new google.maps.LatLng(latA, lngA),
+                pointB = new google.maps.LatLng(latB, lngB),
+
+                myOptions = {
+                    zoom: 7,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: pointA
+                },
+
+
+                map = new google.maps.Map(document.getElementById('map-canvas'), myOptions),
+                // Instantiate a directions service.
+                directionsService = new google.maps.DirectionsService,
+                directionsDisplay = new google.maps.DirectionsRenderer({
+                    map: map
+                }),
+
+
+                markerA = new google.maps.Marker({
+                    position: pointA,
+                    title: "point A",
+                    label: "A",
+                    map: map
+                }),
+                markerB = new google.maps.Marker({
+                    position: pointB,
+                    title: "point B",
+                    label: "B",
+                    map: map
+                });
+
+            // get route from A to B
+            calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+            directionsService.route({
+                origin: pointA,
+                destination: pointB,
+                avoidTolls: true,
+                avoidHighways: false,
+                travelMode: google.maps.TravelMode.DRIVING
+            }, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                    directionsDisplay.setPanel(document.getElementById('panel'));
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+
 
 </head>
 
@@ -159,10 +137,33 @@ include_once('./navbar.php');
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="./shop-product-list.php">Home</a></li>
+                <li><a href="javascript:cookie();">cookie</a></li>
+                <li><a href="javascript:cookie_add();">add</a></li>
+                <li><a href="javascript:cookie_json();">add</a></li>
+
             </ul>
 
-            <div>
-                <div id="map-canvas"></div>
+            <div class="row">
+                <!-- <div id="map-canvas"></div> -->
+                <div class="col-md-8">
+                    <div id="map-canvas"></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="Enter Location You">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-default btn-sm">ค้นหา</button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="panel"></div>
+                    </div>
+                </div>
+
+
                 <!-- <iframe src="https://www.google.co.th/maps/"></iframe> -->
                 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap" async defer></script> -->
 

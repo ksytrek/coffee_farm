@@ -16,7 +16,9 @@
     <script src="js.js"></script>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD54JsxlZ79EsLprTywJdM8zs1CvMp3I08&libraries=places&language=en" async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD54JsxlZ79EsLprTywJdM8zs1CvMp3I08&libraries=places&language=en" async defer></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script>
+
 </head>
 
 <body>
@@ -28,6 +30,9 @@
 
 
 <script type="text/javascript">
+
+var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
+
     var markers = [{
             "title": 'มหาวิทยาลัยสงขลานครินทร์',
             "lat": '7.006941',
@@ -36,8 +41,8 @@
         },
         {
             "title": 'สวนสาธารณะหาดใหญ่',
-            "lat": '7.042899',
-            "lng": '100.507664',
+            "lat": '13.730995466424108',
+            "lng": '100.51986257812496',
             "description": '<b>สวนสาธารณะเทศบาลนครหาดใหญ่:</b> เป็นแหล่งพักผ่อนหย่อนใจของคนเมืองแห่งนี้ มีทัศนียภาพที่สวยงาม เต็มไปด้วยด้วยแมกไม้เขียวขจี มีอ่างเก็บน้ำขนาดใหญ่ สัตว์น้ำนานาชนิดมากมาย สมบูรณ์ด้วยธรรมชาติอันบริสุทธิ์ ที่รอคอยต้อนรับนักท่องเที่ยวให้ได้สัมผัสกับความร่มรื่นของพรรณไม้นานาชนิด'
         }
 

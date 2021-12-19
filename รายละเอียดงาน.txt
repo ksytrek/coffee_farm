@@ -32,6 +32,6 @@ transalede รายละเอียดของรายการสินค
     ติดต่อฟาร์ม
     และสั่งซื้อจำนวนเเละประริมาณ
 
-    API Goole Map Service ::::  AIzaSyDF4oooDYDVQS_m8XL62vzjh-bUDdGgYlg
-                                AIzaSyD54JsxlZ79EsLprTywJdM8zs1CvMp3I08
+    API Goole Map Service ::::  AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E
+                                AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI
 
