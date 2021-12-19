@@ -122,7 +122,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script>  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script>
 
     <script>
         //  COOKie function 
@@ -173,6 +173,54 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
         const queryString = window.location.search;
         const name_file = GetFilename(window.location.href);
+
+
+        function add_product(id_products, id_farmers, price_unit, num_item, name_products, image_pro) {
+            var product = [];
+            var int_i = 0;
+            var num_item_new = parseInt($("#" + num_item).val());
+
+            // alert($("#"+num_item).val());
+
+            product_new = {
+                id_products: id_products,
+                id_farmers: id_farmers,
+                price_unit: price_unit,
+                num_item: num_item_new,
+                name_products: name_products,
+                image_pro: image_pro
+            };
+
+            if (readCookie('product') == null) {
+                createCookie("product", JSON.stringify(product));
+
+                product.push(product_new);
+                createCookie("product", JSON.stringify(product));
+                update_product();
+
+            } else {
+                product = JSON.parse(readCookie('product')); // array type
+                product.forEach(function(value, i) {
+                    if (value.id_products == id_products) {
+                        int_i += 1;
+                        product[i].num_item += num_item_new;
+                    }
+                });
+
+                if (int_i == 0) {
+
+                    product.push(product_new);
+                    createCookie("product", JSON.stringify(product));
+
+                    update_product();
+                } else {
+                    createCookie("product", JSON.stringify(product));
+                    update_product();
+                }
+
+            }
+            $("#" + num_item).val(1);
+        }
     </script>
 
 </head>
@@ -373,7 +421,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         </ul>
                     </li> -->
                     <li class="dropdown">
-                        <!-- <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">สายพันธุ์เมล็ดกาแฟ</a>  -->
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">สายพันธุ์เมล็ดกาแฟ</a>
                         <!-- BEGIN DROPDOWN MENU -->
                         <ul class="dropdown-menu">
                             <!-- <li class="dropdown-submenu">
@@ -397,7 +445,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             <?php
                             foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
                             ?>
-                                <li><a href="./shop-search-result.php?search=<?php echo $row['name_typepro'] ?>"><?php echo $row['name_typepro'] ?></a></li>
+                                <li><a href="./shop-product-list.php?type=<?php echo $row['id_typepro'] ?>"><?php echo $row['name_typepro'] ?></a></li>
                                 <!-- <li><a href="shop-product-list.html">Jackets and Coats</a></li> -->
                             <?php
                             endforeach;
@@ -477,46 +525,18 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             <li>
                                 <div class="header-navigation-content">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class=" img-responsive" alt="Berry Lace Dress"></a>
+                                        <?php foreach (Database::query("SELECT * FROM `products` ORDER BY id_products DESC LIMIT 4;", PDO::FETCH_ASSOC) as $row) : ?>
+                                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                                <div class="product-item">
+                                                    <div class="pi-img-wrapper">
+                                                        <a href="shop-item.php?product=<?php echo $row['id_products'] ?>"><img src="../../pictures/product/<?php echo $row['image_pro'] ?>" class=" img-responsive" alt="Berry Lace Dress"></a>
+                                                    </div>
+                                                    <h3><a href="shop-item.php?product=<?php echo $row['id_products'] ?>"><?php echo $row['name_products'] ?></a></h3>
+                                                    <div class="pi-price">฿<?php echo $row['price_unit'] ?></div>
+                                                    <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input__product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                                 </div>
-                                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                             </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg" class="img-responsive" alt="Berry Lace Dress"></a>
-                                                </div>
-                                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class=" img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
-                                                </div>
-                                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6">
-                                            <div class="product-item">
-                                                <div class="pi-img-wrapper">
-                                                    <a href="shop-item.php"><img src="../../script/pictures/3.jpeg"" class=" img-responsive" alt="กาแฟโลโกกาญจนบุรี"></a>
-                                                </div>
-                                                <h3><a href="shop-item.php">กาแฟโลโกกาญจนบุรี</a></h3>
-                                                <div class="pi-price">฿29.00</div>
-                                                <a href="javascript:void(0);" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                            </div>
-                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </li>

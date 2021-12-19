@@ -371,7 +371,7 @@ include_once('./navbar.php');
                                             <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view">View</a>
                                         </div>
                                     </div>
-                                    <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
+                                    <h3><a href="shop-item.php?product=<?php echo $row['id_products'] ?>"><?php echo $row['name_products'] ?></a></h3>
                                     <div class="pi-price">฿<?php echo $row['price_unit']. '.' . '00'?></div>
     
                                     <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
@@ -413,7 +413,7 @@ include_once('./navbar.php');
                                                     <input id="input_item_product-<?php echo $row['id_products'];  ?>" onchange="count_ch(this.value)" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
                                                 </div>
                                                 <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products'];  ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
-                                                <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
+                                                <a href="shop-item.php?product=<?php echo $row['id_products'] ?>" class="btn btn-default">รายละเอียด</a>
                                             </div>
                                             <script>
 
@@ -443,52 +443,7 @@ include_once('./navbar.php');
 
                             // });
 
-                            function add_product(id_products, id_farmers, price_unit, num_item, name_products, image_pro) {
-                                var product = [];
-                                var int_i = 0;
-                                var num_item_new = parseInt($("#" + num_item).val());
-
-                                // alert($("#"+num_item).val());
-
-                                product_new = {
-                                    id_products: id_products,
-                                    id_farmers: id_farmers,
-                                    price_unit: price_unit,
-                                    num_item: num_item_new,
-                                    name_products: name_products,
-                                    image_pro: image_pro
-                                };
-
-                                if (readCookie('product') == null) {
-                                    createCookie("product", JSON.stringify(product));
-
-                                    product.push(product_new);
-                                    createCookie("product", JSON.stringify(product));
-                                    update_product();
-
-                                } else {
-                                    product = JSON.parse(readCookie('product')); // array type
-                                    product.forEach(function(value, i) {
-                                        if (value.id_products == id_products) {
-                                            int_i += 1;
-                                            product[i].num_item += num_item_new;
-                                        }
-                                    });
-
-                                    if (int_i == 0) {
-
-                                        product.push(product_new);
-                                        createCookie("product", JSON.stringify(product));
-
-                                        update_product();
-                                    } else {
-                                        createCookie("product", JSON.stringify(product));
-                                        update_product();
-                                    }
-
-                                }
-                                $("#" + num_item).val(1);
-                            }
+                            
                         </script>
                     </div>
 

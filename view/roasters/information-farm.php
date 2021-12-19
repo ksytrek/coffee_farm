@@ -43,7 +43,24 @@ include_once('./navbar.php');
     <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=GtuOframRJFxrA13qh79g)5iFSeQZHnX)woFM2oq5S1D462QaqsxgnbFbEmYlw1X1iWaNxYNMydBE0FKaI4n26W=====2&v=weekly&sensor=false&language=th" ></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&libraries=places&language=en" async defer></script> -->
     <!-- <script src="./register/js/jquery.min.js"></script> -->
+    <?php
 
+    $row = null;
+    if (isset($_GET["infr"])) {
+        $id_farmers = $_GET["infr"];
+        $sql_data_farmers = "SELECT * FROM `farmers` WHERE `id_farmers` = '$id_farmers'";
+
+        try {
+            $row = Database::query($sql_data_farmers, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . "\n";
+        }
+    } else {
+        echo "<script type='text/javascript'>" . "window.history.back(1)" . "</script>";
+    }
+
+
+    ?>
 
     <style type="text/css" media="all">
         #map-canvas {

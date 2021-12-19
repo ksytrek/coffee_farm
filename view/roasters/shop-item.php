@@ -14,8 +14,8 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
-<?php 
-    include_once('./navbar.php');
+<?php
+include_once('./navbar.php');
 ?>
 
 <!-- Head BEGIN -->
@@ -40,19 +40,35 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 
 </head>
-<!-- Head END -->
 
-<!-- Body BEGIN -->
+<?php
+
+$row = null;
+if (isset($_GET["product"])) {
+    $id_products = $_GET["product"];
+    $sql_data_item = "SELECT *,IF(`organic_farm` = 1 ,'อินทรีย์','ไม่อินทรีย์') as 'organic_farm_new',IF(type_sale=1,'ขายแบบพันธะสัญญา','ขายแบบเดี่ยว') as 'type_sale_new' FROM products as pro INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers WHERE pro.id_products = '2';SELECT * FROM products as pro INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers WHERE pro.id_products = '$id_products';";
+
+    try {
+        $row = Database::query($sql_data_item, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage() . "\n";
+    }
+} else {
+    echo "<script type='text/javascript'>" . "window.location.assign('./shop-product-list.php')" . "</script>";
+}
+
+
+?>
 
 <body class="ecommerce">
-    
+
 
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="">Store</a></li>
-                <li class="active">ชื่อประเภทกาแฟ</li>
+                <li class="active"><?php echo $row['name_products'] ?></li>
             </ul>
             <!-- BEGIN SIDEBAR & CONTENT -->
             <div class="row margin-bottom-40">
@@ -66,51 +82,34 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="product-main-image">
-                                    <img src="../../script/pictures/6.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="../../script/assets/pages/img/products/model7.jpg">
+                                    <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" alt="" class="img-responsive" data-BigImgsrc="../../pictures/product/<?php echo $row['image_pro']; ?>">
                                 </div>
-                                <!-- <div class="product-other-images">
-                                    <a href="../../script/assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model3.jpg"></a>
-                                    <a href="../../script/assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model4.jpg"></a>
-                                    <a href="../../script/assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="../../script/assets/pages/img/products/model5.jpg"></a>
-                                </div> -->
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <h1>Cool green dress with red bell</h1>
+                                <h1><?php echo $row['name_products'] ?></h1>
                                 <div class="price-availability-block clearfix">
                                     <div class="price">
-                                        <strong><span>$</span>47.00</strong>
-                                        <!-- <em>$<span>62.00</span></em> -->
+                                        <strong><span>&#3647;</span><?php echo $row['price_unit'] . '.' . '00' ?></strong>
+
                                     </div>
-                                    <!-- <div class="availability">
-                                        Availability: <strong>In Stock</strong>
-                                    </div> -->
+
                                 </div>
                                 <div class="description">
-                                    <p>รายละเอียดสินค้า</p>
+                                    <p>ประเภทกาแฟ :
+                                        <strong> <?php echo $row['name_typepro']; ?></strong>
+                                    </p>
+                                    <p>ชื่อฟาร์มที่ขาย :
+                                        <strong><a href="./information-farm.php?infr=<?php echo $row['id_farmers']; ?>"><?php echo $row['name_farmers']; ?></a></strong>
+                                    </p>
                                 </div>
-                                <!-- <div class="product-page-options">
-                                    <div class="pull-left">
-                                        <label class="control-label">Size:</label>
-                                        <select class="form-control input-sm">
-                                            <option>L</option>
-                                            <option>M</option>
-                                            <option>XL</option>
-                                        </select>
-                                    </div>
-                                    <div class="pull-left">
-                                        <label class="control-label">Color:</label>
-                                        <select class="form-control input-sm">
-                                            <option>Red</option>
-                                            <option>Blue</option>
-                                            <option>Black</option>
-                                        </select>
-                                    </div>
-                                </div> -->
+                                <div class="product-page-options">
+
+                                </div>
                                 <div class="product-page-cart">
                                     <div class="product-quantity">
-                                        <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+                                        <input id="input_item_product-<?php echo $row['id_products'];  ?>" type="text" value="1" readonly class="form-control input-sm">
                                     </div>
-                                    <button class="btn btn-primary" type="submit">เพิ่มสินค้า</button>
+                                    <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products'];  ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
                                 </div>
                                 <!-- <div class="review">
                                     <input type="range" value="4" step="0.25" id="backing4">
@@ -129,39 +128,49 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
                             <div class="product-page-content">
                                 <ul id="myTab" class="nav nav-tabs">
-                                    <li class="active" ><a href="#Description" data-toggle="tab">รายละเอียดสินค้า</a></li>
-                                    <li><a href="#Information" data-toggle="tab">ข้อมูลสินคา</a></li>
+                                    <!-- <li class=""><a href="#Description" data-toggle="tab">รายละเอียดสินค้า</a></li> -->
+                                    <li class="active"><a href="#Information" data-toggle="tab">ข้อมูลเกียวกับสินคา</a></li>
                                     <!-- <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li> -->
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
-                                    <div class="tab-pane fade in active " id="Description">
-                                        <p>รายละเอียดสินค้า</p>
+                                    <div class="tab-pane fade" id="Description">
+                                        <!-- <p>รายละเอียดสินค้า</p> -->
                                     </div>
-                                    <div class="tab-pane fade" id="Information">
+                                    <div class="tab-pane fade in active " id="Information">
                                         <table class="datasheet">
                                             <tr>
-                                                <th colspan="2">Additional features</th>
+                                                <th colspan="2">รายละเอียดสินค้า</th>
                                             </tr>
                                             <tr>
-                                                <td class="datasheet-features-type">Value 1</td>
-                                                <td>21 cm</td>
+                                                <td class="datasheet-features-type">ชื่อสินค้า</td>
+                                                <td class="text-capitalize"><?php echo $row['name_products'] ?></td>
                                             </tr>
                                             <tr>
-                                                <td class="datasheet-features-type">Value 2</td>
-                                                <td>700 gr.</td>
+                                                <td class="datasheet-features-type">ประเภทกาแฟ</td>
+                                                <td class="text-capitalize"><?php echo $row['name_typepro'] ?></td>
                                             </tr>
                                             <tr>
-                                                <td class="datasheet-features-type">Value 3</td>
-                                                <td>10 person</td>
+                                                <td class="datasheet-features-type">ราคาต่อหน่วย (บาท/kg)</td>
+                                                <td class="text-capitalize"><?php echo $row['price_unit'] ?>/Kg</td>
                                             </tr>
                                             <tr>
-                                                <td class="datasheet-features-type">Value 4</td>
-                                                <td>14 cm</td>
+                                                <td class="datasheet-features-type">จำนวนคงเหลือ (kg)</td>
+                                                <td class="text-capitalize"><?php echo $row['num_stock'] ?> (Kg)</td>
                                             </tr>
                                             <tr>
-                                                <td class="datasheet-features-type">Value 5</td>
-                                                <td>plastic</td>
+                                                <td class="datasheet-features-type">ประเภทการเพราะปลูก</td>
+                                                <td class="text-capitalize"><?php echo $row['organic_farm_new'] ?></td>
                                             </tr>
+                                            <tr>
+                                                <td class="datasheet-features-type">การค้าขายแบบ</td>
+                                                <td class="text-capitalize"><?php echo $row['type_sale_new'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="datasheet-features-type">อีเมล์เกษตรกร</td>
+                                                <td class="text-capitalize"><?php echo $row['email_farmers'] ?></td>
+                                            </tr>
+
+
                                         </table>
                                     </div>
                                     <!-- <div class="tab-pane fade in active" id="Reviews">
@@ -322,9 +331,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         </div>
     </div>
 
-<?php 
-include_once('./footer.php');
-?>
+    <?php
+    include_once('./footer.php');
+    ?>
 </body>
 <!-- END BODY -->
 
