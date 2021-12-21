@@ -121,10 +121,19 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> -->
 
 
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script>
 
     <script>
+        $(document).ready(function() {
+            var product = [];
+            if (readCookie('product') == null) {
+
+                createCookie("product", JSON.stringify(product));
+
+            }
+        });
         //  COOKie function 
         function createCookie(name, value, days = 1) { // date /1 วัน
             var expires = "";

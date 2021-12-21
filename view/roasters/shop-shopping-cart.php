@@ -192,16 +192,8 @@ include_once('./navbar.php');
 
                                                     $(document).ready(function() {
                                                         product_item_all();
-
-                                                        // Format the price above to USD, INR, EUR using their locales.
-
-                                                        // $("#total").html("<span>฿</span>" + total);
-                                                        // dollarUS.format(price)
                                                         $("#total").html(THB.format(total));
 
-                                                        // $("input[name='demo_vertical']").TouchSpin({
-                                                        //     verticalbuttons: true
-                                                        // });
                                                     });
                                                 </script>
 

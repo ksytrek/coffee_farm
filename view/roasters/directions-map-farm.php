@@ -38,7 +38,6 @@ include_once('./navbar.php');
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script> -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
 
     <style type="text/css" media="all">
         #map-canvas {
@@ -81,7 +80,7 @@ include_once('./navbar.php');
 
         function search_nameE(name, lat, lng) {
             // if (queryString.includes("?")) {
-                location.assign(insertParam(name, lat, lng));
+            location.assign(insertParam(name, lat, lng));
             // } else {
             //     location.assign(window.location.href + "?searchPA=" + name + "&latA=" + lat + "&lngA=" + lng);
             // }
@@ -100,6 +99,7 @@ include_once('./navbar.php');
             u.searchParams.set("lngA", lng);
             return u.toString();
         }
+
 
 
         if (searchPA == null) {
@@ -141,6 +141,8 @@ include_once('./navbar.php');
 
                 }, function() {
                     handleLocationError(true, infoWindow, map.getCenter());
+
+
                 });
             }
 
@@ -237,7 +239,13 @@ include_once('./navbar.php');
                     directionsDisplay.setDirections(response);
                     directionsDisplay.setPanel(document.getElementById('panel'));
                 } else {
-                    window.alert('Directions request failed due to ' + status);
+                    // window.alert('Directions request failed due to ' + status);
+                    if (confirm('กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง')) {
+                        location.reload();
+                    } else {
+                        alert("กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง");
+                        location.reload();
+                    }
                 }
             });
         }
