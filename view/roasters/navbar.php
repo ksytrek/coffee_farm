@@ -204,7 +204,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                 createCookie("product", JSON.stringify(product));
 
                 product.push(product_new);
-                createCookie("product", JSON.stringify(product));11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+                createCookie("product", JSON.stringify(product));
                 update_product();
 
             } else {
