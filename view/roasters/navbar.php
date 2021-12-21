@@ -102,7 +102,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <script src="../../script/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
     <script src="../../script/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
-    
+
     <script src="../../script/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 
     <script src="../../script/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
@@ -534,7 +534,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             <li>
                                 <div class="header-navigation-content">
                                     <div class="row">
-                                        <?php foreach (Database::query("SELECT * FROM `products` ORDER BY id_products DESC LIMIT 4;", PDO::FETCH_ASSOC) as $row) : ?>
+                                        <?php foreach (Database::query("SELECT * FROM `products` WHERE  id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0) ORDER BY id_products DESC LIMIT 4;", PDO::FETCH_ASSOC) as $row) : ?>
                                             <div class="col-md-3 col-sm-4 col-xs-6">
                                                 <div class="product-item">
                                                     <div class="pi-img-wrapper">

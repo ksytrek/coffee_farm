@@ -304,11 +304,11 @@ include_once('./navbar.php');
                         // $between = " price_unit BETWEEN $between_min AND $between_max ";
                         // $newtype = "  id_typepro LIKE '%%' ";
 
-                        $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' AND name_products LIKE '%$name%' ";
+                        $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' AND name_products LIKE '%$name%' AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0) ";
                         $sql_data = "SELECT * FROM products as pro 
                                                 INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
                                                 INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
-                                                WHERE pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%'   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+                                                WHERE pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%' AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0)   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
                         $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                         $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
