@@ -219,8 +219,18 @@ include_once('./navbar.php');
                                         <script>
                                             $("#confirm_sales_orders").click(function() {
                                                 // alert("Please");
+                                                
                                                 const json = readCookie('product');
                                                 const product = JSON.parse(json);
+                                                
+                                                // ID_ROASTERS  รหัสผู้ใช้ล็อกอิน
+                                                
+                                                product.forEach(function(value,index) {
+                                                    
+                                                });
+
+
+
 
                                                 
 
