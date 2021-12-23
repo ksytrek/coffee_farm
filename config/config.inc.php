@@ -9,7 +9,7 @@
     define("DB_NAME", "coffee_farm");
 
     define("DB_DNS_MYSQL", "mysql:host=" . DB_HOST . "; dbname=" . DB_NAME);
-    define("DB_DNS_SQLITE", "sqlite:db/sqlite_file");
+    // define("DB_DNS_SQLITE", "sqlite:db/sqlite_file");
 
 
     // define("DB_PREFIX", "face_detection");

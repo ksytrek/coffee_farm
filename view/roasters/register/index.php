@@ -21,7 +21,9 @@ include_once("../../../config/connectdb.php");
 </head>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
-<script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
+<script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&sensor=false&language=th"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script> -->
+
 
 
 <style type="text/css" media="all">
@@ -102,11 +104,11 @@ include_once("../../../config/connectdb.php");
 
 					<!-- ชื่อโรงคั่วกาแฟ  company -->
 					<div class="form-row">
-						<input type="text" name="company" class="company input-name_roasters" id="company" placeholder="ชื่อโรงคั่วกาแฟ" required>
+						<input type="text" name="company" class="company input-name_roasters"  placeholder="ชื่อโรงคั่วกาแฟ" required>
 					</div>
 					<!-- เลขทะเบียนการค้า trade registration number -->
 					<div class="form-row">
-						<input type="text" name="company" class="company input-num_trade_reg" id="company" placeholder="เลขทะเบียนการค้า" required>
+						<input type="text" name="company" class="company input-num_trade_reg"  placeholder="เลขทะเบียนการค้า" required>
 					</div>
 					<script>
 						$('.input-num_trade_reg').keyup(function() {
@@ -145,7 +147,7 @@ include_once("../../../config/connectdb.php");
 						</div>
 					</div>
 					<div class="form-row">
-						<input type="email" name="company" class="company input-e_mail_roasters" id="company" placeholder="อีเมลโรงคั่วกาแฟ" required>
+						<input type="email" name="company" class="company input-e_mail_roasters"  placeholder="อีเมลโรงคั่วกาแฟ" required>
 						<script>
 							$('.input-e_mail_roasters').keyup(function() {
 								var str = $(this).val();
@@ -175,18 +177,18 @@ include_once("../../../config/connectdb.php");
 						</script>
 					</div>
 					<div class="form-row">
-						<input type="password" name="company" class="company input-pass_roasters" id="company" placeholder="รหัสผ่านโรงคั่วกาแฟ" required>
+						<input type="password" name="company" class="company input-pass_roasters"  placeholder="รหัสผ่านโรงคั่วกาแฟ" required>
 					</div>
 					<!-- รายละเอียดต่าง ๆ -->
 					<div class="form-row">
-						<!-- <input type="text" name="company" class="company" id="company" placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ" required> -->
+						<!-- <input type="text" name="company" class="company"  placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ" required> -->
 						<textarea class="input-detail_roasters" placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ"></textarea>
 					</div>
 
 
 					<!-- 	ที่ตั้งสำนักงาน -->
 					<!-- <div class="form-row">
-						<input type="text" name="company" class="company" id="company" placeholder="ที่ตั้งสำนักงาน" required>
+						<input type="text" name="company" class="company"  placeholder="ที่ตั้งสำนักงาน" required>
 					</div> -->
 
 
@@ -225,18 +227,18 @@ include_once("../../../config/connectdb.php");
 					<h5>ที่ตั้งสำนักงาน</h5>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="" id="" class="input-text input-add_number" placeholder="เลขที่/หมูที่" required>
+							<input type="text" name="" class="input-text input-add_number" placeholder="เลขที่/หมูที่" required>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="last_name" id="last_name" class="input-text input-road" placeholder="ซอย/ถนน" required>
+							<input type="text" name="last_name"  class="input-text input-road" placeholder="ซอย/ถนน" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="" id="" class="input-text input-sub-district" placeholder="แขวง / ตำบล" required>
+							<input type="text" name="" class="input-text input-sub-district" placeholder="แขวง / ตำบล" required>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="last_name" id="last_name" class="input-text input-district" placeholder="เขต / อำเภอ" required>
+							<input type="text" name="last_name"  class="input-text input-district" placeholder="เขต / อำเภอ" required>
 						</div>
 					</div>
 					<!-- <div class="form-row">

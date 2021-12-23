@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2021 at 03:06 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.24
+-- Generation Time: Dec 23, 2021 at 06:37 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,7 +61,7 @@ CREATE TABLE `products` (
   `id_typepro` int(11) NOT NULL COMMENT 'ประเภทกาแฟ',
   `num_stock` int(11) NOT NULL COMMENT 'จำนวนคงเหลือ (kg)',
   `price_unit` float NOT NULL COMMENT 'ราคาต่อหน่วย (บาท/kg)',
-  `status_products` int(11) NOT NULL COMMENT 'สถานะสินค้า',
+  `status_products` int(11) NOT NULL DEFAULT 1 COMMENT 'สถานะสินค้า',
   `id_farmers` int(11) NOT NULL,
   `image_pro` varchar(200) NOT NULL COMMENT 'รูปสินค้า'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -189,11 +189,11 @@ CREATE TABLE `roasters` (
 
 CREATE TABLE `transale` (
   `id_transale` int(11) NOT NULL COMMENT 'รหัสรายการขาย',
-  `date_transale` date NOT NULL COMMENT 'วันที่ทำรายการขาย',
+  `date_transale` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่ทำรายการขาย',
   `id_farmers` int(11) NOT NULL COMMENT 'รหัสเกษตรกร',
   `id_roasters` int(11) NOT NULL COMMENT 'รหัสโรงคั่วกาแฟ',
   `sum_price` float NOT NULL COMMENT 'ราคายอดรวม',
-  `status_transale` int(11) NOT NULL COMMENT 'สถานะ 1 = รอยืนยันคำสั่งขาย 2 = ยืนยันคำสั่งขายและดำเนินการ 3 = การซื้อขายเสร็จสิ้น 4 = ยกเลิกการซื้อขาย '
+  `status_transale` int(11) NOT NULL DEFAULT 1 COMMENT 'สถานะ 1 = รอยืนยันคำสั่งขาย 2 = ยืนยันคำสั่งขายและดำเนินการ 3 = การซื้อขายเสร็จสิ้น 4 = ยกเลิกการซื้อขาย '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -318,7 +318,7 @@ ALTER TABLE `roasters`
 -- AUTO_INCREMENT for table `transale`
 --
 ALTER TABLE `transale`
-  MODIFY `id_transale` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการขาย';
+  MODIFY `id_transale` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการขาย', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transalede`

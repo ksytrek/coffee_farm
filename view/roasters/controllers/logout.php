@@ -2,7 +2,7 @@
 session_start();
 session_unset();
 
-header("location:"."../shop-index.php");
+header("location:"."../shop-product-list.php");
 
 
 ?>
