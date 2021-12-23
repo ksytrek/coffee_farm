@@ -16,10 +16,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!--<![endif]-->
 
 <!-- Head BEGIN -->
-<!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
- -->
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
-
+<script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
 <style type="text/css" media="all">
     /* body {
 		background-color: #fff;
@@ -333,20 +330,14 @@ include_once('./navbar.php');
                                             </div>
                                             <script>
                                                 // get a reference to the file input
-                                                try {
-                                                    
-                                                } catch (Exception) {
-                                                    
-                                                }
-
-                                                const imageElement_ = document.querySelector("img[id=img]");
+                                                const imageElement = document.querySelector("img[id=img]");
                                                 var base64StringImg = null;
                                                 // get a reference to the file input
-                                                const fileInput_ = document.querySelector("input[id=input-image_farmers]");
+                                                const fileInput = document.querySelector("input[type=file]");
 
                                                 var canvas;
                                                 // listen for the change event so we can capture the file
-                                                fileInput_.addEventListener("change", (e) => {
+                                                fileInput.addEventListener("change", (e) => {
                                                     // get a reference to the file
                                                     const file = e.target.files[0];
                                                     // console.log(file);
@@ -356,8 +347,8 @@ include_once('./navbar.php');
 
                                                     const reader = new FileReader();
                                                     reader.onloadend = (e) => {
-                                                        var img_ = document.createElement("img");
-                                                        img_.onload = function(event) {
+                                                        var img = document.createElement("img");
+                                                        img.onload = function(event) {
                                                             // Dynamically create a canvas element
                                                             var canvas = document.createElement("canvas");
                                                             canvas.width = 800;
@@ -365,33 +356,22 @@ include_once('./navbar.php');
                                                             // var canvas = document.getElementById("canvas");
                                                             var ctx = canvas.getContext("2d");
                                                             // Actual resizing
-                                                            ctx.drawImage(img_, 0, 0, canvas.width, canvas.height);
+                                                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
                                                             // Show resized image in preview element
                                                             var dataurl = canvas.toDataURL(file.type);
                                                             // document.getElementById("preview").src = dataurl;
-                                                            imageElement_.src = dataurl;
+                                                            imageElement.src = dataurl;
 
                                                             // console.log(dataurl.replace(/^data:image\/(png|jpg);base64,/, ""));
-                                                            const base64String_S = dataurl
+                                                            const base64String = dataurl
                                                                 .replace("data:", "")
                                                                 .replace(/^.+,/, "");
-                                                            base64StringImg = base64String_S;
+                                                            base64StringImg = base64String;
 
-                                                            // console.log(base64String_S);
-                                                            // location.assign("./controllers/bs.php?s="+base64StringImg);
-                                                            // $.ajax({
-                                                            //     url: "./controllers/bs.php",
-                                                            //     type: "POST",
-                                                            //     data : {
-                                                            //         data: base64StringImg
-                                                            //     },
-                                                            //     success: function(result, textStatus, jqXHR) {
-                                                            //         console.log(result);
-                                                            //     }
-                                                            // });
+                                                            // console.log(base64String);
                                                         }
-                                                        img_.src = e.target.result;
+                                                        img.src = e.target.result;
                                                     };
                                                     reader.readAsDataURL(file);
                                                 });
@@ -403,7 +383,7 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกไร่ <span class="require">*</span></label>
-                                                    <input name="input-num_farm" required min="0"  type="number" class="form-control">
+                                                    <input name="input-num_farm" required type="number" class="form-control">
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
@@ -416,7 +396,7 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกงาน <span class="require">*</span></label>
-                                                    <input name="input-num_field"  min="0" required type="number" class="form-control">
+                                                    <input name="input-num_field" required type="number" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -518,7 +498,7 @@ include_once('./navbar.php');
                                         <div class="form-group">
                                             <label for="post-code">รหัสไปรษณี
                                                 <span class="require">*</span></label>
-                                            <input name="input-post_office" min="0"  required type="number" id="post-code" class="form-control">
+                                            <input name="input-post_office" required type="number" id="post-code" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="country">จังหวัด<span class="require">*</span></label>
@@ -621,9 +601,7 @@ include_once('./navbar.php');
                                     values['input-organic_farm'] = $('input[name=input-organic_farm]:checked', $(this)).val();
                                     values['input-type_sale'] = $('input[name=input-type_sale]:checked', $(this)).val();
                                     // alert(
-                                    console.log(JSON.stringify(values));
-
-
+                                    // console.log(JSON.stringify(values));
                                     $.ajax({
                                         url: "./controllers/register_faramers.php",
                                         type: "POST",

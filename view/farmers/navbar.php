@@ -454,10 +454,10 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                                                 imageElement.src = dataurl;
 
                                                 // console.log(dataurl.replace(/^data:image\/(png|jpg);base64,/, ""));
-                                                const base64String = dataurl
+                                                const base64String_ = dataurl
                                                     .replace("data:", "")
                                                     .replace(/^.+,/, "");
-                                                base64StringImg_product = base64String;
+                                                base64StringImg_product = base64String_;
 
                                                 // console.log(base64String);
                                             }
