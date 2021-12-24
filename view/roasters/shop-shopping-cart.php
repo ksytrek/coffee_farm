@@ -145,6 +145,7 @@ include_once('./navbar.php');
                                                             // $(".shopping-total").hide();
                                                             // $("#div-product").hide();
                                                             $("#div-product").html('ตะกร้าสินค้าของคุณ ไม่มีสินค้า <a href="shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a>');
+                                                            $("#confirm_sales_orders").css('display', 'none');
                                                         }
 
                                                         $('#tbb_product_item_all').html(str_items);
@@ -219,6 +220,8 @@ include_once('./navbar.php');
                                         <button class="btn btn-default" type="button" onclick="window.location.assign('shop-product-list.php')">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
                                         <button id="confirm_sales_orders" class="btn btn-primary" type="button">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
                                         <script>
+
+                                            
                                             $("#confirm_sales_orders").click(function() {
                                                 // alert(ID_ROASTERS);
                                                 if(ID_ROASTERS ==  'null'){

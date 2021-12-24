@@ -18,7 +18,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- Head BEGIN -->
 <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
  -->
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
 
 <style type="text/css" media="all">
     /* body {
@@ -206,11 +206,11 @@ include_once('./navbar.php');
                                                             },
                                                             success: function(result, textStatus, jqXHR) {
                                                                 // alert(result);
-                                                                if(result == '1'){
+                                                                if (result == '1') {
                                                                     alert("ยินดีตอนรับเข้าสู่ระบบ");
                                                                     location.assign('./framers-index.php');
 
-                                                                }else{
+                                                                } else {
                                                                     alert('รหัสผ่านไม่ถูกต้อง');
                                                                     // alert(result);
                                                                 }
@@ -332,8 +332,6 @@ include_once('./navbar.php');
                                                 </div>
                                             </div>
                                             <script>
-         
-
                                                 const imageElement_ = document.querySelector("img[id=img]");
                                                 var base64StringImg = null;
                                                 // get a reference to the file input
@@ -398,7 +396,7 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกไร่ <span class="require">*</span></label>
-                                                    <input name="input-num_farm" required min="0"  type="number" class="form-control">
+                                                    <input name="input-num_farm" required min="0" type="number" class="form-control">
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
@@ -411,7 +409,7 @@ include_once('./navbar.php');
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกงาน <span class="require">*</span></label>
-                                                    <input name="input-num_field"  min="0" required type="number" class="form-control">
+                                                    <input name="input-num_field" min="0" required type="number" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -479,7 +477,7 @@ include_once('./navbar.php');
 
 
 
-                                                <!-- ยังไม่เช็ค อีเมล์เกษตรกร ว่ามีการซ้ำกันหรือไม่  -->
+                                        <!-- ยังไม่เช็ค อีเมล์เกษตรกร ว่ามีการซ้ำกันหรือไม่  -->
                                         <h3>ข้อมูลเข้าระบบ</h3>
                                         <div class="form-group">
                                             <label for="password"> E-Mail <span class="require">*</span></label>
@@ -513,7 +511,7 @@ include_once('./navbar.php');
                                         <div class="form-group">
                                             <label for="post-code">รหัสไปรษณี
                                                 <span class="require">*</span></label>
-                                            <input name="input-post_office" min="0"  required type="number" id="post-code" class="form-control">
+                                            <input name="input-post_office" min="0" required type="number" id="post-code" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="country">จังหวัด<span class="require">*</span></label>
@@ -550,8 +548,8 @@ include_once('./navbar.php');
 
 
                                         <div class="form-group">
-                                            <label for="city"> เลือกที่ตั้งฟามร์ม <span class="require">*</span></label>
-                                            <div id="map-canvas" class="map-canvas"></div>
+                                            <label for="city"> เลือกที่ตั้งฟามร์ม <span class="require">*</span><a href="javascript:initialize();$('#map-canvas').css('display','block');">คลิ๊กเพื่อเลือกที่ตั้งฟาร์ม</a></label>
+                                            <div id="map-canvas" style="display: none" class="map-canvas"></div>
                                         </div>
                                     </div>
 
@@ -589,7 +587,7 @@ include_once('./navbar.php');
                                         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">ลงทะเบียน</button>
 
                                     </div>
-                                <!-- </form> -->
+                                    <!-- </form> -->
                             </div>
                             <script>
                                 // $("#button-payment-address").click(function() {
@@ -646,9 +644,8 @@ include_once('./navbar.php');
                                         }
                                     });
                                 });
-     
                             </script>
- 
+
                         </div>
                         <!-- END CHECKOUT PAGE -->
                     </div>
