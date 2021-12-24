@@ -142,8 +142,6 @@ include_once('./navbar.php');
                     function getByteSize(s) {
                         return encodeURIComponent('<q></q>' + s).length;
                     }
-
-                    $()
                 </script>
 
                 <!-- <li><a href="">Store</a></li> -->
@@ -191,8 +189,7 @@ include_once('./navbar.php');
                 <div class="col-md-9 col-sm-7">
                     <div class="row">
                         <div class="col-md-6">
-                            <!-- <h1>ผลการค้นหา <em><?php if (isset($_GET['search'])) :  echo $_GET['search'];
-                                                    endif; ?></em></h1> -->
+
                         </div>
                         <div class="col-md-6" style="margin-bottom: 10px;">
                             <form action="#">
@@ -349,7 +346,7 @@ include_once('./navbar.php');
                         } catch (Exception $e) {
                         }
 
-                        
+
                         // $fmt = new NumberFormatter('th_TH', NumberFormatter::CURRENCY);
                         // echo $ft->formatCurrency(100, 'THB');
 
@@ -372,8 +369,8 @@ include_once('./navbar.php');
                                         </div>
                                     </div>
                                     <h3><a href="shop-item.php?product=<?php echo $row['id_products'] ?>"><?php echo $row['name_products'] ?></a></h3>
-                                    <div class="pi-price">฿<?php echo $row['price_unit']. '.' . '00'?></div>
-    
+                                    <div class="pi-price">฿<?php echo $row['price_unit'] . '.' . '00' ?></div>
+
                                     <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
                                     <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input__product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
                                 </div>
@@ -392,7 +389,7 @@ include_once('./navbar.php');
                                             <h1><?php echo $row['name_products'] ?></h1>
                                             <div class="price-availability-block clearfix">
                                                 <div class="price">
-                                                    <strong><span>&#3647;</span><?php echo $row['price_unit']. '.' . '00'?></strong>
+                                                    <strong><span>&#3647;</span><?php echo $row['price_unit'] . '.' . '00' ?></strong>
                                                     <!-- <em>&#3647;<span>62.00</span></em>   จากราคา -->
                                                 </div>
 
@@ -402,7 +399,7 @@ include_once('./navbar.php');
                                                     <strong> <?php echo $row['name_typepro']; ?></strong>
                                                 </p>
                                                 <p>ชื่อฟาร์มที่ขาย :
-                                                    <strong><a href="./information-farm.php"><?php echo $row['name_farmers']; ?></a></strong>
+                                                    <strong><a href="./information-farm.php?infr=<?php echo $row['id_farmers'] ?>"><?php echo $row['name_farmers']; ?></a></strong>
                                                 </p>
                                             </div>
                                             <div class="product-page-options">
@@ -442,8 +439,6 @@ include_once('./navbar.php');
                             // $("#product-quantity").on('change', function(){
 
                             // });
-
-                            
                         </script>
                     </div>
 

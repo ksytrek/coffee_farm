@@ -46,7 +46,11 @@ include_once('./navbar.php');
 $row = null;
 if (isset($_GET["product"])) {
     $id_products = $_GET["product"];
-    $sql_data_item = "SELECT *,IF(`organic_farm` = 1 ,'อินทรีย์','ไม่อินทรีย์') as 'organic_farm_new',IF(type_sale=1,'ขายแบบพันธะสัญญา','ขายแบบเดี่ยว') as 'type_sale_new' FROM products as pro INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers WHERE pro.id_products = '2';SELECT * FROM products as pro INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers WHERE pro.id_products = '$id_products';";
+    $sql_data_item = "SELECT *,IF(`organic_farm` = 1 ,'อินทรีย์','ไม่อินทรีย์') as 'organic_farm_new',IF(type_sale=1,'ขายแบบพันธะสัญญา','ขายแบบเดี่ยว') as 'type_sale_new' 
+    FROM products as pro 
+    INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
+    INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
+    WHERE pro.id_products = '$id_products';";
 
     try {
         $row = Database::query($sql_data_item, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);

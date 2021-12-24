@@ -72,7 +72,7 @@ include_once('./navbar.php');
         }
     </style>
     <script>
-        var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
+        var farmLocation = new google.maps.LatLng("<?php echo $row['lat_farm'] ?>","<?php echo $row['lng_farm'] ?>");
 
         var map;
         var marker;
@@ -87,7 +87,7 @@ include_once('./navbar.php');
             var mapOptions = {
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                center: bangkok
+                center: farmLocation
             };
 
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -96,7 +96,7 @@ include_once('./navbar.php');
                 map: map,
                 draggable: false, // ไม่สามารถเครื่อนย้ายได้
                 animation: google.maps.Animation.DROP,
-                position: bangkok,
+                position: farmLocation,
                 title: 'loan',
                 icon: '../../script/assets/img/logos/farm.png',
                 // 'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
@@ -160,7 +160,7 @@ include_once('./navbar.php');
                                     <h4>รูปเกษตรกร</h4>
                                 </label>
                                 <div class="product-main-image">
-                                    <img src="../../script/pictures/6.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="../../script/assets/pages/img/products/model7.jpg">
+                                    <img src="../../pictures/farmers/<?php echo $row['image_farmers'] ?>" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="../../pictures/farmers/<?php echo $row['image_farmers'] ?>">
                                 </div>
                             </div>
 
@@ -349,16 +349,13 @@ include_once('./navbar.php');
                                                 $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
                                                 $type = isset($_GET['type']) ? $_GET['type'] : '%%';
 
-                                                // $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
-                                                // $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
-                                                // $between = " price_unit BETWEEN $between_min AND $between_max ";
-                                                // $newtype = "  id_typepro LIKE '%%' ";
 
-                                                $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' ";
+
+                                                $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' AND id_farmers = '$id_farmers' ";
                                                 $sql_data = "SELECT * FROM products as pro 
                                                 INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
                                                 INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
-                                                WHERE pro.id_typepro LIKE '%$type%'   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+                                                WHERE pro.id_typepro LIKE '%$type%' AND far.id_farmers = '$id_farmers'   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
                                                 $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                                                 $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
@@ -377,12 +374,6 @@ include_once('./navbar.php');
                                                     $start = 0;
                                                 }
 
-                                                // echo $_GET['page'];
-
-
-
-                                                //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
-                                                //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
                                                 $result_data = null;
                                                 $num_rows = null;
 
@@ -391,6 +382,7 @@ include_once('./navbar.php');
                                                     $result_data =  Database::query($sql_data, PDO::FETCH_ASSOC);
                                                     $num_rows = $result_data->rowCount();
                                                 } catch (Exception $e) {
+                                                    echo "<script type='text/javascript'>" . "alert('ตรวจพบขอผิดพลาด');window.history.back(1);" . "</script>";
                                                 }
 
                                                 foreach ($result_data as $row) :

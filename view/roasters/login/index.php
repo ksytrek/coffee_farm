@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 
 </head>
 
@@ -37,34 +38,36 @@
 							<div class="form-group">
 								<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
 								<script>
-									function login(){
+									function login() {
 										var e_mail_roasters = $('#email_roasters').val();
 										var pass_roasters = $('#password_roasters').val();
 
 										// alert(email_roasters + " " + password_roasters);
 										$.ajax({
-											url : './controller/login.php',
-											type : 'POST',
-											data:{
+											url: './controller/login.php',
+											type: 'POST',
+											data: {
 												key: 'login_roasters',
 												e_mail_roasters: e_mail_roasters,
 												pass_roasters: pass_roasters
-											},success : function(result, textStatus,jqXHR){
+											},
+											success: function(result, textStatus, jqXHR) {
 												// alert(result);
-												
+
 												var json = JSON.parse(result);
-												if(json != ""){
+												if (json != "") {
 													alert('ยินดีตอนรับเข้าสู่ระบบ');
 													location.assign('../shop-product-list.php');
-												}else{
+												} else {
 													// alert(json[0].pass_roasters);
 													alert('รหัสผ่านไม่ถูกต้อง');
 
 												}
 												// var e_mail_roasters = json[0].e_mail_roasters;
 												// var pass_roasters = json[0].pass_roasters;
-											},error : function(result, textStatus, jqXHR){
-												alert('เกินข้อผิดพลาดทางระบบ'); 
+											},
+											error: function(result, textStatus, jqXHR) {
+												alert('เกินข้อผิดพลาดทางระบบ');
 											}
 										});
 									}
@@ -111,7 +114,8 @@
 							</div>
 							<div class="form-group d-md-flex">
 								<div class="w-100 text-md-center">
-									<!-- <a href="#" style="color: #fff">Forgot Password</a>	 -->
+									<a href="./forgot_password.php" style="color: #fff">Forgot Password</a>
+									
 								</div>
 							</div>
 						</form>
