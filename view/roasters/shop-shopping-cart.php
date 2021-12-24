@@ -65,10 +65,12 @@ include_once('./navbar.php');
                         <div class="product-page-content">
                             <ul id="myTab" class="nav nav-tabs">
                                 <li class="active"><a href="#product_all" data-toggle="tab">ตะกร้าสินค้าสินค้าทั้งหมด</a></li>
+                                <?php if (isset($id_roasters)) : ?>
                                 <li class=""><a href="#wait_for_sale" data-toggle="tab">รอยืนยันจากผู้ขาย</a></li>
                                 <li class=""><a href="#confirm_sales_orders" data-toggle="tab">รอดำเนินการ</a></li>
                                 <li class=""><a href="#trade_complete" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
                                 <li class=""><a href="#cancel_trade" data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
+                                <?php endif;?>
                             </ul>
 
                             <div id="myTabContent" class="tab-content">
@@ -218,7 +220,11 @@ include_once('./navbar.php');
                                         <button id="confirm_sales_orders" class="btn btn-primary" type="button">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
                                         <script>
                                             $("#confirm_sales_orders").click(function() {
-                                                // alert("Please");
+                                                // alert(ID_ROASTERS);
+                                                if(ID_ROASTERS ==  'null'){
+                                                    alert("กรุณาล็อกอินเข้าสู่ระบบก่อน");
+                                                    location.assign('./login/');
+                                                }
                                                 
                                                 const json = readCookie('product');
                                                 const product = JSON.parse(json);

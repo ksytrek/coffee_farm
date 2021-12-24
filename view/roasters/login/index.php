@@ -109,13 +109,16 @@
 									</script>
 								</div>
 								<div class="w-50 text-md-right">
-									<a href="../register/" style="color: #fff">Sign UP</a>
+									<a href="../shop-product-list.php" style="color: #fff">เข้าสู่หน้าหลัก</a>
+									
 								</div>
 							</div>
-							<div class="form-group d-md-flex">
-								<div class="w-100 text-md-center">
+							<div class=" form-group d-md-flex" style="margin-top:-10px" >
+								<div class="w-50 ">
+								<a href="../register/" style="color: #fff">Sign UP</a>
+								</div>
+								<div class="w-50 text-md-right">
 									<a href="./forgot_password.php" style="color: #fff">Forgot Password</a>
-									
 								</div>
 							</div>
 						</form>

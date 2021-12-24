@@ -19,7 +19,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <?php
 include('../../config/connectdb.php');
-include('./scripts/php_li.php');
+// include('./scripts/php_li.php');
 session_start();
 $id_roasters = null;
 if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
@@ -28,7 +28,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
 ?>
 <script>
-    const ID_ROASTERS = '<?php echo $id_roasters; ?>';
+    const ID_ROASTERS = '<?php echo $id_roasters == null ? "null" :"$id_roasters"; ?>';
     // alert(ID_ROASTERS);
 </script>
 
@@ -233,57 +233,14 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 <!-- Body BEGIN -->
 
 <body class="ecommerce">
-    <!-- BEGIN STYLE CUSTOMIZER -->
-    <!-- <div class="color-panel hidden-sm">
-        <div class="color-mode-icons icon-color"></div>
-        <div class="color-mode-icons icon-color-close"></div>
-        <div class="color-mode">
-            <p>THEME COLOR</p>
-            <ul class="inline">
-                <li class="color-red current color-default" data-style="red"></li>
-                <li class="color-blue" data-style="blue"></li>
-                <li class="color-green" data-style="green"></li>
-                <li class="color-orange" data-style="orange"></li>
-                <li class="color-gray" data-style="gray"></li>
-                <li class="color-turquoise" data-style="turquoise"></li>
-            </ul>
-        </div>
-    </div> -->
-    <!-- END BEGIN STYLE CUSTOMIZER -->
 
-    <!-- BEGIN TOP BAR -->
     <div class="pre-header">
         <div class="container">
             <div class="row">
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <!-- <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li> -->
-                        <!-- BEGIN CURRENCIES -->
 
-
-                        <!-- <li class="shop-currencies">
-                            <a href="javascript:void(0);">€</a>
-                            <a href="javascript:void(0);">£</a>
-                            <a href="javascript:void(0);" class="current">$</a>
-                        </li> -->
-
-                        <!-- END CURRENCIES -->
-                        <!-- BEGIN LANGS -->
-
-                        <!-- เลือกภาษาใช้เเสดง -->
-                        <!-- <li class="langs-block">
-                            <a href="javascript:void(0);" class="current">English </a>
-                            <div class="langs-block-others-wrapper">
-                                <div class="langs-block-others">
-                                    <a href="javascript:void(0);">French</a>
-                                    <a href="javascript:void(0);">Germany</a>
-                                    <a href="javascript:void(0);">Turkish</a>
-                                </div>
-                            </div>
-                        </li> -->
-
-                        <!-- END LANGS -->
                     </ul>
                 </div>
                 <!-- END TOP BAR LEFT PART -->
@@ -296,7 +253,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             <li><a href="../roasters/login/">Sign In</a></li>
                             <li><a href="../roasters/register/">Sign UP</a></li>
                         <?php elseif (isset($id_roasters)) : ?>
-                            <li><a href="shop-account.html">บัญชีของฉัน</a></li>
+                            <li><a href="shop-account.php">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
                             <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
                             <li><a href="./controllers/logout.php">Log Out</a></li>

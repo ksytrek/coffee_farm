@@ -332,12 +332,7 @@ include_once('./navbar.php');
                                                 </div>
                                             </div>
                                             <script>
-                                                // get a reference to the file input
-                                                try {
-                                                    
-                                                } catch (Exception) {
-                                                    
-                                                }
+         
 
                                                 const imageElement_ = document.querySelector("img[id=img]");
                                                 var base64StringImg = null;
@@ -650,11 +645,6 @@ include_once('./navbar.php');
 
                                         }
                                     });
-
-                                    // alert(values['input-name']);
-
-
-
                                 });
      
                             </script>
