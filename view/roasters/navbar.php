@@ -414,70 +414,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         </ul>
                         <!-- END DROPDOWN MENU -->
                     </li>
-                    <!-- <li class="dropdown dropdown-megamenu">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                            ประเภทกาแฟ
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="header-navigation-content">
-                                    <div class="row">
-                                        <div class="col-md-4 header-navigation-col">
-                                            <h4>Footwear</h4>
-                                            <ul>
-                                                <li><a href="shop-product-list.html">Astro Trainers</a></li>
-                                                <li><a href="shop-product-list.html">Basketball Shoes</a></li>
-                                                <li><a href="shop-product-list.html">Boots</a></li>
-                                                <li><a href="shop-product-list.html">Canvas Shoes</a></li>
-                                                <li><a href="shop-product-list.html">Football Boots</a></li>
-                                                <li><a href="shop-product-list.html">Golf Shoes</a></li>
-                                                <li><a href="shop-product-list.html">Hi Tops</a></li>
-                                                <li><a href="shop-product-list.html">Indoor and Court Trainers</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 header-navigation-col">
-                                            <h4>Clothing</h4>
-                                            <ul>
-                                                <li><a href="shop-product-list.html">Base Layer</a></li>
-                                                <li><a href="shop-product-list.html">Character</a></li>
-                                                <li><a href="shop-product-list.html">Chinos</a></li>
-                                                <li><a href="shop-product-list.html">Combats</a></li>
-                                                <li><a href="shop-product-list.html">Cricket Clothing</a></li>
-                                                <li><a href="shop-product-list.html">Fleeces</a></li>
-                                                <li><a href="shop-product-list.html">Gilets</a></li>
-                                                <li><a href="shop-product-list.html">Golf Tops</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 header-navigation-col">
-                                            <h4>Accessories</h4>
-                                            <ul>
-                                                <li><a href="shop-product-list.html">Belts</a></li>
-                                                <li><a href="shop-product-list.html">Caps</a></li>
-                                                <li><a href="shop-product-list.html">Gloves, Hats and Scarves</a></li>
-                                            </ul>
-
-                                            <h4>Clearance</h4>
-                                            <ul>
-                                                <li><a href="shop-product-list.html">Jackets</a></li>
-                                                <li><a href="shop-product-list.html">Bottoms</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-12 nav-brands">
-                                            <ul>
-                                                <li><a href="shop-product-list.html"><img title="esprit" alt="esprit" src="../../script/assets/pages/img/brands/esprit.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="gap" alt="gap" src="../../script/assets/pages/img/brands/gap.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="next" alt="next" src="../../script/assets/pages/img/brands/next.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="puma" alt="puma" src="../../script/assets/pages/img/brands/puma.jpg"></a></li>
-                                                <li><a href="shop-product-list.html"><img title="zara" alt="zara" src="../../script/assets/pages/img/brands/zara.jpg"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li> -->
-                    <!-- <li><a href="shop-item.php">Kids</a></li> -->
-                    <!-- <li><a href="shop-product-list.php">รายการสินค้า</a></li> -->
+         
                     <li class="dropdown dropdown100 nav-catalogue">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             สินค้าใหม่

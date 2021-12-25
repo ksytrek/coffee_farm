@@ -425,84 +425,72 @@ include_once('./navbar.php');
                         <?php //endfor; 
                         endforeach;
                         ?>
-                        <script>
-                            var count_item = 0;
-
-                            function count_ch(value) {
-                                // alert(value);
-                            }
-                            // $("#product-quantity").change(function(){
-                            //     // alert($(this.val()));
-                            //     alert($("#product-quantity").val());
-                            // });
-
-                            // $("#product-quantity").on('change', function(){
-
-                            // });
-                        </script>
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 items-info"> รายการที่ <?php echo $num_rowsx == 0 ? 0 : $start + 1; ?> ถึง <?php echo $start + $pagesize > $num_rowsx ? $num_rowsx : $start + $pagesize; ?> of <?php echo $num_rowsx ?> รายการ</div>
-                        <div class="col-md-8 col-sm-8">
-                            <ul class="pagination pull-right" id="ul_page">
-                                <?php
-                                if ($page > 1) //ถ้า ค่า page มากกว่า 1 แสดงปุ่ม ย้อนกลับ Previuos
-                                {
-                                    $pg = $page - 1;
+                    <?php if ($num_rowsx != 0) : ?>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 items-info"> รายการที่ <?php echo $num_rowsx == 0 ? 0 : $start + 1; ?> ถึง <?php echo $start + $pagesize > $num_rowsx ? $num_rowsx : $start + $pagesize; ?> of <?php echo $num_rowsx ?> รายการ</div>
+                            <div class="col-md-8 col-sm-8">
+                                <ul class="pagination pull-right" id="ul_page">
+                                    <?php
+                                    if ($page > 1) //ถ้า ค่า page มากกว่า 1 แสดงปุ่ม ย้อนกลับ Previuos
+                                    {
+                                        $pg = $page - 1;
 
-                                    echo "<li><a href='javascript:new_page($pg);'>Previuos &laquo;</a></li>";
-                                }
-                                ?>
-
-                                <?php
-
-                                for ($i = 1; $i <= $totalpage; $i++) :
-
-                                    if (isset($_GET['page']) && $_GET['page'] == $i) {
-                                        echo "<li><span>$i</span></li>";
-                                    } else if (!isset($_GET['page']) && $i == 1) {
-                                        echo "<li><span>1</span></li>";
-                                    } else {
-                                        echo "<li><a href='javascript:new_page($i);'>$i</a></li>";
+                                        echo "<li><a href='javascript:new_page($pg);'>Previuos &laquo;</a></li>";
                                     }
-                                // $page++;
-                                endfor;
-                                ?>
+                                    ?>
+
+                                    <?php
+
+                                    for ($i = 1; $i <= $totalpage; $i++) :
+
+                                        if (isset($_GET['page']) && $_GET['page'] == $i) {
+                                            echo "<li><span>$i</span></li>";
+                                        } else if (!isset($_GET['page']) && $i == 1) {
+                                            echo "<li><span>1</span></li>";
+                                        } else {
+                                            echo "<li><a href='javascript:new_page($i);'>$i</a></li>";
+                                        }
+                                    // $page++;
+                                    endfor;
+                                    ?>
 
 
 
 
 
-                                <?php
-                                //next
-                                if ($page < $totalpage && $page != 0) //ถ้า ค่า page น้อยกว่า page ทั้งหมด(page ท้ายสุด) แสดงปุ่ม  Next
-                                {
-                                    $pg = $page + 1;
-                                    //echo "<a href='news.php?page=$pg'>Previuos</a>"; //ส่งค่า page ที่ลดลง 1 เมื่อกดปุ่ม next
-                                    echo "<li><a href='javascript:new_page($pg);'>Next &raquo;</a></li>";
-                                }
-
-                                ?>
-                            </ul>
-
-                            <script>
-                                function new_page(object) {
-                                    if (queryString.includes("?")) {
-                                        location.assign(window.location.href + "&page=" + object);
-                                    } else {
-                                        location.assign(window.location.href + "?page=" + object);
+                                    <?php
+                                    //next
+                                    if ($page < $totalpage && $page != 0) //ถ้า ค่า page น้อยกว่า page ทั้งหมด(page ท้ายสุด) แสดงปุ่ม  Next
+                                    {
+                                        $pg = $page + 1;
+                                        //echo "<a href='news.php?page=$pg'>Previuos</a>"; //ส่งค่า page ที่ลดลง 1 เมื่อกดปุ่ม next
+                                        echo "<li><a href='javascript:new_page($pg);'>Next &raquo;</a></li>";
                                     }
-                                }
-                            </script>
+
+                                    ?>
+                                </ul>
+                                <script>
+                                    function new_page(object) {
+                                        if (queryString.includes("?")) {
+                                            location.assign(window.location.href + "&page=" + object);
+                                        } else {
+                                            location.assign(window.location.href + "?page=" + object);
+                                        }
+                                    }
+                                </script>
+                            </div>
                         </div>
-                    </div>
-                    <!-- END PAGINATOR -->
+                    <?php else : ?>
+                        <div class="row">
+                            ไม่พบรายการที่ค้นหา
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <!-- END CONTENT -->
             </div>
-            <!-- END SIDEBAR & CONTENT -->
+
         </div>
     </div>
 
@@ -513,7 +501,6 @@ include_once('./navbar.php');
     ?>
 
 
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 </body>
 
 

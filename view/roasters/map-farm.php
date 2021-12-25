@@ -37,7 +37,28 @@ include_once('./navbar.php');
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
+    <?php
 
+
+    $resultArray = array();
+    $jsoo = null;
+    try {
+        $sql_location_search = "SELECT * FROM `farmers`";
+        if ($show_tebelig = Database::query($sql_location_search, PDO::FETCH_ASSOC)) {
+            foreach ($show_tebelig  as $row) {
+                array_push($resultArray, $row);
+            }
+            $jsoo = json_encode($resultArray);
+        } else {
+            $jsoo = json_encode($resultArray);
+        }
+    } catch (Exception $e) {
+        $resultArray = [
+            "error" => $e->getMessage()
+        ];
+        $jsoo =  json_encode($resultArray);
+    }
+    ?>
 
 
 
@@ -52,25 +73,15 @@ include_once('./navbar.php');
         }
     </style>
     <script>
-        var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
-        var locations = [
-            ['วัดลาดปลาเค้า', 13.846876, 100.604481, 'e1'],
-            ['หมู่บ้านอารียา', 13.847766, 100.605768, 'e2'],
-            ['สปีดเวย์', 13.845235, 100.602711, 'e3'],
-            ['สเต็ก ลุงหนวด', 13.862970, 100.613834, 'e4'],
-            ['bangkok', 13.730995466424108, 100.51986257812496, 'e5'],
-        ];
 
-        // var marker;
+        var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
+        
+        var locations = JSON.parse(JSON.stringify(<?php echo $jsoo ?>));
         var map;
         var marker;
         var infoWindow;
 
-
-
-
         function initialize() {
-
 
             var mapOptions = {
                 zoom: 10,
@@ -81,12 +92,11 @@ include_once('./navbar.php');
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
             var marker;
-            locations.forEach(function(e, i) {
-                // alert(e+ " " + i);
-                var loan = locations[i][0]
-                var lat = locations[i][1]
-                var long = locations[i][2]
-                var add = locations[i][3]
+            $.each(locations, function(index, locations) {
+                var title = "ฟาร์มคุณ "+locations.name_farmers
+                var lat = locations.lat_farm
+                var long = locations.lng_farm
+                var add = locations.address_farmers
 
                 var position = new google.maps.LatLng(lat, long);
                 var marker = new google.maps.Marker({
@@ -94,23 +104,16 @@ include_once('./navbar.php');
                     draggable: false, // ไม่สามารถเครื่อนย้ายได้
                     animation: google.maps.Animation.DROP,
                     position: position,
-                    title: loan,
+                    title: title,
                     icon: '../../script/assets/img/logos/farm.png',
-                    // 'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
                 });
 
-                // var marker = new google.maps.Marker({
-                //     map: map,
-                //     title: loan,
-                //     position: latlngset,
-                //     icon: '../../script/assets/img/logos/farm.png',
-                // });
+   
 
 
-                var content = "ข้อมูลฟาร์ม <a href='./directions-map-farm.php?lat="+lat+"&lng="+long+"'>ค้นหาเส้นทาง</a>" ;
+                var content = "ที่ตั้งฟาร์ม "+ add + " <a href='./directions-map-farm.php?lat=" + lat + "&lng=" + long + "'>ค้นหาเส้นทาง</a>";
+
                 var infowindow = new google.maps.InfoWindow()
-
-
                 google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
                     return function() {
                         if (marker.getAnimation() != null) {
@@ -124,30 +127,11 @@ include_once('./navbar.php');
                     };
                 })(marker, content, infowindow));
 
-
-                // google.maps.event.addListener(marker, 'click', toggleBounce);
-                // google.maps.event.addListener(marker, 'drag', function(event) {
-                //     // document.getElementById("lat").value = marker.getPosition().lat();
-                //     // document.getElementById("lng").value = marker.getPosition().lng();
-                // });
-                // google.maps.event.addListener(marker, 'dragend', function(event) {
-                //     var point = marker.getPoint();
-                //     map.panTo(point);
-                // });
-
-
-                // google.maps.event.addListener(marker, 'click', function() {
-                //     infoWindow.open(map, marker);
-                // });
-
             });
-
-
-            // setMarkers(map, locations);
+           
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-
     </script>
 
 </head>
@@ -160,368 +144,9 @@ include_once('./navbar.php');
             <ul class="breadcrumb">
                 <li><a href="./shop-product-list.php">Home</a></li>
             </ul>
-
             <div>
                 <div id="map-canvas"></div>
-                <!-- <iframe src="https://www.google.co.th/maps/"></iframe> -->
-                <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap" async defer></script> -->
-
             </div>
-
-
-
-            <!-- <div class="row margin-bottom-40">
-
-                <div class="sidebar col-md-3 col-sm-5">
-
-                    <script>
-                        const queryString = window.location.search;
-
-                        function search_type(object) {
-                            if (queryString.includes("?")) {
-                                location.assign(window.location.href + "&type=" + object);
-                            } else {
-                                location.assign(window.location.href + "?type=" + object);
-                            }
-                        }
-                    </script>
-
-                    <ul class="list-group margin-bottom-25 sidebar-menu">
-                        <h2>ค้นหาหมวดหมู่</h2>
-                        <?php
-                        $result = Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC);
-                        foreach ($result as $row) :
-                        ?>
-                            <li class="list-group-item clearfix"><a href="javascript:search_type(<?php echo $row['id_typepro'] ?>); ">&nbsp;<i class="fa fa-angle-right"></i><?php echo $row['name_typepro'] ?></a></li>
-                        <?php endforeach; ?>
-                        
-                    </ul>
-
-                    
-                </div>
-               
-                <div class="col-md-9 col-sm-7">
-                    <div class="row list-view-sorting clearfix">
-                        <div class="col-md-2 col-sm-2 list-view">
-                            <a href="javascript:;"><i class="fa fa-th-large"></i></a>
-                            <a href="javascript:;"><i class="fa fa-th-list"></i></a>
-                        </div>
-
-
-                        <script>
-                            window.onload = (event) => {
-                                var url = window.location.href;
-                                const urlParams = new URLSearchParams(queryString);
-                                const sort = urlParams.get('sort');
-                                const order = urlParams.get('order');
-                                const limit = urlParams.get('limit');
-                                const page = urlParams.get('page');
-                                // const min_bee = urlParams.get('between_min');
-                                // const max_bee = urlParams.get('between_max');
-                            };
-
-
-
-                            // count_bee = 0;
-                        </script>
-
-                        <div class="col-md-10 col-sm-10">
-                            <div class="pull-right">
-                                <button id="btn_reset" type="button" class="btn btn-default btn-sm ">คืนค่าเริ่มต้น</button>
-                                <script>
-                                    $("#btn_reset").click(function() {
-                                        location.assign("<?php echo $_SERVER['PHP_SELF'] ?>");
-                                    });
-                                </script>
-                            </div>
-                            <div class="pull-right">
-                                <label class="control-label">แสดง:</label>
-                                <select id="select_limit" name="select_limit" class="form-control input-sm" onChange="select_sort_by(this);">
-                                    <option value="&amp;limit=10" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 10 ?   'selected="selected "' : " " ?>>10</option>
-                                    <option value="&amp;limit=25" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 25 ?   'selected="selected "' : " " ?>>25</option>
-                                    <option value="&amp;limit=50" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 50 ?   'selected="selected "' : " " ?>>50</option>
-                                    <option value="&amp;limit=75" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 75 ?   'selected="selected "' : " " ?>>75</option>
-                                    <option value="&amp;limit=100" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 100 ?   'selected="selected "' : " " ?>>100</option>
-                                </select>
-                            </div>
-
-                            <div class="pull-right">
-                                <label class="control-label">จัดเรียง&nbsp;โดย:</label>
-                                <select id='sort_by' class="form-control input-sm" onChange="select_sort_by(this);">
-                                    <option value="&amp;sort=id_productsr&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'id_productsr' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>Default</option>
-                                    <option value="&amp;sort=name_products&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ชื่อ (A - Z)</option>
-                                    <option value="&amp;sort=name_products&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ชื่อ (Z - A)</option>
-                                    <option value="&amp;sort=price_unit&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ราคา (ต่ำ &gt; สูง)</option>
-                                    <option value="&amp;sort=price_unit&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ราคา (สูง &gt; ต่ำ)</option>
-                                </select>
-
-                                <script>
-                                    function select_sort_by(object) {
-                                        var count = 0;
-                                        // 
-                                        if (queryString.includes("?")) {
-                                            location.assign(window.location.href + object.value);
-                                        } else {
-                                            location.assign(window.location.href + "?" + object.value);
-                                        }
-                                    }
-
-                                    function select_limit(object) {
-                                        if (queryString.includes("?")) {
-                                            location.assign(window.location.href + object.value);
-                                        } else {
-                                            location.assign(window.location.href + "?" + object.value);
-                                        }
-                                    }
-                                </script>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="row product-list">
-
-                        <?php
-                        $page = null;
-                        $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
-
-                        $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
-                        $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
-                        $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
-                        $type = isset($_GET['type']) ? $_GET['type'] : '%%';
-
-                        // $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
-                        // $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
-                        // $between = " price_unit BETWEEN $between_min AND $between_max ";
-                        // $newtype = "  id_typepro LIKE '%%' ";
-
-                        $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' ";
-                        $sql_data = "SELECT * FROM products as pro 
-                                                INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
-                                                INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
-                                                WHERE pro.id_typepro LIKE '%$type%'   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
-
-                        $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
-                        $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
-                        $totalpage =  ceil($num_rowsx / $pagesize);
-
-
-                        if (isset($_GET['page'])) {
-                            $page = $_GET['page'];
-                            $start = ($page - 1) * $pagesize; //นี้เป็นสูตรการคำนวนครับ
-                            // 2 -1 * 50
-                            if ($num_rowsx < $start) {
-                                $start = 0;
-                            }
-                        } else {
-                            $page = 0;
-                            $start = 0;
-                        }
-
-                        // echo $_GET['page'];
-
-
-
-                        //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
-                        //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
-                        $result_data = null;
-                        $num_rows = null;
-
-                        try {
-                            // $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' ORDER BY id_products $order LIMIT $start,$pagesize";
-                            $result_data =  Database::query($sql_data, PDO::FETCH_ASSOC);
-                            $num_rows = $result_data->rowCount();
-                        } catch (Exception $e) {
-                        }
-
-                        foreach ($result_data as $row) :
-                        ?>
-
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="product-item">
-                                    <div class="pi-img-wrapper">
-                                        <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" class="img-responsive" alt="Berry Lace Dress">
-                                        <div>
-                                            <a href="../../pictures/product/<?php echo $row['image_pro']; ?>" class="btn btn-default fancybox-button">Zoom</a>
-                                            <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view">View</a>
-                                        </div>
-                                    </div>
-                                    <h3><a href="shop-item.php"><?php echo $row['name_products'] ?></a></h3>
-                                    <div class="pi-price">฿<?php echo $row['price_unit'] . '.' . '00' ?></div>
-                                    <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
-                                    <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input__product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
-                                </div>
-                            </div>
-
-                            <div id="product-pop-up-<?php echo $row['id_products']; ?>" style="display: none; width: 700px;">
-                                <div class="product-page product-pop-up">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-3">
-                                            <div class="product-main-image">
-                                                <img src="../../pictures/product/<?php echo $row['image_pro']; ?>" alt="Cool green dress with red bell" class="img-responsive">
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-9">
-                                            <h1><?php echo $row['name_products'] ?></h1>
-                                            <div class="price-availability-block clearfix">
-                                                <div class="price">
-                                                    <strong><span>&#3647;</span><?php echo $row['price_unit'] . '.' . '00' ?></strong>
-                                       
-                                                </div>
-
-                                            </div>
-                                            <div class="description">
-                                                <p>ประเภทกาแฟ :
-                                                    <strong> <?php echo $row['name_typepro']; ?></strong>
-                                                </p>
-                                                <p>คนขาย :
-                                                    <strong> <?php echo $row['name_farmers']; ?></strong>
-                                                </p>
-                                            </div>
-                                            <div class="product-page-options">
-
-                                            </div>
-                                            <div class="product-page-cart">
-                                                <div class="product-quantity">
-                                                    <input id="input_item_product-<?php echo $row['id_products'];  ?>" onchange="count_ch(this.value)" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
-                                                </div>
-                                                <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products'];  ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
-                                                <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
-                                            </div>
-                                            <script>
-
-                                            </script>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php //endfor; 
-                        endforeach;
-                        ?>
-                        <script>
-                            var count_item = 0;
-                            function count_ch(value) {
-                                // alert(value);
-                            }
-                            // $("#product-quantity").change(function(){
-                            //     // alert($(this.val()));
-                            //     alert($("#product-quantity").val());
-                            // });
-
-                            // $("#product-quantity").on('change', function(){
-
-                            // });
-                            
-                            function add_product(id_products, id_farmers, price_unit, num_item, name_products, image_pro) {
-                                var product = [];
-                                var int_i = 0;
-                                var num_item_new = parseInt($("#"+num_item).val());
-   
-                                // alert($("#"+num_item).val());
-
-                                product_new = {
-                                        id_products: id_products,
-                                        id_farmers: id_farmers,
-                                        price_unit: price_unit,
-                                        num_item: num_item_new,
-                                        name_products: name_products,
-                                        image_pro: image_pro
-                                    };
-
-                                if (readCookie('product') == null) {
-                                    createCookie("product", JSON.stringify(product));
-                                    
-                                    product.push(product_new);
-                                    createCookie("product", JSON.stringify(product));
-                                    update_product();
-
-                                } else {
-                                    product = JSON.parse(readCookie('product')); // array type
-                                    product.forEach(function(value, i) {
-                                        if (value.id_products == id_products) {
-                                            int_i += 1;
-                                            product[i].num_item += num_item_new;
-                                        }
-                                    });
-
-                                    if (int_i == 0) {
-
-                                        product.push(product_new);
-                                        createCookie("product", JSON.stringify(product));
-
-                                        update_product();
-                                    } else {
-                                        createCookie("product", JSON.stringify(product));
-                                        update_product();
-                                    }
-
-                                }
-                                $("#"+num_item).val(1);
-                            }
-                        </script>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 items-info"> รายการที่ <?php echo $num_rowsx == 0 ? 0 : $start + 1; ?> ถึง <?php echo $start + $pagesize > $num_rowsx ? $num_rowsx : $start + $pagesize; ?> of <?php echo $num_rowsx ?> รายการ</div>
-                        <div class="col-md-8 col-sm-8">
-                            <ul class="pagination pull-right" id="ul_page">
-                                <?php
-                                if ($page > 1) //ถ้า ค่า page มากกว่า 1 แสดงปุ่ม ย้อนกลับ Previuos
-                                {
-                                    $pg = $page - 1;
-
-                                    echo "<li><a href='javascript:new_page($pg);'>Previuos &laquo;</a></li>";
-                                }
-                                ?>
-
-                                <?php
-
-                                for ($i = 1; $i <= $totalpage; $i++) :
-
-                                    if (isset($_GET['page']) && $_GET['page'] == $i) {
-                                        echo "<li><span>$i</span></li>";
-                                    } else if (!isset($_GET['page']) && $i == 1) {
-                                        echo "<li><span>1</span></li>";
-                                    } else {
-                                        echo "<li><a href='javascript:new_page($i);'>$i</a></li>";
-                                    }
-                                // $page++;
-                                endfor;
-                                ?>
-
-
-
-
-
-                                <?php
-                                //next
-                                if ($page < $totalpage && $page != 0) //ถ้า ค่า page น้อยกว่า page ทั้งหมด(page ท้ายสุด) แสดงปุ่ม  Next
-                                {
-                                    $pg = $page + 1;
-                                    //echo "<a href='news.php?page=$pg'>Previuos</a>"; //ส่งค่า page ที่ลดลง 1 เมื่อกดปุ่ม next
-                                    echo "<li><a href='javascript:new_page($pg);'>Next &raquo;</a></li>";
-                                }
-
-                                ?>
-                            </ul>
-
-                            <script>
-                                function new_page(object) {
-                                    if (queryString.includes("?")) {
-                                        location.assign(window.location.href + "&page=" + object);
-                                    } else {
-                                        location.assign(window.location.href + "?page=" + object);
-                                    }
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 

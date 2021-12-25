@@ -45,13 +45,18 @@ include_once('./navbar.php');
     <!-- <script src="./register/js/jquery.min.js"></script> -->
     <?php
 
-    $row = null;
+    $row_infor = null;
+    $row_pro = null;
+    $pro_count = null;
     if (isset($_GET["infr"])) {
         $id_farmers = $_GET["infr"];
-        $sql_data_farmers = "SELECT * FROM `farmers` WHERE `id_farmers` = '$id_farmers'";
+        $sql_data_farmers = "SELECT * ,IF(`organic_farm` = 1 ,'อินทรีย์','ไม่อินทรีย์') as 'organic_farm_new',IF(type_sale=1,'ขายแบบพันธะสัญญา','ขายแบบเดี่ยว') as 'type_sale_new'  FROM `farmers` WHERE `id_farmers` = '$id_farmers'";
+        $sql_product_farmers = "SELECT * FROM `products` as pro INNER JOIN `farmers` as far ON far.id_farmers = pro.id_farmers;";
 
         try {
-            $row = Database::query($sql_data_farmers, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+            $row_infor = Database::query($sql_data_farmers, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+            $row_pro = Database::query($sql_product_farmers, PDO::FETCH_ASSOC); //$result_count->rowCount(); 
+            $pro_count = $row_pro->rowCount();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "\n";
         }
@@ -72,7 +77,7 @@ include_once('./navbar.php');
         }
     </style>
     <script>
-        var farmLocation = new google.maps.LatLng("<?php echo $row['lat_farm'] ?>","<?php echo $row['lng_farm'] ?>");
+        var farmLocation = new google.maps.LatLng("<?php echo $row_infor['lat_farm'] ?>","<?php echo $row_infor['lng_farm'] ?>");
 
         var map;
         var marker;
@@ -160,7 +165,7 @@ include_once('./navbar.php');
                                     <h4>รูปเกษตรกร</h4>
                                 </label>
                                 <div class="product-main-image">
-                                    <img src="../../pictures/farmers/<?php echo $row['image_farmers'] ?>" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="../../pictures/farmers/<?php echo $row['image_farmers'] ?>">
+                                    <img src="../../pictures/farmers/<?php echo $row_infor['image_farmers'] ?>" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="../../pictures/farmers/<?php echo $row['image_farmers'] ?>">
                                 </div>
                             </div>
 
@@ -179,7 +184,7 @@ include_once('./navbar.php');
                                         <label>จำนวนสินค้าทั้งหมด</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-lg-8">
-                                        <p class="text-capitalize   "> 3 </p>
+                                        <p class="text-capitalize   "><?php echo $pro_count ?> </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -187,7 +192,7 @@ include_once('./navbar.php');
                                         <label>การเกษตรประเภท</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-lg-8">
-                                        <p class="text-capitalize ">1 = อินทรีย์, 2 = ไม่อินทรีย์</p>
+                                        <p class="text-capitalize "><?php echo $row_infor['organic_farm_new'] ?></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -195,7 +200,7 @@ include_once('./navbar.php');
                                         <label>การค้าขายแบบ</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-lg-8">
-                                        <p class="text-capitalize   "> 1 = ขายแบบพันธะสัญญา, 2 = ขายแบบเดี่ยว </p>
+                                        <p class="text-capitalize   "> <?php echo $row_infor['type_sale_new'] ?></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -203,7 +208,7 @@ include_once('./navbar.php');
                                         <label>อธิบายละเอียดต่างๆ</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-lg-8">
-                                        <p class="text-capitalize   ">172687632098jdlkjxoidsj oosdfjoeiwujckvjpsiskjn hsiudhfs[pfkjkwlejfioj lskdjfoeiwjfclv</p>
+                                        <p class="text-capitalize   "><?php echo $row_infor['detail_farm']==""? '-': $row_infor['detail_farm'] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -226,31 +231,31 @@ include_once('./navbar.php');
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">ชื่อเกษตรกร</td>
-                                                <td class="text-capitalize">สมพล วิลา</td>
+                                                <td class="text-capitalize"><?php echo $row_infor['name_farmers'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">จำนวนพื้นที่เพาะปลูก</td>
-                                                <td class="text-capitalize"> 150 ไร่ 3 งาน</td>
+                                                <td class="text-capitalize"> <?php echo $row_infor['num_farm']." ไร่ ".$row_infor['num_field']." งาน" ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">อีเมล์เกษตรกร</td>
-                                                <td class="text-capitalize">sompholwill@gmail.com</td>
+                                                <td class="text-capitalize"><?php echo $row_infor['email_farmers'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">เบอร์โทรเกษตรกร</td>
-                                                <td class="text-capitalize">0971271931</td>
+                                                <td class="text-capitalize"><?php echo $row_infor['tel_farmers'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">line เกษตรกร</td>
-                                                <td class="text-capitalize">0971271931</td>
+                                                <td class="text-capitalize"><?php echo $row_infor['line_farmers']==""? "-":$row_infor['line_farmers'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">facebook เกษตรกร</td>
-                                                <td class="text-capitalize">somphol wila</td>
+                                                <td class="text-capitalize"><?php echo $row_infor['face_farmers']==""? "-":$row_infor['face_farmers'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">ที่อยู่เกษตรกร</td>
-                                                <td class="text-capitalize">เลขที่/หมูที่ 11 ซอย/ถนน - แขวง/ ตำบล เขิน เขต/อำเภอ น้ำเกลี่ยง</td>
+                                                <td class="text-capitalize"><?php echo $row_infor['address_farmers'] ?></td>
                                             </tr>
 
                                         </table>
@@ -438,7 +443,7 @@ include_once('./navbar.php');
                                                                             <input id="input_item_product-<?php echo $row['id_products'];  ?>" onchange="count_ch(this.value)" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
                                                                         </div>
                                                                         <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products'];  ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
-                                                                        <a href="shop-item.php" class="btn btn-default">รายละเอียด</a>
+                                                                        <a href="shop-item.php?product=<?php echo $row['id_products'] ?>" class="btn btn-default">รายละเอียด</a>
                                                                     </div>
                                                                     <script>
 

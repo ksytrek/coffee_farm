@@ -232,19 +232,21 @@ include_once('./navbar.php');
                                                 const json = readCookie('product');
                                                 const product = JSON.parse(json);
                                                 
-                                                // ID_ROASTERS  รหัสผู้ใช้ล็อกอิน
-                                                
+
+                                                self_list = [];
                                                 product.forEach(function(value,index) {
+                                                    if(self_list == ''){
+                                                        self_list = value;
+                                                    }else{
+                                                        self_list += value;
+                                                    }
                                                     
                                                 });
+                                                console.log(self_list);
 
 
 
 
-                                                
-
-
-                                                // removeCookie('product');
 
                                             });
                                         </script>

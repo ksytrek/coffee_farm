@@ -163,7 +163,7 @@ include_once('./navbar.php');
                 pointB = new google.maps.LatLng(latB, lngB),
 
                 myOptions = {
-                    zoom: 7,
+                    zoom: 10,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     center: pointA
                 },
@@ -185,12 +185,13 @@ include_once('./navbar.php');
                     // label: "A",
                     map: map
                 }),
+
                 markerB = new google.maps.Marker({
                     draggable: false, // ไม่สามารถเครื่อนย้ายได้
                     animation: google.maps.Animation.DROP,
                     position: pointB,
                     title: "point B",
-                    label: "B",
+                    // label: "B",
                     map: map,
                     icon: '../../script/assets/img/logos/farm.png',
                 });
@@ -199,17 +200,6 @@ include_once('./navbar.php');
 
             calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
-            // google.maps.event.addListener(markerA, 'drag', function(event) {
-            //     // document.getElementById("lat").value = marker.getPosition().lat();
-            //     // document.getElementById("lng").value = marker.getPosition().lng();
-            //     pointA = new google.maps.LatLng(markerA.getPosition().lat(), markerA.getPosition().lng());
-            //     calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
-            // });
-            // google.maps.event.addListener(markerA, 'dragend', function(event) {
-            //     var point = marker.getPoint();
-            //     map.panTo(point);
-            // });
-            // get route from A to B
         }
 
         function Search_initialize() {
@@ -221,7 +211,7 @@ include_once('./navbar.php');
                 var lat = document.getElementById('city_Lat').value = place.geometry.location.lat();
                 var lng = document.getElementById('city_Lng').value = place.geometry.location.lng();
                 search_nameE(name, lat, lng);
-                // alert(place.name + ' ' + place.geometry.location.lat() + ' ' + place.geometry.location.lng());
+
             });
         }
 
