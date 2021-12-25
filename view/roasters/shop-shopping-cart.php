@@ -66,11 +66,11 @@ include_once('./navbar.php');
                             <ul id="myTab" class="nav nav-tabs">
                                 <li class="active"><a href="#product_all" data-toggle="tab">ตะกร้าสินค้าสินค้าทั้งหมด</a></li>
                                 <?php if (isset($id_roasters)) : ?>
-                                <li class=""><a href="#wait_for_sale" data-toggle="tab">รอยืนยันจากผู้ขาย</a></li>
-                                <li class=""><a href="#confirm_sales_orders" data-toggle="tab">รอดำเนินการ</a></li>
-                                <li class=""><a href="#trade_complete" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
-                                <li class=""><a href="#cancel_trade" data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
-                                <?php endif;?>
+                                    <li class=""><a href="#wait_for_sale" data-toggle="tab">รอยืนยันจากผู้ขาย</a></li>
+                                    <li class=""><a href="#confirm_sales_orders" data-toggle="tab">รอดำเนินการ</a></li>
+                                    <li class=""><a href="#trade_complete" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
+                                    <li class=""><a href="#cancel_trade" data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
+                                <?php endif; ?>
                             </ul>
 
                             <div id="myTabContent" class="tab-content">
@@ -220,33 +220,60 @@ include_once('./navbar.php');
                                         <button class="btn btn-default" type="button" onclick="window.location.assign('shop-product-list.php')">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
                                         <button id="confirm_sales_orders" class="btn btn-primary" type="button">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
                                         <script>
-
-                                            
                                             $("#confirm_sales_orders").click(function() {
                                                 // alert(ID_ROASTERS);
-                                                if(ID_ROASTERS ==  'null'){
+                                                if (ID_ROASTERS == 'null') {
                                                     alert("กรุณาล็อกอินเข้าสู่ระบบก่อน");
                                                     location.assign('./login/');
                                                 }
-                                                
+
                                                 const json = readCookie('product');
                                                 const product = JSON.parse(json);
-                                                
 
-                                                self_list = [];
-                                                product.forEach(function(value,index) {
-                                                    if(self_list == ''){
-                                                        self_list = value;
+
+                                                var self_list = {};
+                                                var id_farmers = {};
+                                                var product_sel = {};
+                                                product.forEach(function(value_pro, index) {
+                                                    var tem = new Object();
+                                                    if(id_farmers == '') {
+                                                        id_farmers[value_pro.id_farmers] = tem;
                                                     }else{
-                                                        self_list += value;
+                                                        id_farmers[value_pro.id_farmers] = tem;
                                                     }
                                                     
                                                 });
-                                                console.log(self_list);
 
+                                                $.each(id_farmers,function(key, value){
+                                                    product.forEach(function(value,index){
+                                                    var tem_pro = new Object();
+                                                        if(value.id_farmers == key){
+                                                            tem_pro['id_products'] = value.id_products
+                                                            tem_pro['id_farmers'] = value.id_farmers
+                                                            tem_pro['num_item'] = value.num_item
+                                                            tem_pro['price_unit'] = value.price_unit
+                                                            tem_pro['sum_price'] = (value.price_unit*value.num_item)
+                                                            id_farmers[key][value.id_products] = tem_pro
+                                                        }
+                                                    });
+                                                });
 
-
-
+                                                
+                                                const trnsale = JSON.stringify(id_farmers)
+                                                // console.log(trnsale);
+                                                $.ajax({
+                                                    url : "./controllers/add_trnsale.php",
+                                                    type : "POST",
+                                                    data : { 
+                                                        key : "add_trnsale",
+                                                        data : trnsale
+                                                    },success : function(result, textStatus, jqXHR) {
+                                                        console.log(result);
+                                                    },error : function(result, textStatus, jqXHR){
+                                                        alert(result)
+                                                    }
+                                                });
+                                                // console.log(new Date());
 
                                             });
                                         </script>
