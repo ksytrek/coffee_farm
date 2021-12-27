@@ -50,6 +50,12 @@ include_once('./navbar.php');
 
 
 <body class="ecommerce">
+    <script>
+        $(document).ready(function() {
+            $("#sum_cart").html(JSON.parse(readCookie('product')).length != 0 ? " ( " + JSON.parse(readCookie('product')).length + " )" : "");
+        });
+    </script>
+
 
 
     <div class="main">
@@ -64,13 +70,117 @@ include_once('./navbar.php');
                         <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
                         <div class="product-page-content">
                             <ul id="myTab" class="nav nav-tabs">
-                                <li class="active"><a href="#product_all" data-toggle="tab">ตะกร้าสินค้าสินค้าทั้งหมด</a></li>
-                                <?php if (isset($id_roasters)) : ?>
-                                    <li class=""><a href="#wait_for_sale" data-toggle="tab">รอยืนยันจากผู้ขาย</a></li>
-                                    <li class=""><a href="#confirm_sales_orders" data-toggle="tab">รอดำเนินการ</a></li>
-                                    <li class=""><a href="#trade_complete" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
-                                    <li class=""><a href="#cancel_trade" data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
+                                <li class="active"><a href="#product_all" data-toggle="tab">ตะกร้าสินค้าสินค้าทั้งหมด<span id="sum_cart"></span></a></li>
+
+                                <?php
+
+                                if (isset($id_roasters)) :
+
+                                    $count_Waiting_confirmation_seller = 0; // 1 = รอยืนยันคำสั่งขาย 
+                                    $count_pending = 0; // 2 = ยืนยันคำสั่งขายและดำเนินการ 
+                                    $count_trade_complete = 0;  // 3 = การซื้อขายเสร็จสิ้น 
+                                    $count_cancel_trade = 0;  // 4 = ยกเลิกการซื้อขาย
+
+
+                                    $sql_trans = "SELECT * FROM `transale` WHERE id_roasters = '{$id_roasters}'";
+                                    foreach (Database::query($sql_trans, PDO::FETCH_ASSOC) as $row) {
+                                        if ($row['status_transale'] == '1') {
+                                            $count_Waiting_confirmation_seller++;
+                                        } else if ($row['status_transale'] == '2') {
+                                            $count_pending++;
+                                        } else if ($row['status_transale'] == '3') {
+                                            $count_trade_complete++;
+                                        } else if ($row['status_transale'] == '4') {
+                                            $count_cancel_trade++;
+                                        }
+                                    }
+
+                                ?>
+
+                                    <li class=""><a href="#wait_for_sale" onclick="update_click_tab(1)" data-toggle="tab">รอยืนยันจากผู้ขาย <?php echo $count_Waiting_confirmation_seller != 0 ? " ( " . $count_Waiting_confirmation_seller . " ) " : "" ?> </a></li>
+                                    <li class=""><a href="#pending" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending . " ) " : "" ?> </a></li>
+                                    <!-- <li class=""><a href="#confirm_sales_orders" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending . " ) " : "" ?> </a></li> -->
+                                    <li class=""><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complet . " ) " : ""  ?> </a></li>
+                                    <li class=""><a href="#cancel_trade" onclick="update_click_tab(4)" data-toggle="tab">ยกเลิกการซื้อขาย <?php echo $count_cancel_trade  != 0 ? " ( " . $count_cancel_trade . " ) " : ""  ?> </a></li>
+
+
                                 <?php endif; ?>
+                                <script>
+                                    function update_click_tab(numClick) {
+                                        if (numClick == 1) {
+                                            $.ajax({
+                                                url: "./shop-shopping-cart-wait_for_sale.php",
+                                                type: "POST",
+                                                data: {
+                                                    key: "wait_for_sale",
+                                                    id_roasters: ID_ROASTERS,
+                                                    status: numClick
+                                                },
+                                                success: function(result, textStatus, jqXHR) {
+                                                    $("#wait_for_sale").html(result);
+                                                },
+                                                error: function(result, textStatus, jqXHR) {
+                                                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                }
+                                            });
+
+                                        } else if (numClick == 2) {
+                                            // alert(numClick)
+                                            $.ajax({
+                                                url: "./shop-shopping-cart-pending.php",
+                                                type: "POST",
+                                                data: {
+                                                    key: "pending",
+                                                    id_roasters: ID_ROASTERS,
+                                                    status: numClick
+                                                },
+                                                success: function(result, textStatus, jqXHR) {
+                                                    $("#pending").html(result);
+                                                },
+                                                error: function(result, textStatus, jqXHR) {
+                                                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                }
+                                            });
+
+
+                                        } else if (numClick == 3) {
+                                            $.ajax({
+                                                url: "./shop-shopping-cart-trade_complete.php",
+                                                type: "POST",
+                                                data: {
+                                                    key: "trade_complete",
+                                                    id_roasters: ID_ROASTERS,
+                                                    status: numClick
+                                                },
+                                                success: function(result, textStatus, jqXHR) {
+                                                    $("#trade_complete").html(result);
+                                                },
+                                                error: function(result, textStatus, jqXHR) {
+                                                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                }
+                                            });
+                                            // $("#trade_complete").html();
+
+                                        } else if (numClick == 4) {
+                                            $.ajax({
+                                                url: "./shop-shopping-cart-cancel_trade.php",
+                                                type: "POST",
+                                                data: {
+                                                    key: "cancel_trade",
+                                                    id_roasters: ID_ROASTERS,
+                                                    status: numClick
+                                                },
+                                                success: function(result, textStatus, jqXHR) {
+                                                    $("#cancel_trade").html(result);
+                                                },
+                                                error: function(result, textStatus, jqXHR) {
+                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                }
+                                            });
+                                            // $("#cancel_trade").html();
+                                        }
+                                    }
+                                </script>
                             </ul>
 
                             <div id="myTabContent" class="tab-content">
@@ -235,42 +345,54 @@ include_once('./navbar.php');
                                                 var id_farmers = {};
                                                 var product_sel = {};
                                                 product.forEach(function(value_pro, index) {
-                                                    var tem = new Object();
-                                                    if(id_farmers == '') {
-                                                        id_farmers[value_pro.id_farmers] = tem;
-                                                    }else{
-                                                        id_farmers[value_pro.id_farmers] = tem;
+                                                    var tem = [];
+                                                    if (id_farmers == '') {
+                                                        id_farmers[value_pro.id_farmers.toString()] = tem;
+                                                    } else {
+                                                        id_farmers[value_pro.id_farmers.toString()] = tem;
                                                     }
-                                                    
+
                                                 });
 
-                                                $.each(id_farmers,function(key, value){
-                                                    product.forEach(function(value,index){
-                                                    var tem_pro = new Object();
-                                                        if(value.id_farmers == key){
-                                                            tem_pro['id_products'] = value.id_products
-                                                            tem_pro['id_farmers'] = value.id_farmers
-                                                            tem_pro['num_item'] = value.num_item
-                                                            tem_pro['price_unit'] = value.price_unit
-                                                            tem_pro['sum_price'] = (value.price_unit*value.num_item)
-                                                            id_farmers[key][value.id_products] = tem_pro
+                                                $.each(id_farmers, function(key, value) {
+                                                    product.forEach(function(value, index) {
+                                                        var tem_pro = new Object();
+                                                        if (value.id_farmers == key) {
+                                                            tem_pro['id_roasters'] = ID_ROASTERS
+                                                            tem_pro['id_products'] = value.id_products.toString();
+                                                            tem_pro['id_farmers'] = value.id_farmers.toString()
+                                                            tem_pro['num_item'] = value.num_item.toString()
+                                                            tem_pro['price_unit'] = value.price_unit.toString()
+                                                            tem_pro['sum_price'] = (value.price_unit * value.num_item).toString()
+                                                            id_farmers[key].push(tem_pro);
                                                         }
                                                     });
                                                 });
 
-                                                
+
                                                 const trnsale = JSON.stringify(id_farmers)
-                                                // console.log(trnsale);
+                                                console.log(id_farmers);
                                                 $.ajax({
-                                                    url : "./controllers/add_trnsale.php",
-                                                    type : "POST",
-                                                    data : { 
-                                                        key : "add_trnsale",
-                                                        data : trnsale
-                                                    },success : function(result, textStatus, jqXHR) {
-                                                        console.log(result);
-                                                    },error : function(result, textStatus, jqXHR){
-                                                        alert(result)
+                                                    url: "./controllers/add_trnsale.php",
+                                                    type: "POST",
+                                                    data: {
+                                                        key: "add_trnsale",
+                                                        // data : trnsale,
+                                                        sel: id_farmers,
+                                                        id_roasters: ID_ROASTERS
+                                                    },
+                                                    success: function(result, textStatus, jqXHR) {
+                                                        // console.log(result);
+                                                        if (result == 'success') {
+                                                            removeCookie('product');
+                                                            alert("สั่งซื้อสินค้าสำเร็จ")
+                                                            location.reload();
+                                                        } else {
+                                                            alert('ระบบตรวจพบข้อผิดพลาดบางอย่าง')
+                                                        }
+                                                    },
+                                                    error: function(result, textStatus, jqXHR) {
+                                                        alert('ระบบตรวจพบข้อผิดพลาดบางอย่าง\n this Server');
                                                     }
                                                 });
                                                 // console.log(new Date());
@@ -281,27 +403,22 @@ include_once('./navbar.php');
                                 </div>
 
                                 <div class="tab-pane fade" id="wait_for_sale">
-                                    <!--รอยืนยันคำสั่งขาย  -->
-                                    <?php //include_once("./page/wait_for_sale.php"); 
-                                    ?>
+                                    <!-- รอยืนยันจากผู้ขาย -->
+                                    
                                 </div>
 
-                                <div class="tab-pane fade " id="confirm_sales_orders">
-                                    <!--  ยืนยันคำสั่งขายและดำเนินการ  -->
-                                    <?php //include_once("./page/confirm_sales_orders.php"); 
-                                    ?>
+                                <div class="tab-pane fade" id="pending">
+                                    <!-- รอดำเนินการ -->
 
                                 </div>
+
                                 <div class="tab-pane fade " id="trade_complete">
                                     <!--  การซื้อขายเสร็จสิ้น  -->
-                                    <?php //include_once("./page/trade_complete.php"); 
-                                    ?>
+
 
                                 </div>
                                 <div class="tab-pane fade " id="cancel_trade">
                                     <!--  ยกเลิกการซื้อขาย  -->
-                                    <?php //include_once("./page/cancel_trade.php"); 
-                                    ?>
 
                                 </div>
 
