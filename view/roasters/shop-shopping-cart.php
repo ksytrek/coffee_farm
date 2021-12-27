@@ -404,7 +404,224 @@ include_once('./navbar.php');
 
                                 <div class="tab-pane fade" id="wait_for_sale">
                                     <!-- รอยืนยันจากผู้ขาย -->
-                                    
+                                    <div class="goods-page">
+                                        <div id="div-product" class="goods-data ">
+                                            <div id="div-product" class="goods-data clearfix">
+                                                <div class="table-wrapper-responsive">
+                                                    <script>
+                                                        $(document).ready(function() {
+                                                            // $("#myTable").DataTable();
+                                                        });
+                                                    </script>
+                                                    <table summary="Shopping cart" id="product_item_all">
+                                                        <thead>
+                                                            <th class="goods-page-image">ภาพ</th>
+                                                            <th class="goods-page-description">ชื่อสินค้า</th>
+                                                            <th class="goods-page-quantity">ปริมาณ</th>
+                                                            <th class="goods-page-price">ราคาต่อหน่วย</th>
+                                                            <th class="goods-page-total" colspan="2">รวม</th>
+                                                        </thead>
+                                                        <tbody id="tbb_product_item_all">
+
+                                                        </tbody>
+
+                                                    </table>
+                                                    <script>
+                                                        function product_item_all() {
+                                                            var str_items = "";
+
+                                                            const json = readCookie('product');
+                                                            const product = JSON.parse(json);
+
+                                                            var sum_total = 0;
+
+                                                            $('#tbb_product_item_all').empty();
+                                                            // tb_mg_room.clear();
+                                                            product.forEach(function(value, index) {
+                                                                // alert(index);
+                                                                sum_total = value.price_unit * value.num_item;
+                                                                total += sum_total;
+                                                                str_items += '<tr>' +
+                                                                    '<td class="goods-page-image">' +
+                                                                    '<a href="javascript:;"><img src="../../pictures/product/' + value.image_pro + '" alt="Berry Lace Dress"></a>' +
+                                                                    '</td>' +
+                                                                    '<td class="goods-page-description">' +
+                                                                    '<h3><a href="javascript:;">' + value.name_products + '</a></h3>' +
+                                                                    // '<em>รายละเอียดเพิ่มเติม</em>' +
+                                                                    '</td>' +
+                                                                    '<td class="goods-page-quantity">' +
+                                                                    '<div class="product-quantity">' +
+                                                                    // '<div>' +
+                                                                    // '<input id="demo_vertical" type="text" value="" name="demo_vertical">' +
+                                                                    // '</div>' +
+                                                                    '<input  onchange="add_item(' + value.id_products + ',this.value,' + index + ')" type="text" value="' + value.num_item + '" readonly class="form-control input-sm">' +
+                                                                    '</div>' +
+                                                                    '</td>' +
+                                                                    '<td class="goods-page-price">' +
+                                                                    '<strong><span></span>' + THB.format(value.price_unit) + '</strong>' +
+                                                                    '</td>' +
+                                                                    '<td class="goods-page-total">' +
+                                                                    '<strong><span></span>' + THB.format(sum_total) + '</strong>' +
+                                                                    '</td>' +
+                                                                    '<td class="del-goods-col">' +
+                                                                    '<a  class="del-goods" href="javascript:del_items_ca(' + index + ');">&nbsp;</a>' +
+                                                                    '</td>' +
+                                                                    '</tr>';
+
+                                                            });
+
+                                                            if (product == '') {
+                                                                // $("#product_item_all").hide();
+                                                                // $(".shopping-total").hide();
+                                                                // $("#div-product").hide();
+                                                                $("#div-product").html('ตะกร้าสินค้าของคุณ ไม่มีสินค้า <a href="shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a>');
+                                                                $("#confirm_sales_orders").css('display', 'none');
+                                                            }
+
+                                                            $('#tbb_product_item_all').html(str_items);
+
+                                                        }
+
+                                                        function del_items_ca(index) {
+
+                                                            const json = readCookie('product');
+                                                            const product = JSON.parse(json);
+
+                                                            product.splice(index, 1);
+
+                                                            createCookie("product", JSON.stringify(product));
+
+                                                            // update_product();
+                                                            window.location.reload();
+                                                        }
+
+                                                        function add_item(id_products, item, index) {
+                                                            // alert(item);
+                                                            if (item == 0) {
+                                                                del_items(index);
+                                                            } else {
+                                                                var int_i = 0;
+                                                                var product = [];
+                                                                var num_item_new = parseInt(item);
+
+                                                                product = JSON.parse(readCookie('product')); // array type
+                                                                product.forEach(function(value, i) {
+                                                                    // alert(i);
+                                                                    if (value.id_products == id_products) {
+                                                                        int_i += 1;
+                                                                        product[i].num_item = num_item_new;
+                                                                    }
+                                                                });
+
+                                                                createCookie("product", JSON.stringify(product));
+                                                                // update_product();
+                                                            }
+                                                            window.location.reload();
+                                                        }
+
+                                                        window.onload = function() {
+                                                            // product_item_all();
+                                                        };
+
+                                                        $(document).ready(function() {
+                                                            product_item_all();
+                                                            $("#total").html(THB.format(total));
+
+                                                        });
+                                                    </script>
+
+                                                </div>
+
+                                                <div class="shopping-total">
+
+                                                    <ul>
+                                                        <li class="shopping-total-price">
+                                                            <em>Total</em>
+
+                                                            <strong id="total" class="price"></strong>
+                                                        </li>
+                                                    </ul>
+
+                                                    <script>
+
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-default" type="button" onclick="window.location.assign('shop-product-list.php')">ซื้อกาแฟเพิ่มเติม<i class="fa fa-shopping-cart"></i></button>
+                                            <button id="confirm_sales_orders" class="btn btn-primary" type="button">ยืนยันสั่งซื้อสินค้า <i class="fa fa-check"></i></button>
+                                            <script>
+                                                $("#confirm_sales_orders").click(function() {
+                                                    // alert(ID_ROASTERS);
+                                                    if (ID_ROASTERS == 'null') {
+                                                        alert("กรุณาล็อกอินเข้าสู่ระบบก่อน");
+                                                        location.assign('./login/');
+                                                    }
+
+                                                    const json = readCookie('product');
+                                                    const product = JSON.parse(json);
+
+
+                                                    var self_list = {};
+                                                    var id_farmers = {};
+                                                    var product_sel = {};
+                                                    product.forEach(function(value_pro, index) {
+                                                        var tem = [];
+                                                        if (id_farmers == '') {
+                                                            id_farmers[value_pro.id_farmers.toString()] = tem;
+                                                        } else {
+                                                            id_farmers[value_pro.id_farmers.toString()] = tem;
+                                                        }
+
+                                                    });
+
+                                                    $.each(id_farmers, function(key, value) {
+                                                        product.forEach(function(value, index) {
+                                                            var tem_pro = new Object();
+                                                            if (value.id_farmers == key) {
+                                                                tem_pro['id_roasters'] = ID_ROASTERS
+                                                                tem_pro['id_products'] = value.id_products.toString();
+                                                                tem_pro['id_farmers'] = value.id_farmers.toString()
+                                                                tem_pro['num_item'] = value.num_item.toString()
+                                                                tem_pro['price_unit'] = value.price_unit.toString()
+                                                                tem_pro['sum_price'] = (value.price_unit * value.num_item).toString()
+                                                                id_farmers[key].push(tem_pro);
+                                                            }
+                                                        });
+                                                    });
+
+
+                                                    const trnsale = JSON.stringify(id_farmers)
+                                                    console.log(id_farmers);
+                                                    $.ajax({
+                                                        url: "./controllers/add_trnsale.php",
+                                                        type: "POST",
+                                                        data: {
+                                                            key: "add_trnsale",
+                                                            // data : trnsale,
+                                                            sel: id_farmers,
+                                                            id_roasters: ID_ROASTERS
+                                                        },
+                                                        success: function(result, textStatus, jqXHR) {
+                                                            // console.log(result);
+                                                            if (result == 'success') {
+                                                                removeCookie('product');
+                                                                alert("สั่งซื้อสินค้าสำเร็จ")
+                                                                location.reload();
+                                                            } else {
+                                                                alert('ระบบตรวจพบข้อผิดพลาดบางอย่าง')
+                                                            }
+                                                        },
+                                                        error: function(result, textStatus, jqXHR) {
+                                                            alert('ระบบตรวจพบข้อผิดพลาดบางอย่าง\n this Server');
+                                                        }
+                                                    });
+                                                    // console.log(new Date());
+
+                                                });
+                                            </script>
+                                        </div>
+
+                                    </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="pending">
