@@ -30,7 +30,7 @@
     <script>
         var total = 0;
     </script>
-    <!-- Theme styles END -->
+
 </head>
 
 <?php
@@ -87,8 +87,8 @@ include_once('./navbar.php');
 
                                 ?>
                                     <li class=""><a href="#wait_for_sale" onclick="update_click_tab(1)" data-toggle="tab">รอยืนยันจากผู้ขาย <?php echo $count_Waiting_confirmation_seller != 0 ? " ( " . $count_Waiting_confirmation_seller . " ) " : "" ?> </a></li>
-                                    <li class=""><a href="#pending" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending . " ) " : "" ?> </a></li>
-                                    <li class=""><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complet . " ) " : ""  ?> </a></li>
+                                    <li class=""><a href="#pending" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending.  " ) " : "" ?> </a></li>
+                                    <li class=""><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น  <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complete.  " ) " : "" ?>  </a></li>
                                     <li class=""><a href="#cancel_trade" onclick="update_click_tab(4)" data-toggle="tab">ยกเลิกการซื้อขาย <?php echo $count_cancel_trade  != 0 ? " ( " . $count_cancel_trade . " ) " : ""  ?> </a></li>
                                 <?php endif; ?>
                                 <script>
