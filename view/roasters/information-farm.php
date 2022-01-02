@@ -165,7 +165,7 @@ include_once('./navbar.php');
                                     <h4>รูปเกษตรกร</h4>
                                 </label>
                                 <div class="product-main-image">
-                                    <img src="../../pictures/farmers/<?php echo $row_infor['image_farmers'] ?>" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="../../pictures/farmers/<?php echo $row['image_farmers'] ?>">
+                                    <img src="../../pictures/farmers/<?php echo $row_infor['image_farmers'] ?>" alt="Cool green dress with red bell" class="img-responsive" >
                                 </div>
                             </div>
 
