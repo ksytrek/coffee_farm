@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<!--
-Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
-Version: 1.0.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -19,7 +9,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <head>
     <meta charset="utf-8">
-    <title>Shopping cart | Metronic Shop UI</title>
+    <title>Shopping cart</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -32,7 +22,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <meta property="og:title" content="-CUSTOMER VALUE-">
     <meta property="og:description" content="-CUSTOMER VALUE-">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+    <meta property="og:image" content="-CUSTOMER VALUE-">
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
 
@@ -42,11 +32,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     </script>
     <!-- Theme styles END -->
 </head>
-<!-- Head END -->
+
 <?php
 include_once('./navbar.php');
 ?>
-<!-- Body BEGIN -->
+
 
 
 <body class="ecommerce">
@@ -99,7 +89,6 @@ include_once('./navbar.php');
 
                                     <li class=""><a href="#wait_for_sale" onclick="update_click_tab(1)" data-toggle="tab">รอยืนยันจากผู้ขาย <?php echo $count_Waiting_confirmation_seller != 0 ? " ( " . $count_Waiting_confirmation_seller . " ) " : "" ?> </a></li>
                                     <li class=""><a href="#pending" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending . " ) " : "" ?> </a></li>
-                                    <!-- <li class=""><a href="#confirm_sales_orders" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending . " ) " : "" ?> </a></li> -->
                                     <li class=""><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complet . " ) " : ""  ?> </a></li>
                                     <li class=""><a href="#cancel_trade" onclick="update_click_tab(4)" data-toggle="tab">ยกเลิกการซื้อขาย <?php echo $count_cancel_trade  != 0 ? " ( " . $count_cancel_trade . " ) " : ""  ?> </a></li>
 
@@ -188,11 +177,7 @@ include_once('./navbar.php');
                                     <div class="goods-page">
                                         <div id="div-product" class="goods-data clearfix">
                                             <div class="table-wrapper-responsive">
-                                                <script>
-                                                    $(document).ready(function() {
-                                                        // $("#myTable").DataTable();
-                                                    });
-                                                </script>
+
                                                 <table summary="Shopping cart" id="product_item_all">
                                                     <thead>
                                                         <th class="goods-page-image">ภาพ</th>

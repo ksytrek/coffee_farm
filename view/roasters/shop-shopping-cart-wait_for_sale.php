@@ -11,35 +11,72 @@ $sql_select_transale = "SELECT * FROM `transale` AS trn
 ?>
 
 <style type="text/css" media="all">
-.title{
-    font-size: 16px;
-}
+    .title {
+        font-size: 16px;
+    }
+
+    .content {
+        font-size: 10px;
+
+    }
 </style>
 
 <div class="goods-page">
     <div id="div-product" class="goods-data ">
         <div id="div-product" class="goods-data clearfix">
-            <div class="row" style="margin-left: 0px;">
-                <span class="datasheet-features-type title">ชื่อฟาร์มที่ขาย</span>
-                <button class="btn btn-primary btn-sm">ดูร้านค้า</button>
+            <div class="col-md-12" style="margin-left: 0px;">
+                <div class="row">
+                    <span class="datasheet-features-type title">ชื่อฟาร์มที่ขาย</span>
+                    <button class="btn btn-primary btn-sm" style="background-color: red;">ยกเลิกการซื้อขาย</button>
+                    <button class="btn btn-primary btn-sm">แผนที่ตั้งฟาร์ม   </button>
+                    <hr>
+                </div>
+                <div class="row product-item">
+                    <div class="col-sm-3 text-center">
+                        <img width="70%" height="100px" src="../../pictures/farmers/2021_12_23_09_34_27.png">
+                    </div>
+                    <div class="col-sm-3 margin-top-10">
+                        ชื่อสินค้า
+                    </div>
+                    <div class="col-sm-2 text-center margin-top-10">
+                        ราคาต่อชิ้น
+
+                    </div>
+                    <div class="col-sm-2 text-center margin-top-10">
+                        จำนวน
+                    </div>
+                    <div class="col-sm-2 text-center margin-top-10">
+                        ราคารวม
+                    </div>
+                </div>
+                <div class="row product-item">
+                    <div class="col-sm-3 text-center">
+                        <img width="70%" height="100px" src="../../pictures/farmers/2021_12_23_09_34_27.png">
+                    </div>
+                    <div class="col-sm-3 margin-top-10">
+                        ชื่อสินค้า
+                    </div>
+                    <div class="col-sm-2 text-center margin-top-10">
+                        ราคาต่อชิ้น
+
+                    </div>
+                    <div class="col-sm-2 text-center margin-top-10">
+                        จำนวน
+                    </div>
+                    <div class="col-sm-2 text-center margin-top-10">
+                        ราคารวม
+                    </div>
+                </div>
+                <!-- </div> -->
+
+
+                <div class="col-md-12 text-right  margin-bottom-35">
+
+                    ยอดคำสั่งซื้อทั้งหมด : 125,548
+
+                </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-3">
-                    <img width="100%" height="70px" src="../../pictures/farmers/2021_12_23_09_34_27.png">
-                </div>
-                <div class="col-sm-4">
-                    <img width="70px" height="70px" src="../../pictures/farmers/2021_12_23_09_34_27.png">
-                </div>
-                <div class="col-sm-4">
-                    <img width="70px" height="70px" src="../../pictures/farmers/2021_12_23_09_34_27.png">
-                </div>
 
-            </div>
-
-
-            <hr>
-            ยอดคำสั่งซื้อทั้งหมด :
         </div>
     </div>
 </div>
