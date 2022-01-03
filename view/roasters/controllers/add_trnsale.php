@@ -1,6 +1,6 @@
 <?php 
 
-require('../../../config/connectdb.php');
+include('../../../config/connectdb.php');
 $mg_success = null ;
 
 
@@ -33,6 +33,7 @@ if(isset($_POST['key']) && $_POST['key'] == 'add_trnsale'){
         // 2021-12-27 08:50:24.000000
         // current_timestamp()
         $sql_insert_transale = "INSERT INTO `transale` (`id_transale`, `date_transale`, `id_farmers`, `id_roasters`, `sum_price`, `status_transale`) VALUES (NULL, '$time' , '$id_farmers', '$id_roasters', '$sum_price', '1');";
+        
         if(Database::query($sql_insert_transale,PDO::FETCH_ASSOC)){
             $sql_select_transale = "SELECT * FROM `transale` WHERE date_transale = '$time' AND id_farmers = '$id_farmers' AND id_roasters = '$id_roasters' AND sum_price = '$sum_price'";
             $result = Database::query($sql_select_transale, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);

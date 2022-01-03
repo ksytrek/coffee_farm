@@ -364,7 +364,7 @@ include_once('./navbar.php');
                                                         id_roasters: ID_ROASTERS
                                                     },
                                                     success: function(result, textStatus, jqXHR) {
-                                                        // console.log(result);
+                                                        console.log(result);
                                                         if (result == 'success') {
                                                             removeCookie('product');
                                                             alert("สั่งซื้อสินค้าสำเร็จ")
