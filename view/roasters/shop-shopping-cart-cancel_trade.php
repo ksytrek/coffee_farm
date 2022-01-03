@@ -39,8 +39,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                 <div class="col-md-12" style="margin-left: 0px; border: 1px solid red; margin-bottom: 10px;">
                     <div class="row" style="padding:10px">
                         ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"> <?php echo $row['name_farmers']; ?></span> &nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-primary btn-sm" >ดูร้านค้า</button>
-                        <!-- <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button> -->
+                        <button onclick="do_farm('<?php echo $row['id_farmers'] ?>')" class="btn btn-primary btn-sm" >ดูร้านค้า</button>
                         <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
 
                         <hr>

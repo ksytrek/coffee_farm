@@ -1,6 +1,6 @@
 <?php 
 
-include('../../../config/connectdb.php');
+require_once("../../../config/connectdb.php");
 $mg_success = null ;
 
 
@@ -10,11 +10,6 @@ if(isset($_POST['key']) && $_POST['key'] == 'add_trnsale'){
     $id_roasters = $_POST['id_roasters'];
 
 
-    // $array = json_decode($json);
-    // $value = json_decode(json_encode($array), true);
-    // print_r($sel);
-
-
     $id_farmers = null;
    
     $index = 0;
@@ -22,7 +17,7 @@ if(isset($_POST['key']) && $_POST['key'] == 'add_trnsale'){
         $sum_price = null;
         $id_transale = null;
 
-        $id_farmers = $value[$index]['id_farmers'];
+        $id_farmers = $value[0]['id_farmers'];
         // $sum_price = $value[$index]['sum_price'];
         foreach($value as $sel_list){
             //     echo $sel_list['id_roasters'];

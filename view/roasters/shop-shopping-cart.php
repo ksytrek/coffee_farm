@@ -44,6 +44,38 @@ include_once('./navbar.php');
         $(document).ready(function() {
             $("#sum_cart").html(JSON.parse(readCookie('product')).length != 0 ? " ( " + JSON.parse(readCookie('product')).length + " )" : "");
         });
+
+
+        function cancel_transel(id_transale) {
+            // alert(id_transale);
+            if (confirm('คุณต้องการยกเลิกรายการสั่งซื้อหรือไม่')) {
+                $.ajax({
+                    url: "./controllers/update_staus_transale.php",
+                    type: "POST",
+                    data: {
+                        key: "cancel_transel",
+                        id_transale: id_transale
+                    },
+                    success: function(result, textStatus, jqXHR) {
+                        // console.log(result);
+                        if (result == 'success') {
+                            alert("ยกเลิกการสั่งซื้อสินค้าสำเร็จ");
+                            location.reload();
+                        } else {
+                            alert("ระบบตรวจพบข้อผิดพลาดบางอย่าง")
+                        }
+                    },
+                    error: function(result, textStatus, jqXHR) {
+                        alert("ระบบตรวจพบข้อผิดพลาดบางอย่างจากเซิฟเวอร์")
+                    }
+                });
+            }
+
+        }
+
+        function do_farm(id_farmers){
+            location.assign('./information-farm.php?infr='+id_farmers)
+        }
     </script>
 
 
@@ -87,8 +119,8 @@ include_once('./navbar.php');
 
                                 ?>
                                     <li class=""><a href="#wait_for_sale" onclick="update_click_tab(1)" data-toggle="tab">รอยืนยันจากผู้ขาย <?php echo $count_Waiting_confirmation_seller != 0 ? " ( " . $count_Waiting_confirmation_seller . " ) " : "" ?> </a></li>
-                                    <li class=""><a href="#pending" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending.  " ) " : "" ?> </a></li>
-                                    <li class=""><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น  <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complete.  " ) " : "" ?>  </a></li>
+                                    <li class=""><a href="#pending" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending .  " ) " : "" ?> </a></li>
+                                    <li class=""><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complete .  " ) " : "" ?> </a></li>
                                     <li class=""><a href="#cancel_trade" onclick="update_click_tab(4)" data-toggle="tab">ยกเลิกการซื้อขาย <?php echo $count_cancel_trade  != 0 ? " ( " . $count_cancel_trade . " ) " : ""  ?> </a></li>
                                 <?php endif; ?>
                                 <script>
@@ -386,7 +418,7 @@ include_once('./navbar.php');
 
                                 <div class="tab-pane fade" id="wait_for_sale">
                                     <!-- รอยืนยันจากผู้ขาย -->
- 
+
                                 </div>
 
                                 <div class="tab-pane fade" id="pending">

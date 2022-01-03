@@ -1,10 +1,9 @@
 <?php
 // include_once('config.inc.php');
-include_once('config.inc.php');
+include('config.inc.php');
 // require_once('./config.inc.php');
 
 class Database {
-    
     private static $link = null ;
     private static function getLink() {
         if ( self :: $link ) {
@@ -16,7 +15,7 @@ class Database {
     }
 
     public static function __callStatic ( $name, $args ) {
-        $callback = array ( self :: getLink ( ), $name ) ;
+        $callback = array ( self::getLink ( ), $name ) ;
         return call_user_func_array ( $callback , $args ) ;
     }
 
