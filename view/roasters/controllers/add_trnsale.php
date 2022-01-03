@@ -9,9 +9,8 @@ if(isset($_POST['key']) && $_POST['key'] == 'add_trnsale'){
     $sel = $_POST['sel'];
     $id_roasters = $_POST['id_roasters'];
 
-
     $id_farmers = null;
-   
+
     $index = 0;
     foreach($sel as $value){
         $sum_price = null;

@@ -15,28 +15,28 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
         <h3>แก้ไขข้อมูลบัญชีของคุณ</h3>
         <p>กรุณาอย่าเปิดเผยข้อมูลแก่คนอื่นๆ เพื่อความปลอดภัยของบัญชีผู้ใช้คุณเอง</p>
         <hr>
-        <form method="post" action="javascript:void(0)">
+        <form id="form_edit_account" method="post" action="javascript:void(0)">
             <div class="form-group">
                 <label for="firstname"> ชื่อโรงคั่วกาแฟ <span class="require">*</span></label>
-                <input name="input-name" type="text" id="firstname455554" value="<?php echo $row_roasters['name_roasters'] ?>" class="form-control" required>
+                <input name="input-name_roasters" type="text" id="firstname455554" value="<?php echo $row_roasters['name_roasters'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="lastname"> เลขทะเบียนการค้า
                     <span class="require">*</span></label>
-                <input name="input-last_name" type="text" id="lastname" value="<?php echo $row_roasters['num_trade_reg'] ?>" class="form-control" required>
+                <input name="input-num_trade_reg" type="text" id="lastname" value="<?php echo $row_roasters['num_trade_reg'] ?>" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="telephone"> ชื่อผู้ประกอบการ
                     <span class="require">*</span></label>
-                <input name="input-tel_farmers" type="text" value="<?php echo $row_roasters['name_entrep'] ?>" class="form-control" required>
+                <input name="input-name_entrep" type="text" value="<?php echo $row_roasters['name_entrep'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="fax"> อีเมลโรงคั่วกาแฟ
                     <span class="require">*</span>
                 </label>
 
-                <input name="input-face_farmers" value="<?php echo $row_roasters['e_mail_roasters'] ?>" type="text" class="form-control">
+                <input name="input-e_mail_roasters" value="<?php echo $row_roasters['e_mail_roasters'] ?>" type="text" class="form-control">
             </div>
 
             <div class="form-group">
@@ -58,10 +58,34 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                         height: 80px
                     }
                 </style>
-                <textarea name="input-detail_farm" class=""><?php echo $row_roasters['detail_roasters'] ?></textarea>
+                <textarea name="input-detail_roasters" class=""><?php echo $row_roasters['detail_roasters'] ?></textarea>
             </div>
             <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">บันทึก</button>
-
+            <script>
+                $("#form_edit_account").submit(function() {
+                    // alert("Edit Account")
+                    var $inputs = $("#form_edit_account :input");
+                    var values = {};
+                    $inputs.each(function() {
+                        values[this.name] = $(this).val();
+                    });
+                    console.log(values);
+                    $.ajax({
+                        url: "./controllers/account-edit.php",
+                        type: "POST",
+                        data: {
+                            key: "edit_account_submit",
+                            data: values
+                        },
+                        success: function(result, textStatus, jqXHR) {
+                            console.log(result);
+                        },
+                        error: function(jqXHR, textStatus, jqXHR) {
+                            alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
+                        }
+                    });
+                });
+            </script>
         </form>
 
     </div>
