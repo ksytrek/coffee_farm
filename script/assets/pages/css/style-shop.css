@@ -1312,6 +1312,12 @@ table .product-quantity .input-group {
     padding: 50px 13px 0;
 }
 
+.info-page-content {
+    width: 100%;
+    overflow: hidden;
+    padding: 50px 13px 0;
+}
+
 .ecommerce .nav-tabs {
     text-transform: uppercase;
     font: 16px/1 'Kodchasan', "PT Sans Narrow", sans-serif;
@@ -1336,10 +1342,20 @@ table .product-quantity .input-group {
     background: #fff;
 }
 
+.info-page-content .tab-content {
+    padding: 20px 15px;
+    background: #fff;
+}
+
 
 /* datasheet tab */
 
 .product-page-content .datasheet {
+    width: 100%;
+    font-size: inherit;
+}
+
+.info-page-content .datasheet {
     width: 100%;
     font-size: inherit;
 }
@@ -1350,7 +1366,18 @@ table .product-quantity .input-group {
     font-size: 15px;
 }
 
+.info-page-content .datasheet th {
+    border-bottom: solid 2px #eee;
+    padding-bottom: 5px;
+    font-size: 15px;
+}
+
 .product-page-content .datasheet td {
+    padding: 5px 20px 5px 0;
+    border-bottom: solid 1px #eee;
+}
+
+.info-page-content .datasheet td {
     padding: 5px 20px 5px 0;
     border-bottom: solid 1px #eee;
 }

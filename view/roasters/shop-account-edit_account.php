@@ -75,10 +75,18 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                         type: "POST",
                         data: {
                             key: "edit_account_submit",
-                            data: values
+                            data: values,
+                            id_roasters: ID_ROASTERS
                         },
                         success: function(result, textStatus, jqXHR) {
-                            console.log(result);
+                            // console.log(result);
+                            if(result == 'success'){
+                                alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
+                                location.reload();
+                            }else{
+                                alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
+                                location.reload();
+                            }
                         },
                         error: function(jqXHR, textStatus, jqXHR) {
                             alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
