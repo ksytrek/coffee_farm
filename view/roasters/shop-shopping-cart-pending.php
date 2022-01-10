@@ -32,7 +32,9 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
     <div id="div-product" class="goods-data ">
         <div id="div-product" class="goods-data clearfix">
             <?php
-            foreach (Database::query($sql_transale, PDO::FETCH_ASSOC) as $row) :
+            $result = Database::query($sql_transale, PDO::FETCH_ASSOC);
+             if ($result->rowCount() != 0) :
+            foreach ($result as $row) :
                 $id_transale = $row['id_transale'];
                 $sql_select_transale_de = "SELECT * FROM `transalede` AS trade INNER JOIN products AS pro ON pro.id_products = trade.id_products WHERE trade.id_transale = '$id_transale' ";
             ?>
@@ -46,7 +48,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                         <hr>
                     </div>
                     <?php
-                    foreach (Database::query($sql_select_transale_de, PDO::FETCH_ASSOC) as $row_de) :
+                    foreach ($result as $row_de) :
                     ?>
                         <div class="row product-item">
                             <div class="col-sm-3 text-center">
@@ -77,8 +79,15 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
 
                     </div>
                 </div>
+                <?php
+                endforeach;
+            else :
+                ?>
+                <div>
+                    ตะกร้าสินค้าของคุณ ไม่มีคำสั่งซื้อ <a href="./shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a> 
+                </div>
             <?php
-            endforeach;
+            endif;
             ?>
         </div>
     </div>
