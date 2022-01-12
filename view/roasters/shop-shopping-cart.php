@@ -138,7 +138,7 @@ include_once('./navbar.php');
                                                     $("#wait_for_sale").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ result + "\n" + textStatus );
                                                 }
                                             });
 
@@ -156,7 +156,7 @@ include_once('./navbar.php');
                                                     $("#pending").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + result + "\n" + textStatus );
                                                 }
                                             });
 
@@ -174,7 +174,7 @@ include_once('./navbar.php');
                                                     $("#trade_complete").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ result + "\n" + textStatus );
                                                 }
                                             });
                                             // $("#trade_complete").html();
@@ -192,7 +192,7 @@ include_once('./navbar.php');
                                                     $("#cancel_trade").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์");
+                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ result + "\n" + textStatus );
                                                 }
                                             });
                                             // $("#cancel_trade").html();
