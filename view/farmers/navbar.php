@@ -223,7 +223,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                         <?php elseif (isset($id_farmers)) : ?>
                             <li><a href="javascript:void(0);">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
-                            <li><a href="javascript:void(0);">เมนู 1</a></li>
+                            <!-- <li><a href="javascript:void(0);">เมนู 1</a></li> -->
                             <li><a href="./controllers/logout.php">Log Out</a></li>
 
                         <?php endif; ?>
@@ -331,11 +331,12 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                             </li>
                         </ul>
                     </li> -->
+
                         <!-- <li><a href="shop-item.html">Kids</a></li> -->
-                        <li><a href="javascript:void(0);">รายการขายสำเร็จ</a></li>
+                        <!-- <li><a href="javascript:void(0);">รายการขายสำเร็จ</a></li>
                         <li><a href="javascript:void(0);">เมนู 3</a></li>
                         <li><a href="javascript:void(0);">เมนู 4</a></li>
-                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addProduct">เมนู 5</a></li>
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addProduct">เมนู 5</a></li> -->
 
 
 

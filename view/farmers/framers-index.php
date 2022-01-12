@@ -88,8 +88,8 @@ include_once('./navbar.php');
                     $between = "price_unit BETWEEN $between_min AND $between_max ";
                     $newtype = "  id_typepro LIKE '%%' ";
 
-                    $sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers'";
-                    $sql_data = "SELECT * FROM products as pro INNER JOIN typepro as ty ON pro.id_typepro = ty.id_typepro  WHERE pro.id_typepro LIKE '%$type%' AND pro.$between AND pro.id_farmers = '$id_farmers'  ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+                    $sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers' AND status_products != '3' ";
+                    $sql_data = "SELECT * FROM products as pro INNER JOIN typepro as ty ON pro.id_typepro = ty.id_typepro  WHERE pro.id_typepro LIKE '%$type%' AND pro.$between AND pro.id_farmers = '$id_farmers'  AND pro.status_products != '3'  ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
                     $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                     $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
