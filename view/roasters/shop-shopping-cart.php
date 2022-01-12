@@ -156,7 +156,7 @@ include_once('./navbar.php');
                                                     $("#pending").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + result + "\n" + textStatus );
+                                                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus );
                                                 }
                                             });
 
@@ -174,7 +174,7 @@ include_once('./navbar.php');
                                                     $("#trade_complete").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ result + "\n" + textStatus );
+                                                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR + "\n" + textStatus );
                                                 }
                                             });
                                             // $("#trade_complete").html();
@@ -192,7 +192,7 @@ include_once('./navbar.php');
                                                     $("#cancel_trade").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ result + "\n" + textStatus );
+                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR. + "\n" + textStatus );
                                                 }
                                             });
                                             // $("#cancel_trade").html();
