@@ -138,7 +138,7 @@ include_once('./navbar.php');
                                                     $("#wait_for_sale").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ result + "\n" + textStatus );
+                                                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR + "\n" + textStatus );
                                                 }
                                             });
 
@@ -192,7 +192,7 @@ include_once('./navbar.php');
                                                     $("#cancel_trade").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR. + "\n" + textStatus );
+                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR + "\n" + textStatus );
                                                 }
                                             });
                                             // $("#cancel_trade").html();
