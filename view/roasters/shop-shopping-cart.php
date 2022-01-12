@@ -387,7 +387,7 @@ include_once('./navbar.php');
                                                 const trnsale = JSON.stringify(id_farmers)
                                                 console.log(id_farmers);
                                                 $.ajax({
-                                                    url: "./controllers/add_trnsale.php",
+                                                    url: "controllers/add_trnsale.php",
                                                     type: "POST",
                                                     data: {
                                                         key: "add_trnsale",
