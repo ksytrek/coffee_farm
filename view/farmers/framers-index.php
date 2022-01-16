@@ -131,12 +131,86 @@ include_once('./navbar.php');
                         <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
                         <div class="product-page-content">
                             <ul id="myTab" class="nav nav-tabs">
-                                <li class="active"><a href="#product_all" data-toggle="tab">สินค้าทั้งหมด</a></li>
-                                <li class=""><a href="#wait_for_sale" data-toggle="tab">รอยืนยันคำสั่งขาย</a></li>
-                                <li class=""><a href="#confirm_sales_orders" data-toggle="tab">ยืนยันคำสั่งขายและดำเนินการ</a></li>
-                                <li class=""><a href="#trade_complete" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
-                                <li class=""><a href="#cancel_trade" data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
+                                <li class="active"><a href="#product_all"  data-toggle="tab">สินค้าทั้งหมด</a></li>
+                                <li class=""><a href="#wait_for_sale" onclick="tableProductList('wait_for_sale')" data-toggle="tab">รอยืนยันคำสั่งขาย</a></li>
+                                <li class=""><a href="#confirm_sales_orders" onclick="tableProductList('confirm_sales_orders')" data-toggle="tab">ยืนยันคำสั่งขายและดำเนินการ</a></li>
+                                <li class=""><a href="#trade_complete" onclick="tableProductList('trade_complete')" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
+                                <li class=""><a href="#cancel_trade" onclick="tableProductList('cancel_trade')"  data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
                             </ul>
+                            <script>
+                                function tableProductList(value_pro){
+                                    if(value_pro == "product_all"){
+                                        $.ajax({
+                                            url : './page/product_all.php',
+                                            type : 'POST',
+                                            data: {
+                                                key : "product_all",
+                                                id_farmers : ID_FARMERS
+                                            },success: function(result, textStatus, jqXHR) {
+                                                $("#product_all").html(result)
+                                            },error: function(result, textStatus, jqXHR){
+
+                                            }
+                                        });
+                                    }else if(value_pro == "wait_for_sale"){
+                                        // alert("Please wait")
+                                        $.ajax({
+                                            url : './page/wait_for_sale.php',
+                                            type : 'POST',
+                                            data: {
+                                                key : "wait_for_sale",
+                                                id_farmers : ID_FARMERS
+                                            },success: function(result, textStatus, jqXHR) {
+                                                $("#wait_for_sale").html(result)
+                                            },error: function(result, textStatus, jqXHR){
+
+                                            }
+                                        });
+                                    }else if(value_pro == "confirm_sales_orders"){
+                                        // alert("Please wait")
+                                        $.ajax({
+                                            url : './page/confirm_sales_orders.php',
+                                            type : 'POST',
+                                            data: {
+                                                key : "confirm_sales_orders",
+                                                id_farmers : ID_FARMERS
+                                            },success: function(result, textStatus, jqXHR) {
+                                                $("#confirm_sales_orders").html(result)
+                                            },error: function(result, textStatus, jqXHR){
+
+                                            }
+                                        });
+                                    }else if(value_pro == "trade_complete"){
+                                        // alert("Please wait")
+                                        $.ajax({
+                                            url : './page/trade_complete.php',
+                                            type : 'POST',
+                                            data: {
+                                                key : "trade_complete",
+                                                id_farmers : ID_FARMERS
+                                            },success: function(result, textStatus, jqXHR) {
+                                                $("#trade_complete").html(result)
+                                            },error: function(result, textStatus, jqXHR){
+
+                                            }
+                                        });
+                                    }else if(value_pro == "cancel_trade"){
+                                        // alert("Please wait")
+                                        $.ajax({
+                                            url : './page/cancel_trade.php',
+                                            type : 'POST',
+                                            data: {
+                                                key : "cancel_trade",
+                                                id_farmers : ID_FARMERS
+                                            },success: function(result, textStatus, jqXHR) {
+                                                $("#cancel_trade").html(result)
+                                            },error: function(result, textStatus, jqXHR){
+
+                                            }
+                                        });
+                                    }
+                                }
+                            </script>
 
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade in active" id="product_all">
@@ -145,23 +219,19 @@ include_once('./navbar.php');
                                 </div>
 
                                 <div class="tab-pane fade" id="wait_for_sale">
-                                    <!--รอยืนยันคำสั่งขาย  -->
-                                    <?php include_once("./page/wait_for_sale.php"); ?>
+                                   
                                 </div>
 
                                 <div class="tab-pane fade " id="confirm_sales_orders">
                                     <!--  ยืนยันคำสั่งขายและดำเนินการ  -->
-                                    <?php include_once("./page/confirm_sales_orders.php"); ?>
+                                    
 
                                 </div>
                                 <div class="tab-pane fade " id="trade_complete">
                                     <!--  การซื้อขายเสร็จสิ้น  -->
-                                    <?php include_once("./page/trade_complete.php"); ?>
-
                                 </div>
                                 <div class="tab-pane fade " id="cancel_trade">
                                     <!--  ยกเลิกการซื้อขาย  -->
-                                    <?php include_once("./page/cancel_trade.php"); ?>
 
                                 </div>
 
