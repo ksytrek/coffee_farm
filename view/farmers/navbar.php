@@ -72,7 +72,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -385,10 +385,10 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                         </div>
                         <div class="modal-body">
                             <form id="form_addProduct" role="form" action="javascript:farmers_addProduct();">
-                                <input type="hidden" name="id_farmers" value="<?php echo $id_farmers?>">
+                                <input type="hidden" name="id_farmers" value="<?php echo $id_farmers ?>">
                                 <div class="form-group">
                                     <label for=""> ชื่อสินค้ากาแฟ <span class="require">*</span></label>
-                                
+
                                     <input type="text" name="name_products" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -467,14 +467,14 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                                         reader.readAsDataURL(file);
                                     });
                                 </script>
-
+                            </form>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิกโพสต์ขายสินค้า</button>
                             <button type="submit" class="btn btn-primary">โพสต์ขายสินค้า</button>
                         </div>
-                        </form>
+
                     </div>
 
                     <script>

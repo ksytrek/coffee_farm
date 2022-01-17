@@ -73,60 +73,6 @@ include_once('./navbar.php');
                 <!-- BEGIN CONTENT -->
                 <div class="col-md-12 col-sm-12">
                     <!-- BEGIN PRODUCT LIST -->
-
-                    <?php
-                    $page = null;
-                    $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
-
-                    $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
-                    $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
-                    $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
-                    $type = isset($_GET['type']) ? $_GET['type'] : '%%';
-
-                    $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
-                    $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
-                    $between = "price_unit BETWEEN $between_min AND $between_max ";
-                    $newtype = "  id_typepro LIKE '%%' ";
-
-                    $sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers' AND status_products != '3' ";
-                    $sql_data = "SELECT * FROM products as pro INNER JOIN typepro as ty ON pro.id_typepro = ty.id_typepro  WHERE pro.id_typepro LIKE '%$type%' AND pro.$between AND pro.id_farmers = '$id_farmers'  AND pro.status_products != '3'  ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
-
-                    $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
-                    $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
-                    $totalpage =  ceil($num_rowsx / $pagesize);
-
-
-                    if (isset($_GET['page'])) {
-                        $page = $_GET['page'];
-                        $start = ($page - 1) * $pagesize; //นี้เป็นสูตรการคำนวนครับ
-                        // 2 -1 * 50
-                        if ($num_rowsx < $start) {
-                            $start = 0;
-                        }
-                    } else {
-                        $page = 0;
-                        $start = 0;
-                    }
-
-                    // echo $_GET['page'];
-
-
-
-                    //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
-                    //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
-                    $result_data = null;
-                    $num_rows = null;
-
-                    try {
-                        // $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' ORDER BY id_products $order LIMIT $start,$pagesize";
-                        $result_data =  Database::query($sql_data, PDO::FETCH_ASSOC);
-                        $popup = Database::query($sql_data, PDO::FETCH_ASSOC);
-                        $num_rows = $result_data->rowCount();
-                    } catch (Exception $e) {
-                    }
-
-
-                    ?>
                     <div class="row product-list">
                         <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
                         <div class="product-page-content">
