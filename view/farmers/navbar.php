@@ -529,18 +529,18 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     </div>
     <!-- Header END -->
     <?php
-    if (isset($id_farmers)) :
+    // if (isset($id_farmers)) :
     ?>
-        <div class="title-wrapper">
+        <!-- <div class="title-wrapper">
             <div class="container">
                 <div class="container-inner">
                     <h1><span>ล็อกอินโดย</span></h1>
-                    <em> <?php echo $email_farmers; ?></em>
+                    <em> <?php //echo $email_farmers; ?></em>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-    <?php endif; ?>
+    <?php //endif; ?>
 
 
 
