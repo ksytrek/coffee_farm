@@ -8,7 +8,10 @@ $sql_select_transale = "SELECT * FROM `transale` AS trn
                         INNER JOIN transalede AS trnde ON trnde.id_transale = trn.id_transale 
                         WHERE trn.id_farmers = '$id_farmers' AND trn.status_transale = '1';";
 
-$sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  %Y') AS date_time FROM `transale` as trn INNER JOIN farmers AS far ON far.id_farmers = trn.id_farmers WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '1' ORDER BY trn.date_transale ASC; ";
+$sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  %Y') AS date_time 
+                    FROM `transale` as trn 
+                        INNER JOIN roasters AS roa ON roa.id_roasters = trn.id_roasters 
+                    WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '1' ORDER BY trn.date_transale ASC; ";
 
 ?>
 
@@ -28,6 +31,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
     }
 </style>
 
+
 <div class="goods-page">
     <div id="div-product" class="goods-data ">
         <div id="div-product" class="goods-data clearfix">
@@ -42,9 +46,12 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             ?>
                     <div class="col-md-12" style="margin-left: 0px; border: 1px solid red; margin-bottom: 10px;">
                         <div class="row" style="padding:10px">
-                            ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"> <?php echo $row['name_farmers']; ?></span> &nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-primary btn-sm" onclick="cancel_transel('<?php echo $id_transale ?>')" style="background-color: red;">ยกเลิกการซื้อขาย</button>
-                            <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button>
+                            ชื่อโรงคั่วกาแฟที่สั่งซื้อ : <span class="datasheet-features-type title"> <?php echo $row['name_roasters']; ?></span> &nbsp;&nbsp;&nbsp;
+                            <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูข้อมูลโรงคั่วกาแฟ</button>
+                            <button class="btn btn-primary btn-sm" onclick="update_staus_transale('<?php echo $id_transale ?>','4')" style="background-color: red;">ยกเลิกการซื้อขาย</button>
+                            <button class="btn btn-primary btn-sm" onclick="update_staus_transale('<?php echo $id_transale ?>','2')" style="background-color: green;">ตอบรับคำสั่งซื้อสินค้า</button>
+
+                            <!-- <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button> -->
                             <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
 
                             <hr>
@@ -87,7 +94,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             else :
                 ?>
                 <div>
-                    ตะกร้าสินค้าของคุณ ไม่มีคำสั่งซื้อ <a href="./shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a>
+                    ไม่มีคำสั่งซื้อ</a>
                 </div>
             <?php
             endif;

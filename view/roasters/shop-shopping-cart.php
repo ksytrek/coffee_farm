@@ -54,7 +54,8 @@ include_once('./navbar.php');
                     type: "POST",
                     data: {
                         key: "cancel_transel",
-                        id_transale: id_transale
+                        id_transale: id_transale,
+                        status: 4
                     },
                     success: function(result, textStatus, jqXHR) {
                         // console.log(result);

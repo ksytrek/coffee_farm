@@ -8,7 +8,10 @@ $sql_select_transale = "SELECT * FROM `transale` AS trn
                         INNER JOIN transalede AS trnde ON trnde.id_transale = trn.id_transale 
                         WHERE trn.id_farmers = '$id_farmers' AND trn.status_transale = '3';";
 
-$sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  %Y') AS date_time FROM `transale` as trn INNER JOIN farmers AS far ON far.id_farmers = trn.id_farmers WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '3' ORDER BY trn.date_transale ASC; ";
+$sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  %Y') AS date_time 
+                    FROM `transale` as trn 
+                        INNER JOIN roasters AS roa ON roa.id_roasters = trn.id_roasters 
+                    WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '3' ORDER BY trn.date_transale ASC; ";
 
 ?>
 
@@ -40,8 +43,8 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             ?>
                     <div class="col-md-12" style="margin-left: 0px; border: 1px solid red; margin-bottom: 10px;">
                         <div class="row" style="padding:10px">
-                            ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"> <?php echo $row['name_farmers']; ?></span> &nbsp;&nbsp;&nbsp;
-                            <button onclick="do_farm('<?php echo $row['id_farmers'] ?>')" class="btn btn-primary btn-sm">ดูร้านค้า</button>
+                            ชื่อโรงคั่วกาแฟที่สั่งซื้อ : <span class="datasheet-features-type title"> <?php echo $row['name_roasters']; ?></span> &nbsp;&nbsp;&nbsp;
+                            <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูข้อมูลโรงคั่วกาแฟ</button>
                             <!-- <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button> -->
                             <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
 

@@ -1,6 +1,6 @@
 <?php
 require("../../../config/connectdb.php");
-if(isset($_POST['key']) && $_POST['key'] == 'cancel_transel'){
+if(isset($_POST['key']) && $_POST['key'] == 'cancel_transel' && $_POST['status'] == '4'){
     // UPDATE `transale` SET `status_transale` = '2' WHERE `transale`.`id_transale` = 49;
     $sql_update = "UPDATE `transale` SET `status_transale` = '4' WHERE `transale`.`id_transale` = {$_POST['id_transale']};";
 

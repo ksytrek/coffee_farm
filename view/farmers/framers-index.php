@@ -55,6 +55,46 @@ include_once('./navbar.php');
             // alert(ID_FARMERS);
         }
     </script>
+    <script>
+        function update_staus_transale(id_transale, status) {
+            // alert(id_transale);
+            if (status == 2 && confirm('คุณต้องการตอบรับคำสั่งซื้อสินค้าหรือไม่')) {
+                send_satus_update(id_transale, status);
+            }
+            if (status == 3 && confirm('คุณต้องการยืนยันคำสั่งซื้อสินค้าหรือไม่')) {
+                send_satus_update(id_transale, status);
+            }
+            if (status == 4 && confirm('คุณต้องการยกเลิกรายการสั่งซื้อหรือไม่')) {
+                send_satus_update(id_transale, status);
+            }
+
+
+        }
+
+        function send_satus_update(id_transale, status) {
+            $.ajax({
+                url: "./controllers/update_staus_transale.php",
+                type: "POST",
+                data: {
+                    key: "update_staus_transale",
+                    id_transale: id_transale,
+                    status: status
+                },
+                success: function(result, textStatus, jqXHR) {
+                    // console.log(result);
+                    if (result == 'error') {
+                        alert("ระบบตรวจพบข้อผิดพลาดบางอย่าง")
+                        location.reload();
+                    } else {
+                        location.reload();
+                    }
+                },
+                error: function(result, textStatus, jqXHR) {
+                    alert("ระบบตรวจพบข้อผิดพลาดบางอย่างจากเซิฟเวอร์")
+                }
+            });
+        }
+    </script>
 
     <div class="main">
         <div class="container">
@@ -77,80 +117,112 @@ include_once('./navbar.php');
                         <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
                         <div class="product-page-content">
                             <ul id="myTab" class="nav nav-tabs">
-                                <li class="active"><a href="#product_all"  data-toggle="tab">สินค้าทั้งหมด</a></li>
-                                <li class=""><a href="#wait_for_sale" onclick="tableProductList('wait_for_sale')" data-toggle="tab">รอยืนยันคำสั่งขาย</a></li>
-                                <li class=""><a href="#confirm_sales_orders" onclick="tableProductList('confirm_sales_orders')" data-toggle="tab">ยืนยันคำสั่งขายและดำเนินการ</a></li>
-                                <li class=""><a href="#trade_complete" onclick="tableProductList('trade_complete')" data-toggle="tab">การซื้อขายเสร็จสิ้น</a></li>
-                                <li class=""><a href="#cancel_trade" onclick="tableProductList('cancel_trade')"  data-toggle="tab">ยกเลิกการซื้อขาย</a></li>
+                                <li class="active"><a href="#product_all" data-toggle="tab">สินค้าทั้งหมด</a></li>
+                                <?php
+
+                                $count_Waiting_confirmation_seller = 0; // 1 = รอยืนยันคำสั่งขาย 
+                                $count_pending = 0; // 2 = ยืนยันคำสั่งขายและดำเนินการ 
+                                $count_trade_complete = 0;  // 3 = การซื้อขายเสร็จสิ้น 
+                                $count_cancel_trade = 0;  // 4 = ยกเลิกการซื้อขาย
+
+
+                                $sql_trans = "SELECT * FROM `transale` WHERE id_farmers = '{$id_farmers}'";
+                                foreach (Database::query($sql_trans, PDO::FETCH_ASSOC) as $row) {
+                                    if ($row['status_transale'] == '1') {
+                                        $count_Waiting_confirmation_seller++;
+                                    } else if ($row['status_transale'] == '2') {
+                                        $count_pending++;
+                                    } else if ($row['status_transale'] == '3') {
+                                        $count_trade_complete++;
+                                    } else if ($row['status_transale'] == '4') {
+                                        $count_cancel_trade++;
+                                    }
+                                }
+
+                                ?>
+                                <li class=""><a href="#wait_for_sale" onclick="tableProductList('wait_for_sale')" data-toggle="tab">รอยืนยันคำสั่งขาย <?php echo $count_Waiting_confirmation_seller != 0 ? " ( " . $count_Waiting_confirmation_seller . " ) " : "" ?></a></li>
+                                <li class=""><a href="#confirm_sales_orders" onclick="tableProductList('confirm_sales_orders')" data-toggle="tab">ยืนยันคำสั่งขายและดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending .  " ) " : "" ?></a></li>
+                                <li class=""><a href="#trade_complete" onclick="tableProductList('trade_complete')" data-toggle="tab">การซื้อขายเสร็จสิ้น <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complete .  " ) " : "" ?></a></li>
+                                <li class=""><a href="#cancel_trade" onclick="tableProductList('cancel_trade')" data-toggle="tab">ยกเลิกการซื้อขาย <?php echo $count_cancel_trade  != 0 ? " ( " . $count_cancel_trade . " ) " : ""  ?></a></li>
                             </ul>
                             <script>
-                                function tableProductList(value_pro){
-                                    if(value_pro == "product_all"){
+                                function tableProductList(value_pro) {
+                                    if (value_pro == "product_all") {
                                         $.ajax({
-                                            url : './page/product_all.php',
-                                            type : 'POST',
+                                            url: './page/product_all.php',
+                                            type: 'POST',
                                             data: {
-                                                key : "product_all",
-                                                id_farmers : ID_FARMERS
-                                            },success: function(result, textStatus, jqXHR) {
+                                                key: "product_all",
+                                                id_farmers: ID_FARMERS
+                                            },
+                                            success: function(result, textStatus, jqXHR) {
                                                 $("#product_all").html(result)
-                                            },error: function(result, textStatus, jqXHR){
+                                            },
+                                            error: function(result, textStatus, jqXHR) {
 
                                             }
                                         });
-                                    }else if(value_pro == "wait_for_sale"){
+                                    } else if (value_pro == "wait_for_sale") {
                                         // alert("Please wait")
                                         $.ajax({
-                                            url : './page/wait_for_sale.php',
-                                            type : 'POST',
+                                            url: './page/wait_for_sale.php',
+                                            type: 'POST',
                                             data: {
-                                                key : "wait_for_sale",
-                                                id_farmers : ID_FARMERS
-                                            },success: function(result, textStatus, jqXHR) {
+                                                key: "wait_for_sale",
+                                                id_farmers: ID_FARMERS
+                                            },
+                                            success: function(result, textStatus, jqXHR) {
                                                 $("#wait_for_sale").html(result)
-                                            },error: function(result, textStatus, jqXHR){
+                                            },
+                                            error: function(result, textStatus, jqXHR) {
 
                                             }
                                         });
-                                    }else if(value_pro == "confirm_sales_orders"){
+                                    } else if (value_pro == "confirm_sales_orders") {
                                         // alert("Please wait")
                                         $.ajax({
-                                            url : './page/confirm_sales_orders.php',
-                                            type : 'POST',
+                                            url: './page/confirm_sales_orders.php',
+                                            type: 'POST',
                                             data: {
-                                                key : "confirm_sales_orders",
-                                                id_farmers : ID_FARMERS
-                                            },success: function(result, textStatus, jqXHR) {
+                                                key: "confirm_sales_orders",
+                                                id_farmers: ID_FARMERS
+                                            },
+                                            success: function(result, textStatus, jqXHR) {
                                                 $("#confirm_sales_orders").html(result)
-                                            },error: function(result, textStatus, jqXHR){
+                                            },
+                                            error: function(result, textStatus, jqXHR) {
 
                                             }
                                         });
-                                    }else if(value_pro == "trade_complete"){
+                                    } else if (value_pro == "trade_complete") {
                                         // alert("Please wait")
                                         $.ajax({
-                                            url : './page/trade_complete.php',
-                                            type : 'POST',
+                                            url: './page/trade_complete.php',
+                                            type: 'POST',
                                             data: {
-                                                key : "trade_complete",
-                                                id_farmers : ID_FARMERS
-                                            },success: function(result, textStatus, jqXHR) {
+                                                key: "trade_complete",
+                                                id_farmers: ID_FARMERS
+                                            },
+                                            success: function(result, textStatus, jqXHR) {
                                                 $("#trade_complete").html(result)
-                                            },error: function(result, textStatus, jqXHR){
+                                            },
+                                            error: function(result, textStatus, jqXHR) {
 
                                             }
                                         });
-                                    }else if(value_pro == "cancel_trade"){
+                                    } else if (value_pro == "cancel_trade") {
                                         // alert("Please wait")
                                         $.ajax({
-                                            url : './page/cancel_trade.php',
-                                            type : 'POST',
+                                            url: './page/cancel_trade.php',
+                                            type: 'POST',
                                             data: {
-                                                key : "cancel_trade",
-                                                id_farmers : ID_FARMERS
-                                            },success: function(result, textStatus, jqXHR) {
+                                                key: "cancel_trade",
+                                                id_farmers: ID_FARMERS
+                                            },
+                                            success: function(result, textStatus, jqXHR) {
                                                 $("#cancel_trade").html(result)
-                                            },error: function(result, textStatus, jqXHR){
+                                            },
+                                            error: function(result, textStatus, jqXHR) {
 
                                             }
                                         });
@@ -165,12 +237,12 @@ include_once('./navbar.php');
                                 </div>
 
                                 <div class="tab-pane fade" id="wait_for_sale">
-                                   
+
                                 </div>
 
                                 <div class="tab-pane fade " id="confirm_sales_orders">
                                     <!--  ยืนยันคำสั่งขายและดำเนินการ  -->
-                                    
+
 
                                 </div>
                                 <div class="tab-pane fade " id="trade_complete">
