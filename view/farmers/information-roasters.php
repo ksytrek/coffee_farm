@@ -109,7 +109,7 @@ include_once('./navbar.php');
 
 
 
-            var content = "ข้อมูลโรงคั่วกาแฟ <a href='./directions-map-roa.php?lat=13.730995466424108&lng=100.51986257812496'>ค้นหาเส้นทาง</a>";
+            var content = "<?php echo $row_data['address_office']. $row_data['name_provinces'] . " " . $row_data['code_provinces'] ; ?> <a href='./directions-map-roa.php?lat=13.730995466424108&lng=100.51986257812496'>ค้นหาเส้นทาง</a>";
             var infowindow = new google.maps.InfoWindow()
 
 
