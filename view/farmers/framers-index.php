@@ -73,10 +73,10 @@ include_once('./navbar.php');
 
         function send_satus_update(id_transale, status) {
             $.ajax({
-                url: "./controllers/update_staus_transale.php",
+                url: "../controllers/update_staus_transale.php",
                 type: "POST",
                 data: {
-                    key: "update_staus_transale",
+                    key: "update_cancel_transale",
                     id_transale: id_transale,
                     status: status
                 },

@@ -50,10 +50,10 @@ include_once('./navbar.php');
             // alert(id_transale);
             if (confirm('คุณต้องการยกเลิกรายการสั่งซื้อหรือไม่')) {
                 $.ajax({
-                    url: "./controllers/update_staus_transale.php",
+                    url: "../controllers/update_staus_transale.php",
                     type: "POST",
                     data: {
-                        key: "cancel_transel",
+                        key: "update_cancel_transale",
                         id_transale: id_transale,
                         status: 4
                     },
@@ -402,8 +402,10 @@ include_once('./navbar.php');
                                                             removeCookie('product');
                                                             alert("สั่งซื้อสินค้าสำเร็จ")
                                                             location.reload();
-                                                        } else {
+                                                        }else if(result == 'error'){
                                                             alert('ระบบตรวจพบข้อผิดพลาดบางอย่าง')
+                                                        }else{
+                                                            alert(result);
                                                         }
                                                     },
                                                     error: function(result, textStatus, jqXHR) {

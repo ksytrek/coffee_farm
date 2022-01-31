@@ -1,7 +1,7 @@
 <?php
-require("../../../config/connectdb.php");
+require("../../config/connectdb.php");
 $message = null;
-if (isset($_POST['key']) && $_POST['key'] == 'cancel_transel1' && $_POST['status'] == '4') {
+if (isset($_POST['key']) && $_POST['key'] == 'update_cancel_transale' && $_POST['status'] == '4') {
     // UPDATE `transale` SET `status_transale` = '2' WHERE `transale`.`id_transale` = 49;
 
     $id_transale = $_POST['id_transale'];
@@ -29,11 +29,6 @@ if (isset($_POST['key']) && $_POST['key'] == 'cancel_transel1' && $_POST['status
 
 
 
-
-
-
-
-
     $sql_update = "UPDATE `transale` SET `status_transale` = '4' WHERE `transale`.`id_transale` = '{$id_transale}';";
 
     if (Database::query($sql_update, PDO::FETCH_ASSOC)) {
@@ -45,4 +40,26 @@ if (isset($_POST['key']) && $_POST['key'] == 'cancel_transel1' && $_POST['status
 
 
     echo $message;
+}
+if(isset($_POST['key']) && $_POST['key'] == 'update_staus_transale' && $_POST['status'] == '2'){
+    // UPDATE `transale` SET `status_transale` = '2' WHERE `transale`.`id_transale` = 29;
+    $sql_update = "UPDATE `transale` SET `status_transale` = '2' WHERE `transale`.`id_transale` = {$_POST['id_transale']};";
+
+    if(Database::query($sql_update,PDO::FETCH_ASSOC)){
+        echo "success";
+    }else{
+        echo "error";
+    }
+
+}
+if(isset($_POST['key']) && $_POST['key'] == 'update_staus_transale' && $_POST['status'] == '3'){
+    // UPDATE `transale` SET `status_transale` = '3' WHERE `transale`.`id_transale` = 39;
+    $sql_update = "UPDATE `transale` SET `status_transale` = '3' WHERE `transale`.`id_transale` = {$_POST['id_transale']};";
+
+    if(Database::query($sql_update,PDO::FETCH_ASSOC)){
+        echo "success";
+    }else{
+        echo "error";
+    }
+
 }
