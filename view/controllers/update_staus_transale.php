@@ -1,7 +1,7 @@
 <?php
 require("../../config/connectdb.php");
 $message = null;
-if (isset($_POST['key']) && $_POST['key'] == 'update_cancel_transale' && $_POST['status'] == '4') {
+if (isset($_POST['key']) && $_POST['key'] == 'update_staus_transale' && $_POST['status'] == '4') {
     // UPDATE `transale` SET `status_transale` = '2' WHERE `transale`.`id_transale` = 49;
 
     $id_transale = $_POST['id_transale'];

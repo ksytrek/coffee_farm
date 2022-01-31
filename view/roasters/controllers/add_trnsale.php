@@ -36,9 +36,6 @@ if(isset($_POST['key']) && $_POST['key'] == 'add_trnsale'){
             }
 
             
-
-
-            
         }
 
         $time =  date("Y-m-d h:i:sa");

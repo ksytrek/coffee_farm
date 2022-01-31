@@ -129,7 +129,7 @@ try {
                     <div class="description" style="margin: 10px ; margin-left: 0px;">
                         คงเหลือ <strong><?php echo $row['num_stock']; ?></strong> Kg.
                     </div>
-                    <div class="pi-price">฿<?php echo $row['price_unit'] ?></div>
+                    <div class="pi-price">฿<?php echo $row['price_unit'] ?> / Kg.</div>
                     <a href="#product-pop-up-edit-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view add2cart">แก้ไขสินค้า</a>
 
                     <div class="sticker sticker-<?php echo $row['status_products'] == '1' ? 'sale' : "unsale" ?>"></div>
@@ -149,7 +149,7 @@ try {
                             <h1><?php echo $row['name_products'] ?></h1>
                             <div class="price-availability-block clearfix">
                                 <div class="price">
-                                    <strong><span>&#3647;</span><?php echo $row['price_unit']; ?></strong>
+                                    <strong><span>&#3647;</span><?php echo $row['price_unit']; ?> / Kg.</strong>
                                 </div>
 
                             </div>
@@ -167,7 +167,9 @@ try {
                                 <!-- </div> -->
                                 <!-- <a href="javascript:;" class="btn btn-default">ปิดการแสดง</a> -->
                                 <!-- <button class="btn btn-primary" onclick="alert('sdfasfe')" type="button">แก้ไขสินค้า</button> -->
-                                <a href="javascript:;" class="btn btn-default">รายละเอียด</a>
+                                <!-- <a href="./farmers-item.php?product=<?php echo $row['id_products']; ?>" class="btn btn-default">รายละเอียด</a> -->
+                                <a href="#product-pop-up-edit-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view add2cart">แก้ไขสินค้า</a>
+
                             </div>
                         </div>
                     </div>

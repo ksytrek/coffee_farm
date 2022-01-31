@@ -53,7 +53,7 @@ include_once('./navbar.php');
                     url: "../controllers/update_staus_transale.php",
                     type: "POST",
                     data: {
-                        key: "update_cancel_transale",
+                        key: "update_staus_transale",
                         id_transale: id_transale,
                         status: 4
                     },

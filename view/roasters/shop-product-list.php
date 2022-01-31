@@ -369,6 +369,9 @@ include_once('./navbar.php');
                                         </div>
                                     </div>
                                     <h3><a href="shop-item.php?product=<?php echo $row['id_products'] ?>"><?php echo $row['name_products'] ?></a></h3>
+                                    <div class="description" style="margin: 10px ; margin-left: 0px;">
+                                        คลัง <strong><?php echo $row['num_stock']; ?></strong> Kg.
+                                    </div>
                                     <div class="pi-price">฿<?php echo $row['price_unit'] . '.' . '00' ?></div>
 
                                     <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
@@ -395,6 +398,9 @@ include_once('./navbar.php');
 
                                             </div>
                                             <div class="description">
+                                                <p>คงเหลือ :
+                                                    <strong> <?php echo $row['num_stock']; ?> Kg.</strong>
+                                                </p>
                                                 <p>ประเภทกาแฟ :
                                                     <strong> <?php echo $row['name_typepro']; ?></strong>
                                                 </p>

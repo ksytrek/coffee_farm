@@ -52,6 +52,10 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
 ?>
 <script>
     const ID_FARMERS = '<?php echo $id_farmers; ?>';
+
+    function do_roa(id_roasters) {
+        window.location.assign('./information-roasters.php?inroa=' + id_roasters);
+    }
 </script>
 
 <head>
@@ -126,6 +130,8 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
     <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
 
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script> -->
 
     <style type="text/css" media="all">
         /* .modal-fullscreen { */
@@ -147,6 +153,9 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
         /* } */
     </style>
 
+    <script>
+        const queryString = window.location.search;
+    </script>
 
 
 
@@ -221,7 +230,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
 
 
                         <?php elseif (isset($id_farmers)) : ?>
-                            <li><a href="javascript:void(0);">บัญชีของฉัน</a></li>
+                            <li><a href="./farmers-account.php">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
                             <!-- <li><a href="javascript:void(0);">เมนู 1</a></li> -->
                             <li><a href="./controllers/logout.php">Log Out</a></li>
@@ -254,7 +263,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                     <?php
                     if (isset($id_farmers)) :
                     ?>
-                        <li><a href="javascript:void(0);">หน้าหลัก</a></li>
+                        <li><a href="./framers-index.php">หน้าหลัก</a></li>
                         <li class="dropdown ">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                                 จัดการสินค้า
@@ -262,12 +271,12 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
 
                             <ul class="dropdown-menu">
                                 <!-- class="active" -->
-                                <li><a href="javascript:void(0);">รายการสินค้า</a></li>
+                                <li><a href="./framers-index.php">รายการสินค้า</a></li>
                                 <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addProduct">เพิ่มสินค้า</a></li>
 
                             </ul>
                         </li>
-                        <li><a href="javascript:void(0);">รายการขาย</a></li>
+                        <!-- <li><a href="javascript:void(0);">รายการขาย</a></li> -->
 
                         <!-- <li class="dropdown dropdown-megamenu">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
@@ -531,16 +540,18 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <?php
     // if (isset($id_farmers)) :
     ?>
-        <!-- <div class="title-wrapper">
+    <!-- <div class="title-wrapper">
             <div class="container">
                 <div class="container-inner">
                     <h1><span>ล็อกอินโดย</span></h1>
-                    <em> <?php //echo $email_farmers; ?></em>
+                    <em> <?php //echo $email_farmers; 
+                            ?></em>
                 </div>
             </div>
         </div> -->
 
-    <?php //endif; ?>
+    <?php //endif; 
+    ?>
 
 
 

@@ -6,12 +6,12 @@ $status = null;
 
 $sql_select_transale = "SELECT * FROM `transale` AS trn 
                         INNER JOIN transalede AS trnde ON trnde.id_transale = trn.id_transale 
-                        WHERE trn.id_farmers = '$id_farmers' AND trn.status_transale = '3';";
+                        WHERE trn.id_farmers = '$id_farmers' AND trn.status_transale = '4';";
 
 $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  %Y') AS date_time 
                     FROM `transale` as trn 
                         INNER JOIN roasters AS roa ON roa.id_roasters = trn.id_roasters 
-                    WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '1' ORDER BY trn.date_transale ASC; ";
+                    WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '4' ORDER BY trn.date_transale DESC; ";
 
 ?>
 
