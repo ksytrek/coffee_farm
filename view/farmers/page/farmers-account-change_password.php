@@ -1,10 +1,10 @@
 <?php
-include('../../config/connectdb.php');
+include('../../../config/connectdb.php');
 if (isset($_POST['key']) && $_POST['key'] == 'change_password') :
 
-    $id_roasters = $_POST['id_roasters'];
+    $id_farmers = $_POST['id_farmers'];
 
-    $sql_info = "SELECT * FROM `roasters` WHERE id_roasters = '$id_roasters'";
+    $sql_info = "SELECT * FROM `farmers` WHERE id_farmers = '$id_farmers'";
 
     $row_roasters = Database::query($sql_info, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
 

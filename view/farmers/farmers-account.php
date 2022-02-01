@@ -19,7 +19,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <head>
     <meta charset="utf-8">
-    <title>My Account</title>
+    <title>ข้อมูลส่วนตัว</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -88,20 +88,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         }
 
         $(document).ready(function() {
-            $.ajax({
-                url: "./shop-account-information.php",
-                type: "POST",
-                data: {
-                    key: "information",
-                    id_roasters: ID_ROASTERS
-                },
-                success: function(result, textStatus, jqXHR) {
-                    $("#content").html(result);
-                },
-                error: function(result, textStatus, jqXHR) {
-                    $("#content").html('เกิดข้อผิดพลาดบางอย่าง');
-                }
-            });
+            account_information('edit_account');
         });
     </script>
 
@@ -117,9 +104,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="">Store</a></li>
-                <li class="active">My Account Page</li>
+                <li><a href="./framers-index.php">Home</a></li>
+                <!-- <li><a href="">Store</a></li> -->
+                <li class="active">ข้อมูลส่วนตัว</li>
             </ul>
 
             <div class="row margin-bottom-40">
@@ -132,21 +119,17 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                         <li class="list-group-item clearfix"><a href="javascript:account_information('edit_address');"><i class="fa fa-angle-right"></i> แก้ไขรายการสมุดที่อยู่ของคุณ</a></li>
 
                     </ul>
-                    <h4>คำสั่งซื้อของฉัน</h4>
-                    <ul class="list-group margin-bottom-25 sidebar-menu">
-                        <li class="list-group-item clearfix"><a href="javascript:account_information('order_history');"><i class="fa fa-angle-right"></i> ดูประวัติการสั่งซื้อของคุณ</a></li>
-                    </ul>
 
                     <script>
                         function account_information(key) {
                             $("#content").html('');
                             if (key == 'edit_account') {
                                 $.ajax({
-                                    url: "./shop-account-edit_account.php",
+                                    url: "./page/farmers-account-edit_account.php",
                                     type: "POST",
                                     data: {
                                         key: "edit_account",
-                                        id_roasters: ID_ROASTERS
+                                        id_farmers: ID_FARMERS
                                     },
                                     success: function(result, textStatus, jqXHR) {
                                         $("#content").html(result);
@@ -157,11 +140,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                 });
                             } else if (key == "change_password") {
                                 $.ajax({
-                                    url: "./shop-account-change_password.php",
+                                    url: "./page/farmers-account-change_password.php",
                                     type: "POST",
                                     data: {
                                         key: "change_password",
-                                        id_roasters: ID_ROASTERS
+                                        id_farmers: ID_FARMERS
                                     },
                                     success: function(result, textStatus, jqXHR) {
                                         $("#content").html(result);
@@ -173,11 +156,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                 });
                             } else if (key == "edit_address") {
                                 $.ajax({
-                                    url: "./shop-account-edit_address.php",
+                                    url: "./page/farmers-account-edit_address.php",
                                     type: "POST",
                                     data: {
                                         key: "edit_address",
-                                        id_roasters: ID_ROASTERS
+                                        id_farmers: ID_FARMERS
                                     },
                                     success: function(result, textStatus, jqXHR) {
                                         $("#content").html(result);
@@ -188,26 +171,27 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                                 });
                             } else if (key == 'information') {
                                 $.ajax({
-                                    url: "./shop-account-information.php",
+                                    url: "./page/farmers-account-information.php",
                                     type: "POST",
                                     data: {
                                         key: "information",
-                                        id_roasters: ID_ROASTERS
+                                        id_farmers: ID_FARMERS
                                     },
                                     success: function(result, textStatus, jqXHR) {
                                         $("#content").html(result);
                                     },
                                     error: function(result, textStatus, jqXHR) {
                                         $("#content").html('เกิดข้อผิดพลาดบางอย่าง');
+                                        // console.log(result)
                                     }
                                 });
                             }else if(key == 'order_history'){
                                 $.ajax({
-                                    url: "./shop-account-order_history.php",
+                                    url: "./page/farmers-account-order_history.php",
                                     type: "POST",
                                     data: {
                                         key: "order_history",
-                                        id_roasters: ID_ROASTERS
+                                        id_farmers: ID_FARMERS
                                     },
                                     success: function(result, textStatus, jqXHR) {
                                         $("#content").html(result);

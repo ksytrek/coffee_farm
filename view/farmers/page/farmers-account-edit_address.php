@@ -1,13 +1,13 @@
 <?php
-include('../../config/connectdb.php');
+include('../../../config/connectdb.php');
 if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
 
-    $id_roasters = $_POST['id_roasters'];
+    $id_farmers = $_POST['id_farmers'];
 
-    $sql_info = "SELECT * FROM `roasters` WHERE id_roasters = '$id_roasters'";
+    $sql_info = "SELECT * FROM `farmers` WHERE id_farmers = '$id_farmers'";
 
-    $row_roasters = Database::query($sql_info, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
-    $sql_provinces = "SELECT * FROM `provinces` WHERE id_provinces ='{$row_roasters['id_provinces']}'";
+    $row_farmers = Database::query($sql_info, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+    $sql_provinces = "SELECT * FROM `provinces` WHERE id_provinces ='{$row_farmers['id_provinces']}'";
     $row_provinces = Database::query($sql_provinces, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
 ?>
 
@@ -53,12 +53,12 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
                     height: 80px
                 }
             </style>
-            <textarea name="input-address_office" class=""><?php echo $row_roasters['address_office'] ?></textarea>
+            <textarea name="input-address_office" class=""><?php echo $row_farmers['address_farmers'] ?></textarea>
         </div>
         <div class="form-group">
             <label for="post-code">รหัสไปรษณี
                 <span class="require">*</span></label>
-            <input name="input-code_provinces" min="0" required type="number" value="<?php echo $row_roasters['code_provinces'] ?>" id="post-code" class="form-control">
+            <input name="input-code_provinces" min="0" required type="number" value="<?php echo $row_farmers['code_provinces'] ?>" id="post-code" class="form-control">
         </div>
         <div class="form-group">
             <label for="country">จังหวัด<span class="require">*</span></label>
@@ -80,14 +80,14 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                 <div class="form-group">
                     <label for="city"> ละติจูดฟาร์ม </label>
-                    <input name="input-lat_roasters" id='lat' disabled type="text" value="<?php echo $row_roasters['lat_roasters'] ?>" class="form-control" required>
+                    <input name="input-lat_roasters" id='lat' disabled type="text" value="<?php echo $row_farmers['lat_farm'] ?>" class="form-control" required>
                 </div>
             </div>
 
             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                 <div class="form-group">
                     <label for="city"> ลองจิจูดฟาร์ม </label>
-                    <input name="input-lng_roasters" id='lng' disabled type="text" value="<?php echo $row_roasters['lng_roasters'] ?>" class="form-control" required>
+                    <input name="input-lng_roasters" id='lng' disabled type="text" value="<?php echo $row_farmers['lng_farm'] ?>" class="form-control" required>
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
                     data: {
                         key: "button-payment-address",
                         data: values,
-                        id_roasters: ID_ROASTERS
+                        id_farmers: ID_FARMERS
                     },
                     success: function(result, textStatus, jqXHR) {
                         // console.log(result);

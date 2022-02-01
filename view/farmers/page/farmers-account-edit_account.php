@@ -1,12 +1,12 @@
 <?php
-include('../../config/connectdb.php');
+include('../../../config/connectdb.php');
 if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
 
-    $id_roasters = $_POST['id_roasters'];
+    $id_farmers = $_POST['id_farmers'];
 
-    $sql_info = "SELECT * FROM `roasters` WHERE id_roasters = '$id_roasters'";
+    $sql_info = "SELECT * FROM `farmers` WHERE id_farmers = '$id_farmers'";
 
-    $row_roasters = Database::query($sql_info, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+    $row_farmers = Database::query($sql_info, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -17,28 +17,37 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
         <hr>
         <form id="form_edit_account" method="post" action="javascript:void(0)">
             <div class="form-group">
-                <label for="firstname"> ชื่อโรงคั่วกาแฟ <span class="require">*</span></label>
-                <input name="input-name_roasters" type="text" id="firstname455554" value="<?php echo $row_roasters['name_roasters'] ?>" class="form-control" required>
+                <label for="firstname"> ชื่อเกษตรกร <span class="require">*</span></label>
+                <input name="input-name_roasters" type="text" id="firstname455554" value="<?php echo $row_farmers['name_farmers'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="lastname"> เลขทะเบียนการค้า
+                <label for="lastname"> อีเมล์เกษตรกร
                     <span class="require">*</span></label>
-                <input name="input-num_trade_reg" type="text" id="lastname" value="<?php echo $row_roasters['num_trade_reg'] ?>" class="form-control" required>
+                <input name="input-num_trade_reg" type="text" id="lastname" value="<?php echo $row_farmers['email_farmers'] ?>" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label for="telephone"> ชื่อผู้ประกอบการ
+                <label for="telephone"> เบอร์โทรเกษตรกร
                     <span class="require">*</span></label>
-                <input name="input-name_entrep" type="text" value="<?php echo $row_roasters['name_entrep'] ?>" class="form-control" required>
+                <input name="input-name_entrep" type="text" value="<?php echo $row_farmers['tel_farmers'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="fax"> อีเมลโรงคั่วกาแฟ
+                <label for="telephone"> facebook เกษตรกร
+                    <span class="require">*</span></label>
+                <input name="input-name_entrep" type="text" value="<?php echo $row_farmers['face_farmers'] ?>" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="fax"> 	line เกษตรกร
                     <span class="require">*</span>
                 </label>
-
-                <input name="input-e_mail_roasters" value="<?php echo $row_roasters['e_mail_roasters'] ?>" type="text" class="form-control">
+                <input name="input-e_mail_roasters" value="<?php echo $row_farmers['line_farmers'] ?>" type="text" class="form-control">
             </div>
-
+            <div class="form-group">
+                <label for="fax">อัพโหลดรูปภาพ
+                    <span class="require">(.png และ jpeg)</span>
+                </label>
+                <input name=""  type="file" accept="image/png, image/jpeg" class="form-control">
+            </div>
             <div class="form-group">
                 <label for="fax"> รายละเอียดต่างๆ ของโรงคั่วกาแฟ</label>
                 <style type="text/css">
@@ -58,7 +67,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                         height: 80px
                     }
                 </style>
-                <textarea name="input-detail_roasters" class=""><?php echo $row_roasters['detail_roasters'] ?></textarea>
+                <textarea name="input-detail_roasters" class=""><?php echo $row_farmers['detail_farm'] ?></textarea>
             </div>
             <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">บันทึก</button>
             <script>
@@ -76,7 +85,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                         data: {
                             key: "edit_account_submit",
                             data: values,
-                            id_roasters: ID_ROASTERS
+                            id_farmers: ID_FARMERS
                         },
                         success: function(result, textStatus, jqXHR) {
                             // console.log(result);
