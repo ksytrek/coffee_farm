@@ -233,7 +233,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                             <li><a href="./farmers-account.php">บัญชีของฉัน</a></li>
                             <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
                             <!-- <li><a href="javascript:void(0);">เมนู 1</a></li> -->
-                            <li><a href="./controllers/logout.php">Log Out</a></li>
+                            <li><a href="./controllers/logout.php">ออกจากระบบ</a></li>
 
                         <?php endif; ?>
                     </ul>

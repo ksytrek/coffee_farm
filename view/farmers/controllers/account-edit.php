@@ -65,21 +65,21 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-payment-address'){
     $input = $_POST['data'];
     $id_farmers = $_POST['id_farmers'];
 
-    $address_office = $input['input-address_office'];
+    $address_farmers = $input['input-address_farmers'];
     $id_provinces  = $input['input-id_provinces'];
     $code_provinces = $input['input-code_provinces'];
-    $lat_roasters = $input['input-lat_roasters'];
-    $lng_roasters = $input['input-lng_roasters'];
+    $lat_farm = $input['input-lat_farm'];
+    $lng_farm = $input['input-lng_farm'];
 
-    $sql_update_account = "UPDATE `roasters` SET 
-                                `address_office` = '$address_office', 
+    $sql_update_address = "UPDATE `farmers` SET 
+                                `address_farmers` = '$address_farmers', 
                                 `id_provinces` = '$id_provinces', 
                                 `code_provinces` = '$code_provinces', 
-                                `lat_roasters` = '$lat_roasters', 
-                                `lng_roasters` = '$lng_roasters' 
-                            WHERE `roasters`.`id_farmers` = '$id_farmers';";
+                                `lat_farm` = '$lat_farm', 
+                                `lng_farm` = '$lng_farm' 
+                            WHERE `farmers`.`id_farmers` = '$id_farmers';";
     // print_r($input);
-    if(Database::query($sql_update_account,PDO::FETCH_ASSOC)){
+    if(Database::query($sql_update_address,PDO::FETCH_ASSOC)){
         echo "success";
     }else{
         echo "error";
@@ -94,21 +94,22 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-change-password'){
     $input = $_POST['data'];
     $id_farmers = $_POST['id_farmers'];
 
-    $con_pass_new = $input['input-con_pass_new'];
-    $pass_new  = $input['input-pass_new'];
+    $con_pass_farmers_new = $input['input-con_pass_farmers_new'];
+    $pass_farmers_new  = $input['input-pass_farmers_new'];
 
 
-    $password = $input['input-password'];
+    $pass_farmers = $input['input-pass_farmers'];
 
 
-    $sql_update_account = "UPDATE `roasters` SET `pass_roasters` = '$pass_new' WHERE `roasters`.`id_farmers` = '$id_farmers';";
+    $sql_update_account = "UPDATE `farmers` SET `pass_farmers` = '$pass_farmers_new' WHERE `farmers`.`id_farmers` = '$id_farmers';";
     // print_r($input);
-    $sql_search = "SELECT pass_roasters FROM `roasters` WHERE pass_roasters = '$password'";
+
+    $sql_search = "SELECT pass_farmers FROM `farmers` WHERE pass_farmers = '$pass_farmers'";
     $row_p = Database::query($sql_search, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
 
-    if(isset($row_p['pass_roasters']) && $row_p['pass_roasters'] == $password){
+    if(isset($row_p['pass_farmers']) && $row_p['pass_farmers'] == $pass_farmers){
         // echo "Password already";
-        if($con_pass_new == $pass_new){
+        if($con_pass_farmers_new == $pass_farmers_new){
             // echo "success";
             if(Database::query($sql_update_account,PDO::FETCH_ASSOC)){
                 echo "success";
@@ -117,7 +118,7 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-change-password'){
             }
         }
     }else{
-        echo "error";
+        echo "รหัสปัจจุบันไม่ถุกต้อง";
     }
 
 

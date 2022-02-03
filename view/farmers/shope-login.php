@@ -18,7 +18,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- Head BEGIN -->
 <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
  -->
- <?php
+<?php
 include_once('./navbar.php');
 ?>
 <style type="text/css" media="all">
@@ -75,7 +75,7 @@ include_once('./navbar.php');
             marker.setAnimation(google.maps.Animation.BOUNCE);
         }
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    // google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 
@@ -134,26 +134,6 @@ include_once('./navbar.php');
                             </div>
                             <div id="checkout-content" class="panel-collapse collapse in ">
                                 <div class="panel-body row">
-                                    <!-- <div class="col-md-6 col-sm-6">
-                                        <h3>New Customer</h3>
-                                        <p>Checkout Options:</p>
-                                        <div class="radio-list">
-                                            <label>
-                                                <input type="radio" name="account" value="register">
-                                                Register Account
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="account" value="guest"> Guest
-                                                Checkout
-                                            </label>
-                                        </div>
-                                        <p>By creating an account you will
-                                            be able to shop faster, be up to
-                                            date on an order's status, and
-                                            keep track of the orders you
-                                            have previously made.</p>
-                                        <button class="btn btn-primary" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-address-content">Continue</button>
-                                    </div> -->
                                     <div class="col-md-12 col-sm-12">
                                         <h3>เข้าสู่ระบบเกษตรกร</h3>
                                         <!-- <p>I am a returning customer.</p> -->
@@ -174,8 +154,10 @@ include_once('./navbar.php');
                                             <label style="margin-bottom: 10px"><input id="Login_farmers" onclick="lsRememberMe()" type="checkbox"> จดจำฉันไว้ </label>
                                             <br>
                                             <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content">ฉันยังไม่มีรหัสเข้าสู่ระบบ</a>
+                                            <br>
+                                            <a data-toggle="collapse" data-parent="#checkout-page" href="#forgot_password-content">ลืมรหัสผ่าน</a>
                                             <div class="padding-top-20 text-right">
-                                                <button class="btn btn-primary" type="submit">Login</button>
+                                                <button class="btn btn-primary" type="submit">เข้าสู่ระบบเกษตรกร</button>
                                             </div>
                                             <script>
                                                 // function loginfarmers() {
@@ -195,7 +177,7 @@ include_once('./navbar.php');
 
 
 
-                                                    if (confirm("ต้องการล็อกอินเข้าสู่ระบบใช่หรือไม่?")) {
+                                                    // if (confirm("ต้องการล็อกอินเข้าสู่ระบบใช่หรือไม่?")) {
                                                         $.ajax({
                                                             url: "./controllers/login_farmers.php",
                                                             type: "POST",
@@ -219,7 +201,7 @@ include_once('./navbar.php');
 
                                                             }
                                                         });
-                                                    }
+                                                    // }
 
 
                                                 });
@@ -645,9 +627,38 @@ include_once('./navbar.php');
                                     });
                                 });
                             </script>
-
                         </div>
-                        <!-- END CHECKOUT PAGE -->
+
+                        <div id="forgot_password" class="panel panel-default ">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#checkout-page" href="#forgot_password-content" class="accordion-toggle">
+                                        ลืมรหัสผ่าน
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="forgot_password-content" class="panel-collapse collapse ">
+                                <div class="panel-body row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <form id="form_forgot_password" role="form" action="javascript:loginfarmers();">
+                                            <div class="form-group">
+                                                <label for="">อีเมล์เกษตรกร<span class="require">*</span></label>
+                                                <input type="email" id="email_forgot" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="อีเมลใช้ลงทะเบียน">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">เบอร์ติดต่อ<span class="require">*</span></label>
+                                                <input type="text" id="tel_forgot" class="form-control" placeholder="เบอร์มือถือ 10 หลัก">
+                                            </div>
+
+                                            <div class="padding-top-20 text-right">
+                                                <button class="btn btn-primary" type="submit">ส่งรหัสผ่านใหม่</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- END CONTENT -->
                 </div>

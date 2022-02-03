@@ -53,7 +53,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
                     height: 80px
                 }
             </style>
-            <textarea name="input-address_office" class=""><?php echo $row_farmers['address_farmers'] ?></textarea>
+            <textarea name="input-address_farmers" class=""><?php echo $row_farmers['address_farmers'] ?></textarea>
         </div>
         <div class="form-group">
             <label for="post-code">รหัสไปรษณี
@@ -62,7 +62,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
         </div>
         <div class="form-group">
             <label for="country">จังหวัด<span class="require">*</span></label>
-            <select name="input-id_provinces " class="form-control input-sm" id="country" required>
+            <select name="input-id_provinces" class="form-control input-sm" id="country" required>
                 <option selected value="<?php echo $row_provinces['id_provinces'] ?>"><?php echo $row_provinces['name_provinces'] ?></option>
                 <!--   -->
                 <?php
@@ -80,14 +80,14 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                 <div class="form-group">
                     <label for="city"> ละติจูดฟาร์ม </label>
-                    <input name="input-lat_roasters" id='lat' disabled type="text" value="<?php echo $row_farmers['lat_farm'] ?>" class="form-control" required>
+                    <input name="input-lat_farm" id='lat' disabled type="text" value="<?php echo $row_farmers['lat_farm'] ?>" class="form-control" required>
                 </div>
             </div>
 
             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                 <div class="form-group">
                     <label for="city"> ลองจิจูดฟาร์ม </label>
-                    <input name="input-lng_roasters" id='lng' disabled type="text" value="<?php echo $row_farmers['lng_farm'] ?>" class="form-control" required>
+                    <input name="input-lng_farm" id='lng' disabled type="text" value="<?php echo $row_farmers['lng_farm'] ?>" class="form-control" required>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">บันทึก</button>
 
         <script>
-            bangkok = new google.maps.LatLng($('input[name="input-lat_roasters"]').val(), $('input[name="input-lng_roasters"]').val());
+            bangkok = new google.maps.LatLng($('input[name="input-lat_farm"]').val(), $('input[name="input-lng_farm"]').val());
             $("#form_edit_address").submit(function() {
                 // alert("Edit Account")
                 var $inputs = $("#form_edit_address :input");
