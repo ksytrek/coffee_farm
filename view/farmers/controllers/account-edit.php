@@ -3,6 +3,18 @@
 // include('../../config/connectdb.php');
 require_once("../../../config/connectdb.php");
 
+function upload_image($image_farmers):string {
+
+    $name_date = date("Y_m_d_H_i_s").".png";
+    try {
+        file_put_contents('../../../pictures/farmers/'.$name_date, base64_decode($image_farmers));
+
+    } catch (Exception $e) {
+        echo "Error: ".$e->getMessage();
+    }
+    return $name_date;
+}
+
 if(isset($_POST['key']) && $_POST['key'] == 'edit_account_submit'){
     // $data = $_POST['data'];
     $input = $_POST['data'];
@@ -14,17 +26,30 @@ if(isset($_POST['key']) && $_POST['key'] == 'edit_account_submit'){
     $line_farmers = $input['input-line_farmers'];
     $face_farmers = $input['input-face_farmers'];
     $image_farmers = $input['input-image_farmers'];
+    $name_img = null;
     $detail_farm = $input['input-detail_farm'];
-    $name_img = upload_image($image_farmers);
+
+    $sql_search_farm = "SELECT * FROM farmers WHERE `id_farmers` = '$id_farmers' ";
+    $search_result = Database::query($sql_search_farm, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+    $search_imgName = $search_result['image_farmers'];
+
+    if($image_farmers == null || $image_farmers == 'null'){
+        $name_img = $search_imgName;
+    }else{
+        @unlink("../../../pictures/farmers/".$search_imgName);
+        $name_img = upload_image($image_farmers); 
+    }
 
     $sql_update_account = "UPDATE `farmers` SET 
                                 `name_farmers` = '$name_farmers', 
                                 `email_farmers` = '$email_farmers', 
                                 `tel_farmers` = '$tel_farmers', 
                                 `face_farmers` = '$face_farmers', 
-                                `line_farmers` = '$line_farmers' 
+                                `line_farmers` = '$line_farmers',
+                                `image_farmers` = '$name_img'
                             WHERE `farmers`.`id_farmers` = '$id_farmers';";
     // print_r($input);
+
     if(Database::query($sql_update_account,PDO::FETCH_ASSOC)){
         echo "success";
     }else{
@@ -99,15 +124,5 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-change-password'){
 }
 
 
-function upload_image($image_farmers):string {
 
-    $name_date = date("Y_m_d_H_i_s").".png";
-    try {
-        file_put_contents('../../../pictures/farmers/'.$name_date, base64_decode($image_farmers));
-
-    } catch (Exception $e) {
-        echo "Error: ".$e->getMessage();
-    }
-    return $name_date;
-}
 ?>

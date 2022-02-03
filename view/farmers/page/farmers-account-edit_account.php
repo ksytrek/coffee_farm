@@ -48,7 +48,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                 </label>
                 <input name="input-image_farmers" type="file" accept="image/png, image/jpeg" class="form-control">
                 <div class="form-group">
-                    <img id="image_farmers" src="../../script/pictures/default_image.jpg" width="100%" height="180px">
+                    <img id="image_farmers" src="../../pictures/farmers/<?php echo $row_farmers['image_farmers'] ?>" width="100%" height="180px">
                 </div>
                 <script>
                     // get a reference to the file input
@@ -131,28 +131,30 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
 
                     values['input-image_farmers'] = base64StringAccount;
                     console.log(values);
-                    // $.ajax({
-                    //     url: "./controllers/account-edit.php",
-                    //     type: "POST",
-                    //     data: {
-                    //         key: "edit_account_submit",
-                    //         data: values,
-                    //         id_farmers: ID_FARMERS
-                    //     },
-                    //     success: function(result, textStatus, jqXHR) {
-                    //         // console.log(result);
-                    //         if(result == 'success'){
-                    //             alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
-                    //             location.reload();
-                    //         }else{
-                    //             alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
-                    //             location.reload();
-                    //         }
-                    //     },
-                    //     error: function(jqXHR, textStatus, jqXHR) {
-                    //         alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
-                    //     }
-                    // });
+                    $.ajax({
+                        url: "./controllers/account-edit.php",
+                        type: "POST",
+                        data: {
+                            key: "edit_account_submit",
+                            data: values,
+                            id_farmers: ID_FARMERS
+                        },
+                        success: function(result, textStatus, jqXHR) {
+                            // console.log(result);
+                            if(result == 'success'){
+                                alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
+                                location.reload();
+                            }else{
+                                alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
+                                location.reload();
+                            // console.log(result);
+                            }
+                        },
+                        error: function(jqXHR, textStatus, jqXHR) {
+                            alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
+                            location.reload();
+                        }
+                    });
                 });
             </script>
         </form>
