@@ -15,6 +15,7 @@ $mail->Host = 'smtp.gmail.com';
 $mail->Port = 587;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
+$mail->SMTPAutoTLS = false; 
 
 
 $gmail_username = "sompholwila2543@gmail.com"; // gmail ที่ใช้ส่ง
@@ -23,7 +24,7 @@ $gmail_password = "!Somphol2543"; // รหัสผ่าน gmail
 
 
 $sender = "IBS Support"; // ชื่อผู้ส่ง
-$email_sender = "sompholwilaza101@gmail.com"; // เมล์ผู้ส่ง 
+$email_sender = "sompholwila2543@gmail.com"; // เมล์ผู้ส่ง 
 $email_receiver = "ksytrek@gmail.com"; // เมล์ผู้รับ ***
 
 $subject = "เปลี่ยนรหัสผ่าน"; // หัวข้อเมล์

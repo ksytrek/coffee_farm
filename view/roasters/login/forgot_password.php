@@ -47,13 +47,14 @@
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
                 <script>
-                    function resetPass() {
+                    function resetPass() { 
                         var e_mail_roasters = $('#e_mail_roasters').val();
                         var num_trade_reg = $('#num_trade_reg').val();
                         var url_host = $('#url_server').val();
                         // alert(email)
                         $.ajax({
-                            url: "./controller/resetPass.php",
+                            // url: "./controller/resetPass.php",
+                            url : "../../controllers/resetPass.php",
                             type: "POST",
                             data: {
                                 key: "resetPass",

@@ -88,7 +88,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'resetPass') {
                     if (!$mail->send()) {  // สั่งให้ส่ง email
                         // กรณีส่ง email ไม่สำเร็จ
                         echo "ระบบมีปัญหา กรุณาลองใหม่อีกครั้ง";
-                        // echo $mail->ErrorInfo; // ข้อความ รายละเอียดการ error
+                        echo $mail->ErrorInfo; // ข้อความ รายละเอียดการ error
                     } else {
                         // กรณีส่ง email สำเร็จ
                         echo "success";
