@@ -102,9 +102,7 @@ include_once('./navbar.php');
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
 </head>
-<!-- Head END -->
 
-<!-- Body BEGIN -->
 
 <body class="ecommerce">
 
@@ -137,7 +135,7 @@ include_once('./navbar.php');
                                     <div class="col-md-12 col-sm-12">
                                         <h3>เข้าสู่ระบบเกษตรกร</h3>
                                         <!-- <p>I am a returning customer.</p> -->
-                                        <form id="form_loging" role="form" action="javascript:loginfarmers();">
+                                        <form id="form_loging" role="form" action="javascript:void(0);">
                                             <div class="form-group">
                                                 <label for="email-login">E-Mail<span class="require">*</span></label>
                                                 <input type="email" id="email-login" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control">
@@ -178,29 +176,29 @@ include_once('./navbar.php');
 
 
                                                     // if (confirm("ต้องการล็อกอินเข้าสู่ระบบใช่หรือไม่?")) {
-                                                        $.ajax({
-                                                            url: "./controllers/login_farmers.php",
-                                                            type: "POST",
-                                                            data: {
-                                                                key: "login_farmers",
-                                                                email_farmers: e_mail_frame,
-                                                                pass_farmers: pass_farmers
-                                                            },
-                                                            success: function(result, textStatus, jqXHR) {
+                                                    $.ajax({
+                                                        url: "./controllers/login_farmers.php",
+                                                        type: "POST",
+                                                        data: {
+                                                            key: "login_farmers",
+                                                            email_farmers: e_mail_frame,
+                                                            pass_farmers: pass_farmers
+                                                        },
+                                                        success: function(result, textStatus, jqXHR) {
+                                                            // alert(result);
+                                                            if (result == '1') {
+                                                                alert("ยินดีตอนรับเข้าสู่ระบบ");
+                                                                location.assign('./framers-index.php');
+
+                                                            } else {
+                                                                alert('รหัสผ่านไม่ถูกต้อง');
                                                                 // alert(result);
-                                                                if (result == '1') {
-                                                                    alert("ยินดีตอนรับเข้าสู่ระบบ");
-                                                                    location.assign('./framers-index.php');
-
-                                                                } else {
-                                                                    alert('รหัสผ่านไม่ถูกต้อง');
-                                                                    // alert(result);
-                                                                }
-                                                            },
-                                                            error: function(result, textStatus, jqXHR) {
-
                                                             }
-                                                        });
+                                                        },
+                                                        error: function(result, textStatus, jqXHR) {
+
+                                                        }
+                                                    });
                                                     // }
 
 
@@ -276,10 +274,6 @@ include_once('./navbar.php');
                                                 <span class="require">*</span></label>
                                             <input name="input-last_name" type="text" id="lastname" class="form-control" required>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="email">E-Mail <span class="require">*</span></label>
-                                            <input name="input-email_farmers" type="email" id="email" class="form-control">
-                                        </div> -->
                                         <div class="form-group">
                                             <label for="telephone">เบอร์โทรเกษตรกร
                                                 <span class="require">*</span></label>
@@ -301,13 +295,6 @@ include_once('./navbar.php');
 
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
-                                                <div class="form-group">
-                                                    <label for="fax">จำนวนพื้นที่เพาะปลูกไร่</label>
-                                                    <input type="text"  class="form-control">
-                                                </div>
-                                            </div> -->
-                                            <!-- <div style="margin-left: 0; margin-right:"></div> -->
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <img id="img" width="100%" height="150px" src="../../script/assets/img/logos/person.png" alt="" />
@@ -422,8 +409,6 @@ include_once('./navbar.php');
                                                 }
                                             </style>
                                             <textarea name="input-detail_farm" class=""></textarea>
-                                            <!-- <input type="text"  class="form-control">
-                                         -->
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
@@ -569,7 +554,7 @@ include_once('./navbar.php');
                                         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">ลงทะเบียน</button>
 
                                     </div>
-                                    <!-- </form> -->
+                                </form>
                             </div>
                             <script>
                                 // $("#button-payment-address").click(function() {
@@ -640,27 +625,44 @@ include_once('./navbar.php');
                             <div id="forgot_password-content" class="panel-collapse collapse ">
                                 <div class="panel-body row">
                                     <div class="col-md-12 col-sm-12">
-                                        <form id="form_forgot_password" role="form" action="javascript:loginfarmers();">
+                                        <form id="form_forgot_password" role="form" action="javascript:void(0);">
                                             <div class="form-group">
                                                 <label for="">อีเมล์เกษตรกร<span class="require">*</span></label>
-                                                <input type="email" id="email_forgot" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="อีเมลใช้ลงทะเบียน">
+                                                <input type="email" id="email_forgot"  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="อีเมลใช้ลงทะเบียน">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">เบอร์ติดต่อ<span class="require">*</span></label>
-                                                <input type="text" id="tel_forgot" class="form-control" placeholder="เบอร์มือถือ 10 หลัก">
+                                                <input type="tel" id="tel_forgot"  class="form-control" placeholder="เบอร์มือถือ 10 หลัก">
                                             </div>
 
                                             <div class="padding-top-20 text-right">
                                                 <button class="btn btn-primary" type="submit">ส่งรหัสผ่านใหม่</button>
                                             </div>
-
                                         </form>
+                                        <script>
+                                            $("#form_forgot_password").submit(function() {
+
+                                                // alert( $("#email_forgot").val() + $("#tel_forgot").val())
+                                                $.ajax({
+                                                    url: "../controllers/resetPass.php",
+                                                    type: "POST",
+                                                    data: {
+                                                        key: "resetPass_farmers",
+                                                        email_forgot : $("#email_forgot").val(),
+                                                        tel_forgot : $("#tel_forgot").val()
+                                                    },success: function(result, textStatus, jqXHR) {
+                                                        alert(result);
+                                                    },error: function(jqXHR, textStatus, errorThrown){
+                                                        alert(result);
+                                                    }
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- END CONTENT -->
                 </div>
             </div>
         </div>
