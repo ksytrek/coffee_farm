@@ -32,6 +32,25 @@ include_once('./navbar.php');
         width: 100%;
         background-color: #ccc;
     }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+    }
+
+    body.loading .modal {
+        overflow: hidden;
+    }
+
+    body.loading .modal {
+        display: block;
+    }
 </style>
 
 <!-- <script src="./js/jquery.min.js"></script> -->
@@ -104,9 +123,15 @@ include_once('./navbar.php');
 </head>
 
 
-<body class="ecommerce">
+<body class="ecommerce loading">
 
+    <div class="modal">
+        <!-- Place at bottom of page -->
+    </div>
 
+    <script>
+
+    </script>
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
@@ -628,11 +653,11 @@ include_once('./navbar.php');
                                         <form id="form_forgot_password" role="form" action="javascript:void(0);">
                                             <div class="form-group">
                                                 <label for="">อีเมล์เกษตรกร<span class="require">*</span></label>
-                                                <input type="email" id="email_forgot"  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="อีเมลใช้ลงทะเบียน">
+                                                <input type="email" id="email_forgot" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="อีเมลใช้ลงทะเบียน">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">เบอร์ติดต่อ<span class="require">*</span></label>
-                                                <input type="tel" id="tel_forgot"  class="form-control" placeholder="เบอร์มือถือ 10 หลัก">
+                                                <input type="tel" id="tel_forgot" class="form-control" placeholder="เบอร์มือถือ 10 หลัก">
                                             </div>
 
                                             <div class="padding-top-20 text-right">
@@ -641,18 +666,28 @@ include_once('./navbar.php');
                                         </form>
                                         <script>
                                             $("#form_forgot_password").submit(function() {
-
+                                                var body = $("body");
+                                                // body.addClass("loading");
+                                                body.removeClass("loading");
                                                 // alert( $("#email_forgot").val() + $("#tel_forgot").val())
                                                 $.ajax({
                                                     url: "../controllers/resetPass.php",
                                                     type: "POST",
                                                     data: {
                                                         key: "resetPass_farmers",
-                                                        email_forgot : $("#email_forgot").val(),
-                                                        tel_forgot : $("#tel_forgot").val()
-                                                    },success: function(result, textStatus, jqXHR) {
+                                                        email_forgot: $("#email_forgot").val(),
+                                                        tel_forgot: $("#tel_forgot").val()
+                                                    },
+                                                    cache: false,
+                                                    beforeSend: function() {
+                                                        // console.log(result);
+                                                        body.addClass("loading");
+                                                    },
+                                                    success: function(result, textStatus, jqXHR) {
                                                         alert(result);
-                                                    },error: function(jqXHR, textStatus, errorThrown){
+                                                        body.removeClass("loading");
+                                                    },
+                                                    error: function(jqXHR, textStatus, errorThrown) {
                                                         alert(result);
                                                     }
                                                 });
