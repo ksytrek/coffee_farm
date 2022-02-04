@@ -183,7 +183,16 @@ include_once('./navbar.php');
                         <?php endforeach; ?>
 
                     </ul>
+                    <ul class="list-group margin-bottom-25 sidebar-menu">
+                        <h2>ค้นหาจากจังหวัด</h2>
+                        <?php
+                        $result = Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC);
+                        foreach ($result as $row) :
+                        ?>
+                            <li class="list-group-item clearfix"><a href="javascript:search_type(<?php echo $row['id_typepro'] ?>); ">&nbsp;<i class="fa fa-angle-right"></i><?php echo $row['name_typepro'] ?></a></li>
+                        <?php endforeach; ?>
 
+                    </ul>
                 </div>
 
                 <div class="col-md-9 col-sm-7">
