@@ -208,8 +208,8 @@ if (isset($_POST['key']) && $_POST['key'] == 'resetPass') {
     }
 }
 
-function randomPassword()
-{
+function randomPassword(){
+
     $alphabet = '!@$#&';
     $alphabet1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $alphabet2 = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -237,4 +237,5 @@ function randomPassword()
         $pass[] = $alphabet3[$n];
     }
     return implode($pass); //turn the array into a string
+    
 }
