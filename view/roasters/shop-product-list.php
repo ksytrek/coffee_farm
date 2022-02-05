@@ -171,6 +171,17 @@ include_once('./navbar.php');
                                 location.assign(window.location.href + "?name=" + name);
                             }
                         }
+
+                        function select_provinces(object) {
+                            var name = $("#" + object).val();
+                            // alert(name);
+
+                            if (queryString.includes("?")) {
+                                location.assign(window.location.href + "&provinces=" + name);
+                            } else {
+                                location.assign(window.location.href + "?provinces=" + name);
+                            }
+                        }
                     </script>
 
                     <ul class="list-group margin-bottom-25 sidebar-menu">
@@ -183,16 +194,20 @@ include_once('./navbar.php');
                         <?php endforeach; ?>
 
                     </ul>
-                    <ul class="list-group margin-bottom-25 sidebar-menu">
-                        <h2>ค้นหาจากจังหวัด</h2>
+                    <h2>ค้นหาจากจังหวัด</h2>
+                    
+                    <select id="select_provinces" name="select_provinces" class="form-control input-sm" onChange="select_provinces('select_provinces');">
+                        
+                        
+                        
+                        <option selected disabled > เลือกจังหวัด</option>
                         <?php
-                        $result = Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC);
-                        foreach ($result as $row) :
+                        $result_provinces = Database::query("SELECT * FROM `provinces`", PDO::FETCH_ASSOC);
+                        foreach ($result_provinces as $row_provinces) :
                         ?>
-                            <li class="list-group-item clearfix"><a href="javascript:search_type(<?php echo $row['id_typepro'] ?>); ">&nbsp;<i class="fa fa-angle-right"></i><?php echo $row['name_typepro'] ?></a></li>
+                        <option value="<?php echo $row_provinces['id_provinces'] ?>" <?php echo isset($_GET["provinces"]) && $_GET["provinces"] == $row_provinces['id_provinces'] ?   'selected="selected "' : " " ?>  ><?php echo $row_provinces['name_provinces'] ?></option>
                         <?php endforeach; ?>
-
-                    </ul>
+                    </select>
                 </div>
 
                 <div class="col-md-9 col-sm-7">
@@ -304,17 +319,25 @@ include_once('./navbar.php');
                         $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
                         $type = isset($_GET['type']) ? $_GET['type'] : '%%';
                         $name = isset($_GET['name']) ? $_GET['name'] : '%%';
-
+                        $provinces = isset($_GET['provinces']) ? $_GET['provinces'] : '%%';
                         // $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
                         // $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
                         // $between = " price_unit BETWEEN $between_min AND $between_max ";
                         // $newtype = "  id_typepro LIKE '%%' ";
 
-                        $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' AND name_products LIKE '%$name%' AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0) ";
+
+                        // AND far.id_provinces LIKE '$provinces'
+                        // AND far.id_provinces LIKE '$provinces'
+
+                        $sql_count = "SELECT * FROM `products` as pro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
+                                                 WHERE id_provinces LIKE '$provinces' 
+                                                    AND  id_typepro LIKE '%$type%' 
+                                                    AND name_products LIKE '%$name%'  
+                                                    AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 2) ";
                         $sql_data = "SELECT * FROM products as pro 
                                                 INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
                                                 INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
-                                                WHERE pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%' AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0)   ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+                                                WHERE id_provinces LIKE '$provinces' AND pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%'  AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 2 )   ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
                         $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                         $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด

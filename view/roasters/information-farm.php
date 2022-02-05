@@ -109,7 +109,7 @@ include_once('./navbar.php');
 
 
 
-            var content = "ข้อมูลฟาร์ม <a href='./directions-map-farm.php?lat=13.730995466424108&lng=100.51986257812496'>ค้นหาเส้นทาง</a>";
+            var content = "<?php echo $row_infor['address_farmers']." ".$row_infor['code_provinces'] ?> <a href='./directions-map-farm.php?lat=<?php echo $row_infor['lat_farm'] ?>&lng=<?php echo $row_infor['lng_farm'] ?>'>ค้นหาเส้นทาง</a>";
             var infowindow = new google.maps.InfoWindow()
 
 

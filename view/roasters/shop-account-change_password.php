@@ -47,13 +47,13 @@ if (isset($_POST['key']) && $_POST['key'] == 'change_password') :
                         },
                         success: function(result, textStatus, jqXHR) {
                             console.log(result);
-                            // if (result == 'success') {
-                            //     alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
-                            //     location.reload();
-                            // } else {
-                            //     alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
-                            //     location.reload();
-                            // }
+                            if (result == 'success') {
+                                alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
+                                location.reload();
+                            } else {
+                                alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
+                                location.reload();
+                            }
                         },
                         error: function(jqXHR, textStatus, jqXHR) {
                             alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);

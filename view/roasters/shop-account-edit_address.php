@@ -62,7 +62,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
         </div>
         <div class="form-group">
             <label for="country">จังหวัด<span class="require">*</span></label>
-            <select name="input-id_provinces " class="form-control input-sm" id="country" required>
+            <select name="input-id_provinces" class="form-control input-sm" id="country" required>
                 <option selected value="<?php echo $row_provinces['id_provinces'] ?>"><?php echo $row_provinces['name_provinces'] ?></option>
                 <!--   -->
                 <?php
@@ -119,13 +119,13 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
                         id_roasters: ID_ROASTERS
                     },
                     success: function(result, textStatus, jqXHR) {
-                        // console.log(result);
+                        console.log(result);
                         if (result == 'success') {
                             alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
                             location.reload();
                         } else {
-                            alert('กรุณาตรวจสอบรหัสผ่านใหม่อีกครั้ง');
-                            // location.reload();
+                            alert('ระบบแก้ไขข้อมูลไม่สำเร็จ');
+                            location.reload();
                         }
                     },
                     error: function(jqXHR, textStatus, jqXHR) {
