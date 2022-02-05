@@ -99,9 +99,9 @@ include_once('./navbar.php');
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="./framers-index.php">Home</a></li>
+                <li><a href="./framers-index.php">หน้าหลัก</a></li>
                 <!-- <li><a href="">Store</a></li> -->
-                <!-- <li class="active">Men category</li> -->
+                <li class="active"></li>
             </ul>
             <!-- BEGIN SIDEBAR & CONTENT -->
             <div class="row margin-bottom-40">

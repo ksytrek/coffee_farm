@@ -426,7 +426,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                                     <input type="file" name="image_pro" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <img id="img_product" src="../../script/pictures/default_image.jpg" width="100%" height="180px">
+                                    <img id="img_product" src="../../script/pictures/img_addPro.png" width="100%" height="180px">
                                 </div>
                                 <script>
                                     // get a reference to the file input

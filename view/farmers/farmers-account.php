@@ -88,7 +88,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         }
 
         $(document).ready(function() {
-            account_information('change_password');
+            account_information('information');
         });
     </script>
 

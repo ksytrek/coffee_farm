@@ -109,7 +109,7 @@ include_once('./navbar.php');
 
 
 
-            var content = "<?php echo $row_data['address_office']. $row_data['name_provinces'] . " " . $row_data['code_provinces'] ; ?> <a href='./directions-map-roa.php?lat=13.730995466424108&lng=100.51986257812496'>ค้นหาเส้นทาง</a>";
+            var content = "<?php echo $row_data['address_office']. $row_data['name_provinces'] . " " . $row_data['code_provinces'] ; ?> <a href='./directions-map-roa.php?lat=<?php echo $row_data['lat_roasters']?>&lng=<?php echo $row_data['lng_roasters']?>'>ค้นหาเส้นทาง</a>";
             var infowindow = new google.maps.InfoWindow()
 
 
@@ -146,7 +146,6 @@ include_once('./navbar.php');
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="">Store</a></li>
                 <li class="active">ข้อมูลโรงคั่วกาแฟ</li>
             </ul>
             <!-- BEGIN SIDEBAR & CONTENT -->
