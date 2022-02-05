@@ -61,90 +61,9 @@ include_once('./navbar.php');
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="./shop-product-list.php">Home</a></li>
-                <li><a href="javascript:cookie();">cookie</a></li>
-                <li><a href="javascript:cookie_add();">add</a></li>
-                <li><a href="javascript:cookie_json();">add</a></li>
-                <script>
-                    function cookie_json() {
-                        var myObject = {
-                            'name': 'Kasun',
-                            'address': 'columbo',
-                            'age': '29'
-                        }
-
-                        var count = Object.keys(myObject).length;
-                        console.log(count);
-                    }
-
-                    function cookie_add() {
-                        var b = [];
-                        var x = readCookie('name');
-
-                        b = JSON.parse(x);
-
-                        b.push({
-                            i: '4',
-                            d: '2',
-                            f: '112'
-                        });
-                        createCookie("name", JSON.stringify(b));
-
-                        const json = readCookie('name');
-                        const obj = JSON.parse(json);
-
-                        // console.log(obj.length);
-                        // obj.forEach(element => {
-                        //     alert(element[0]);
-                        // });
-                    }
-
-                    function cookie() {
-                        var product = [
-                            [{
-                                i: '1',
-                                d: '2',
-                                f: '112'
-                            }],
-                            [{
-                                i: '2',
-                                d: '2',
-                                f: '112'
-                            }]
-                        ];
-                        product.push({
-                            i: '4',
-                            d: '2',
-                            f: '112'
-                        })
-
-
-
-                        createCookie("name", JSON.stringify(product));
-
-                        const json = readCookie('name');
-                        const obj = JSON.parse(json);
-
-                        console.log(obj.length);
-                        obj.forEach(element => {
-                            // alert(element[0]);
-                        });
-                        // expected output: 42
-
-                        // console.log(obj.result);
-                        // expected output: true
-
-                        // alert( getByteSize(document.cookie));
-                        // product.length+
-
-                    }
-
-                    function getByteSize(s) {
-                        return encodeURIComponent('<q></q>' + s).length;
-                    }
-                </script>
-
-                <!-- <li><a href="">Store</a></li> -->
+                <li><a href="./index.html">หน้าหลัก</a></li>
+                <!-- <li><a href="">รายการสินค้า</a></li> -->
+                <li class="active">รายการสินค้า</li>
                 <!-- <li class="active">Men category</li> -->
             </ul>
             <!-- BEGIN SIDEBAR & CONTENT -->
@@ -333,11 +252,11 @@ include_once('./navbar.php');
                                                  WHERE id_provinces LIKE '$provinces' 
                                                     AND  id_typepro LIKE '%$type%' 
                                                     AND name_products LIKE '%$name%'  
-                                                    AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 2) ";
+                                                    AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 3) ";
                         $sql_data = "SELECT * FROM products as pro 
                                                 INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
                                                 INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
-                                                WHERE id_provinces LIKE '$provinces' AND pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%'  AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 2 )   ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+                                                WHERE id_provinces LIKE '$provinces' AND pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%'  AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 3 )   ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
                         $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
                         $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด

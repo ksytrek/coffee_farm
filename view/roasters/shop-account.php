@@ -19,7 +19,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <head>
     <meta charset="utf-8">
-    <title>My Account</title>
+    <title>ข้อมูลส่วนตัว</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -117,9 +117,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="">Store</a></li>
-                <li class="active">My Account Page</li>
+                <li><a href="./index.html">Home</a></li>
+                <!-- <li><a href="">Store</a></li> -->
+                <li class="active">ข้อมูลส่วนตัว</li>
             </ul>
 
             <div class="row margin-bottom-40">

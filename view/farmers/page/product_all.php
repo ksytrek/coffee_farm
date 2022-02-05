@@ -12,8 +12,14 @@ $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX
 $between = "price_unit BETWEEN $between_min AND $between_max ";
 $newtype = "  id_typepro LIKE '%%' ";
 
-$sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers' AND status_products != '2' ";
-$sql_data = "SELECT * FROM products as pro INNER JOIN typepro as ty ON pro.id_typepro = ty.id_typepro  WHERE pro.id_typepro LIKE '%$type%' AND pro.$between AND pro.id_farmers = '$id_farmers'  AND pro.status_products != '2'  ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
+$sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers' AND status_products != '3' ";
+$sql_data = "SELECT * FROM products as pro 
+                    INNER JOIN typepro as ty ON pro.id_typepro = ty.id_typepro  
+                    WHERE pro.id_typepro LIKE '%$type%' 
+                    AND pro.$between 
+                    AND pro.id_farmers = '$id_farmers'  
+                    AND pro.status_products != '3'  
+                    ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
 $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
 $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
@@ -214,7 +220,7 @@ try {
                                 <div class="product-page-cart" style="text-align: right;">
                                     <a href="javascript:update_Status_pro('<?php echo $row['id_products']; ?>','<?php echo $row['status_products'] ?>');" class="btn btn-default"><?php echo $row['status_products'] == '1' ? 'ปิดการแสดง' : 'เปิดการแสดง' ?></a>
                                     <button class="btn btn-primary" type="submit">บันทึกแก้ไขสินค้า</button>
-                                    <a class="btn btn-danger" href="javascript:update_Status_pro('<?php echo $row['id_products']; ?>','2');" class="btn btn-default">ลบสินค้า</a>
+                                    <a class="btn btn-danger" href="javascript:update_Status_pro('<?php echo $row['id_products']; ?>','3');" class="btn btn-default">ลบสินค้า</a>
                                 </div>
                                 <div class="form-group">
                                     <img id="img_product-<?php echo $row['id_products']; ?>" src="../../pictures/product/<?php echo $row['image_pro']; ?>" width="100%" height="100%">

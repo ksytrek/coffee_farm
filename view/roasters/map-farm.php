@@ -21,7 +21,7 @@ include_once('./navbar.php');
 
 <head>
     <meta charset="utf-8">
-    <title>หน้าหลัก</title>
+    <title>ที่ตั้งฟาร์มทั้งหมด</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -142,7 +142,8 @@ include_once('./navbar.php');
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="./shop-product-list.php">Home</a></li>
+                <li><a href="./index.html">หน้าหลัก</a></li>
+                <li class="active">แสดงข้อมูลที่ตั้งฟาร์ม</li>
             </ul>
             <div>
                 <div id="map-canvas"></div>

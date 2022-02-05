@@ -146,7 +146,6 @@ include_once('./navbar.php');
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="">Store</a></li>
                 <li class="active">ข้อมูลฟาร์ม</li>
             </ul>
             <!-- BEGIN SIDEBAR & CONTENT -->
