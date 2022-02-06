@@ -53,7 +53,51 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
 //                         VALUES (NULL, '1-1', '2@gmail.com', '3', '04', '5', '6', '7', '8', '9', '10.png', '11', '12', '13', '14', '15', '16', '17', '18');";
 
 }
+// check_email_farmers_acc
+if(isset($_POST['key']) && $_POST['key'] == 'check_email_farmers'){
+    // echo 'Please';
+    $email_farmers = $_POST["email_farmers"];
 
+    $sql = "SELECT COUNT(*) as 'count' FROM `farmers` WHERE email_farmers = '$email_farmers';";
+
+    // echo $num_trade_reg;
+    try {
+        $search = Database::query($sql,PDO::FETCH_ASSOC)->fetch();
+        if($search['count'] == 0) {
+            echo $search['count'];
+        }else{
+            echo $search['count'];
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+
+}
+if(isset($_POST['key']) && $_POST['key'] == 'check_email_farmers_acc'){
+    // echo 'Please';
+    $email_farmers = $_POST["email_farmers"];
+    $id_farmers = $_POST["id_farmers"];
+
+    $sql_search_farmers = "SELECT * FROM `farmers` WHERE id_farmers = '$id_farmers'";
+    $resu_row = Database::query($sql_search_farmers, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+
+
+    if($resu_row['email_farmers'] == $email_farmers){
+        echo '0';
+    }else{
+        $sql = "SELECT COUNT(*) as 'count' FROM `farmers` WHERE email_farmers = '$email_farmers';";
+        try {
+            $search = Database::query($sql,PDO::FETCH_ASSOC)->fetch();
+            if($search['count'] == 0) {
+                echo $search['count'];
+            }else{
+                echo $search['count'];
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+}
 function upload_image($image_farmers):string {
 
     $name_date = date("Y_m_d_H_i_s").".png";

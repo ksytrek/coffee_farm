@@ -89,8 +89,61 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-change-password'){
             }
         }
     }else{
-        echo "error";
+        echo "error-1";
     }
 
 
+}
+
+
+if(isset($_POST['key']) && $_POST['key'] == 'check_num_trade_reg'){
+    // echo 'Please';
+    $num_trade_reg = $_POST["num_trade_reg"];
+    $id_roasters = $_POST["id_roasters"];
+
+    $sql_search_roasters = "SELECT * FROM `roasters` WHERE $id_roasters = '$id_roasters'";
+    $resu_row = Database::query($sql_search_roasters, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+
+
+    if($resu_row['num_trade_reg'] == $num_trade_reg){
+        echo '0';
+    }else{
+        $sql = "SELECT COUNT(*) as 'count' FROM `roasters` WHERE num_trade_reg = '$num_trade_reg';";
+        try {
+            $search = Database::query($sql,PDO::FETCH_ASSOC)->fetch();
+            if($search['count'] == 0) {
+                echo $search['count'];
+            }else{
+                echo $search['count'];
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+}
+
+if(isset($_POST['key']) && $_POST['key'] == 'check_e_mail_roasters'){
+    // echo 'Please';
+    $e_mail_roasters = $_POST["e_mail_roasters"];
+    $id_roasters = $_POST["id_roasters"];
+
+    $sql_search_roasters = "SELECT * FROM `roasters` WHERE $id_roasters = '$id_roasters'";
+    $resu_row = Database::query($sql_search_roasters, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+
+
+    if($resu_row['e_mail_roasters'] == $e_mail_roasters){
+        echo '0';
+    }else{
+        $sql = "SELECT COUNT(*) as 'count' FROM `roasters` WHERE e_mail_roasters = '$e_mail_roasters';";
+        try {
+            $search = Database::query($sql,PDO::FETCH_ASSOC)->fetch();
+            if($search['count'] == 0) {
+                echo $search['count'];
+            }else{
+                echo $search['count'];
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

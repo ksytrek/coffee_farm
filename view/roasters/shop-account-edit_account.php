@@ -21,24 +21,90 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                 <input name="input-name_roasters" type="text" id="firstname455554" value="<?php echo $row_roasters['name_roasters'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="lastname"> เลขทะเบียนการค้า
-                    <span class="require">*</span></label>
-                <input name="input-num_trade_reg" type="text" id="lastname" value="<?php echo $row_roasters['num_trade_reg'] ?>" class="form-control" required>
+                <label for="num_trade_reg"> เลขทะเบียนการค้า
+                    <span class="require">* <span id="span_num_trade_regl"></span></span></label>
+                <input name="input-num_trade_reg" type="text" id="num_trade_reg" value="<?php echo $row_roasters['num_trade_reg'] ?>" class="form-control" required>
             </div>
+            <script>
+                var check_num_trade_reg = true;
+                $('#num_trade_reg').change(function() {
+                    var str = $(this).val();
+                    // alert(str)
+                    $.ajax({
+                        url: "./controllers/account-edit.php",
+                        type: "POST",
+                        data: {
+                            key: 'check_num_trade_reg',
+                            num_trade_reg: str,
+                            id_roasters: ID_ROASTERS
+                        },
+                        success(result, textStatus, jqXHR) {
+                            // return alert(result);
+                            // return swal("", "ไม่สามารถใช้เลขทะเบียนการค้านี้ได้!", "error");
+                            if (result == 0) {
+                                check_num_trade_reg = true;
+                                $("#span_num_trade_regl").html('');
+                            } else {
+                                check_num_trade_reg = false;
+                                $("#span_num_trade_regl").html('ไม่สามารถใช้เลขทะเบียนการค้านี้ได้');
+                                return alert("ไม่สามารถใช้เลขทะเบียนการค้านี้ได้!");
+                                // return swal("", "ไม่สามารถใช้เลขทะเบียนการค้านี้ได้!", "error");
 
+                                // break;
+                            }
+                            // 
+                        },
+                        error(result, textStatus, jqXHR) {
+                            check_num_trade_reg = false;
+                            return alert("เกิดข้อผิดพลาด!");
+                            // return swal("", "เกินข้อผิดพลาด!", "error");
+                        }
+                    });
+                });
+            </script>
             <div class="form-group">
                 <label for="telephone"> ชื่อผู้ประกอบการ
-                    <span class="require">*</span></label>
-                <input name="input-name_entrep" type="text" value="<?php echo $row_roasters['name_entrep'] ?>" class="form-control" required>
+                    <span class="require">*  (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น)</span></label>
+                <input name="input-name_entrep" pattern="^[ก-๏\sa-zA-Z\s]+$" type="text" value="<?php echo $row_roasters['name_entrep'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="fax"> อีเมลโรงคั่วกาแฟ
-                    <span class="require">*</span>
+                    <span class="require">* <span id="span_email"></span></span>
                 </label>
+                <input id="e_mail_roasters" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  name="input-e_mail_roasters" value="<?php echo $row_roasters['e_mail_roasters'] ?>" type="text" class="form-control">
 
-                <input name="input-e_mail_roasters" value="<?php echo $row_roasters['e_mail_roasters'] ?>" type="text" class="form-control">
             </div>
-
+            <script>
+                var check_e_mail_roasters = true;
+                $('#e_mail_roasters').change(function() {
+                    var str = $(this).val();
+                    // alert(str)
+                    $.ajax({
+                        url: "./controllers/account-edit.php",
+                        type: "POST",
+                        data: {
+                            key: 'check_e_mail_roasters',
+                            e_mail_roasters: str,
+                            id_roasters: ID_ROASTERS
+                        },
+                        success(result, textStatus, jqXHR) {
+                            if (result == 0) {
+                                check_e_mail_roasters = true;
+                                $("#span_email").html('');
+                            } else {
+                                check_e_mail_roasters = false;
+                                $("#span_email").html('ไม่สามารถใช้อีเมลนี้ได้');
+                                return alert("ไม่สามารถใช้อีเมลนี้ได้!");
+                            }
+                        },
+                        error(result, textStatus, jqXHR) {
+                            check_e_mail_roasters = false;
+                            return alert("เกิดข้อผิดพลาด!");
+                            // return swal("", "เกินข้อผิดพลาด!", "error");
+                        }
+                    });
+                });
+            </script>
             <div class="form-group">
                 <label for="fax"> รายละเอียดต่างๆ ของโรงคั่วกาแฟ</label>
                 <style type="text/css">
@@ -70,28 +136,34 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                         values[this.name] = $(this).val();
                     });
                     console.log(values);
-                    $.ajax({
-                        url: "./controllers/account-edit.php",
-                        type: "POST",
-                        data: {
-                            key: "edit_account_submit",
-                            data: values,
-                            id_roasters: ID_ROASTERS
-                        },
-                        success: function(result, textStatus, jqXHR) {
-                            // console.log(result);
-                            if(result == 'success'){
-                                alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
-                                location.reload();
-                            }else{
-                                alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
-                                location.reload();
+
+                    if (check_e_mail_roasters == true && check_num_trade_reg == true) {
+                        $.ajax({
+                            url: "./controllers/account-edit.php",
+                            type: "POST",
+                            data: {
+                                key: "edit_account_submit",
+                                data: values,
+                                id_roasters: ID_ROASTERS
+                            },
+                            success: function(result, textStatus, jqXHR) {
+                                // console.log(result);
+                                if (result == 'success') {
+                                    alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
+                                    location.reload();
+                                } else {
+                                    alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
+                                    location.reload();
+                                }
+                            },
+                            error: function(jqXHR, textStatus, jqXHR) {
+                                alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
                             }
-                        },
-                        error: function(jqXHR, textStatus, jqXHR) {
-                            alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
-                        }
-                    });
+                        });
+                    }else{
+                        alert('กรุณาตรวจสอบข้อมูลใหม่อีกครั้ง')
+                    }
+
                 });
             </script>
         </form>

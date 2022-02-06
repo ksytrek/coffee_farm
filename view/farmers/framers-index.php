@@ -50,7 +50,7 @@ include_once('./navbar.php');
 
 
     <script>
-        const queryString = window.location.search;
+        // const queryString = window.location.search;
         window.onload = function() {
             // alert(ID_FARMERS);
         }

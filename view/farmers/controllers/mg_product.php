@@ -37,7 +37,9 @@ if(isset($_POST['key']) && $_POST['key'] == "form_addProduct"){
 function upload_image($image_farmers):string {
 
     $name_date = date("Y_m_d_H_i_s").".png";
-    file_put_contents('../../../pictures/product/'.$name_date, base64_decode($image_farmers));
+    // @mkdir("../../../pictures/product");
+    @mkdir("../../../pictures/product", 0755, true);
+    @file_put_contents('../../../pictures/product/'.$name_date, base64_decode($image_farmers));
     return $name_date;
 }
 

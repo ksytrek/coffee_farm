@@ -191,11 +191,11 @@ try {
                                 <input type="hidden" name="id_products" value="<?php echo $row['id_products']; ?>">
                                 <div class="form-group">
                                     <label for=""> ชื่อสินค้ากาแฟ <span class="require">*</span></label>
-                                    <input type="text" name="name_products" class="form-control" value="<?php echo $row['name_products']; ?>">
+                                    <input type="text" name="name_products" class="form-control" value="<?php echo $row['name_products']; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for=""> ประเภทกาแฟ <span class="require">*</span></label>
-                                    <select class="form-control" name="id_typepro">
+                                    <select class="form-control" name="id_typepro" required>
                                         <option value="<?php echo $row['id_typepro'] ?>" selected><?php echo $row['name_typepro']; ?></option>
                                         <?php
                                         $result = Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC);
@@ -207,15 +207,15 @@ try {
                                 </div>
                                 <div class="form-group">
                                     <label for="">จำนวนคงเหลือ(kg) <span class="require">*</span></label>
-                                    <input type="text" name="num_stock" class="form-control" value="<?php echo $row['num_stock']; ?>">
+                                    <input type="text" name="num_stock" class="form-control" value="<?php echo $row['num_stock']; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for=""> ราคาต่อหน่วย (บาท/kg) <span class="require">*</span></label>
-                                    <input type="text" name="price_unit" class="form-control" value="<?php echo $row['price_unit']; ?>">
+                                    <input type="text" name="price_unit" class="form-control" value="<?php echo $row['price_unit']; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for=""> รูปสินค้า <span class="require"></span></label>
-                                    <input id="image_pro-<?php echo $row['id_products']; ?>" type="file" name="image_pro" class="form-control" value="<?php echo $row['name_products']; ?>">
+                                    <input id="image_pro-<?php echo $row['id_products']; ?>" type="file" name="image_pro" class="form-control" value="<?php echo $row['name_products']; ?>" >
                                 </div>
                                 <div class="product-page-cart" style="text-align: right;">
                                     <a href="javascript:update_Status_pro('<?php echo $row['id_products']; ?>','<?php echo $row['status_products'] ?>');" class="btn btn-default"><?php echo $row['status_products'] == '1' ? 'ปิดการแสดง' : 'เปิดการแสดง' ?></a>
@@ -287,7 +287,7 @@ try {
                                         values['image_pro'] = base64StringImg_product_edit_<?php echo $row['id_products']; ?>;
 
                                     }
-                                    console.log(JSON.stringify(values));
+                                    // console.log(JSON.stringify(values));
                                     $.ajax({
                                         url: "./controllers/edit_product.php",
                                         type: "POST",
@@ -299,7 +299,7 @@ try {
                                             // form_data: form_data
                                         },
                                         success: function(result, textStatus, jqXHR) {
-                                            // console.log(result);
+                                            console.log(result);
                                             // alert(result);
 
                                             if (result == "success") {

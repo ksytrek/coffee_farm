@@ -95,6 +95,9 @@ include_once('./navbar.php');
         }
     }
     // google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    var check_email_farmers = false;
 </script>
 
 
@@ -160,11 +163,11 @@ include_once('./navbar.php');
                                         <form id="form_loging" role="form" action="javascript:void(0);">
                                             <div class="form-group">
                                                 <label for="email-login">ที่อยู่อีเมล<span class="require">*</span></label>
-                                                <input type="email" id="email-login"  class="form-control">
+                                                <input type="email" id="email-login" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="password-login">รหัสผ่าน<span class="require">*</span></label>
-                                                <input type="password" id="password-login"  class="form-control" >
+                                                <input type="password" id="password-login" class="form-control" required>
                                             </div>
                                             <!-- อย่างน้อย 1 ตัวพิมพ์ใหญ่
                                             อย่างน้อย 1 ตัวพิมพ์เล็ก
@@ -209,7 +212,7 @@ include_once('./navbar.php');
                                                         success: function(result, textStatus, jqXHR) {
                                                             // alert(result);
                                                             if (result == '1') {
-                                                                alert("ยินดีตอนรับเข้าสู่ระบบ");
+                                                                // alert("ยินดีตอนรับเข้าสู่ระบบ");
                                                                 location.assign('./framers-index.php');
 
                                                             } else {
@@ -271,17 +274,17 @@ include_once('./navbar.php');
                                     <div class="col-md-6 col-sm-6">
                                         <h3>ข้อมูลส่วนเกษตรกร</h3>
                                         <div class="form-group">
-                                            <label for="firstname">ชื่อเกษตรกร <span class="require">*</span></label>
-                                            <input name="input-name" type="text" pattern=""  class="form-control" required>
+                                            <label for="firstname">ชื่อเกษตรกร <span class="require">* (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น)</span></label>
+                                            <input name="input-name" type="text" pattern="^[ก-๏\sa-zA-Z\s]+$" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="lastname">นามสกุลเกษตรกร
-                                                <span class="require">*</span></label>
-                                            <input name="input-last_name" type="text"  class="form-control" required>
+                                                <span class="require">* (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น)</span></label>
+                                            <input name="input-last_name" type="text" pattern="^[ก-๏\sa-zA-Z\s]+$" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="telephone">เบอร์โทรเกษตรกร
-                                                <span class="require">*</span></label>
+                                                <span class="require">* (เบอร์มือถือ 10 หลัก ไม่ต้องใส่เครื่องหมาย - หรือ เว้นวรรค)</span></label>
                                             <input name="input-tel_farmers" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" id="telephone" class="form-control" required>
                                         </div>
                                         <div class="form-group">
@@ -347,13 +350,7 @@ include_once('./navbar.php');
                                                     <input name="input-num_farm" required min="0" type="number" class="form-control">
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-md-4 " style="padding-left: 0px; padding-right: 0px;">
-                                                <div class="form-group">
-                                                    <label for="fax">จำนวนพื้นที่เพาะปลูกไร่</label>
-                                                    <input type="text"  class="form-control">
-                                                </div>
-                                            </div> -->
-                                            <!-- <div style="margin-left: 0; margin-right:"></div> -->
+
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="fax">จำนวนพื้นที่เพาะปลูกงาน <span class="require">*</span></label>
@@ -361,11 +358,7 @@ include_once('./navbar.php');
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="password-confirm">Password
-                                                Confirm <span class="require">*</span></label>
-                                            <input type="text" id="password-confirm" class="form-control">
-                                        </div> -->
+
 
 
                                         <div class="form-group">
@@ -419,19 +412,48 @@ include_once('./navbar.php');
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-
                                         <!-- ยังไม่เช็ค อีเมล์เกษตรกร ว่ามีการซ้ำกันหรือไม่  -->
                                         <h3>ข้อมูลเข้าระบบ</h3>
                                         <div class="form-group">
-                                            <label for="password"> E-Mail <span class="require">*</span></label>
-                                            <input name="input-email_farmers" required type="email" id="password" class="form-control">
+                                            <label for="password"> E-Mail <span class="require">* </span></label>
+                                            <input id="input-email_farmers" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="input-email_farmers" required type="email" id="password" class="form-control">
+                                            <script>
+                                                $('#input-email_farmers').keyup(function() {
+                                                    var str = $(this).val();
+                                                    // alert(str)
+                                                    $.ajax({
+                                                        url: "./controllers/register_faramers.php",
+                                                        type: "POST",
+                                                        data: {
+                                                            key: 'check_email_farmers',
+                                                            email_farmers: str
+                                                        },
+                                                        success(result, textStatus, jqXHR) {
+                                                            // return alert(result);
+                                                            // return swal("", "ไม่สามารถใช้เลขทะเบียนการค้านี้ได้!", "error");
+                                                            if (result == 0) {
+                                                                check_email_farmers = true;
+                                                            } else {
+                                                                check_email_farmers = false;
+                                                                return alert("ไม่สามารถใช้อีเมลนี้ได้!");
+                                                                // return swal("", "ไม่สามารถใช้เลขทะเบียนการค้านี้ได้!", "error");
+
+                                                                // break;
+                                                            }
+                                                            // 
+                                                        },
+                                                        error(result, textStatus, jqXHR) {
+                                                            check_email_farmers = false;
+                                                            return alert("เกิดข้อผิดพลาด!");
+                                                            // return swal("", "เกินข้อผิดพลาด!", "error");
+                                                        }
+                                                    });
+                                                });
+                                            </script>
                                         </div>
                                         <div class="form-group">
-                                            <label for="password-confirm">Password <span class="require">*</span></label>
-                                            <input name="input-pass_farmers" required type="password" id="password-confirm" class="form-control">
+                                            <label for="password-confirm">Password <span class="require">* (ต้องมีอย่างน้อย 6 ตัวอักษรและประกอบด้วย a-z A-Z 0-9)</span></label>
+                                            <input name="input-pass_farmers" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,64}$" required type="password" id="password-confirm" class="form-control">
                                         </div>
                                     </div>
 
@@ -439,11 +461,11 @@ include_once('./navbar.php');
 
                                         <h3>ที่อยู่เกษตรกร</h3>
                                         <div class="form-group">
-                                            <label for="company">เลทที่/หมูที่ <span class="require">*</span></label>
+                                            <label for="company">เลขที่/หมูที่ <span class="require">*</span></label>
                                             <input name="input-add_number" required type="text" id="company" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="address1">ซอย/ถนน</label>
+                                            <label for="address1">ซอย/ถนน <span class="require"> (หากไม่มีให้ปล่อยว่างไว้)</span></label>
                                             <input name="input-road" type="text" id="address1" class="form-control">
                                         </div>
                                         <div class="form-group">
@@ -462,7 +484,7 @@ include_once('./navbar.php');
                                         <div class="form-group">
                                             <label for="country">จังหวัด<span class="require">*</span></label>
                                             <select name="input-province" class="form-control input-sm" id="country" required>
-                                                <option disabled selected value=""> --- PleaseSelect --- </option>
+                                                <option disabled selected> --- PleaseSelect --- </option>
                                                 <!--   -->
                                                 <?php
                                                 foreach (Database::query("SELECT * FROM `provinces` Order by `name_provinces` ASC ", PDO::FETCH_ASSOC) as $row) :
@@ -475,26 +497,26 @@ include_once('./navbar.php');
                                             </select>
                                         </div>
 
-                                        <h3>ข้อมูลพิกัด</h3>
+                                        <h3>ข้อมูลพิกัด <span class="require"></span></h3>
                                         <div class="form-group">
                                             <div class="col-md-6 " style="padding-left: 0px; padding-right: 4px;">
                                                 <div class="form-group">
                                                     <label for="city"> ละติจูดฟาร์ม </label>
-                                                    <input name="input-lat_farm" id='lat' disabled type="number" id="city" class="form-control" required>
+                                                    <input name="input-lat_farm" id='lat' disabled type="text" id="city" class="form-control" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6 " style="padding-right: 0px; padding-left: 4px;">
                                                 <div class="form-group">
                                                     <label for="city"> ลองจิจูดฟาร์ม </label>
-                                                    <input name="input-lng_farm" id='lng' disabled type="number" id="city" class="form-control" required>
+                                                    <input name="input-lng_farm" id='lng' disabled type="text" id="city" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
 
 
                                         <div class="form-group">
-                                            <label for="city"> เลือกที่ตั้งฟามร์ม <span class="require">*</span><a href="javascript:initialize();$('#map-canvas').css('display','block');">คลิ๊กเพื่อเลือกที่ตั้งฟาร์ม</a></label>
+                                            <label for="city"> เลือกที่ตั้งฟามร์ม <span class="require">* </span><a href="javascript:initialize();$('#map-canvas').css('display','block');">คลิ๊กเพื่อเลือกที่ตั้งฟาร์ม</a></label>
                                             <div id="map-canvas" style="display: none" class="map-canvas"></div>
                                         </div>
                                     </div>
@@ -503,7 +525,7 @@ include_once('./navbar.php');
 
                                     <hr>
                                     <div class="col-md-12">
-                                        
+
                                         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">ลงทะเบียน</button>
 
                                     </div>
@@ -516,8 +538,7 @@ include_once('./navbar.php');
 
                                 $("#form_register_farmers").keypress((e) => {
                                     if (e.which === 13) {
-                                        // $("#form_register_farmers").submit();
-                                        // alert('Form submitted successfully.')
+
                                     }
                                 })
 
@@ -534,35 +555,36 @@ include_once('./navbar.php');
                                     values['input-organic_farm'] = $('input[name=input-organic_farm]:checked', $(this)).val();
                                     values['input-type_sale'] = $('input[name=input-type_sale]:checked', $(this)).val();
                                     // alert(
-                                    console.log(JSON.stringify(values));
+                                    // console.log(JSON.stringify(values));
 
+                                    if (check_email_farmers == 'true') {
+                                        $.ajax({
+                                            url: "./controllers/register_faramers.php",
+                                            type: "POST",
+                                            // dataType: 'text',
+                                            data: {
+                                                key: "form_register_farmers",
+                                                data: values,
+                                                // form_data: form_data
+                                            },
+                                            success: function(result, textStatus, jqXHR) {
+                                                // console.log(result);
+                                                if (result == "success") {
+                                                    alert("สมัครสมาชิกสำเร็จ");
+                                                    $("#form_register_farmers").trigger("reset");
+                                                    location.reload();
 
-                                    $.ajax({
-                                        url: "./controllers/register_faramers.php",
-                                        type: "POST",
-                                        // dataType: 'text',
-                                        data: {
-                                            key: "form_register_farmers",
-                                            data: values,
-                                            // form_data: form_data
-                                        },
-                                        success: function(result, textStatus, jqXHR) {
-                                            // console.log(result);
-                                            if (result == "success") {
-                                                alert("สมัครสมาชิกสำเร็จ");
-                                                $("#form_register_farmers").trigger("reset");
-                                                location.reload();
+                                                } else {
+                                                    alert("เกิดข้อผิดพลาดบางอย่าง");
+                                                    location.reload();
+                                                }
+                                                // console.log(JSON.stringify(values));
+                                            },
+                                            error: function(jqXHR, textStatus, errorThrown) {
 
-                                            } else {
-                                                alert("เกิดข้อผิดพลาดบางอย่าง");
-                                                location.reload();
                                             }
-                                            // console.log(JSON.stringify(values));
-                                        },
-                                        error: function(jqXHR, textStatus, errorThrown) {
-
-                                        }
-                                    });
+                                        });
+                                    }
                                 });
                             </script>
                         </div>
@@ -612,8 +634,12 @@ include_once('./navbar.php');
                                                         body.addClass("loading");
                                                     },
                                                     success: function(result, textStatus, jqXHR) {
-                                                        alert(result);
+                                                        // alert(result);
+                                                        if (result == 'success') {
+                                                            alert("กรุณาตรวจสอบอีเมลของท่าน")
+                                                        }
                                                         body.removeClass("loading");
+                                                        $("#form_forgot_password").trigger("reset");
                                                     },
                                                     error: function(jqXHR, textStatus, errorThrown) {
                                                         alert(result);
@@ -639,6 +665,5 @@ include_once('./navbar.php');
     <script src="../../script/assets/plugins/respond.min.js"></script>  
     <![endif]-->
 </body>
-<!-- END BODY -->
 
 </html>

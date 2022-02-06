@@ -87,7 +87,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             else :
                 ?>
                 <div>
-                    ตะกร้าสินค้าของคุณ ไม่มีรายการสั่งซื้อขายเสร็จสิ้น <a href="./shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a>
+                    ยังไม่มีการซื้อขายที่สำเร็จ
                 </div>
             <?php
             endif;

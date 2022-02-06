@@ -11,21 +11,56 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
 ?>
 
 
+
     <div id="edit_account">
         <h3>แก้ไขข้อมูลบัญชีของคุณ</h3>
         <p>กรุณาอย่าเปิดเผยข้อมูลแก่คนอื่นๆ เพื่อความปลอดภัยของบัญชีผู้ใช้คุณเอง</p>
         <hr>
         <form id="form_edit_account" method="post" action="javascript:void(0)">
             <div class="form-group">
-                <label for="firstname"> ชื่อเกษตรกร <span class="require">*</span></label>
-                <input name="input-name_farmers" type="text" value="<?php echo $row_farmers['name_farmers'] ?>" class="form-control" required>
+                <label for="firstname"> ชื่อเกษตรกร <span class="require">* (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น) </span></label>
+                <input name="input-name_farmers" pattern="^[ก-๏\sa-zA-Z\s]+$" type="text" value="<?php echo $row_farmers['name_farmers'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="lastname"> อีเมล์เกษตรกร
+                <label for="email_farmers"> อีเมล์เกษตรกร
                     <span class="require">*</span></label>
-                <input name="input-email_farmers" type="text" id="lastname" value="<?php echo $row_farmers['email_farmers'] ?>" class="form-control" required>
+                <input name="input-email_farmers" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" id="email_farmers" value="<?php echo $row_farmers['email_farmers'] ?>" class="form-control" required>
             </div>
+            <script>
+                var check_email_farmers = true;
+                $('#email_farmers').change(function() {
+                    var str = $(this).val();
+                    // alert(str)
+                    $.ajax({
+                        url: "./controllers/register_faramers.php",
+                        type: "POST",
+                        data: {
+                            key: 'check_email_farmers_acc',
+                            email_farmers: str,
+                            id_farmers: ID_FARMERS
+                        },
+                        success(result, textStatus, jqXHR) {
+                            // return alert(result);
+                            // return swal("", "ไม่สามารถใช้เลขทะเบียนการค้านี้ได้!", "error");
+                            if (result == 0) {
+                                check_email_farmers = true;
+                            } else {
+                                check_email_farmers = false;
+                                return alert("ไม่สามารถใช้อีเมลนี้ได้!");
+                                // return swal("", "ไม่สามารถใช้เลขทะเบียนการค้านี้ได้!", "error");
 
+                                // break;
+                            }
+                            // 
+                        },
+                        error(result, textStatus, jqXHR) {
+                            check_email_farmers = false;
+                            return alert("เกิดข้อผิดพลาด!");
+                            // return swal("", "เกินข้อผิดพลาด!", "error");
+                        }
+                    });
+                });
+            </script>
             <div class="form-group">
                 <label for="telephone"> เบอร์โทรเกษตรกร
                     <span class="require">*</span></label>
@@ -130,31 +165,34 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
                     });
 
                     values['input-image_farmers'] = base64StringAccount;
-                    console.log(values);
-                    $.ajax({
-                        url: "./controllers/account-edit.php",
-                        type: "POST",
-                        data: {
-                            key: "edit_account_submit",
-                            data: values,
-                            id_farmers: ID_FARMERS
-                        },
-                        success: function(result, textStatus, jqXHR) {
-                            // console.log(result);
-                            if(result == 'success'){
-                                alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
+                    // console.log(values);
+                    if (check_email_farmers == true) {
+                        $.ajax({
+                            url: "./controllers/account-edit.php",
+                            type: "POST",
+                            data: {
+                                key: "edit_account_submit",
+                                data: values,
+                                id_farmers: ID_FARMERS
+                            },
+                            success: function(result, textStatus, jqXHR) {
+                                // console.log(result);
+                                if (result == 'success') {
+                                    alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
+                                    location.reload();
+                                } else {
+                                    alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
+                                    location.reload();
+                                    // console.log(result);
+                                }
+                            },
+                            error: function(jqXHR, textStatus, jqXHR) {
+                                alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
                                 location.reload();
-                            }else{
-                                alert('ระบบมีปัญหา โปรดทำการแก้ไขใหม่อีกครั้ง');
-                                location.reload();
-                            // console.log(result);
                             }
-                        },
-                        error: function(jqXHR, textStatus, jqXHR) {
-                            alert('ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์ : ' + textStatus);
-                            location.reload();
-                        }
-                    });
+                        });
+                    }
+
                 });
             </script>
         </form>

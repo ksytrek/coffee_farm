@@ -195,6 +195,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'resetPass') {
                             // กรณีส่ง email สำเร็จ
                             echo "success";
                         }
+                    
                     }
                 } else {
                     echo "เปลี่ยนรหัสผ่านไม่สำเร็จ กรุณาลองใหม่อีกครั้ง";

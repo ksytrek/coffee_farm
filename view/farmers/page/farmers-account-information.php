@@ -26,7 +26,7 @@ if(isset($_POST['key']) && $_POST['key'] == 'information'):
             <td class="text-capitalize "><?php echo $row['name_farmers']?></td>
         </tr>
         <tr>
-            <td class="datasheet-features-type">อีเมล์</td>
+            <td class="datasheet-features-type">อีเมล</td>
             <td class="text-capitalize"><?php echo $row['email_farmers']?></td>
         </tr>
         <tr>
@@ -54,7 +54,7 @@ if(isset($_POST['key']) && $_POST['key'] == 'information'):
             <td class="text-capitalize"><?php echo $row['code_provinces']?></td>
         </tr>
         <tr>
-            <td class="datasheet-features-type">รายละเอียดต่างๆ ของโรงคั่วกาแฟ</td>
+            <td class="datasheet-features-type">รายละเอียดต่าง ๆ</td>
             <td class="text-capitalize"><?php echo $row['detail_farm'] == ''? " - " : $row['detail_farm']?></td>
         </tr>
 

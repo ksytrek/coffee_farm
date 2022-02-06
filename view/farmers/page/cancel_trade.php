@@ -88,7 +88,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             else :
                 ?>
                 <div>
-                    ตะกร้าสินค้าของคุณ ไม่มีรายการยกเลิกสินค้า <a href="./shop-product-list.php">คลิ๊กเพื่อไปยังหน้ารายการสินค้า</a>
+                    ไม่มีรายการยกเลิกสินค้า
                 </div>
             <?php
             endif;
