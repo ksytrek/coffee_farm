@@ -1,5 +1,6 @@
 <?php
 include('../../config/connectdb.php');
+
 if (isset($_POST['key']) && $_POST['key'] == 'change_password') :
 
     $id_roasters = $_POST['id_roasters'];
@@ -64,7 +65,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'change_password') :
                     id_roasters: ID_ROASTERS
                 },
                 success: function(result, textStatus, jqXHR) {
-                    console.log(result);
+                    // console.log(result);
                     if (result == 'success') {
                         alert('ระบบได้ทำการแก้ไขข้อมูลสำเร็จ');
                         location.reload();
