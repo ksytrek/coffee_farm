@@ -104,7 +104,7 @@ include_once('./navbar.php');
 
 <head>
     <meta charset="utf-8">
-    <title>หน้าหลัก</title>
+    <title>ล็อกอินสำหรับเกษตรกร</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -117,7 +117,7 @@ include_once('./navbar.php');
     <meta property="og:title" content="-CUSTOMER VALUE-">
     <meta property="og:description" content="-CUSTOMER VALUE-">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+    <meta property="og:image" content="-CUSTOMER VALUE-">
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
 </head>
@@ -129,9 +129,6 @@ include_once('./navbar.php');
         <!-- Place at bottom of page -->
     </div>
 
-    <script>
-
-    </script>
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
@@ -162,12 +159,12 @@ include_once('./navbar.php');
                                         <!-- <p>I am a returning customer.</p> -->
                                         <form id="form_loging" role="form" action="javascript:void(0);">
                                             <div class="form-group">
-                                                <label for="email-login">E-Mail<span class="require">*</span></label>
-                                                <input type="email" id="email-login" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control">
+                                                <label for="email-login">ที่อยู่อีเมล<span class="require">*</span></label>
+                                                <input type="email" id="email-login"  class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label for="password-login">Password<span class="require">*</span></label>
-                                                <input type="password" id="password-login" pattern="^(?=.*[a-z])(?=.*[0-9]).{6,12}$" class="form-control" placeholder="อักษร 8-12 และ A-Za-z0-9!@#$%^&*_=+-">
+                                                <label for="password-login">รหัสผ่าน<span class="require">*</span></label>
+                                                <input type="password" id="password-login"  class="form-control" >
                                             </div>
                                             <!-- อย่างน้อย 1 ตัวพิมพ์ใหญ่
                                             อย่างน้อย 1 ตัวพิมพ์เล็ก
@@ -256,28 +253,11 @@ include_once('./navbar.php');
                                                     }
                                                 }
                                             </script>
-                                            <!-- <hr> -->
-                                            <!-- <div class="login-socio">
-                                                <p class="text-muted">or
-                                                    login using:</p>
-                                                <ul class="social-icons">
-                                                    <li><a href="javascript:;" data-original-title="facebook" class="facebook" title="facebook"></a></li>
-                                                    <li><a href="javascript:;" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
-                                                    <li><a href="javascript:;" data-original-title="Google
-                                                                Plus" class="googleplus" title="Google
-                                                                Plus"></a></li>
-                                                    <li><a href="javascript:;" data-original-title="Linkedin" class="linkedin" title="LinkedIn"></a></li>
-                                                </ul>
-                                            </div> -->
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- END CHECKOUT -->
-
-                        <!-- BEGIN PAYMENT ADDRESS -->
-
                         <div id="payment-address" class="panel panel-default ">
                             <div class="panel-heading">
                                 <h2 class="panel-title">
@@ -291,13 +271,13 @@ include_once('./navbar.php');
                                     <div class="col-md-6 col-sm-6">
                                         <h3>ข้อมูลส่วนเกษตรกร</h3>
                                         <div class="form-group">
-                                            <label for="firstname"> ชื่อเกษตรกร <span class="require">*</span></label>
-                                            <input name="input-name" type="text" id="firstname455554" class="form-control" required>
+                                            <label for="firstname">ชื่อเกษตรกร <span class="require">*</span></label>
+                                            <input name="input-name" type="text" pattern=""  class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="lastname">นามสกุลเกษตรกร
                                                 <span class="require">*</span></label>
-                                            <input name="input-last_name" type="text" id="lastname" class="form-control" required>
+                                            <input name="input-last_name" type="text"  class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="telephone">เบอร์โทรเกษตรกร
@@ -332,51 +312,25 @@ include_once('./navbar.php');
                                                 const fileInput_ = document.querySelector("input[id=input-image_farmers]");
 
                                                 var canvas;
-                                                // listen for the change event so we can capture the file
                                                 fileInput_.addEventListener("change", (e) => {
                                                     // get a reference to the file
                                                     const file = e.target.files[0];
-                                                    // console.log(file);
-                                                    // var fi = e.files[0];
-                                                    // set file as image source
-
 
                                                     const reader = new FileReader();
                                                     reader.onloadend = (e) => {
                                                         var img_ = document.createElement("img");
                                                         img_.onload = function(event) {
-                                                            // Dynamically create a canvas element
                                                             var canvas = document.createElement("canvas");
                                                             canvas.width = 800;
                                                             canvas.height = 600;
-                                                            // var canvas = document.getElementById("canvas");
                                                             var ctx = canvas.getContext("2d");
-                                                            // Actual resizing
                                                             ctx.drawImage(img_, 0, 0, canvas.width, canvas.height);
-
-                                                            // Show resized image in preview element
                                                             var dataurl = canvas.toDataURL(file.type);
-                                                            // document.getElementById("preview").src = dataurl;
                                                             imageElement_.src = dataurl;
-
-                                                            // console.log(dataurl.replace(/^data:image\/(png|jpg);base64,/, ""));
                                                             const base64String_S = dataurl
                                                                 .replace("data:", "")
                                                                 .replace(/^.+,/, "");
                                                             base64StringImg = base64String_S;
-
-                                                            // console.log(base64String_S);
-                                                            // location.assign("./controllers/bs.php?s="+base64StringImg);
-                                                            // $.ajax({
-                                                            //     url: "./controllers/bs.php",
-                                                            //     type: "POST",
-                                                            //     data : {
-                                                            //         data: base64StringImg
-                                                            //     },
-                                                            //     success: function(result, textStatus, jqXHR) {
-                                                            //         console.log(result);
-                                                            //     }
-                                                            // });
                                                         }
                                                         img_.src = e.target.result;
                                                     };
@@ -549,33 +503,7 @@ include_once('./navbar.php');
 
                                     <hr>
                                     <div class="col-md-12">
-                                        <!-- <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> I
-                                                wish to subscribe to the OXY
-                                                newsletter.
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" checked="checked"> My
-                                                delivery and billing
-                                                addresses are the same.
-                                            </label>
-                                        </div>                                 <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> I
-                                                wish to subscribe to the OXY
-                                                newsletter.
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" checked="checked"> My
-                                                delivery and billing
-                                                addresses are the same.
-                                            </label>
-                                        </div> -->
+                                        
                                         <button class="btn btn-primary pull-right" type="submit" id="button-payment-address">ลงทะเบียน</button>
 
                                     </div>
