@@ -167,7 +167,7 @@ include_once('./navbar.php');
                                             </div>
                                             <div class="form-group">
                                                 <label for="password-login">Password<span class="require">*</span></label>
-                                                <input type="password" id="password-login" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" class="form-control" placeholder="อักษร 8-12 และ A-Za-z0-9!@#$%^&*_=+-">
+                                                <input type="password" id="password-login" pattern="^(?=.*[a-z])(?=.*[0-9]).{6,12}$" class="form-control" placeholder="อักษร 8-12 และ A-Za-z0-9!@#$%^&*_=+-">
                                             </div>
                                             <!-- อย่างน้อย 1 ตัวพิมพ์ใหญ่
                                             อย่างน้อย 1 ตัวพิมพ์เล็ก

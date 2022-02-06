@@ -32,7 +32,7 @@
 								<input type="text" id='email_roasters' class="form-control" placeholder="E-mail" required>
 							</div>
 							<div class="form-group">
-								<input id="password_roasters" type="password" class="form-control" placeholder="Password" required>
+								<input id="password_roasters" type="password" pattern="^(?=.*[a-z])(?=.*[0-9]).{6,12}$" class="form-control" placeholder="Password" required>
 								<span toggle="#password_roasters" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 							</div>
 							<div class="form-group">
