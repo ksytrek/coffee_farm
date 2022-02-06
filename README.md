@@ -10,19 +10,19 @@
 <tbody>
 <tr>
 <td>Roasters path</td>
-<td>[view/roasters/shop-product-list.php][PlDb]</td>
+<td>[view/roasters/shop-product-list.php]</td>
 </tr>
 <tr>
 <td>Roasters path</td>
-<td>[view/roasters/index.html][PlDb]</td>
+<td>[view/roasters/index.html]</td>
 </tr>
 <tr>
 <td>Farmers path</td>
-<td>[view/roasters/shope-login.php][PlGh]</td>
+<td>[view/roasters/shope-login.php]</td>
 </tr>
 <tr>
 <td>Farmers path</td>
-<td>[view/roasters/index.html][PlGd]</td>
+<td>[view/roasters/index.html]</td>
 </tr>
 </tbody>
 </table>
