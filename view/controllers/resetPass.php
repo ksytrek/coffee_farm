@@ -131,7 +131,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'resetPass') {
     // ตั้งค่าอนุญาตการใช้งานได้ที่นี่ https://myaccount.google.com/lesssecureapps?pli=1
 
 
-    $sender = "Customer Service Support"; // ชื่อผู้ส่ง
+    $sender = "ลืมรหัสผ่าน"; // ชื่อผู้ส่ง
     $email_sender = "sompholwila2543@gmail.com"; // เมล์ผู้ส่ง 
     $email_receiver = "$e_mail_roasters"; // เมล์ผู้รับ ***
 

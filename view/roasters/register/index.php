@@ -8,7 +8,7 @@ include_once("../../../config/connectdb.php");
 
 <head>
 	<meta charset="utf-8">
-	<title>Form-v10 by Colorlib</title>
+	<title>สมัครสมาชิกโรงคั่วกาแฟ</title>
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->
@@ -185,42 +185,6 @@ include_once("../../../config/connectdb.php");
 						<textarea class="input-detail_roasters" placeholder="รายละเอียดต่างๆ ของโรงคั่วกาแฟ"></textarea>
 					</div>
 
-
-					<!-- 	ที่ตั้งสำนักงาน -->
-					<!-- <div class="form-row">
-						<input type="text" name="company" class="company"  placeholder="ที่ตั้งสำนักงาน" required>
-					</div> -->
-
-
-					<!-- <div class="form-row">
-						<select name="position">
-							<option value="position">Position</option>
-							<option value="director">Director</option>
-							<option value="manager">Manager</option>
-							<option value="employee">Employee</option>
-						</select>
-						<span class="select-btn">
-							<i class="zmdi zmdi-chevron-down"></i>
-						</span>
-					</div> -->
-
-					<!-- <div class="form-group">
-						<div class="form-row form-row-3">
-							<input type="text" name="business" class="business" id="business" placeholder="Business Arena" required>
-						</div>
-						<div class="form-row form-row-4">
-							<select name="employees">
-								<option value="employees">Employees</option>
-								<option value="trainee">Trainee</option>
-								<option value="colleague">Colleague</option>
-								<option value="associate">Associate</option>
-							</select>
-							<span class="select-btn">
-								<i class="zmdi zmdi-chevron-down"></i>
-							</span>
-						</div>
-					</div> -->
-
 				</div>
 				<div class="form-right">
 					<h2>รายละเอียดการติดต่อ</h2>
@@ -241,10 +205,6 @@ include_once("../../../config/connectdb.php");
 							<input type="text" name="last_name"  class="input-text input-district" placeholder="เขต / อำเภอ" required>
 						</div>
 					</div>
-					<!-- <div class="form-row">
-						<input type="text" name="additional" class="additional" id="additional" placeholder="Additional Information" required>
-					</div> -->
-
 
 					<div class="form-group">
 						<div class="form-row form-row-1">
@@ -281,32 +241,9 @@ include_once("../../../config/connectdb.php");
 						<div id="map-canvas"></div>
 					</div>
 
-					<!-- <div class="form-row">
-						<select name="country">
-							<option value="country">Country</option>
-							<option value="Vietnam">Vietnam</option>
-							<option value="Malaysia">Malaysia</option>
-							<option value="India">India</option>
-						</select>
-						<span class="select-btn">
-							<i class="zmdi zmdi-chevron-down"></i>
-						</span>
-					</div>
-					<div class="form-group">
-						<div class="form-row form-row-1">
-							<input type="text" name="code" class="code" id="code" placeholder="Code +" required>
-						</div>
-						<div class="form-row form-row-2">
-							<input type="text" name="phone" class="phone" id="phone" placeholder="Phone Number" required>
-						</div>
-					</div>
-					<div class="form-row">
-						<input type="text" name="your_email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Your Email">
-					</div> -->
-
 					<div class="form-checkbox">
 						<label class="container">
-							<p>I do accept the <a href="#" class="text">Terms and Conditions</a> of your site.</p>
+							<p>ยืนยันการลงทะเบียน</p>
 							<input type="checkbox" id="check-box_ok" name="checkbox">
 							<span class="checkmark"></span>
 						</label>
@@ -333,14 +270,14 @@ include_once("../../../config/connectdb.php");
 						<script>
 							$('.register').on('click', function() {
 								// alert('Register Badge');
-
+ 
 								// general_information
 								var name_roasters = $('.input-name_roasters').val() == '' ? false : $('.input-name_roasters').val();
 								var num_trade_reg = $('.input-num_trade_reg').val() == '' ? false : $('.input-num_trade_reg').val();
 								var name = $('.input-name').val() == '' ? false : $('.input-name').val();
 								var last_name = $('.input-last_name').val() == '' ? false : $('.input-last_name').val();
 								var e_mail_roasters = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test($('.input-e_mail_roasters').val()) != true ? false : $('.input-e_mail_roasters').val();
-								var pass_roasters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/.test($('.input-pass_roasters').val()) != true ? false : $('.input-pass_roasters').val();
+								var pass_roasters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,64}$/.test($('.input-pass_roasters').val()) != true ? false : $('.input-pass_roasters').val();
 								var detail_roasters = $('.input-detail_roasters').val() == '' ? false : $('.input-detail_roasters').val();
 
 								// contact_details

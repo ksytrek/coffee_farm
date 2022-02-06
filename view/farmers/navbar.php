@@ -190,32 +190,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <!-- <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li> -->
-                        <!-- BEGIN CURRENCIES -->
-
-
-                        <!-- <li class="shop-currencies">
-                            <a href="javascript:void(0);">€</a>
-                            <a href="javascript:void(0);">£</a>
-                            <a href="javascript:void(0);" class="current">$</a>
-                        </li> -->
-
-                        <!-- END CURRENCIES -->
-                        <!-- BEGIN LANGS -->
-
-                        <!-- เลือกภาษาใช้เเสดง -->
-                        <!-- <li class="langs-block">
-                            <a href="javascript:void(0);" class="current">English </a>
-                            <div class="langs-block-others-wrapper">
-                                <div class="langs-block-others">
-                                    <a href="javascript:void(0);">French</a>
-                                    <a href="javascript:void(0);">Germany</a>
-                                    <a href="javascript:void(0);">Turkish</a>
-                                </div>
-                            </div>
-                        </li> -->
-
-                        <!-- END LANGS -->
+                        
                     </ul>
                 </div>
                 <!-- END TOP BAR LEFT PART -->
@@ -226,7 +201,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                         if (!isset($id_farmers)) :
                         ?>
                             <li><a id="signIN" href="./shope-login.php">Sign In</a></li>
-                            <li><a id="signUP" href="./shope-login.php">Sign UP</a></li>
+                            <!-- <li><a id="signUP" href="./shope-login.php">Sign UP</a></li> -->
 
 
                         <?php elseif (isset($id_farmers)) : ?>
