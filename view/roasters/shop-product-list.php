@@ -15,7 +15,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <html lang="en">
 <!--<![endif]-->
 <?php
-include_once('./navbar.php');
+include_once './navbar.php';
 ?>
 <!-- Head BEGIN -->
 
@@ -114,17 +114,17 @@ include_once('./navbar.php');
 
                     </ul>
                     <h2>ค้นหาจากจังหวัด</h2>
-                    
+
                     <select id="select_provinces" name="select_provinces" class="form-control input-sm" onChange="select_provinces('select_provinces');">
-                        
-                        
-                        
-                        <option selected disabled > เลือกจังหวัด</option>
+
+
+
+                        <option selected disabled> เลือกจังหวัด</option>
                         <?php
                         $result_provinces = Database::query("SELECT * FROM `provinces`", PDO::FETCH_ASSOC);
                         foreach ($result_provinces as $row_provinces) :
                         ?>
-                        <option value="<?php echo $row_provinces['id_provinces'] ?>" <?php echo isset($_GET["provinces"]) && $_GET["provinces"] == $row_provinces['id_provinces'] ?   'selected="selected "' : " " ?>  ><?php echo $row_provinces['name_provinces'] ?></option>
+                            <option value="<?php echo $row_provinces['id_provinces'] ?>" <?php echo isset($_GET["provinces"]) && $_GET["provinces"] == $row_provinces['id_provinces'] ? 'selected="selected "' : " " ?>><?php echo $row_provinces['name_provinces'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -184,28 +184,28 @@ include_once('./navbar.php');
                             <div class="pull-right">
                                 <label class="control-label">แสดง:</label>
                                 <select id="select_limit" name="select_limit" class="form-control input-sm" onChange="select_sort_by(this);">
-                                    <option value="&amp;limit=10" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 10 ?   'selected="selected "' : " " ?>>10</option>
-                                    <option value="&amp;limit=25" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 25 ?   'selected="selected "' : " " ?>>25</option>
-                                    <option value="&amp;limit=50" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 50 ?   'selected="selected "' : " " ?>>50</option>
-                                    <option value="&amp;limit=75" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 75 ?   'selected="selected "' : " " ?>>75</option>
-                                    <option value="&amp;limit=100" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 100 ?   'selected="selected "' : " " ?>>100</option>
+                                    <option value="&amp;limit=10" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 10 ? 'selected="selected "' : " " ?>>10</option>
+                                    <option value="&amp;limit=25" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 25 ? 'selected="selected "' : " " ?>>25</option>
+                                    <option value="&amp;limit=50" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 50 ? 'selected="selected "' : " " ?>>50</option>
+                                    <option value="&amp;limit=75" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 75 ? 'selected="selected "' : " " ?>>75</option>
+                                    <option value="&amp;limit=100" <?php echo isset($_GET["limit"]) && $_GET["limit"] == 100 ? 'selected="selected "' : " " ?>>100</option>
                                 </select>
                             </div>
 
                             <div class="pull-right">
                                 <label class="control-label">จัดเรียง&nbsp;โดย:</label>
                                 <select id='sort_by' class="form-control input-sm" onChange="select_sort_by(this);">
-                                    <option value="&amp;sort=id_productsr&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'id_productsr' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>Default</option>
-                                    <option value="&amp;sort=name_products&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ชื่อ (A - Z)</option>
-                                    <option value="&amp;sort=name_products&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ชื่อ (Z - A)</option>
-                                    <option value="&amp;sort=price_unit&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'ASC' ?   'selected="selected "' : " " ?>>ราคา (ต่ำ &gt; สูง)</option>
-                                    <option value="&amp;sort=price_unit&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'DESC' ?   'selected="selected "' : " " ?>>ราคา (สูง &gt; ต่ำ)</option>
+                                    <option value="&amp;sort=id_productsr&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'id_productsr' && isset($_GET['order']) && $_GET['order'] == 'ASC' ? 'selected="selected "' : " " ?>>Default</option>
+                                    <option value="&amp;sort=name_products&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'ASC' ? 'selected="selected "' : " " ?>>ชื่อ (A - Z)</option>
+                                    <option value="&amp;sort=name_products&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'name_products' && isset($_GET['order']) && $_GET['order'] == 'DESC' ? 'selected="selected "' : " " ?>>ชื่อ (Z - A)</option>
+                                    <option value="&amp;sort=price_unit&amp;order=ASC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'ASC' ? 'selected="selected "' : " " ?>>ราคา (ต่ำ &gt; สูง)</option>
+                                    <option value="&amp;sort=price_unit&amp;order=DESC" <?php echo isset($_GET["sort"]) && $_GET["sort"] == 'price_unit' && isset($_GET['order']) && $_GET['order'] == 'DESC' ? 'selected="selected "' : " " ?>>ราคา (สูง &gt; ต่ำ)</option>
                                 </select>
 
                                 <script>
                                     function select_sort_by(object) {
                                         var count = 0;
-                                        // 
+                                        //
                                         if (queryString.includes("?")) {
                                             location.assign(window.location.href + object.value);
                                         } else {
@@ -233,8 +233,8 @@ include_once('./navbar.php');
                         $page = null;
                         $start = 0; // ค่าของ record โดย page1 $startต้อง=0, page2 $startต้อง=3,page3 $startต้อง=6
 
-                        $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10;   //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
-                        $sort =  isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
+                        $pagesize = isset($_GET['limit']) ? $_GET['limit'] : 10; //จำนวน record ที่ต้องการแสดงในหนึ่งหน้า
+                        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'id_products';
                         $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
                         $type = isset($_GET['type']) ? $_GET['type'] : '%%';
                         $name = isset($_GET['name']) ? $_GET['name'] : '%%';
@@ -244,24 +244,22 @@ include_once('./navbar.php');
                         // $between = " price_unit BETWEEN $between_min AND $between_max ";
                         // $newtype = "  id_typepro LIKE '%%' ";
 
-
                         // AND far.id_provinces LIKE '$provinces'
                         // AND far.id_provinces LIKE '$provinces'
 
-                        $sql_count = "SELECT * FROM `products` as pro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
-                                                 WHERE id_provinces LIKE '$provinces' 
-                                                    AND  id_typepro LIKE '%$type%' 
-                                                    AND name_products LIKE '%$name%'  
+                        $sql_count = "SELECT * FROM `products` as pro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers
+                                                 WHERE id_provinces LIKE '$provinces'
+                                                    AND  id_typepro LIKE '%$type%'
+                                                    AND name_products LIKE '%$name%'
                                                     AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 3) ";
-                        $sql_data = "SELECT * FROM products as pro 
-                                                INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
-                                                INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
+                        $sql_data = "SELECT * FROM products as pro
+                                                INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro
+                                                INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers
                                                 WHERE id_provinces LIKE '$provinces' AND pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%'  AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 3 )   ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
 
-                        $result_count = Database::query($sql_count, PDO::FETCH_ASSOC);                      //เก็บข้อมูลไว้ใน $result
-                        $num_rowsx = $result_count->rowCount();   //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
-                        $totalpage =  ceil($num_rowsx / $pagesize);
-
+                        $result_count = Database::query($sql_count, PDO::FETCH_ASSOC); //เก็บข้อมูลไว้ใน $result
+                        $num_rowsx = $result_count->rowCount(); //ใช้คำสั่ง mysql_num_rows เพื่อหาจำนวน record ทั้งหมด
+                        $totalpage = ceil($num_rowsx / $pagesize);
 
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];
@@ -277,26 +275,20 @@ include_once('./navbar.php');
 
                         // echo $_GET['page'];
 
-
-
                         //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
                         //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
 
                         // $num = 8456.22;
-
-
-
 
                         $result_data = null;
                         $num_rows = null;
 
                         try {
                             // $sql_data = "SELECT * FROM products WHERE id_typepro LIKE '%$type%' ORDER BY id_products $order LIMIT $start,$pagesize";
-                            $result_data =  Database::query($sql_data, PDO::FETCH_ASSOC);
+                            $result_data = Database::query($sql_data, PDO::FETCH_ASSOC);
                             $num_rows = $result_data->rowCount();
                         } catch (Exception $e) {
                         }
-
 
                         // $fmt = new NumberFormatter('th_TH', NumberFormatter::CURRENCY);
                         // echo $ft->formatCurrency(100, 'THB');
@@ -310,6 +302,11 @@ include_once('./navbar.php');
                             // echo $fmt->formatCurrency(1234567.891234567890000, "RUR")."\n";
                         ?>
 
+                            <style>
+                                input[type=number]::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                }
+                            </style>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
@@ -324,9 +321,14 @@ include_once('./navbar.php');
                                         คลัง <strong><?php echo $row['num_stock']; ?></strong> Kg.
                                     </div>
                                     <div class="pi-price">฿<?php echo $row['price_unit'] . '.' . '00' ?></div>
+                                    <!-- <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default add2cart fancybox-fast-vie">เพิ่มสินค้า</a> -->
+                                    <!-- <input id="input__product-<?php echo $row['id_products']; ?>" type="number" value="1"> -->
 
-                                    <input id="input__product-<?php echo $row['id_products'];  ?>" type="hidden" value="1">
+                                    <div class="product-quantity " style="margin-right: 0px; margin-left: 10px;">
+                                        <input id="input__product-<?php echo $row['id_products']; ?>" min="1" max="100" type="number" value="1" name="product-quantity" class="form-control input-sm">
+                                    </div>
                                     <a href="javascript:add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input__product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-default add2cart">เพิ่มสินค้า</a>
+
                                 </div>
                             </div>
 
@@ -364,9 +366,15 @@ include_once('./navbar.php');
                                             </div>
                                             <div class="product-page-cart">
                                                 <div class="product-quantity">
-                                                    <input id="input_item_product-<?php echo $row['id_products'];  ?>" onchange="count_ch(this.value)" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
+                                                    <input id="input_item_product-<?php echo $row['id_products']; ?>" min="0" value="1" max="100" type="number" name="product-quantity" class="form-control input-sm">
+                                                    
                                                 </div>
-                                                <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products'];  ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
+                                                <!-- <div class="form-group">
+                                                    <div class="col-sm-6">
+                                                        <input id="input_item_product-<?php echo $row['id_products']; ?>" min="0" max="99999" value="1" type="number" name="product-quantity" class="form-control input-sm">
+                                                    </div>
+                                                </div> -->
+                                                <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
                                                 <a href="shop-item.php?product=<?php echo $row['id_products'] ?>" class="btn btn-default">รายละเอียด</a>
                                             </div>
                                             <script>
@@ -379,7 +387,7 @@ include_once('./navbar.php');
                                 </div>
                             </div>
 
-                        <?php //endfor; 
+                        <?php //endfor;
                         endforeach;
                         ?>
                     </div>
@@ -454,7 +462,7 @@ include_once('./navbar.php');
 
 
     <?php
-    include_once("./footer.php");
+    include_once "./footer.php";
     ?>
 
 

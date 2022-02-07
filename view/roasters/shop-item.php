@@ -111,7 +111,12 @@ if (isset($_GET["product"])) {
                                 </div>
                                 <div class="product-page-cart">
                                     <div class="product-quantity">
-                                        <input id="input_item_product-<?php echo $row['id_products'];  ?>" type="text" value="1" readonly class="form-control input-sm">
+                                        <style>
+                                            input[type=number]::-webkit-inner-spin-button {
+                                                -webkit-appearance: none;
+                                            }
+                                        </style>
+                                        <input id="input_item_product-<?php echo $row['id_products']; ?>" min="0" max="100" type="number" value="1" class="form-control input-sm">
                                     </div>
                                     <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products'];  ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
                                 </div>

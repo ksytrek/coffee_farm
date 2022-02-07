@@ -202,6 +202,12 @@ include_once('./navbar.php');
                                 </script>
                             </ul>
 
+                            <style>
+                                input[type=number]::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                }
+                            </style>
+                            </style>
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade in active" id="product_all">
                                     <div class="goods-page">
@@ -238,18 +244,18 @@ include_once('./navbar.php');
                                                             total += sum_total;
                                                             str_items += '<tr>' +
                                                                 '<td class="goods-page-image">' +
-                                                                '<a href="javascript:;"><img src="../../pictures/product/' + value.image_pro + '" alt="Berry Lace Dress"></a>' +
+                                                                '<a href="shop-item.php?product='+ value.id_products +'"><img src="../../pictures/product/' + value.image_pro + '" alt=""></a>' +
                                                                 '</td>' +
                                                                 '<td class="goods-page-description">' +
-                                                                '<h3><a href="javascript:;">' + value.name_products + '</a></h3>' +
+                                                                '<h3><a href="shop-item.php?product='+value.id_products+'">' + value.name_products + '</a></h3>' +
                                                                 // '<em>รายละเอียดเพิ่มเติม</em>' +
                                                                 '</td>' +
                                                                 '<td class="goods-page-quantity">' +
-                                                                '<div class="product-quantity">' +
+                                                                '<div  >' +
                                                                 // '<div>' +
                                                                 // '<input id="demo_vertical" type="text" value="" name="demo_vertical">' +
                                                                 // '</div>' +
-                                                                '<input  onchange="add_item(' + value.id_products + ',this.value,' + index + ')" type="text" value="' + value.num_item + '" readonly class="form-control input-sm">' +
+                                                                '<input   onchange="add_item(' + value.id_products + ',this.value,' + index + ')" type="number" value="' + value.num_item + '"  class="form-control input-sm">' +
                                                                 '</div>' +
                                                                 '</td>' +
                                                                 '<td class="goods-page-price">' +

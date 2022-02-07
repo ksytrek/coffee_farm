@@ -42,11 +42,11 @@
 
         var defaults = {
             min: 0,
-            max: 100,
+            max: 900,
             initval: '',
             step: 1,
             decimals: 0,
-            stepinterval: 100,
+            stepinterval: 900,
             forcestepdivisibility: 'round', // none | floor | round | ceil
             stepintervaldelay: 500,
             verticalbuttons: false,
