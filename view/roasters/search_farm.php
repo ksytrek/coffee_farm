@@ -96,6 +96,8 @@ include_once('./navbar.php');
                                     });
                                 </script>
                             </div>
+                            <button type="button" onclick="location.assign('./map-farm.php')" class="btn btn-primary btn-sm">แผนที่ฟาร์ม</button>
+
                         </div>
                     </div>
 

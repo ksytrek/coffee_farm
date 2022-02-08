@@ -270,7 +270,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="./shop-product-list.php"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
+            <a class="site-logo" href="./shop-product-list.php"><img src="../../script/assets/img/logos/ubru_logo.png" width="115px" height=60px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
             <!-- BEGIN CART -->
             <div class="top-cart-block">
@@ -382,7 +382,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         </ul>
                     </li> -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">สายพันธุ์เมล็ดกาแฟ</a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">หมวดหมู่</a>
                         <!-- BEGIN DROPDOWN MENU -->
                         <ul class="dropdown-menu">
                             <!-- <li class="dropdown-submenu">
@@ -440,7 +440,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             </li>
                         </ul>
                     </li>
-                    <li><a href="./map-farm.php">ที่ตั้งฟาร์ม</a></li>
+                    <!-- <li><a href="./map-farm.php">ที่ตั้งฟาร์ม</a></li> -->
                     <li><a href="./search_farm.php">ค้นหาเกษตร</a></li>
                     <!-- BEGIN TOP SEARCH -->
                     <li class="menu-search">
@@ -450,9 +450,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             <form action="javascript:search()">
                                 <div class="input-group">
                                     <input id="input-bar-search" value="<?php if (isset($_GET['name'])) : echo $_GET['name'];
-                                                                        endif; ?>" type="text" placeholder="Search" class="form-control input-search">
+                                                                        endif; ?>" type="text" placeholder="พิมพ์ข้อความ" class="form-control input-search">
                                     <span class="input-group-btn">
-                                        <button onclick="search_name_nabar('input-bar-search')" class="btn btn-primary" type="button">Search</button>
+                                        <button onclick="search_name_nabar('input-bar-search')" class="btn btn-primary" type="button">ค้นหา</button>
                                     </span>
                                 </div>
                             </form>
