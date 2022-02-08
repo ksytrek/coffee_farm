@@ -557,7 +557,7 @@ include_once('./navbar.php');
                                     // alert(
                                     // console.log(JSON.stringify(values));
 
-                                    if (check_email_farmers == 'true') {
+                                    if (check_email_farmers == true) {
                                         $.ajax({
                                             url: "./controllers/register_faramers.php",
                                             type: "POST",
