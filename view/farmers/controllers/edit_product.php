@@ -11,6 +11,8 @@ if(isset($_POST['key']) && $_POST['key'] == 'form_edit_Product'){
     $num_stock = $value['num_stock'];
     $price_unit = $value['price_unit'];
     $image_pro = $value['image_pro'];
+    // $harvest_date = $values['harvest_date'];
+    $harvest_date = $value['harvest_date'];
     $name_image = null;
 
     $sql_select =  "SELECT * FROM `products` WHERE id_products = '$id_products'";
@@ -28,8 +30,8 @@ if(isset($_POST['key']) && $_POST['key'] == 'form_edit_Product'){
                                          `id_typepro` = '$id_typepro',
                                           `num_stock` = '$num_stock', 
                                           `price_unit` = '$price_unit', 
-                                        --   `status_products` = '0', 
-                                          `image_pro` = '$name_image' 
+                                         `image_pro` = '$name_image',
+                                         `harvest_date` = '$harvest_date'
                                         WHERE `products`.`id_products` = '$id_products';";
     if(Database::query($sql_update,PDO::FETCH_ASSOC)){
         echo "success";

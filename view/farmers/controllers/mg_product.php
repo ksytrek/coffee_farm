@@ -15,13 +15,14 @@ if(isset($_POST['key']) && $_POST['key'] == "form_addProduct"){
     $price_unit = $values['price_unit'];
     $id_farmers = $values['id_farmers'];
     $image_pro = $values['image_pro'];
+    $harvest_date = $values['harvest_date'];
     $name_image_pro = upload_image($image_pro);
 
     $status_products = "1";
 
 
-    $sql = "INSERT INTO `products` (`id_products`, `name_products`, `id_typepro`, `num_stock`, `price_unit`,  `id_farmers`, `image_pro`) 
-                                 VALUES (NULL, '$name_products', '$id_typepro', '$num_stock', '$price_unit', '$id_farmers', '$name_image_pro');";
+    $sql = "INSERT INTO `products` (`id_products`, `name_products`, `id_typepro`, `num_stock`, `price_unit`,  `id_farmers`, `image_pro`,`harvest_date`) 
+                                 VALUES (NULL, '$name_products', '$id_typepro', '$num_stock', '$price_unit', '$id_farmers', '$name_image_pro','$harvest_date');";
 
     try {
         if (Database::query($sql, PDO::FETCH_ASSOC)) {

@@ -110,4 +110,27 @@ function upload_image($image_farmers):string {
     return $name_date;
 }
 
+
+if(isset($_POST['key']) && $_POST['key'] == 'get_provinces'){
+    $id_provinces = $_POST['id_provinces'];
+    // echo $id_code;
+    $resultArray = array();
+    try {
+        $sql = "SELECT * FROM `provinces` WHERE `id_provinces` = '$id_provinces';";
+        if ($show_tebelig = Database::query($sql, PDO::FETCH_ASSOC)) {
+            foreach ($show_tebelig  as $row) {
+                array_push($resultArray, $row);
+            }
+            echo json_encode($resultArray);
+        }else{
+            echo json_encode($resultArray);
+        }
+    } catch (Exception $e) {
+        $resultArray = [
+            "error" => $e->getMessage()
+        ];
+        echo json_encode($resultArray);
+    }
+}
+
 ?>

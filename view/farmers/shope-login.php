@@ -56,15 +56,15 @@ include_once('./navbar.php');
 <!-- <script src="./js/jquery.min.js"></script> -->
 
 <script>
-    var bangkok = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
+    var make_ = new google.maps.LatLng(13.730995466424108, 100.51986257812496);
     var marker;
     var map;
 
     function initialize() {
         var mapOptions = {
-            zoom: 10,
+            zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: bangkok
+            center: make_
         };
 
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -73,7 +73,7 @@ include_once('./navbar.php');
             map: map,
             draggable: true,
             animation: google.maps.Animation.DROP,
-            position: bangkok
+            position: make_
         });
         google.maps.event.addListener(marker, 'click', toggleBounce);
         google.maps.event.addListener(marker, 'drag', function(event) {
@@ -483,7 +483,7 @@ include_once('./navbar.php');
                                         </div>
                                         <div class="form-group">
                                             <label for="country">จังหวัด<span class="require">*</span></label>
-                                            <select name="input-province" class="form-control input-sm" id="country" required>
+                                            <select id="input-province" name="input-province" class="form-control input-sm" id="country" required>
                                                 <option disabled selected> --- PleaseSelect --- </option>
                                                 <!--   -->
                                                 <?php
@@ -496,6 +496,36 @@ include_once('./navbar.php');
 
                                             </select>
                                         </div>
+                                        <script>
+                                            $("#input-province").on("change", function() {
+                                                // alert($(this).val());
+                                                $.ajax({
+                                                    url: "./controllers/register_faramers.php",
+                                                    type: "POST",
+                                                    data: {
+                                                        key: "get_provinces",
+                                                        id_provinces: $(this).val()
+                                                    },
+                                                    success: function(result, textStatus, jqXHR) {
+                                                        // console.log(result);
+                                                        const obj = JSON.parse(result);
+                                                        make_ = new google.maps.LatLng(obj[0]['province_lat'], obj[0]['province_lon']);
+                                                        $("#map-canvas").show();
+                                                        initialize();
+
+                                                    },
+                                                    error: function(result, textStatus, jqXHR) {
+
+                                                    }
+                                                });
+                                                // switch ($(this).val()) {
+                                                // 	case '1':
+                                                // 		break;
+
+                                                // }
+
+                                            });
+                                        </script>
 
                                         <h3>ข้อมูลพิกัด <span class="require"></span></h3>
                                         <div class="form-group">
@@ -607,7 +637,7 @@ include_once('./navbar.php');
                                             </div>
                                             <div class="form-group">
                                                 <label for="">เบอร์ติดต่อ<span class="require">*</span></label>
-                                                <input type="tel" id="tel_forgot" class="form-control" placeholder="เบอร์มือถือ 10 หลัก">
+                                                <input type="tel" id="tel_forgot" pattern="^0[0-9]{8,9}$" class="form-control" placeholder="เบอร์มือถือ 10 หลัก">
                                             </div>
 
                                             <div class="padding-top-20 text-right">

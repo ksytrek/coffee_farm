@@ -29,6 +29,10 @@ if(isset($_POST['key']) && $_POST['key'] == 'information'):
             <td class="text-capitalize"><?php echo $row['name_entrep']?></td>
         </tr>
         <tr>
+            <td class="datasheet-features-type">เบอร์ติดต่อ</td>
+            <td class="text-capitalize"><?php echo $row['tel_roasters']?></td>
+        </tr>
+        <tr>
             <td class="datasheet-features-type">อีเมลโรงคั่วกาแฟ</td>
             <td class="text-capitalize"><?php echo $row['e_mail_roasters']?></td>
         </tr>

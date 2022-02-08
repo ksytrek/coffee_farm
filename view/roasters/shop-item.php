@@ -46,7 +46,7 @@ include_once('./navbar.php');
 $row = null;
 if (isset($_GET["product"])) {
     $id_products = $_GET["product"];
-    $sql_data_item = "SELECT *,IF(`organic_farm` = 1 ,'อินทรีย์','ไม่อินทรีย์') as 'organic_farm_new',IF(type_sale=1,'ขายแบบพันธะสัญญา','ขายแบบเดี่ยว') as 'type_sale_new' 
+    $sql_data_item = "SELECT *, DATE_FORMAT(pro.harvest_date, '%e %M  %Y') AS date_time_harvest_date,IF(`organic_farm` = 1 ,'อินทรีย์','ไม่อินทรีย์') as 'organic_farm_new',IF(type_sale=1,'ขายแบบพันธะสัญญา','ขายแบบเดี่ยว') as 'type_sale_new' 
     FROM products as pro 
     INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
     INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
@@ -99,10 +99,13 @@ if (isset($_GET["product"])) {
 
                                 </div>
                                 <div class="description">
+                                    <p>วันที่เก็บเกี่ยว :
+                                        <strong> <?php echo $row['date_time_harvest_date']; ?></strong>
+                                    </p>
                                     <p>ประเภทกาแฟ :
                                         <strong> <?php echo $row['name_typepro']; ?></strong>
                                     </p>
-                                    <p>ชื่อฟาร์มที่ขาย :
+                                    <p>ชื่อฟาร์มที่่ขาย :
                                         <strong><a href="./information-farm.php?infr=<?php echo $row['id_farmers']; ?>"><?php echo $row['name_farmers']; ?></a></strong>
                                     </p>
                                 </div>
@@ -137,13 +140,10 @@ if (isset($_GET["product"])) {
 
                             <div class="product-page-content">
                                 <ul id="myTab" class="nav nav-tabs">
-                                    <!-- <li class=""><a href="#Description" data-toggle="tab">รายละเอียดสินค้า</a></li> -->
                                     <li class="active"><a href="#Information" data-toggle="tab">ข้อมูลเกียวกับสินคา</a></li>
-                                    <!-- <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li> -->
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
                                     <div class="tab-pane fade" id="Description">
-                                        <!-- <p>รายละเอียดสินค้า</p> -->
                                     </div>
                                     <div class="tab-pane fade in active " id="Information">
                                         <table class="datasheet">
@@ -157,6 +157,10 @@ if (isset($_GET["product"])) {
                                             <tr>
                                                 <td class="datasheet-features-type">ประเภทกาแฟ</td>
                                                 <td class="text-capitalize"><?php echo $row['name_typepro'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="datasheet-features-type">วันที่เก็บเกี่ยว</td>
+                                                <td class="text-capitalize"><?php echo $row['date_time_harvest_date'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">ราคาต่อหน่วย (บาท/kg)</td>
@@ -182,161 +186,14 @@ if (isset($_GET["product"])) {
 
                                         </table>
                                     </div>
-                                    <!-- <div class="tab-pane fade in active" id="Reviews">
-                                        <div class="review-item clearfix">
-                                            <div class="review-item-submitted">
-                                                <strong>Bob</strong>
-                                                <em>30/12/2013 - 07:37</em>
-                                                <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                                            </div>
-                                            <div class="review-item-content">
-                                                <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales lectus purus ut lorem.</p>
-                                            </div>
-                                        </div>
-                                        <div class="review-item clearfix">
-                                            <div class="review-item-submitted">
-                                                <strong>Mary</strong>
-                                                <em>13/12/2013 - 17:49</em>
-                                                <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                                            </div>
-                                            <div class="review-item-content">
-                                                <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales lectus purus ut lorem.</p>
-                                            </div>
-                                        </div>
 
-
-                                        <form action="#" class="reviews-form" role="form">
-                                            <h2>Write a review</h2>
-                                            <div class="form-group">
-                                                <label for="name">Name <span class="require">*</span></label>
-                                                <input type="text" class="form-control" id="name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input type="text" class="form-control" id="email">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="review">Review <span class="require">*</span></label>
-                                                <textarea class="form-control" rows="8" id="review"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Rating</label>
-                                                <input type="range" value="4" step="0.25" id="backing5">
-                                                <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
-                                                </div>
-                                            </div>
-                                            <div class="padding-top-20">
-                                                <button type="submit" class="btn btn-primary">Send</button>
-                                            </div>
-                                        </form>
-
-                                    </div> -->
                                 </div>
                             </div>
-
-                            <!-- <div class="sticker sticker-sale"></div> -->
                         </div>
                     </div>
                 </div>
-                <!-- END CONTENT -->
             </div>
-            <!-- END SIDEBAR & CONTENT -->
 
-            <!-- BEGIN SIMILAR PRODUCTS -->
-            <!-- <div class="row margin-bottom-40">
-                <div class="col-md-12 col-sm-12">
-                    <h2>Most popular products</h2>
-                    <div class="owl-carousel owl-carousel4">
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                                <div class="sticker sticker-new"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                                <div class="sticker sticker-sale"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../script/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="../../script/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- END SIMILAR PRODUCTS -->
         </div>
     </div>
 

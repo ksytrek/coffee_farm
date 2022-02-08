@@ -200,7 +200,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
         <div class="container">
             <a class="site-logo" href="<?php if (!isset($id_farmers)) : echo "./shope-login.php";
                                         else : echo "./framers-index.php";
-                                        endif; ?>"><img src="../../script/assets/img/logos/1.png" width="128px" height="40px" alt="Metronic Shop UI"></a>
+                                        endif; ?>"><img src="../../script/assets/img/logos/ubru_logo.png" width="115px" height=60px" alt="Metronic Shop UI"></a>
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
 
@@ -259,6 +259,10 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
 
                                         <?php endforeach; ?>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">วันที่เก็บเกี่ยว<span class="require">*</span></label>
+                                    <input type="date" name="harvest_date" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">จำนวนคงเหลือ(kg) <span class="require">*</span></label>

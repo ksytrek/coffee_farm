@@ -247,12 +247,12 @@ include_once './navbar.php';
                         // AND far.id_provinces LIKE '$provinces'
                         // AND far.id_provinces LIKE '$provinces'
 
-                        $sql_count = "SELECT * FROM `products` as pro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers
+                        $sql_count = "SELECT *  FROM `products` as pro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers
                                                  WHERE id_provinces LIKE '$provinces'
                                                     AND  id_typepro LIKE '%$type%'
                                                     AND name_products LIKE '%$name%'
                                                     AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 3) ";
-                        $sql_data = "SELECT * FROM products as pro
+                        $sql_data = "SELECT *, DATE_FORMAT(pro.harvest_date, '%e %M  %Y') AS date_time_harvest_date FROM products as pro
                                                 INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro
                                                 INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers
                                                 WHERE id_provinces LIKE '$provinces' AND pro.id_typepro LIKE '%$type%' AND name_products LIKE '%$name%'  AND id_products NOT IN (SELECT id_products FROM products WHERE status_products = 0 OR status_products = 3 )   ORDER BY pro.$sort $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
@@ -316,9 +316,20 @@ include_once './navbar.php';
                                             <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view">View</a>
                                         </div>
                                     </div>
-                                    <h3><a href="shop-item.php?product=<?php echo $row['id_products'] ?>"><?php echo $row['name_products'] ?></a></h3>
-                                    <div class="description" style="margin: 10px ; margin-left: 0px;">
-                                        คลัง <strong><?php echo $row['num_stock']; ?></strong> Kg.
+                                    <h3 style="margin:2px;padding:2px;"><a href="shop-item.php?product=<?php echo $row['id_products'] ?>"><?php echo $row['name_products'] ?></a></h3>
+                                    <div class="description" style="margin: 2px ; margin-left: 0px;">
+                                        <div class="col-xs-12">
+                                            คลัง <strong><?php echo $row['num_stock']; ?></strong> Kg.
+
+                                        </div>
+
+                                    </div>
+                                    <div class="description" style="margin: 2px ; margin-left: 0px;">
+                                        <div class="col-xs-12">
+                                            เก็บเกี่ยว <strong><?php echo $row['date_time_harvest_date']; ?></strong>
+
+                                        </div>
+
                                     </div>
                                     <div class="pi-price">฿<?php echo $row['price_unit'] . '.' . '00' ?></div>
                                     <!-- <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default add2cart fancybox-fast-vie">เพิ่มสินค้า</a> -->
@@ -351,6 +362,9 @@ include_once './navbar.php';
 
                                             </div>
                                             <div class="description">
+                                                <p>เก็บเกี่ยว :
+                                                    <strong> <?php echo $row['date_time_harvest_date']; ?> </strong>
+                                                </p>
                                                 <p>คงเหลือ :
                                                     <strong> <?php echo $row['num_stock']; ?> Kg.</strong>
                                                 </p>
@@ -367,7 +381,7 @@ include_once './navbar.php';
                                             <div class="product-page-cart">
                                                 <div class="product-quantity">
                                                     <input id="input_item_product-<?php echo $row['id_products']; ?>" min="0" value="1" max="100" type="number" name="product-quantity" class="form-control input-sm">
-                                                    
+
                                                 </div>
                                                 <!-- <div class="form-group">
                                                     <div class="col-sm-6">

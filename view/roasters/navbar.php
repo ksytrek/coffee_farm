@@ -441,6 +441,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         </ul>
                     </li>
                     <li><a href="./map-farm.php">ที่ตั้งฟาร์ม</a></li>
+                    <li><a href="./search_farm.php">ค้นหาเกษตร</a></li>
                     <!-- BEGIN TOP SEARCH -->
                     <li class="menu-search">
                         <span class="sep"></span>

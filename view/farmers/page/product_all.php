@@ -13,7 +13,7 @@ $between = "price_unit BETWEEN $between_min AND $between_max ";
 $newtype = "  id_typepro LIKE '%%' ";
 
 $sql_count = "SELECT * FROM `products` WHERE  $newtype AND $between AND id_farmers = '$id_farmers' AND status_products != '3' ";
-$sql_data = "SELECT * FROM products as pro 
+$sql_data = "SELECT *, DATE_FORMAT(pro.harvest_date, '%e %M  %Y') AS date_time_harvest_date FROM products as pro 
                     INNER JOIN typepro as ty ON pro.id_typepro = ty.id_typepro  
                     WHERE pro.id_typepro LIKE '%$type%' 
                     AND pro.$between 
@@ -132,8 +132,11 @@ try {
                         </div>
                     </div>
                     <h3><a href="#"><?php echo $row['name_products'] ?></a></h3>
-                    <div class="description" style="margin: 10px ; margin-left: 0px;">
+                    <div class="description" style="margin: 5px ; margin-left: 0px;">
                         คงเหลือ <strong><?php echo $row['num_stock']; ?></strong> Kg.
+                    </div>
+                    <div class="description" style="margin: 5px ; margin-left: 0px;">
+                        เก็บเกี่ยว <strong><?php echo $row['date_time_harvest_date']; ?></strong>
                     </div>
                     <div class="pi-price">฿<?php echo $row['price_unit'] ?> / Kg.</div>
                     <a href="#product-pop-up-edit-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view add2cart">แก้ไขสินค้า</a>
@@ -167,15 +170,7 @@ try {
                             </div>
 
                             <div class="product-page-cart">
-                                <!-- <div class="product-quantity"> -->
-                                <!-- <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm"> -->
-                                <!-- <button class="btn btn-primary" type="submit">เพิ่มสินค้า</button> -->
-                                <!-- </div> -->
-                                <!-- <a href="javascript:;" class="btn btn-default">ปิดการแสดง</a> -->
-                                <!-- <button class="btn btn-primary" onclick="alert('sdfasfe')" type="button">แก้ไขสินค้า</button> -->
-                                <!-- <a href="./farmers-item.php?product=<?php echo $row['id_products']; ?>" class="btn btn-default">รายละเอียด</a> -->
                                 <a href="#product-pop-up-edit-<?php echo $row['id_products']; ?>" class="btn btn-default fancybox-fast-view add2cart">แก้ไขสินค้า</a>
-
                             </div>
                         </div>
                     </div>
@@ -204,6 +199,10 @@ try {
                                             <option value="<?php echo $row_type['id_typepro'] ?>"><?php echo $row_type['name_typepro'] ?></option>
                                         <?php } ?>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">วันที่เก็บเกี่ยว<span class="require">*</span></label>
+                                    <input type="date" name="harvest_date" class="form-control" value="<?php echo $row['harvest_date']; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">จำนวนคงเหลือ(kg) <span class="require">*</span></label>
@@ -287,7 +286,7 @@ try {
                                         values['image_pro'] = base64StringImg_product_edit_<?php echo $row['id_products']; ?>;
 
                                     }
-                                    // console.log(JSON.stringify(values));
+                                    console.log(JSON.stringify(values));
                                     $.ajax({
                                         url: "./controllers/edit_product.php",
                                         type: "POST",
@@ -309,7 +308,7 @@ try {
 
                                             } else {
                                                 alert("เกิดข้อผิดพลาดบางอย่าง");
-                                                location.reload();
+                                                // location.reload();
                                             }
                                             // console.log(JSON.stringify(values));
                                         },

@@ -55,16 +55,18 @@ if(isset($_POST['key']) && $_POST['key'] == 'register'){
     $detail_roasters = $_POST["detail_roasters"]; //รายละเอียดต่างๆ ของโรงคั่วกาแฟ
     $e_mail_roasters = $_POST["e_mail_roasters"]; //อีเมลโรงคั่วกาแฟ
     $pass_roasters = $_POST["pass_roasters"];   // รหัสผ่านโรงคั่วกาแฟ
-    
+    $tel_roasters = $_POST["tel_roasters"];     //
 
     // $sql =  "INSERT INTO `roasters` (`id_roasters`, `name_roasters`, `num_trade_reg`, `name_entrep`, `address_office`, `id_provinces`, `code_provinces`, `lat_roasters`, `lng_roasters`, `detail_roasters`, `e_mail_roasters`, `pass_roasters`) ".
     //         " VALUES (NULL, 'ชื่อโรงคั่วกาแฟ' , 'เลขทะเบียนการค้า' , 'jen' , 'ที่ยอุ๋', '33' , '33125' , $lat_roasters, $lng_roasters, $detail_roasters, 'sin@gmail.com', 'pass';)";
-    $sql = "INSERT INTO `roasters` (`id_roasters`, `name_roasters`, `num_trade_reg`, `name_entrep`, `address_office`, `id_provinces`, `code_provinces`, `lat_roasters`, `lng_roasters`, `detail_roasters`, `e_mail_roasters`, `pass_roasters`) 
-    VALUES (NULL, '$name_roasters', '$num_trade_reg', '$name_entrep', '$address_office', '$id_provinces', '$code_provinces', '$lat_roasters', '$lng_roasters', '$detail_roasters', '$e_mail_roasters', '$pass_roasters');";
+    $sql = "INSERT INTO `roasters` (`id_roasters`, `name_roasters`, `num_trade_reg`, `name_entrep`, `address_office`, `id_provinces`, `code_provinces`, `lat_roasters`, `lng_roasters`, `detail_roasters`,`tel_roasters`, `e_mail_roasters`, `pass_roasters`) 
+    VALUES (NULL, '$name_roasters', '$num_trade_reg', '$name_entrep', '$address_office', '$id_provinces', '$code_provinces', '$lat_roasters', '$lng_roasters', '$detail_roasters', '$tel_roasters ','$e_mail_roasters', '$pass_roasters');";
 
     try {
         if(Database::query($sql,PDO::FETCH_ASSOC)){
             echo "success";
+        }else{
+            echo "error";
         }
 
         // echo $name_roasters."\n".$num_trade_reg."\n".$name_entrep."\n".$address_office;
@@ -76,5 +78,28 @@ if(isset($_POST['key']) && $_POST['key'] == 'register'){
         exit;
     }
 
+}
+
+if(isset($_POST['key']) && $_POST['key'] == 'get_provinces'){
+    $id_provinces = $_POST['id_provinces'];
+    // echo $id_code;
+    $resultArray = array();
+    try {
+        $sql = "SELECT * FROM `provinces` WHERE `id_provinces` = '$id_provinces';";
+        if ($show_tebelig = Database::query($sql, PDO::FETCH_ASSOC)) {
+            foreach ($show_tebelig  as $row) {
+                array_push($resultArray, $row);
+            }
+            echo json_encode($resultArray);
+        }else{
+            echo json_encode($resultArray);
+        }
+    } catch (Exception $e) {
+        $resultArray = [
+            "error" => $e->getMessage()
+        ];
+        echo json_encode($resultArray);
+    }
+    
 }
 ?>

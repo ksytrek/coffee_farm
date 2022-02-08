@@ -13,12 +13,14 @@ if(isset($_POST['key']) && $_POST['key'] == 'edit_account_submit'){
     $name_entrep = $input['input-name_entrep'];
     $e_mail_roasters = $input['input-e_mail_roasters'];
     $detail_roasters = $input['input-detail_roasters'];
+    $tel_roasters = $input['input-tel_roasters'];
 
     $sql_update_account = "UPDATE `roasters` SET 
                                 `name_roasters` = '$name_roasters', 
                                 `num_trade_reg` = '$num_trade_reg', 
                                 `name_entrep` = '$name_entrep', 
                                 `detail_roasters` = '$detail_roasters', 
+                                `tel_roasters` = '$tel_roasters', 
                                 `e_mail_roasters` = '$e_mail_roasters' 
                             WHERE `roasters`.`id_roasters` = '$id_roasters';";
     // print_r($input);
