@@ -10,7 +10,7 @@
 	shell_exec('git pull');
 
 
-	header('Location: '.$uri.'/coffee_farm/view/roasters/');
+	header('Location: '.$uri.'/view/roasters/');
 
 
 	exit;
