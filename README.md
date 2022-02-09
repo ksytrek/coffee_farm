@@ -11,19 +11,11 @@
 <tbody>
 <tr>
 <td>Roasters path</td>
-<td>[view/roasters/shop-product-list.php]</td>
-</tr>
-<tr>
-<td>Roasters path</td>
-<td>[view/roasters/index.html]</td>
+<td>[/index.html]</td>
 </tr>
 <tr>
 <td>Farmers path</td>
-<td>[view/roasters/shope-login.php]</td>
-</tr>
-<tr>
-<td>Farmers path</td>
-<td>[view/roasters/index.html]</td>
+<td>[/farmers/index.html]</td>
 </tr>
 </tbody>
 </table>
