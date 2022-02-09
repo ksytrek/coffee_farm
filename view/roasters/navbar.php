@@ -1,14 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
-Version: 1.0.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
+
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -19,7 +10,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <?php
 include('../../config/connectdb.php');
-// include('./scripts/php_li.php');
+
 session_start();
 $id_roasters = null;
 if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
@@ -29,12 +20,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 ?>
 <script>
     const ID_ROASTERS = '<?php echo $id_roasters == null ? "null" :"$id_roasters"; ?>';
-    // alert(ID_ROASTERS);
 </script>
 
 <head>
     <meta charset="utf-8">
-    <!-- <title>Metronic Shop UI</title> -->
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
