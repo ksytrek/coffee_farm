@@ -1,0 +1,56 @@
+<script>
+    function search_type(object) {
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + "&type=" + object);
+        } else {
+            location.assign(window.location.href + "?type=" + object);
+        }
+    }
+
+    function search_name(object) {
+        var name = $("#" + object).val();
+
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + "&name=" + name);
+        } else {
+            location.assign(window.location.href + "?name=" + name);
+        }
+    }
+
+    function select_provinces(object) {
+        var name = $("#" + object).val();
+        // alert(name);
+
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + "&provinces=" + name);
+        } else {
+            location.assign(window.location.href + "?provinces=" + name);
+        }
+    }
+
+    function select_sort_by(object) {
+        var count = 0;
+        //
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + object.value);
+        } else {
+            location.assign(window.location.href + "?" + object.value);
+        }
+    }
+
+    function select_limit(object) {
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + object.value);
+        } else {
+            location.assign(window.location.href + "?" + object.value);
+        }
+    }
+
+    function new_page(object) {
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + "&page=" + object);
+        } else {
+            location.assign(window.location.href + "?page=" + object);
+        }
+    }
+</script>

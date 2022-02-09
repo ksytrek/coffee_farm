@@ -1,0 +1,98 @@
+<style type="text/css" media="all">
+    #map-canvas {
+        display: block;
+        margin: 10px auto;
+        height: 600px;
+        width: 100%;
+        background-color: #ccc;
+    }
+</style>
+<script>
+    window.onload = (event) => {
+        var url = window.location.href;
+        const urlParams = new URLSearchParams(queryString);
+        const sort = urlParams.get('sort');
+        const order = urlParams.get('order');
+        const limit = urlParams.get('limit');
+        const page = urlParams.get('page');
+    };
+
+    var farmLocation = new google.maps.LatLng("<?php echo $row_infor['lat_farm'] ?>",
+        "<?php echo $row_infor['lng_farm'] ?>");
+
+    var map;
+    var marker;
+    var infoWindow;
+
+
+
+    function initialize() {
+
+
+        var mapOptions = {
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: farmLocation
+        };
+
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: false, // ไม่สามารถเครื่อนย้ายได้
+            animation: google.maps.Animation.DROP,
+            position: farmLocation,
+            title: 'loan',
+            icon: '../../script/assets/img/logos/farm.png',
+            // 'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
+        });
+
+
+
+        var content = "<?php echo $row_infor['address_farmers']."
+        ".$row_infor['code_provinces'] ?> <a href='./directions-map-farm.php?lat=<?php echo $row_infor['lat_farm'] ?>&lng=<?php echo $row_infor['lng_farm'] ?>'>ค้นหาเส้นทาง</a>";
+        var infowindow = new google.maps.InfoWindow()
+
+
+        google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+            return function() {
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                    infowindow.close();
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                    infowindow.setContent(content);
+                    infowindow.open(map, marker);
+                }
+            };
+        })(marker, content, infowindow));
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    $("#btn_reset").click(function() {
+        location.assign("<?php echo $_SERVER['PHP_SELF'] ?>");
+    });
+
+    // function select_sort_by(object) {
+    function select_sort_by(object) {
+        var count = 0;
+        // 
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + object.value);
+        } else {
+            location.assign(window.location.href + "?" + object.value);
+        }
+    }
+
+    // function select_limit(object) {
+    function select_limit(object) {
+        if (queryString.includes("?")) {
+            location.assign(window.location.href + object.value);
+        } else {
+            location.assign(window.location.href + "?" + object.value);
+        }
+    }
+</script>

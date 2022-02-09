@@ -19,6 +19,8 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <?php
 include_once('../../config/connectdb.php');
+include_once('../../script/assets/plugins/googleApi/mapApi.html');
+
 session_start();
 $id_farmers = null;
 $email_farmers = null;
@@ -121,7 +123,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
     <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
     <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script> -->
     <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script> -->
 
     <style type="text/css" media="all">

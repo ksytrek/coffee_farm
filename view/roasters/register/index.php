@@ -3,6 +3,7 @@
 
 <?php
 // require('../../../config/connectdb.php');
+include_once('../../../script/assets/plugins/googleApi/mapApi.html');
 include_once("../../../config/connectdb.php");
 ?>
 
@@ -19,9 +20,8 @@ include_once("../../../config/connectdb.php");
 	<link href="css/sweetalert.css" rel="stylesheet">
 
 </head>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script src="../../../script/assets/plugins/googleApi/mapApi.html"></script> -->
 
-<script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&sensor=false&language=th"></script>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script> -->
 
 

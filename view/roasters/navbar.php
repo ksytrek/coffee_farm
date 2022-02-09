@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
 ?>
 <script>
-    const ID_ROASTERS = '<?php echo $id_roasters == null ? "null" :"$id_roasters"; ?>';
+    const ID_ROASTERS = '<?php echo $id_roasters == null ? "null" : "$id_roasters"; ?>';
 </script>
 
 <head>
@@ -45,14 +45,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,300;0,400;1,200;1,300&family=Maitree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
-    <!--- fonts for slider on the index page -->
-    <!-- Fonts END -->
-    <style type="text/css">
-        /* .ecommerce{
-            font-family: 'Kodchasan', sans-serif;
-            font-family: 'Maitree', serif;
-        } */
     </style>
 
     <!-- Global styles START -->
@@ -104,8 +96,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <!-- AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E -->
     <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> -->
 
-
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&libraries=places&v=weekly&language=th"></script>
+    <?php
+    include_once("../../script/assets/plugins/googleApi/mapApi.html")
+    ?>
 
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script> -->
 
@@ -403,7 +396,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         </ul>
                         <!-- END DROPDOWN MENU -->
                     </li>
-         
+
                     <li class="dropdown dropdown100 nav-catalogue">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
                             สินค้าใหม่

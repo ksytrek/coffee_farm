@@ -1,0 +1,258 @@
+<script>
+    function createCookie(name, value, days = 1) { // date /1 วัน
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var name1 = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1, c.length);
+            }
+            if (c.indexOf(name1) == 0) {
+                return c.substring(name1.length, c.length);
+            }
+        }
+        return null;
+    }
+
+    function removeCookie(name) {
+        createCookie(name, "", -1);
+    }
+
+    let THB = Intl.NumberFormat("th-TH", {
+        style: "currency",
+        currency: "THB",
+    });
+
+    function GetFilename(url) {
+        if (url) {
+            var m = url.toString().match(/.*\/(.+?)\./);
+            if (m && m.length > 1) {
+                return m[1];
+            }
+        }
+        return "";
+    }
+
+    function add_product(id_products, id_farmers, price_unit, num_item, name_products, image_pro) {
+        var product = [];
+        var int_i = 0;
+        var num_item_new = parseInt($("#" + num_item).val());
+
+        // alert($("#"+num_item).val());
+
+        product_new = {
+            id_products: id_products,
+            id_farmers: id_farmers,
+            price_unit: price_unit,
+            num_item: num_item_new,
+            name_products: name_products,
+            image_pro: image_pro
+        };
+
+        if (readCookie('product') == null) {
+            createCookie("product", JSON.stringify(product));
+
+            product.push(product_new);
+            createCookie("product", JSON.stringify(product));
+            update_product();
+
+        } else {
+            product = JSON.parse(readCookie('product')); // array type
+            product.forEach(function(value, i) {
+                if (value.id_products == id_products) {
+                    int_i += 1;
+                    product[i].num_item += num_item_new;
+                }
+            });
+
+            if (int_i == 0) {
+
+                product.push(product_new);
+                createCookie("product", JSON.stringify(product));
+
+                update_product();
+            } else {
+                createCookie("product", JSON.stringify(product));
+                update_product();
+            }
+
+        }
+        $("#" + num_item).val(1);
+    }
+
+    function update_product() {
+        // var product = json.parse(readCookie('product'));
+        const json = readCookie('product');
+        const product = JSON.parse(json);
+        var sum_item = product.length;
+        $("#sum_item").html(sum_item);
+        console.log(product.length);
+
+        var str = "";
+        var munny = 0;
+        product.forEach(function(value, i) {
+            str += '<li>' +
+                '<a href="shop-item.php"><img src="../../pictures/product/' + value.image_pro +
+                '" alt="Rolex Classic Watch" width="37" height="34"></a> ' +
+                '<span class="cart-content-count">x ' + value.num_item + '</span>' +
+                '<strong><a href="shop-item.php">' + value.name_products + '</a></strong>' +
+                '<em>' + THB.format(value.price_unit) + '</em>' +
+                '<a href="javascript:del_items(' + i + ');" class="del-goods">&nbsp;</a>' +
+                ' </li>';
+            munny += (value.price_unit * value.num_item);
+        });
+        $("#cart_list_product").html(str);
+        $("#sum_product_price").html(THB.format(munny));
+    }
+
+    function del_items(index) {
+
+        const json = readCookie('product');
+        const product = JSON.parse(json);
+
+        product.splice(index, 1);
+
+        createCookie("product", JSON.stringify(product));
+
+        update_product();
+    }
+
+    function search_name_nabar(object) {
+        var name = $("#" + object).val();
+
+        if (name_file == "shop-product-list") {
+            // alert(name_file);
+            if (queryString.includes("?")) {
+                location.assign(window.location.href + "&name=" + name);
+            } else {
+                location.assign(window.location.href + "?name=" + name);
+            }
+        } else {
+            // alert(name_file);
+            location.assign("./shop-product-list.php" + "?name=" + name);
+        }
+    }
+
+
+
+    // file page Shop-shopping-cart.php
+    function cancel_transel(id_transale) {
+        // alert(id_transale);
+        if (confirm('คุณต้องการยกเลิกรายการสั่งซื้อหรือไม่')) {
+            $.ajax({
+                url: "../controllers/update_staus_transale.php",
+                type: "POST",
+                data: {
+                    key: "update_staus_transale",
+                    id_transale: id_transale,
+                    status: 4
+                },
+                success: function(result, textStatus, jqXHR) {
+                    // console.log(result);
+                    if (result == 'success') {
+                        alert("ยกเลิกการสั่งซื้อสินค้าสำเร็จ");
+                        location.reload();
+                    } else {
+                        alert("ระบบตรวจพบข้อผิดพลาดบางอย่าง")
+                    }
+                },
+                error: function(result, textStatus, jqXHR) {
+                    alert("ระบบตรวจพบข้อผิดพลาดบางอย่างจากเซิฟเวอร์")
+                }
+            });
+        }
+
+    }
+
+    function do_farm(id_farmers) {
+        location.assign('./information-farm.php?infr=' + id_farmers)
+    }
+
+    function update_click_tab(numClick) {
+        if (numClick == 1) {
+            $.ajax({
+                url: "./shop-shopping-cart-wait_for_sale.php",
+                type: "POST",
+                data: {
+                    key: "wait_for_sale",
+                    id_roasters: ID_ROASTERS,
+                    status: numClick
+                },
+                success: function(result, textStatus, jqXHR) {
+                    $("#wait_for_sale").html(result);
+                },
+                error: function(result, textStatus, jqXHR) {
+                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" +
+                        textStatus);
+                }
+            });
+
+        } else if (numClick == 2) {
+            // alert(numClick)
+            $.ajax({
+                url: "./shop-shopping-cart-pending.php",
+                type: "POST",
+                data: {
+                    key: "pending",
+                    id_roasters: ID_ROASTERS,
+                    status: numClick
+                },
+                success: function(result, textStatus, jqXHR) {
+                    $("#pending").html(result);
+                },
+                error: function(result, textStatus, jqXHR) {
+                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus);
+                }
+            });
+
+
+        } else if (numClick == 3) {
+            $.ajax({
+                url: "./shop-shopping-cart-trade_complete.php",
+                type: "POST",
+                data: {
+                    key: "trade_complete",
+                    id_roasters: ID_ROASTERS,
+                    status: numClick
+                },
+                success: function(result, textStatus, jqXHR) {
+                    $("#trade_complete").html(result);
+                },
+                error: function(result, textStatus, jqXHR) {
+                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" +
+                        textStatus);
+                }
+            });
+            // $("#trade_complete").html();
+
+        } else if (numClick == 4) {
+            $.ajax({
+                url: "./shop-shopping-cart-cancel_trade.php",
+                type: "POST",
+                data: {
+                    key: "cancel_trade",
+                    id_roasters: ID_ROASTERS,
+                    status: numClick
+                },
+                success: function(result, textStatus, jqXHR) {
+                    $("#cancel_trade").html(result);
+                },
+                error: function(result, textStatus, jqXHR) {
+                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus);
+                }
+            });
+            // $("#cancel_trade").html();
+        }
+    }
+</script>
