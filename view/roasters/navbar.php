@@ -91,16 +91,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
     <script src="../../script/assets/corporate/scripts/layout.js" type="text/javascript"></script>
     <script src="../../script/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
 
-
-
-    <!-- AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E -->
-    <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> -->
-
     <?php
     include_once("../../script/assets/plugins/googleApi/mapApi.html")
     ?>
-
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw0nLxD9NsQiJKwFKM38AODUypI8f5FdI&v=weekly&language=th"></script> -->
 
     <script>
         $(document).ready(function() {
@@ -236,7 +229,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                             <li><a href="../roasters/register/">Sign UP</a></li>
                         <?php elseif (isset($id_roasters)) : ?>
                             <li><a href="shop-account.php">บัญชีของฉัน</a></li>
-                            <!-- <li><a href="shop-wishlist.html">รายการโปรดของฉัน</a></li> -->
                             <li><a href="./shop-shopping-cart.php">ตะกร้าสินค้า</a></li>
                             <li><a href="./controllers/logout.php">Log Out</a></li>
 
@@ -247,9 +239,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
             </div>
         </div>
     </div>
-    <!-- END TOP BAR -->
 
-    <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
             <a class="site-logo" href="./shop-product-list.php"><img src="../../script/assets/img/logos/ubru_logo.png" width="115px" height=60px" alt="Metronic Shop UI"></a>
@@ -299,11 +289,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                         $(document).ready(function() {
                             update_product();
                         });
-                        // $("#sum_product").click(function() {
-                        //     var htmlString = $(this).html();
-                        //     // $(this).text(htmlString);
-                        //     alert(htmlString);
-                        // });
                     </script>
 
                 </div>
@@ -312,16 +297,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                 <div class="top-cart-content-wrapper">
                     <div class="top-cart-content">
                         <ul id="cart_list_product" class="scroller" style="height: 250px;">
-                            <!-- <li>
-                                <a href="shop-item.php"><img src="../../script/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item.php">Rolex Classic Watch</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li> -->
                         </ul>
-
-
                         <div class="text-right">
                             <a href="shop-shopping-cart.php" class="btn btn-default">ตะกร้าสินค้า</a>
                             <!-- <a href="shop-checkout.php" class="btn btn-primary">Checkout</a> -->
@@ -329,62 +305,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
                     </div>
                 </div>
             </div>
-            <!--END CART -->
 
-            <!-- BEGIN NAVIGATION -->
             <div class="header-navigation">
                 <ul>
                     <!-- active -->
                     <li><a href="./shop-product-list.php">รายการสินค้า</a></li>
-
-                    <!-- <li class="dropdown "> 
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
-                            หน้าหลัก
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="shop-index.html">Home Default</a></li>
-                            <li class="active"><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
-                            <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
-                            <li><a href="shop-product-list.html">Product List</a></li>
-                            <li><a href="shop-search-result.html">Search Result</a></li>
-                            <li><a href="shop-item.php">Product Page</a></li>
-                            <li><a href="shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
-                            <li><a href="shop-shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="shop-checkout.html">Checkout</a></li>
-                            <li><a href="shop-about.html">About</a></li>
-                            <li><a href="shop-contacts.html">Contacts</a></li>
-                            <li><a href="shop-account.html">My account</a></li>
-                            <li><a href="shop-wishlist.html">My Wish List</a></li>
-                            <li><a href="shop-goods-compare.html">Product Comparison</a></li>
-                            <li><a href="shop-standart-forms.html">Standart Forms</a></li>
-                            <li><a href="shop-faq.html">FAQ</a></li>
-                            <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
-                        </ul>
-                    </li> -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">หมวดหมู่</a>
                         <!-- BEGIN DROPDOWN MENU -->
                         <ul class="dropdown-menu">
-                            <!-- <li class="dropdown-submenu">
-                                <a href="shop-product-list.html">Hi Tops <i class="fa fa-angle-right"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="shop-product-list.html">Second Level Link</a></li>
-                                    <li><a href="shop-product-list.html">Second Level Link</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                                            Second Level Link
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                            <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                            <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> -->
                             <?php
                             foreach (Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC) as $row) :
                             ?>
@@ -465,12 +394,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
             <!-- END NAVIGATION -->
         </div>
     </div>
-    <!-- Header END -->
-
-
-
-
-
 </body>
 
 <!-- END BODY -->

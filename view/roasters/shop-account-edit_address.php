@@ -18,22 +18,6 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
     <p>กรุณาอย่าเปิดเผยข้อมูลแก่คนอื่นๆ เพื่อความปลอดภัยของบัญชีผู้ใช้คุณเอง</p>
     <hr>
     <form id="form_edit_address" action="javascript:void(0)" method="post">
-        <!-- <div class="form-group">
-            <label for="company">เลทที่/หมูที่ <span class="require">*</span></label>
-            <input name="input-add_number" required type="text" id="company" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="address1">ซอย/ถนน</label>
-            <input name="input-road" type="text" id="address1" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="address2">แขวง/ตำบล <span class="require">*</span></label>
-            <input name="input-sub_district" required type="text" id="address2" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="city"> เขต/อำเภอ <span class="require">*</span></label>
-            <input name="input-district" required type="text" id="city" class="form-control">
-        </div> -->
         <div class="form-group">
             <label for="fax"> รายละเอียดที่อยู่ ของโรงคั่วกาแฟ</label>
             <style type="text/css">

@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<!--
-Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
-Version: 1.0.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -84,7 +74,7 @@ include_once('./navbar.php');
         function initialize() {
 
             var mapOptions = {
-                zoom: 10,
+                zoom: 6,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: bangkok
             };
@@ -107,9 +97,6 @@ include_once('./navbar.php');
                     title: title,
                     icon: '../../script/assets/img/logos/farm.png',
                 });
-
-   
-
 
                 var content = "ที่ตั้งฟาร์ม "+ add + " <a href='./directions-map-farm.php?lat=" + lat + "&lng=" + long + "'>ค้นหาเส้นทาง</a>";
 
@@ -150,8 +137,6 @@ include_once('./navbar.php');
             </div>
         </div>
     </div>
-
-
 
     <?php
     include_once("./footer.php");

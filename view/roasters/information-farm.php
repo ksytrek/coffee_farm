@@ -1,14 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
-Version: 1.0.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
+
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -37,12 +28,6 @@ include_once('./navbar.php');
     <meta property="og:type" content="website">
     <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
     <meta property="og:url" content="-CUSTOMER VALUE-">
-
-    <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&language=th"></script> -->
-
-    <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=GtuOframRJFxrA13qh79g)5iFSeQZHnX)woFM2oq5S1D462QaqsxgnbFbEmYlw1X1iWaNxYNMydBE0FKaI4n26W=====2&v=weekly&sensor=false&language=th" ></script> -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&libraries=places&language=en" async defer></script> -->
-    <!-- <script src="./register/js/jquery.min.js"></script> -->
     <?php
 
     $row_infor = null;
@@ -64,9 +49,7 @@ include_once('./navbar.php');
         echo "<script type='text/javascript'>" . "window.history.back(1)" . "</script>";
     }
 
-
     ?>
-
     <style type="text/css" media="all">
         #map-canvas {
             display: block;
@@ -82,13 +65,7 @@ include_once('./navbar.php');
         var map;
         var marker;
         var infoWindow;
-
-
-
-
         function initialize() {
-
-
             var mapOptions = {
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -104,10 +81,7 @@ include_once('./navbar.php');
                 position: farmLocation,
                 title: 'loan',
                 icon: '../../script/assets/img/logos/farm.png',
-                // 'description': '<b>มหาวิทยาลัยสงขลานครินทร์:</b> (อังกฤษ: Prince of Songkla University; อักษรย่อ: ม.อ.) เป็นมหาวิทยาลัยแห่งแรกในภาคใต้ของประเทศไทย ตาม พระราชบัญญัติมหาวิทยาลัยสงขลานครินทร์ พ.ศ. ๒๕๑๑ ก่อตั้งในปี พ.ศ. 2510 ต่อมา พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดชได้พระราชทานชื่อเมื่อวันที่ 22 กันยายน พ.ศ. 2510 จึงถือว่าวันที่ 22 กันยายนของทุกปี เป็นวันสงขลานครินทร์'
             });
-
-
 
             var content = "<?php echo $row_infor['address_farmers']." ".$row_infor['code_provinces'] ?> <a href='./directions-map-farm.php?lat=<?php echo $row_infor['lat_farm'] ?>&lng=<?php echo $row_infor['lng_farm'] ?>'>ค้นหาเส้นทาง</a>";
             var infowindow = new google.maps.InfoWindow()
@@ -127,17 +101,9 @@ include_once('./navbar.php');
             })(marker, content, infowindow));
 
         }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-
-
-
-
 </head>
-<!-- Head END -->
 
-<!-- Body BEGIN -->
 
 <body class="ecommerce">
 
@@ -148,13 +114,7 @@ include_once('./navbar.php');
                 <li><a href="index.html">Home</a></li>
                 <li class="active">ข้อมูลฟาร์ม</li>
             </ul>
-            <!-- BEGIN SIDEBAR & CONTENT -->
             <div class="row margin-bottom-40">
-                <!-- BEGIN SIDEBAR -->
-
-                <!-- END SIDEBAR -->
-
-                <!-- BEGIN CONTENT -->
                 <div class="col-md-12 col-sm-12">
                     <div class="product-page">
                         <h1>ข้อมูลทั่วไป</h1>
@@ -218,7 +178,7 @@ include_once('./navbar.php');
                                 <ul id="myTab" class="nav nav-tabs">
                                     <li class="active"><a href="#Information" data-toggle="tab">รายละเอียดฟาร์ม</a></li>
 
-                                    <li><a href="#map-farm-show" data-toggle="tab">ที่ตั้งฟาร์ม</a></li>
+                                    <li><a href="#map-farm-show" onclick="initialize()" data-toggle="tab">ที่ตั้งฟาร์ม</a></li>
                                     <li><a href="#Description" data-toggle="tab">สินค้าทั้งหมด</a></li>
                                     <!-- <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li> -->
                                 </ul>
@@ -279,13 +239,7 @@ include_once('./navbar.php');
                                                         const order = urlParams.get('order');
                                                         const limit = urlParams.get('limit');
                                                         const page = urlParams.get('page');
-                                                        // const min_bee = urlParams.get('between_min');
-                                                        // const max_bee = urlParams.get('between_max');
                                                     };
-
-
-
-                                                    // count_bee = 0;
                                                 </script>
 
                                                 <div class="col-md-10 col-sm-10">

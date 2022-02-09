@@ -1,14 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
-Version: 1.0.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
+
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -45,19 +36,6 @@ include_once './navbar.php';
 <!-- Body BEGIN -->
 
 <body class="ecommerce">
-
-
-
-
-    <!-- <div class="title-wrapper">
-        <div class="container">
-            <div class="container-inner">
-                <h1><span>MEN</span> CATEGORY</h1>
-                <em>Over 4000 Items are available here</em>
-            </div>
-        </div>
-    </div> -->
-
     <div class="main">
         <div class="container">
             <ul class="breadcrumb">
@@ -239,14 +217,6 @@ include_once './navbar.php';
                         $type = isset($_GET['type']) ? $_GET['type'] : '%%';
                         $name = isset($_GET['name']) ? $_GET['name'] : '%%';
                         $provinces = isset($_GET['provinces']) ? $_GET['provinces'] : '%%';
-                        // $between_min = isset($_GET['between_min']) ? $_GET['between_min'] : "0";
-                        // $between_max = isset($_GET['between_max']) ? $_GET['between_max'] : "(SELECT MAX(price_unit) as 'max' FROM products )";
-                        // $between = " price_unit BETWEEN $between_min AND $between_max ";
-                        // $newtype = "  id_typepro LIKE '%%' ";
-
-                        // AND far.id_provinces LIKE '$provinces'
-                        // AND far.id_provinces LIKE '$provinces'
-
                         $sql_count = "SELECT *  FROM `products` as pro INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers
                                                  WHERE id_provinces LIKE '$provinces'
                                                     AND  id_typepro LIKE '%$type%'
@@ -273,13 +243,6 @@ include_once './navbar.php';
                             $start = 0;
                         }
 
-                        // echo $_GET['page'];
-
-                        //หาค่า page ทั้งหมดว่ามีกี่ page โดยการนำ record ทั้งหมดมาหารกับจำนวน record ที่แสดงต่อหนึ่งหน้า //แต่อาจได้ค่าทศนิยม เราจึงใช้คำสั่ง ceil เพื่อปัดค่าขึ้นเป็นจำนวนเต็มครับ
-                        //หนึ่งหน้า  $start= เริ่มจาก record ที่เท่าไหร่
-
-                        // $num = 8456.22;
-
                         $result_data = null;
                         $num_rows = null;
 
@@ -290,16 +253,8 @@ include_once './navbar.php';
                         } catch (Exception $e) {
                         }
 
-                        // $fmt = new NumberFormatter('th_TH', NumberFormatter::CURRENCY);
-                        // echo $ft->formatCurrency(100, 'THB');
-
-                        // setlocale(LC_MONETARY, "en_US.UTF-8");
-                        // echo money_format("%i", $number);
-
                         foreach ($result_data as $row) :
-                            // $fmt = new NumberFormatter( 'de_DE', NumberFormatter::CURRENCY );
-                            // echo $fmt->formatCurrency(1234567.891234567890000, "EUR")."\n";
-                            // echo $fmt->formatCurrency(1234567.891234567890000, "RUR")."\n";
+
                         ?>
 
                             <style>
@@ -332,8 +287,6 @@ include_once './navbar.php';
 
                                     </div>
                                     <div class="pi-price">฿<?php echo $row['price_unit'] . '.' . '00' ?></div>
-                                    <!-- <a href="#product-pop-up-<?php echo $row['id_products']; ?>" class="btn btn-default add2cart fancybox-fast-vie">เพิ่มสินค้า</a> -->
-                                    <!-- <input id="input__product-<?php echo $row['id_products']; ?>" type="number" value="1"> -->
 
                                     <div class="product-quantity " style="margin-right: 0px; margin-left: 10px;">
                                         <input id="input__product-<?php echo $row['id_products']; ?>" min="1" max="100" type="number" value="1" name="product-quantity" class="form-control input-sm">
@@ -357,7 +310,7 @@ include_once './navbar.php';
                                             <div class="price-availability-block clearfix">
                                                 <div class="price">
                                                     <strong><span>&#3647;</span><?php echo $row['price_unit'] . '.' . '00' ?></strong>
-                                                    <!-- <em>&#3647;<span>62.00</span></em>   จากราคา -->
+
                                                 </div>
 
                                             </div>
@@ -383,11 +336,7 @@ include_once './navbar.php';
                                                     <input id="input_item_product-<?php echo $row['id_products']; ?>" min="0" value="1" max="100" type="number" name="product-quantity" class="form-control input-sm">
 
                                                 </div>
-                                                <!-- <div class="form-group">
-                                                    <div class="col-sm-6">
-                                                        <input id="input_item_product-<?php echo $row['id_products']; ?>" min="0" max="99999" value="1" type="number" name="product-quantity" class="form-control input-sm">
-                                                    </div>
-                                                </div> -->
+
                                                 <button onclick="add_product(<?php echo $row['id_products'] ?>,<?php echo $row['id_farmers'] ?>,<?php echo $row['price_unit'] ?>,'input_item_product-<?php echo $row['id_products']; ?>', '<?php echo $row['name_products'] ?>','<?php echo $row['image_pro'] ?>');" class="btn btn-primary" type="button">เพิ่มสินค้า</button>
                                                 <a href="shop-item.php?product=<?php echo $row['id_products'] ?>" class="btn btn-default">รายละเอียด</a>
                                             </div>
@@ -396,7 +345,7 @@ include_once './navbar.php';
                                             </script>
                                         </div>
 
-                                        <!-- <div class="sticker sticker-sale"></div> -->
+
                                     </div>
                                 </div>
                             </div>
@@ -434,13 +383,7 @@ include_once './navbar.php';
                                         }
                                     // $page++;
                                     endfor;
-                                    ?>
 
-
-
-
-
-                                    <?php
                                     //next
                                     if ($page < $totalpage && $page != 0) //ถ้า ค่า page น้อยกว่า page ทั้งหมด(page ท้ายสุด) แสดงปุ่ม  Next
                                     {
