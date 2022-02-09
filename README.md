@@ -32,7 +32,7 @@
 
 <h2 class="code-line" data-line-start=11 data-line-end=12 ><a id="Installation_11"></a>เซิฟเวอร์ทดสอบ</h2>
 <p class="has-line-data" data-line-start="19" data-line-end="20">สำหรับโรงคั่วกาแฟ</p>
-<pre><code class="has-line-data" data-line-start="21" data-line-end="23" class="language-sh">https://skbright.totddns.com:28000/coffee_farm/view/roasters/</code></pre>
+<pre><code class="has-line-data" data-line-start="21" data-line-end="23" class="language-sh">https://skbright.totddns.com:28000/coffee_farm/</code></pre>
 
 <p class="has-line-data" data-line-start="19" data-line-end="20">สำหรับฟาร์มขายกาแฟ</p>
-<pre><code class="has-line-data" data-line-start="21" data-line-end="23" class="language-sh">https://skbright.totddns.com:28000/coffee_farm/view/farmers/</code></pre>
+<pre><code class="has-line-data" data-line-start="21" data-line-end="23" class="language-sh">https://skbright.totddns.com:28000/coffee_farm/farmers/</code></pre>
