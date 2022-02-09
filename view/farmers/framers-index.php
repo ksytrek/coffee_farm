@@ -197,7 +197,7 @@ include_once('./navbar.php');
                                     } else if (value_pro == "trade_complete") {
                                         // alert("Please wait")
                                         $.ajax({
-                                            url: './page/trade_complete.php',
+                                            url: './page/trade_complete.php?date=<?php echo isset($_GET['date']) ? $_GET['date'] : 'null'?>',
                                             type: 'POST',
                                             data: {
                                                 key: "trade_complete",

@@ -16,6 +16,12 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!--<![endif]-->
 <?php
 include_once('./navbar.php');
+// include_once('../../config/connectdb.php');
+$row_map = null;
+if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
+    $id_roasters = $_SESSION['user_id'];
+    $row_map = Database::query("SELECT `lat_roasters`,`lng_roasters` FROM `roasters` WHERE id_roasters = '$id_roasters';", PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+}
 ?>
 <!-- Head BEGIN -->
 
@@ -79,17 +85,8 @@ include_once('./navbar.php');
         }
 
         function search_nameE(name, lat, lng) {
-            // if (queryString.includes("?")) {
             location.assign(insertParam(name, lat, lng));
-            // } else {
-            //     location.assign(window.location.href + "?searchPA=" + name + "&latA=" + lat + "&lngA=" + lng);
-            // }
-            // alert( insertParam('name', name));
-            // var stul = " " + insertParam('name', name)
-            // stul += insertParam('latA', lat);
-            // stul += insertParam('latA', lat);
-            // alert( insertParam(name, lat, lng))
-            // alert(window.location.href);
+
         }
 
         function insertParam(name, lat, lng) {
@@ -103,16 +100,22 @@ include_once('./navbar.php');
 
 
         if (searchPA == null) {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+            <?php if ($row_map != null) : ?>
+                latA = '<?php echo $row_map['lat_roasters'] ?>';
+                lngA = '<?php echo $row_map['lng_roasters'] ?>';
+            <?php else : ?>
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
 
-                    latA = position.coords.latitude;
-                    lngA = position.coords.longitude;
+                        latA = position.coords.latitude;
+                        lngA = position.coords.longitude;
 
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            }
+                    }, function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                }
+            <?php endif; ?>
+
         } else {
             // searchPA = name city
 
@@ -230,12 +233,12 @@ include_once('./navbar.php');
                     directionsDisplay.setPanel(document.getElementById('panel'));
                 } else {
                     // window.alert('Directions request failed due to ' + status);
-                    if (confirm('กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง')) {
-                        location.reload();
-                    } else {
-                        alert("กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง");
-                        location.reload();
-                    }
+                    // if (confirm('กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง')) {
+                        // location.reload();
+                    // } else {
+                        // alert("กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง");
+                        // location.reload();
+                    // }
                 }
             });
         }
@@ -246,7 +249,6 @@ include_once('./navbar.php');
 
 
 </head>
-
 
 <body class="ecommerce">
 
@@ -275,7 +277,7 @@ include_once('./navbar.php');
                 </div>
                 <div class="col-md-4">
                     <input id="searchTextField" class="form-control" type="text" placeholder="Enter a location" autocomplete="on" runat="server" />
-                    <button  onclick="search_addPA('input_addPA')" type="button" class="btn btn-default btn-sm ">ค้นหา</button>
+                    <button onclick="search_addPA('input_addPA')" type="button" class="btn btn-default btn-sm ">ค้นหา</button>
                     <div class="col-md-8" style="padding-left: 0px; padding-right: 0px;">
                         <div class="form-group">
                             <input type="hidden" id="city_name" name="city2" />
@@ -284,9 +286,9 @@ include_once('./navbar.php');
                         </div>
                     </div>
                     <div class="col-md-4 align-text-left">
-                        
+
                     </div>
-                    <div  id="panel"></div>
+                    <div id="panel"></div>
                 </div>
             </div>
         </div>

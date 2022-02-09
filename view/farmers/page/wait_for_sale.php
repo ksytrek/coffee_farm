@@ -53,7 +53,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
 
                             <!-- <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button> -->
                             <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
-
+                            <br> รหัสรายการสินค้า : <?php echo $row['id_transale']; ?>
                             <hr>
                         </div>
                         <?php

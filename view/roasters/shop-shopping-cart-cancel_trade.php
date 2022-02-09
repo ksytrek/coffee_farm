@@ -44,13 +44,13 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                         ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"> <?php echo $row['name_farmers']; ?></span> &nbsp;&nbsp;&nbsp;
                         <button onclick="do_farm('<?php echo $row['id_farmers'] ?>')" class="btn btn-primary btn-sm" >ดูร้านค้า</button>
                         <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
-
+                        <br> รหัสรายการสินค้า : <?php echo $row['id_transale']; ?>
                         <hr>
                     </div>
                     <?php
                     foreach (Database::query($sql_select_transale_de, PDO::FETCH_ASSOC) as $row_de) :
                     ?>
-                        <div class="row product-item">
+                        <div class="row product-item" >
                             <div class="col-sm-3 text-center">
                                 <img width="70%" height="100px" src="../../pictures/product/<?php echo $row_de['image_pro'] ?>">
                             </div>
@@ -58,10 +58,10 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                                 ชื่อสินค้า : <?php echo $row_de['name_products'] ?>
                             </div>
                             <div class="col-sm-2 text-left margin-top-10">
-                                ราคาต่อชิ้น : <?php echo $row_de['price_tran'] ?> บาท
+                                ราคาต่อ Kg. : <?php echo $row_de['price_tran'] ?> บาท
                             </div>
                             <div class="col-sm-2 text-left margin-top-10">
-                                จำนวน : <?php echo $row_de['num_item'] ?> ชิ้น
+                                จำนวน : <?php echo $row_de['num_item'] ?> Kg
                             </div>
                             <div class="col-sm-2 text-center margin-top-10 ">
 

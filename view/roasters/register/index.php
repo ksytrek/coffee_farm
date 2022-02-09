@@ -316,8 +316,8 @@ include_once("../../../config/connectdb.php");
 								// general_information
 								var name_roasters = $('.input-name_roasters').val() == '' ? false : $('.input-name_roasters').val();
 								var num_trade_reg = $('.input-num_trade_reg').val() == '' ? false : $('.input-num_trade_reg').val();
-								var name = /^[ก-๏\sa-zA-Z\s]+$/.test($('.input-name').val()) != true ? false : $('.input-name').val();
-								var last_name = /^[ก-๏\sa-zA-Z\s]+$/.test($('.input-last_name').val()) != true ? false : $('.input-last_name').val();
+								var name = $('.input-name').val() == '' ? false : $('.input-name').val();
+								var last_name = $('.input-last_name').val() == '' ? false : $('.input-last_name').val();
 								var tel_roasters = /^0[0-9]{8,9}$/.test($('.input-tel_roasters').val()) != true ? false : $('.input-tel_roasters').val();
 								var e_mail_roasters = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test($('.input-e_mail_roasters').val()) != true ? false : $('.input-e_mail_roasters').val();
 								var pass_roasters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,64}$/.test($('.input-pass_roasters').val()) != true ? false : $('.input-pass_roasters').val();

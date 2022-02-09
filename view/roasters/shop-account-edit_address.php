@@ -37,7 +37,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_address') :
                     height: 80px
                 }
             </style>
-            <textarea name="input-address_office" class=""><?php echo $row_roasters['address_office'] ?></textarea>
+            <textarea required name="input-address_office" class=""><?php echo $row_roasters['address_office'] ?></textarea>
         </div>
         <div class="form-group">
             <label for="post-code">รหัสไปรษณี

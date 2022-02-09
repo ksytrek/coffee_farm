@@ -48,7 +48,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                             <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูข้อมูลโรงคั่วกาแฟ</button>
 
                             <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
-
+                            <br> รหัสรายการสินค้า : <?php echo $row['id_transale']; ?>
                             <hr>
                         </div>
                         <?php

@@ -19,7 +19,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
         <form id="form_edit_account" method="post" action="javascript:void(0)">
             <div class="form-group">
                 <label for="firstname"> ชื่อเกษตรกร <span class="require">* (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น) </span></label>
-                <input name="input-name_farmers" pattern="^[ก-๏\sa-zA-Z\s]+$" type="text" value="<?php echo $row_farmers['name_farmers'] ?>" class="form-control" required>
+                <input name="input-name_farmers"  type="text" value="<?php echo $row_farmers['name_farmers'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="email_farmers"> อีเมล์เกษตรกร
@@ -63,8 +63,8 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
             </script>
             <div class="form-group">
                 <label for="telephone"> เบอร์โทรเกษตรกร
-                    <span class="require">*</span></label>
-                <input name="input-tel_farmers" type="text" value="<?php echo $row_farmers['tel_farmers'] ?>" class="form-control" required>
+                    <span class="require">* (เบอร์ติดต่อ 10 หลัก)</span></label>
+                <input name="input-tel_farmers" pattern="^0[0-9]{8,9}$" type="tel" value="<?php echo $row_farmers['tel_farmers'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="telephone"> facebook เกษตรกร
@@ -79,7 +79,7 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
             </div>
             <div class="form-group">
                 <label for="fax">อัพโหลดรูปภาพ
-                    <span class="require">(.png และ jpeg)</span>
+                    <span class="require">* (.png และ jpeg)</span>
                 </label>
                 <input name="input-image_farmers" type="file" accept="image/png, image/jpeg" class="form-control">
                 <div class="form-group">

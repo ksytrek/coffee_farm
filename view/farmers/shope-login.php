@@ -275,12 +275,12 @@ include_once('./navbar.php');
                                         <h3>ข้อมูลส่วนเกษตรกร</h3>
                                         <div class="form-group">
                                             <label for="firstname">ชื่อเกษตรกร <span class="require">* (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น)</span></label>
-                                            <input name="input-name" type="text" pattern="^[ก-๏\sa-zA-Z\s]+$" class="form-control" required>
+                                            <input name="input-name" type="text"  class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="lastname">นามสกุลเกษตรกร
                                                 <span class="require">* (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น)</span></label>
-                                            <input name="input-last_name" type="text" pattern="^[ก-๏\sa-zA-Z\s]+$" class="form-control" required>
+                                            <input name="input-last_name" type="text"  class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="telephone">เบอร์โทรเกษตรกร

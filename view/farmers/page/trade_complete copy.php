@@ -6,13 +6,12 @@ $status = null;
 
 $sql_select_transale = "SELECT * FROM `transale` AS trn 
                         INNER JOIN transalede AS trnde ON trnde.id_transale = trn.id_transale 
-                        WHERE trn.id_farmers = '$id_farmers' AND trn.status_transale = '2';";
+                        WHERE trn.id_farmers = '$id_farmers' AND trn.status_transale = '3';";
 
-// $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  %Y') AS date_time FROM `transale` as trn INNER JOIN farmers AS far ON far.id_farmers = trn.id_farmers WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '2' ORDER BY trn.date_transale ASC; ";
 $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  %Y') AS date_time 
                     FROM `transale` as trn 
                         INNER JOIN roasters AS roa ON roa.id_roasters = trn.id_roasters 
-                    WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '2' ORDER BY trn.date_transale ASC; ";
+                    WHERE trn.id_farmers = '$id_farmers'  AND trn.status_transale = '3' ORDER BY trn.date_transale ASC; ";
 
 ?>
 
@@ -37,9 +36,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
         <div id="div-product" class="goods-data clearfix">
             <?php
             $result = Database::query($sql_transale, PDO::FETCH_ASSOC);
-
             if ($result->rowCount() != 0) :
-
                 foreach ($result as $row) :
                     $id_transale = $row['id_transale'];
                     $sql_select_transale_de = "SELECT * FROM `transalede` AS trade INNER JOIN products AS pro ON pro.id_products = trade.id_products WHERE trade.id_transale = '$id_transale' ";
@@ -48,8 +45,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                         <div class="row" style="padding:10px">
                             ชื่อโรงคั่วกาแฟที่สั่งซื้อ : <span class="datasheet-features-type title"> <?php echo $row['name_roasters']; ?></span> &nbsp;&nbsp;&nbsp;
                             <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูข้อมูลโรงคั่วกาแฟ</button>
-                            <button class="btn btn-primary btn-sm" onclick="update_staus_transale('<?php echo $id_transale ?>','4')" style="background-color: red;">ยกเลิกการซื้อขาย</button>
-                            <button class="btn btn-primary btn-sm" onclick="update_staus_transale('<?php echo $id_transale ?>','3')" style="background-color: green;">ยืนยันซื้อขายเสร็จสิ้น</button>
+                            <!-- <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button> -->
                             <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
                             <br> รหัสรายการสินค้า : <?php echo $row['id_transale']; ?>
                             <hr>
@@ -91,7 +87,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             else :
                 ?>
                 <div>
-                    ไม่มีคำสั่งซื้อที่กำลังดำเนินการอยู่
+                    ยังไม่มีการซื้อขายที่สำเร็จ
                 </div>
             <?php
             endif;

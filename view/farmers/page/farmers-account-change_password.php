@@ -15,15 +15,15 @@ if (isset($_POST['key']) && $_POST['key'] == 'change_password') :
     <hr>
     <form id="form_edit_change_pass" action="javascript:void(0)" method="post">
         <div class="form-group">
-            <label for="password"> รหัสผ่านปัจจุบัน <span class="require">*</span></label>
+            <label for="password"> รหัสผ่านปัจจุบัน <span class="require">* </span></label>
             <input name="input-pass_farmers" required type="password" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="password-confirm">รหัสผ่านใหม่ <span class="require">*</span></label>
+            <label for="password-confirm">รหัสผ่านใหม่ <span class="require">* (ต้องมีอย่างน้อย 6 ตัวอักษรและประกอบด้วย a-z A-Z 0-9)</span></label>
             <input id="input-pass_farmers_new" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,64}$" name="input-pass_farmers_new" required type="password" class="form-control">
         </div>
         <div class="form-group">
-            <label for="password-confirm">ยืนยันรหัสผ่าน <span class="require alert__pass">*</span></label>
+            <label for="password-confirm">ยืนยันรหัสผ่าน <span class="require alert__pass">* (ต้องมีอย่างน้อย 6 ตัวอักษรและประกอบด้วย a-z A-Z 0-9)</span></label>
             <input id="input-con_pass_farmers_new" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,64}$" name="input-con_pass_farmers_new" required type="password" class="form-control input-con_pass_new">
         </div>
         <button class="btn btn-primary pull-right" style="display: none" type="submit" id="button-change-password">บันทึก</button>

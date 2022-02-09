@@ -1,14 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
-Version: 1.0.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
+
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -16,6 +7,8 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!--<![endif]-->
 <?php
 include_once('./navbar.php');
+$row_map = Database::query("SELECT `lat_roasters`,`lng_roasters` FROM `roasters` WHERE id_roasters = '1';",PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!-- Head BEGIN -->
 
@@ -103,16 +96,18 @@ include_once('./navbar.php');
 
 
         if (searchPA == null) {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+            latA = <?php echo $row_map['lat_roasters']?>;
+            lngA = <?php echo $row_map['lng_roasters']?>;
+            // if (navigator.geolocation) {
+            //     navigator.geolocation.getCurrentPosition(function(position) {
 
-                    latA = position.coords.latitude;
-                    lngA = position.coords.longitude;
+            //         latA = position.coords.latitude;
+            //         lngA = position.coords.longitude;
 
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            }
+            //     }, function() {
+            //         handleLocationError(true, infoWindow, map.getCenter());
+            //     });
+            // }
         } else {
             // searchPA = name city
 

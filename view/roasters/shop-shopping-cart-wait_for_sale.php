@@ -51,6 +51,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                             <button class="btn btn-primary btn-sm" onclick="cancel_transel('<?php echo $id_transale ?>')" style="background-color: red;">ยกเลิกการซื้อขาย</button>
                             <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button>
                             <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
+                            <br> รหัสรายการสินค้า : <?php echo $row['id_transale']; ?>
 
                             <hr>
                         </div>
@@ -65,10 +66,10 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                                     ชื่อสินค้า : <?php echo $row_de['name_products'] ?>
                                 </div>
                                 <div class="col-sm-2 text-left margin-top-10">
-                                    ราคาต่อชิ้น : <?php echo $row_de['price_tran'] ?> บาท
+                                    ราคาต่อ Kg. : <?php echo $row_de['price_tran'] ?> บาท
                                 </div>
                                 <div class="col-sm-2 text-left margin-top-10">
-                                    จำนวน : <?php echo $row_de['num_item'] ?> ชิ้น
+                                    จำนวน : <?php echo $row_de['num_item'] ?>  Kg.
                                 </div>
                                 <div class="col-sm-2 text-center margin-top-10 ">
 

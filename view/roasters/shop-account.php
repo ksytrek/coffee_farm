@@ -79,20 +79,38 @@
         }
 
         $(document).ready(function() {
-            $.ajax({
-                url: "./shop-account-information.php",
-                type: "POST",
-                data: {
-                    key: "information",
-                    id_roasters: ID_ROASTERS
-                },
-                success: function(result, textStatus, jqXHR) {
-                    $("#content").html(result);
-                },
-                error: function(result, textStatus, jqXHR) {
-                    $("#content").html('เกิดข้อผิดพลาดบางอย่าง');
-                }
-            });
+            <?php if (isset($_GET['date'])) : ?>
+                $.ajax({
+                    url: "./shop-account-order_history.php?date=<?php echo isset($_GET['date']) ? $_GET['date'] : 'null' ?>",
+                    type: "POST",
+                    data: {
+                        key: "order_history",
+                        id_roasters: ID_ROASTERS
+                    },
+                    success: function(result, textStatus, jqXHR) {
+                        $("#content").html(result);
+                    },
+                    error: function(result, textStatus, jqXHR) {
+                        $("#content").html('เกิดข้อผิดพลาดบางอย่าง');
+                    }
+                });
+            <?php else : ?>
+                $.ajax({
+                    url: "./shop-account-information.php",
+                    type: "POST",
+                    data: {
+                        key: "information",
+                        id_roasters: ID_ROASTERS
+                    },
+                    success: function(result, textStatus, jqXHR) {
+                        $("#content").html(result);
+                    },
+                    error: function(result, textStatus, jqXHR) {
+                        $("#content").html('เกิดข้อผิดพลาดบางอย่าง');
+                    }
+                });
+            <?php endif; ?>
+
         });
     </script>
 
@@ -192,9 +210,9 @@
                                         $("#content").html('เกิดข้อผิดพลาดบางอย่าง');
                                     }
                                 });
-                            }else if(key == 'order_history'){
+                            } else if (key == 'order_history') {
                                 $.ajax({
-                                    url: "./shop-account-order_history.php",
+                                    url: "./shop-account-order_history.php?date=<?php echo isset($_GET['date']) ? $_GET['date'] : 'null' ?>",
                                     type: "POST",
                                     data: {
                                         key: "order_history",
@@ -214,7 +232,9 @@
 
                 <div class="col-md-9 col-sm-9">
                     <hr>
-                    <div id="content" class="content-page"></div>
+                    <div id="content" class="content-page">
+
+                    </div>
                 </div>
             </div>
         </div>

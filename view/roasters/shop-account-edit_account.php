@@ -65,11 +65,11 @@ if (isset($_POST['key']) && $_POST['key'] == 'edit_account') :
             <div class="form-group">
                 <label for="telephone"> ชื่อผู้ประกอบการ
                     <span class="require">*  (ต้องเป็นภาษาไทย หรือ ภาษาอังกฤษ เท่านั้น)</span></label>
-                <input name="input-name_entrep" pattern="^[ก-๏\sa-zA-Z\s]+$" type="text" value="<?php echo $row_roasters['name_entrep'] ?>" class="form-control" required>
+                <input name="input-name_entrep"  type="text" value="<?php echo $row_roasters['name_entrep'] ?>" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="fax"> เบอร์ติดต่อ
-                    <span class="require">* <span id="span_tel"></span></span>
+                    <span class="require">* (เบอร์ติดต่อ 10 หลัก)<span id="span_tel"></span></span>
                 </label>
                 <input id="tel_roasters" pattern="^0[0-9]{8,9}$"  name="input-tel_roasters" value="<?php echo $row_roasters['tel_roasters'] ?>" type="tel" class="form-control">
 

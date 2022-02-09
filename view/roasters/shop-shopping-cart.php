@@ -74,8 +74,8 @@ include_once('./navbar.php');
 
         }
 
-        function do_farm(id_farmers){
-            location.assign('./information-farm.php?infr='+id_farmers)
+        function do_farm(id_farmers) {
+            location.assign('./information-farm.php?infr=' + id_farmers)
         }
     </script>
 
@@ -93,7 +93,7 @@ include_once('./navbar.php');
                         <!-- <h2>สินค้าของคุณที่กำลังประกาศขาย </h2> -->
                         <div class="product-page-content">
                             <ul id="myTab" class="nav nav-tabs">
-                                <li class="active"><a href="#product_all" data-toggle="tab">ตะกร้าสินค้าสินค้าทั้งหมด<span id="sum_cart"></span></a></li>
+                                <li class="<?php echo isset($_GET['date'])? '' : 'active' ?>"><a href="#product_all" data-toggle="tab">ตะกร้าสินค้าสินค้าทั้งหมด<span id="sum_cart"></span></a></li>
 
                                 <?php
 
@@ -121,7 +121,7 @@ include_once('./navbar.php');
                                 ?>
                                     <li class=""><a href="#wait_for_sale" onclick="update_click_tab(1)" data-toggle="tab">รอยืนยันจากผู้ขาย <?php echo $count_Waiting_confirmation_seller != 0 ? " ( " . $count_Waiting_confirmation_seller . " ) " : "" ?> </a></li>
                                     <li class=""><a href="#pending" onclick="update_click_tab(2)" data-toggle="tab">รอดำเนินการ <?php echo $count_pending  != 0 ? " ( " . $count_pending .  " ) " : "" ?> </a></li>
-                                    <li class=""><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complete .  " ) " : "" ?> </a></li>
+                                    <li class="<?php echo isset($_GET['date'])? 'active' : '' ?>"><a href="#trade_complete" onclick="update_click_tab(3)" data-toggle="tab">การซื้อขายเสร็จสิ้น <?php echo $count_trade_complete  != 0 ? " ( " . $count_trade_complete .  " ) " : "" ?> </a></li>
                                     <li class=""><a href="#cancel_trade" onclick="update_click_tab(4)" data-toggle="tab">ยกเลิกการซื้อขาย <?php echo $count_cancel_trade  != 0 ? " ( " . $count_cancel_trade . " ) " : ""  ?> </a></li>
                                 <?php endif; ?>
                                 <script>
@@ -139,7 +139,7 @@ include_once('./navbar.php');
                                                     $("#wait_for_sale").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR + "\n" + textStatus );
+                                                    $("#wait_for_sale").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus);
                                                 }
                                             });
 
@@ -157,14 +157,14 @@ include_once('./navbar.php');
                                                     $("#pending").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus );
+                                                    $("#pending").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus);
                                                 }
                                             });
 
 
                                         } else if (numClick == 3) {
                                             $.ajax({
-                                                url: "./shop-shopping-cart-trade_complete.php",
+                                                url: "./shop-shopping-cart-trade_complete.php?date=<?php echo isset($_GET['date']) ? $_GET['date'] : 'null'?>",
                                                 type: "POST",
                                                 data: {
                                                     key: "trade_complete",
@@ -175,7 +175,7 @@ include_once('./navbar.php');
                                                     $("#trade_complete").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR + "\n" + textStatus );
+                                                    $("#trade_complete").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus);
                                                 }
                                             });
                                             // $("#trade_complete").html();
@@ -193,7 +193,7 @@ include_once('./navbar.php');
                                                     $("#cancel_trade").html(result);
                                                 },
                                                 error: function(result, textStatus, jqXHR) {
-                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์"+ jqXHR + "\n" + textStatus );
+                                                    $("#cancel_trade").html("ระบบตรวจพบข้อผิดพลาดจากเซิฟเวอร์" + jqXHR + "\n" + textStatus);
                                                 }
                                             });
                                             // $("#cancel_trade").html();
@@ -209,7 +209,11 @@ include_once('./navbar.php');
                             </style>
                             </style>
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade in active" id="product_all">
+                                <?php if(isset($_GET['date'])): ?>
+                                    <div class="tab-pane fade" id="product_all">
+                                <?php else:?>
+                                <div class="tab-pane fade   in active" id="product_all">
+                                <?php endif;?>
                                     <div class="goods-page">
                                         <div id="div-product" class="goods-data clearfix">
                                             <div class="table-wrapper-responsive">
@@ -244,10 +248,10 @@ include_once('./navbar.php');
                                                             total += sum_total;
                                                             str_items += '<tr>' +
                                                                 '<td class="goods-page-image">' +
-                                                                '<a href="shop-item.php?product='+ value.id_products +'"><img src="../../pictures/product/' + value.image_pro + '" alt=""></a>' +
+                                                                '<a href="shop-item.php?product=' + value.id_products + '"><img src="../../pictures/product/' + value.image_pro + '" alt=""></a>' +
                                                                 '</td>' +
                                                                 '<td class="goods-page-description">' +
-                                                                '<h3><a href="shop-item.php?product='+value.id_products+'">' + value.name_products + '</a></h3>' +
+                                                                '<h3><a href="shop-item.php?product=' + value.id_products + '">' + value.name_products + '</a></h3>' +
                                                                 // '<em>รายละเอียดเพิ่มเติม</em>' +
                                                                 '</td>' +
                                                                 '<td class="goods-page-quantity">' +
@@ -408,9 +412,9 @@ include_once('./navbar.php');
                                                             removeCookie('product');
                                                             alert("สั่งซื้อสินค้าสำเร็จ")
                                                             location.reload();
-                                                        }else if(result == 'error'){
+                                                        } else if (result == 'error') {
                                                             alert('ระบบตรวจพบข้อผิดพลาดบางอย่าง')
-                                                        }else{
+                                                        } else {
                                                             alert(result);
                                                         }
                                                     },
@@ -435,28 +439,40 @@ include_once('./navbar.php');
 
                                 </div>
 
-                                <div class="tab-pane fade " id="trade_complete">
-                                    <!--  การซื้อขายเสร็จสิ้น  -->
+                                <?php
+                                if (isset($_GET['date'])) :
+                                ?>
+                                    <script>
+                                        update_click_tab(3);
+                                    </script>
+                                    <div class="tab-pane fade in active" id="trade_complete">
+                                    <?php
+                                else :
+                                    ?>
+                                        <div class="tab-pane fade" id="trade_complete">
+                                            <!--  การซื้อขายเสร็จสิ้น  -->
+
+                                        <?php
+                                endif;
+                                        ?>
+                                        </div>
+                                        <div class="tab-pane fade " id="cancel_trade">
+                                            <!--  ยกเลิกการซื้อขาย  -->
+
+                                        </div>
 
 
-                                </div>
-                                <div class="tab-pane fade " id="cancel_trade">
-                                    <!--  ยกเลิกการซื้อขาย  -->
-
-                                </div>
-
-
+                                    </div>
                             </div>
                         </div>
+
                     </div>
-
+                    <!-- END CONTENT -->
                 </div>
-                <!-- END CONTENT -->
-            </div>
-            <!-- END SIDEBAR & CONTENT -->
+                <!-- END SIDEBAR & CONTENT -->
 
+            </div>
         </div>
-    </div>
 
 
 
