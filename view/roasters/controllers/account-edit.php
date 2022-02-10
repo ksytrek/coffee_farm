@@ -8,12 +8,12 @@ if(isset($_POST['key']) && $_POST['key'] == 'edit_account_submit'){
     $input = $_POST['data'];
     $id_roasters = $_POST['id_roasters'];
 
-    $name_roasters = $input['input-name_roasters'];
-    $num_trade_reg = $input['input-num_trade_reg'];
-    $name_entrep = $input['input-name_entrep'];
-    $e_mail_roasters = $input['input-e_mail_roasters'];
-    $detail_roasters = $input['input-detail_roasters'];
-    $tel_roasters = $input['input-tel_roasters'];
+    $name_roasters = htmlspecialchars($input['input-name_roasters']);
+    $num_trade_reg = htmlspecialchars($input['input-num_trade_reg']);
+    $name_entrep = htmlspecialchars($input['input-name_entrep']);
+    $e_mail_roasters = htmlspecialchars($input['input-e_mail_roasters']);
+    $detail_roasters = htmlspecialchars($input['input-detail_roasters']);
+    $tel_roasters = htmlspecialchars($input['input-tel_roasters']);
 
     $sql_update_account = "UPDATE `roasters` SET 
                                 `name_roasters` = '$name_roasters', 

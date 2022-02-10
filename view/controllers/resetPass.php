@@ -9,8 +9,8 @@ require('../../config/connectdb.php');
 if (isset($_POST['key']) && $_POST['key'] == 'resetPass_farmers') {
     // $host = "http://" . _HOST . "/" . _FOLDER;
 
-    $email_forgot = $_POST['email_forgot'];
-    $tel_forgot = $_POST['tel_forgot'];
+    $email_forgot = htmlspecialchars($_POST['email_forgot']);
+    $tel_forgot = htmlspecialchars($_POST['tel_forgot']);
     $new_pass = randomPassword();
 
     header('Content-Type: text/html; charset=utf-8');
@@ -24,8 +24,8 @@ if (isset($_POST['key']) && $_POST['key'] == 'resetPass_farmers') {
     $mail->SMTPAuth = true;
 
 
-    $gmail_username = "sompholwila2543@gmail.com"; // gmail ที่ใช้ส่ง
-    $gmail_password = "!Somphol2543"; // รหัสผ่าน gmail
+    $gmail_username = htmlspecialchars("sompholwila2543@gmail.com"); // gmail ที่ใช้ส่ง
+    $gmail_password = htmlspecialchars("!Somphol2543"); // รหัสผ่าน gmail
     // ตั้งค่าอนุญาตการใช้งานได้ที่นี่ https://myaccount.google.com/lesssecureapps?pli=1
 
 

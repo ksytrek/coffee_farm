@@ -10,8 +10,8 @@ if (isset($_POST['key']) && $_POST['key'] == 'resetPass') {
 
     // $host = "http://" . _HOST . "/" . _FOLDER;
 
-    $e_mail_roasters = $_POST['e_mail_roasters'];
-    $num_trade_reg = $_POST['num_trade_reg'];
+    $e_mail_roasters = htmlspecialchars($_POST['e_mail_roasters']);
+    $num_trade_reg = htmlspecialchars($_POST['num_trade_reg']);
 
     header('Content-Type: text/html; charset=utf-8');
 

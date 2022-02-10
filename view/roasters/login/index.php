@@ -3,7 +3,7 @@
 
 <head>
 	<title>เข้าสู่ระบบสำหรับโรงคั่วกาแฟ</title>
-    <link rel="icon" href="../../../script/assets/img/logos/Logo_n.png" type="image/x-icon">
+	<link rel="icon" href="../../../script/assets/img/logos/Logo_n.png" type="image/x-icon">
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -79,7 +79,7 @@
 										var e_mail_roasters = $('#email_roasters').val();
 										var pass_roasters = $('#password_roasters').val();
 										var body = $("body");
-										
+
 										// alert(email_roasters + " " + password_roasters);
 										$.ajax({
 											url: './controller/login.php',
@@ -96,20 +96,21 @@
 											},
 											success: function(result, textStatus, jqXHR) {
 												// alert(result);
-
+												// console.log(result);
 												var json = JSON.parse(result);
-												if (json != "") {
-													// alert('ยินดีตอนรับเข้าสู่ระบบ');
+												var e_mail_roasters_j = json[0].e_mail_roasters;
+												var pass_roasters_j = json[0].pass_roasters;
+
+												if (e_mail_roasters == e_mail_roasters_j && pass_roasters_j == pass_roasters) {
 													body.removeClass("loading");
 													location.assign('../shop-product-list.php');
 												} else {
-													// alert(json[0].pass_roasters);
-													body.removeClass("loading");
+													
 													alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
-
+													body.removeClass("loading");
 												}
-												// var e_mail_roasters = json[0].e_mail_roasters;
-												// var pass_roasters = json[0].pass_roasters;
+												// console.log(pass_roasters);
+
 											},
 											error: function(result, textStatus, jqXHR) {
 												alert('เกินข้อผิดพลาดทางระบบ');

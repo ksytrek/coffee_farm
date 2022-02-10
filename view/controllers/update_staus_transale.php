@@ -4,7 +4,7 @@ $message = null;
 if (isset($_POST['key']) && $_POST['key'] == 'update_staus_transale' && $_POST['status'] == '4') {
     // UPDATE `transale` SET `status_transale` = '2' WHERE `transale`.`id_transale` = 49;
 
-    $id_transale = $_POST['id_transale'];
+    $id_transale = htmlspecialchars($_POST['id_transale']);
 
     $sql_search_transalede = "SELECT * FROM `transalede` WHERE id_transale = '$id_transale';";
     foreach (Database::query($sql_search_transalede) as $row) {

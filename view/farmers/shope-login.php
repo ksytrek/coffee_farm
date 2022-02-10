@@ -19,7 +19,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
  -->
 <?php
-include_once('./navbar.php');
+include_once(__DIR__.'./navbar.php');
 ?>
 <style type="text/css" media="all">
     /* body {
@@ -194,13 +194,6 @@ include_once('./navbar.php');
                                                 $("#form_loging").submit(function() {
                                                     var e_mail_frame = $("#email-login").val();
                                                     var pass_farmers = $("#password-login").val();
-
-                                                    // alert(e_mail_frame + ": " + pass_farmers);
-
-
-
-
-                                                    // if (confirm("ต้องการล็อกอินเข้าสู่ระบบใช่หรือไม่?")) {
                                                     $.ajax({
                                                         url: "./controllers/login_farmers.php",
                                                         type: "POST",
@@ -211,12 +204,12 @@ include_once('./navbar.php');
                                                         },
                                                         success: function(result, textStatus, jqXHR) {
                                                             // alert(result);
-                                                            if (result == '1') {
+                                                            if (result == 'success') {
                                                                 // alert("ยินดีตอนรับเข้าสู่ระบบ");
                                                                 location.assign('./framers-index.php');
 
                                                             } else {
-                                                                alert('รหัสผ่านไม่ถูกต้อง');
+                                                                alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
                                                                 // alert(result);
                                                             }
                                                         },

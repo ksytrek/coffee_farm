@@ -6,28 +6,28 @@ if (isset($_POST['key']) && $_POST['key'] == 'form_register_farmers'){
 
     $input = $_POST['data'];
 
-    $name_farmers = $input['input-name']." ".$input['input-last_name'];
-    $email_farmers = $input['input-email_farmers'];
-    $pass_farmers = $input['input-pass_farmers'];
-    $tel_farmers = $input['input-tel_farmers'];
-    $line_farmers = $input['input-line_farmers'];
-    $face_farmers = $input['input-face_farmers'];
+    $name_farmers = htmlspecialchars($input['input-name'])." ".htmlspecialchars($input['input-last_name']);
+    $email_farmers = htmlspecialchars($input['input-email_farmers']);
+    $pass_farmers = htmlspecialchars($input['input-pass_farmers']);
+    $tel_farmers = htmlspecialchars($input['input-tel_farmers']);
+    $line_farmers = htmlspecialchars($input['input-line_farmers']);
+    $face_farmers = htmlspecialchars($input['input-face_farmers']);
 
     $address_farmers = "เลขที่/หมูที่ ".$input['input-add_number']." ซอย/ถนน ".$input['input-road']." แขวง/ ตำบล ".$input['input-sub_district']." เขต/อำเภอ ".$input['input-district'];
-    $id_provinces = $input['input-province'];
-    $code_provinces = $input['input-post_office'];
+    $id_provinces = htmlspecialchars($input['input-province']);
+    $code_provinces =htmlspecialchars($input['input-post_office']);
 
     $image_farmers = $input['input-image_farmers']; // รูป
 
-    $num_farm = $input['input-num_farm'];
-    $num_field = $input['input-num_field'];
+    $num_farm = htmlspecialchars($input['input-num_farm']);
+    $num_field = htmlspecialchars($input['input-num_field']);
 
-    $lat_farm = $input['input-lat_farm'];
-    $lng_farm = $input['input-lng_farm'];
+    $lat_farm = htmlspecialchars($input['input-lat_farm']);
+    $lng_farm = htmlspecialchars($input['input-lng_farm']);
 
-    $organic_farm = $input['input-organic_farm'];
-    $type_sale = $input['input-type_sale'];
-    $detail_farm = $input['input-detail_farm'];
+    $organic_farm = htmlspecialchars($input['input-organic_farm']);
+    $type_sale = htmlspecialchars($input['input-type_sale']);
+    $detail_farm = htmlspecialchars($input['input-detail_farm']);
     
     // $status_farmers = $input['input-status_farm'];
 

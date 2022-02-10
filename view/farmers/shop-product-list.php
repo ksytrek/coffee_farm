@@ -15,7 +15,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <html lang="en">
 <!--<![endif]-->
 <?php
-include_once('./navbar.php');
+include_once(__DIR__.'./navbar.php');
 ?>
 <!-- Head BEGIN -->
 

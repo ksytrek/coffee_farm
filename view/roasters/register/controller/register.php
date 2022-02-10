@@ -44,18 +44,18 @@ if(isset($_POST['key']) && $_POST['key'] == 'e_mail_roasters'){
 
 if(isset($_POST['key']) && $_POST['key'] == 'register'){
 
-    $name_roasters = $_POST["name_roasters"];   //ชื่อโรงคั่วกาแฟ
-    $num_trade_reg = $_POST["num_trade_reg"];   // เลขทะเบียนการค้า
-    $name_entrep = $_POST["name_entrep"];       //ชื่อผู้ประกอบการ
-    $address_office = $_POST["address_office"]; //ที่ตั้งสำนักงาน
-    $id_provinces = $_POST["id_provinces"];     //รหัสจังหวัด หรือ จังหวัด
-    $code_provinces = $_POST["code_provinces"]; // รหัสไปรษณี
-    $lat_roasters = $_POST["lat_roasters"];     //ละติจูดโรงคั่วกาแฟ
-    $lng_roasters = $_POST["lng_roasters"];     //ลองจิจูดโรงคั่วกาแฟ
-    $detail_roasters = $_POST["detail_roasters"]; //รายละเอียดต่างๆ ของโรงคั่วกาแฟ
-    $e_mail_roasters = $_POST["e_mail_roasters"]; //อีเมลโรงคั่วกาแฟ
-    $pass_roasters = $_POST["pass_roasters"];   // รหัสผ่านโรงคั่วกาแฟ
-    $tel_roasters = $_POST["tel_roasters"];     //
+    $name_roasters = htmlspecialchars($_POST["name_roasters"]);   //ชื่อโรงคั่วกาแฟ
+    $num_trade_reg = htmlspecialchars($_POST["num_trade_reg"]);   // เลขทะเบียนการค้า
+    $name_entrep = htmlspecialchars($_POST["name_entrep"]);       //ชื่อผู้ประกอบการ
+    $address_office = htmlspecialchars($_POST["address_office"]); //ที่ตั้งสำนักงาน
+    $id_provinces = htmlspecialchars($_POST["id_provinces"]);     //รหัสจังหวัด หรือ จังหวัด
+    $code_provinces = htmlspecialchars($_POST["code_provinces"]); // รหัสไปรษณี
+    $lat_roasters = htmlspecialchars($_POST["lat_roasters"]);     //ละติจูดโรงคั่วกาแฟ
+    $lng_roasters = htmlspecialchars($_POST["lng_roasters"]);     //ลองจิจูดโรงคั่วกาแฟ
+    $detail_roasters = htmlspecialchars($_POST["detail_roasters"]); //รายละเอียดต่างๆ ของโรงคั่วกาแฟ
+    $e_mail_roasters = htmlspecialchars($_POST["e_mail_roasters"]); //อีเมลโรงคั่วกาแฟ
+    $pass_roasters = htmlspecialchars($_POST["pass_roasters"]);   // รหัสผ่านโรงคั่วกาแฟ
+    $tel_roasters = htmlspecialchars($_POST["tel_roasters"]);     //
 
     // $sql =  "INSERT INTO `roasters` (`id_roasters`, `name_roasters`, `num_trade_reg`, `name_entrep`, `address_office`, `id_provinces`, `code_provinces`, `lat_roasters`, `lng_roasters`, `detail_roasters`, `e_mail_roasters`, `pass_roasters`) ".
     //         " VALUES (NULL, 'ชื่อโรงคั่วกาแฟ' , 'เลขทะเบียนการค้า' , 'jen' , 'ที่ยอุ๋', '33' , '33125' , $lat_roasters, $lng_roasters, $detail_roasters, 'sin@gmail.com', 'pass';)";
