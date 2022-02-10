@@ -10,6 +10,8 @@ include_once("../../../config/connectdb.php");
 <head>
 	<meta charset="utf-8">
 	<title>สมัครสมาชิกโรงคั่วกาแฟ</title>
+    <link rel="icon" href="../../../script/assets/img/logos/Logo_n.png" type="image/x-icon">
+
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->

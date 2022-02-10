@@ -7,7 +7,7 @@
 <!--<![endif]-->
 <?php
 include_once('./navbar.php');
-$row_map = Database::query("SELECT `lat_roasters`,`lng_roasters` FROM `roasters` WHERE id_roasters = '1';",PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
+$row_map = Database::query("SELECT `lat_farm`,`lng_farm` FROM `farmers` WHERE id_farmers  = '{$id_farmers}';", PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!-- Head BEGIN -->
@@ -96,18 +96,21 @@ $row_map = Database::query("SELECT `lat_roasters`,`lng_roasters` FROM `roasters`
 
 
         if (searchPA == null) {
-            latA = <?php echo $row_map['lat_roasters']?>;
-            lngA = <?php echo $row_map['lng_roasters']?>;
-            // if (navigator.geolocation) {
-            //     navigator.geolocation.getCurrentPosition(function(position) {
+            <?php if ($row_map != null) : ?>
+                latA = '<?php echo $row_map['lat_farm'] ?>';
+                lngA = '<?php echo $row_map['lng_farm'] ?>';
+            <?php else : ?>
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
 
-            //         latA = position.coords.latitude;
-            //         lngA = position.coords.longitude;
+                        latA = position.coords.latitude;
+                        lngA = position.coords.longitude;
 
-            //     }, function() {
-            //         handleLocationError(true, infoWindow, map.getCenter());
-            //     });
-            // }
+                    }, function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                }
+            <?php endif; ?>
         } else {
             // searchPA = name city
 
@@ -225,12 +228,12 @@ $row_map = Database::query("SELECT `lat_roasters`,`lng_roasters` FROM `roasters`
                     directionsDisplay.setPanel(document.getElementById('panel'));
                 } else {
                     // window.alert('Directions request failed due to ' + status);
-                    if (confirm('กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง')) {
-                        location.reload();
-                    } else {
-                        alert("กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง");
-                        location.reload();
-                    }
+                    // if (confirm('กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง')) {
+                    //     location.reload();
+                    // } else {
+                    //     alert("กรุณาเปิดอนุญาตให้เข้าถึงตำเเหน่ง");
+                    //     location.reload();
+                    // }
                 }
             });
         }
@@ -267,34 +270,34 @@ $row_map = Database::query("SELECT `lat_roasters`,`lng_roasters` FROM `roasters`
                     <div id="map-canvas"></div>
                 </div>
                 <div class="col-md-4"></div>
-                    <div class="row">
-                        <div class="col-md-8" style="padding-left: 0px; padding-right: 0px;">
-                            <div class="form-group">
-                                <input id="searchTextField" class="form-control" type="text" placeholder="Enter a location" autocomplete="on" runat="server" />
-                                <input type="hidden" id="city_name" name="city2" />
-                                <input type="hidden" id="city_Lat" name="cityLat" />
-                                <input type="hidden" id="city_Lng" name="cityLng" />
-                            </div>
+                <div class="row">
+                    <div class="col-md-8" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="form-group">
+                            <input id="searchTextField" class="form-control" type="text" placeholder="Enter a location" autocomplete="on" runat="server" />
+                            <input type="hidden" id="city_name" name="city2" />
+                            <input type="hidden" id="city_Lat" name="cityLat" />
+                            <input type="hidden" id="city_Lng" name="cityLng" />
                         </div>
-                        <div class="col-md-4">
-                            <button onclick="search_addPA('input_addPA')" type="button" class="btn btn-default btn-sm">ค้นหา</button>
-                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button onclick="search_addPA('input_addPA')" type="button" class="btn btn-default btn-sm">ค้นหา</button>
+                    </div>
 
-                    </div>
-                    <div class="row">
-                        <div id="panel"></div>
-                    </div>
                 </div>
-
-
-                <!-- <iframe src="https://www.google.co.th/maps/"></iframe> -->
-                <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap" async defer></script> -->
-
+                <div class="row">
+                    <div id="panel"></div>
+                </div>
             </div>
 
 
+            <!-- <iframe src="https://www.google.co.th/maps/"></iframe> -->
+            <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap" async defer></script> -->
 
-            <!-- <div class="row margin-bottom-40">
+        </div>
+
+
+
+        <!-- <div class="row margin-bottom-40">
 
                 <div class="sidebar col-md-3 col-sm-5">
 
@@ -646,7 +649,7 @@ $row_map = Database::query("SELECT `lat_roasters`,`lng_roasters` FROM `roasters`
                     </div>
                 </div>
             </div> -->
-        </div>
+    </div>
     </div>
 
 

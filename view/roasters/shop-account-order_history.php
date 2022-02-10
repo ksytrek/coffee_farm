@@ -123,7 +123,7 @@
 
                             </div>
                             <div class="pull-right">
-                                <label class="control-label" style="padding-top: 5px; margin-right: 5px;">ดูประวัติย้อนหลัง :</label>
+                                <label class="control-label" style="padding-top: 5px; margin-right: 5px;">แสดงย้อนหลังถึงวันที่ :</label>
                             </div>
 
                         </div>
@@ -148,7 +148,7 @@
                                     รหัสรายการสินค้า : <span class="datasheet-features-type title"><?php echo $row['id_transale']; ?></span>
                                     <br>
                                     ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"><a href="./information-farm.php?infr=<?php echo $row['id_farmers']; ?>"></a> <?php echo $row['name_farmers']; ?></span> &nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp; วันที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
+                                    <br> วันที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
                                     <br>จำนวน : <span class="datasheet-features-type title num_item_transale-<?php echo $row['id_transale']; ?>">2580 Kg.</span>
                                     &nbsp;&nbsp;
                                     ราคารวม : <span class="datasheet-features-type title"><?php echo $row['sum_price'] ?> บาท</span>

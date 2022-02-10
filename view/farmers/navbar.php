@@ -61,6 +61,8 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
 </script>
 
 <head>
+
+    <link rel="icon" href="../../script/assets/img/logos/Logo_n.png" type="image/x-icon">
     <meta charset="utf-8">
     <!-- <title>Metronic Shop UI</title> -->
 
@@ -252,7 +254,7 @@ if (!strpos($myString, 'shope-login.php') && $id_farmers == null) {
                                 <div class="form-group">
                                     <label for=""> ประเภทกาแฟ <span class="require">*</span></label>
                                     <select class="form-control" name="id_typepro" required>
-                                        <option value=""  >--- Please Select ---</option>
+                                        <option value="">--- Please Select ---</option>
                                         <?php
                                         $result = Database::query("SELECT * FROM `typepro`", PDO::FETCH_ASSOC);
                                         foreach ($result as $row) :

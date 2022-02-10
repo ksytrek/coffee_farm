@@ -3,7 +3,7 @@ include('../../config/connectdb.php');
 $id_roasters = $_POST['id_roasters'];
 $id_products = null;
 $status = null;
-$date_get = $_GET['date'] == 'null'? '' : "AND date_transale BETWEEN 'GETDATE()' AND '{$_GET['date']} 23:59:59' " ;
+$date_get = $_GET['date'] == 'null' ? '' : "AND date_transale BETWEEN 'GETDATE()' AND '{$_GET['date']} 23:59:59' ";
 
 $sql_select_transale = "SELECT * FROM `transale` AS trn 
                         INNER JOIN transalede AS trnde ON trnde.id_transale = trn.id_transale 
@@ -40,16 +40,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             <div class="row margin-bottom-10 margin-right-10">
                 <div class="col-md-12 col-sm-12">
                     <div class="pull-right">
-                        <input type="date" value="<?php echo $_GET['date'] == 'null'? '':$_GET['date'] ?>" name="" max="<?php echo date('Y-m-d'); ?>" class="form-control input-sm" onChange="select_date(this.value)">
-                        <!-- <select id="" name="" class="form-control input-sm">
-                            <option value="">1 วัน</option>
-                            <option value="">7 วัน</option>
-                            <option value="">14 วัน</option>
-                            <option value="">30 วัน</option>
-                            <option value="">90 วัน</option>
-                            <option value="">180 วัน</option>
-                            <option value="">360 วัน</option>
-                        </select> -->
+                        <input type="date" value="<?php echo $_GET['date'] == 'null' ? '' : $_GET['date'] ?>" name="" max="<?php echo date('Y-m-d'); ?>" class="form-control input-sm" onChange="select_date(this.value)">
 
                         <script>
                             function select_date(value) {
@@ -64,7 +55,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
 
                     </div>
                     <div class="pull-right">
-                        <label class="control-label" style="padding-top: 5px; margin-right: 5px;">ดูประวัติย้อนหลัง :</label>
+                        <label class="control-label" style="padding-top: 5px; margin-right: 5px;">แสดงย้อนหลังถึงวันที่ :</label>
                     </div>
 
                 </div>
@@ -89,9 +80,9 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                             รหัสรายการสินค้า : <span class="datasheet-features-type title"><?php echo $row['id_transale']; ?></span>
                             <br>
                             ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"><a href="./information-farm.php?infr=<?php echo $row['id_farmers']; ?>"></a> <?php echo $row['name_farmers']; ?></span> &nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp; วันที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
+                            <br> วันที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
                             <br>จำนวน : <span class="datasheet-features-type title num_item_transale-<?php echo $row['id_transale']; ?>">2580 Kg.</span>
-                            &nbsp;&nbsp;
+                            <br>
                             ราคารวม : <span class="datasheet-features-type title"><?php echo $row['sum_price'] ?> บาท</span>
 
 
@@ -118,26 +109,28 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                             <?php
                             foreach (Database::query($sql_select_transale_de, PDO::FETCH_ASSOC) as $row_de) :
                             ?>
-                                <div class="row product-item" style="margin-bottom: 6px;">
-                                    <div class="col-sm-3 text-left ">
-                                        ชื่อสินค้า : <?php echo $row_de['name_products'] ?>
+                                <div style="cursor: pointer;" onclick="location.assign('./shop-item.php?product=<?php echo $row_de['id_products'] ?>')">
+                                    <div class="row product-item" style="margin-bottom: 6px;" >
+                                        <div class="col-sm-3 text-left ">
+                                            ชื่อสินค้า : <?php echo $row_de['name_products'] ?>
+                                        </div>
+                                        <div class="col-sm-3 text-left ">
+                                            เก็บเกี่ยว : <?php echo $row_de['date_time_harvest_date'] ?>
+                                        </div>
+                                        <div class="col-sm-2 text-left ">
+                                            ราคา : <?php echo $row_de['price_tran'] ?> บาท/Kg.
+                                        </div>
+                                        <div class="col-sm-2 text-left ">
+                                            จำนวน : <?php echo $row_de['num_item'] ?> Kg.
+                                        </div>
+                                        <div class="col-sm-2 text-center  ">
+                                            ราคารวม : <span class="datasheet-features-type "><?php echo $row_de['price_tran'] * $row_de['num_item'] ?></span> บาท
+                                        </div>
                                     </div>
-                                    <div class="col-sm-3 text-left ">
-                                        เก็บเกี่ยว : <?php echo $row_de['date_time_harvest_date'] ?>
-                                    </div>
-                                    <div class="col-sm-2 text-left ">
-                                        ราคา : <?php echo $row_de['price_tran'] ?> บาท/Kg.
-                                    </div>
-                                    <div class="col-sm-2 text-left ">
-                                        จำนวน : <?php echo $row_de['num_item'] ?> Kg.
-                                    </div>
-                                    <div class="col-sm-2 text-center  ">
-                                        ราคารวม : <span class="datasheet-features-type "><?php echo $row_de['price_tran'] * $row_de['num_item'] ?></span> บาท
-                                    </div>
+                                    <script>
+                                        num_item_transale += <?php echo $row_de['num_item'] ?>;
+                                    </script>
                                 </div>
-                                <script>
-                                    num_item_transale += <?php echo $row_de['num_item'] ?>;
-                                </script>
                             <?php
                             endforeach;
                             ?>

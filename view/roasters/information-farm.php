@@ -60,11 +60,12 @@ include_once('./navbar.php');
         }
     </style>
     <script>
-        var farmLocation = new google.maps.LatLng("<?php echo $row_infor['lat_farm'] ?>","<?php echo $row_infor['lng_farm'] ?>");
+        var farmLocation = new google.maps.LatLng("<?php echo $row_infor['lat_farm'] ?>", "<?php echo $row_infor['lng_farm'] ?>");
 
         var map;
         var marker;
         var infoWindow;
+
         function initialize() {
             var mapOptions = {
                 zoom: 10,
@@ -83,7 +84,7 @@ include_once('./navbar.php');
                 icon: '../../script/assets/img/logos/farm.png',
             });
 
-            var content = "<?php echo $row_infor['address_farmers']." ".$row_infor['code_provinces'] ?> <a href='./directions-map-farm.php?lat=<?php echo $row_infor['lat_farm'] ?>&lng=<?php echo $row_infor['lng_farm'] ?>'>ค้นหาเส้นทาง</a>";
+            var content = "<?php echo $row_infor['address_farmers'] . " " . $row_infor['code_provinces'] ?> <a href='./directions-map-farm.php?lat=<?php echo $row_infor['lat_farm'] ?>&lng=<?php echo $row_infor['lng_farm'] ?>'>ค้นหาเส้นทาง</a>";
             var infowindow = new google.maps.InfoWindow()
 
 
@@ -124,7 +125,7 @@ include_once('./navbar.php');
                                     <h4>รูปเกษตรกร</h4>
                                 </label>
                                 <div class="product-main-image">
-                                    <img src="../../pictures/farmers/<?php echo $row_infor['image_farmers'] ?>" alt="Cool green dress with red bell" class="img-responsive" >
+                                    <img src="../../pictures/farmers/<?php echo $row_infor['image_farmers'] ?>" alt="Cool green dress with red bell" class="img-responsive">
                                 </div>
                             </div>
 
@@ -167,7 +168,7 @@ include_once('./navbar.php');
                                         <label>อธิบายละเอียดต่างๆ</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-lg-8">
-                                        <p class="text-capitalize   "><?php echo $row_infor['detail_farm']==""? '-': $row_infor['detail_farm'] ?></p>
+                                        <p class="text-capitalize   "><?php echo $row_infor['detail_farm'] == "" ? '-' : $row_infor['detail_farm'] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +180,7 @@ include_once('./navbar.php');
                                     <li class="active"><a href="#Information" data-toggle="tab">รายละเอียดฟาร์ม</a></li>
 
                                     <li><a href="#map-farm-show" onclick="initialize()" data-toggle="tab">ที่ตั้งฟาร์ม</a></li>
-                                    <li><a href="#Description" data-toggle="tab">สินค้าทั้งหมด</a></li>
+                                    <li><a href="#Description" data-toggle="tab">สินค้าเฉพาะร้าน</a></li>
                                     <!-- <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li> -->
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -194,7 +195,7 @@ include_once('./navbar.php');
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">จำนวนพื้นที่เพาะปลูก</td>
-                                                <td class="text-capitalize"> <?php echo $row_infor['num_farm']." ไร่ ".$row_infor['num_field']." งาน" ?></td>
+                                                <td class="text-capitalize"> <?php echo $row_infor['num_farm'] . " ไร่ " . $row_infor['num_field'] . " งาน" ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">อีเมล์เกษตรกร</td>
@@ -206,11 +207,11 @@ include_once('./navbar.php');
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">line เกษตรกร</td>
-                                                <td class="text-capitalize"><?php echo $row_infor['line_farmers']==""? "-":$row_infor['line_farmers'] ?></td>
+                                                <td class="text-capitalize"><?php echo $row_infor['line_farmers'] == "" ? "-" : $row_infor['line_farmers'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">facebook เกษตรกร</td>
-                                                <td class="text-capitalize"><?php echo $row_infor['face_farmers']==""? "-":$row_infor['face_farmers'] ?></td>
+                                                <td class="text-capitalize"><?php echo $row_infor['face_farmers'] == "" ? "-" : $row_infor['face_farmers'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">ที่อยู่เกษตรกร</td>
@@ -310,7 +311,7 @@ include_once('./navbar.php');
 
 
                                                 $sql_count = "SELECT * FROM `products` WHERE  id_typepro LIKE '%$type%' AND id_farmers = '$id_farmers' ";
-                                                $sql_data = "SELECT * FROM products as pro 
+                                                $sql_data = "SELECT *, DATE_FORMAT(pro.harvest_date, '%e %M  %Y') AS date_time_harvest_date  FROM products as pro 
                                                 INNER JOIN typepro as ty ON ty.id_typepro = pro.id_typepro 
                                                 INNER JOIN farmers as far ON far.id_farmers = pro.id_farmers 
                                                 WHERE pro.id_typepro LIKE '%$type%' AND far.id_farmers = '$id_farmers'   ORDER BY pro.id_products $order LIMIT $start,$pagesize"; //คำสั่งแสดง record ต่อหนึ่งหน้า $pagesize = ต้องการกี่ record ต่อ
@@ -381,6 +382,12 @@ include_once('./navbar.php');
 
                                                                     </div>
                                                                     <div class="description">
+                                                                        <p>เก็บเกี่ยว :
+                                                                            <strong> <?php echo $row['date_time_harvest_date']; ?> </strong>
+                                                                        </p>
+                                                                        <p>คงเหลือ :
+                                                                            <strong> <?php echo $row['num_stock']; ?> Kg.</strong>
+                                                                        </p>
                                                                         <p>ประเภทกาแฟ :
                                                                             <strong> <?php echo $row['name_typepro']; ?></strong>
                                                                         </p>

@@ -14,7 +14,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
 
 <style type="text/css" media="all">
     .title {
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .content {
@@ -40,33 +40,38 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             ?>
                     <div class="col-md-12" style="margin-left: 0px; border: 1px solid red; margin-bottom: 10px;">
                         <div class="row" style="padding:10px">
-                            ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"><a href="./information-farm.php?infr=<?php echo $row['id_farmers']; ?>"></a> <?php echo $row['name_farmers']; ?></span> &nbsp;&nbsp;&nbsp;
+                            รหัสรายการสินค้า : <span class="datasheet-features-type title"><?php echo $row['id_transale']; ?></span>
+                            <br>
+                            ชื่อฟาร์มที่ขาย : <span class="datasheet-features-type title"><a href="./information-farm.php?infr=<?php echo $row['id_farmers']; ?>"><?php echo $row['name_farmers']; ?></a> </span> &nbsp;&nbsp;&nbsp;
                             <button onclick="do_farm('<?php echo $row['id_farmers'] ?>')" class="btn btn-primary btn-sm">ดูร้านค้า</button>
                             <button class="btn btn-primary btn-sm" onclick="cancel_transel('<?php echo $id_transale ?>')" style="background-color: red;">ยกเลิกการซื้อขาย</button>
                             <button class="btn btn-primary btn-sm" onclick="window.location.assign('./directions-map-farm.php?lat=<?php echo $row['lat_farm'] ?>&lng=<?php echo $row['lng_farm'] ?>')">ค้นหาเส้นทางตั้งฟาร์ม </button>
-                            <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
-                            <br> รหัสรายการสินค้า : <?php echo $row['id_transale']; ?>
+                            <br> วันที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
+
                             <hr>
                         </div>
                         <?php
                         foreach (Database::query($sql_select_transale_de, PDO::FETCH_ASSOC) as $row_de) :
                         ?>
-                            <div class="row product-item">
+                            <div class="row product-item" style="cursor: pointer;" onclick="location.assign('./shop-item.php?product=<?php echo $row_de['id_products'] ?>')">
                                 <div class="col-sm-3 text-center">
-                                    <img width="70%" height="100px" src="../../pictures/product/<?php echo $row_de['image_pro'] ?>">
+                                    <a href="shop-item.php?product=<?php echo $row_de['id_products'] ?>"><img width="70%" height="100px" src="../../pictures/product/<?php echo $row_de['image_pro'] ?>" </a>
                                 </div>
                                 <div class="col-sm-3 text-left margin-top-10">
-                                    ชื่อสินค้า : <?php echo $row_de['name_products'] ?>
+                                    <label class="" style="color:black;">ชื่อสินค้า :</label>
+                                    <a href="shop-item.php?product=<?php echo $row_de['id_products'] ?>">
+                                        <?php echo $row_de['name_products'] ?>
+                                    </a>
                                 </div>
                                 <div class="col-sm-2 text-left margin-top-10">
-                                    ราคาต่อ Kg. : <?php echo $row_de['price_tran'] ?> บาท
+                                    <label class="">ราคาต่อ :</label> <?php echo $row_de['price_tran'] ?> บาท/Kg.
                                 </div>
                                 <div class="col-sm-2 text-left margin-top-10">
-                                    จำนวน : <?php echo $row_de['num_item'] ?> Kg.
+                                    <label class="">จำนวน : </label><?php echo $row_de['num_item'] ?> Kg.
                                 </div>
                                 <div class="col-sm-2 text-center margin-top-10 ">
 
-                                    ราคารวม : <span class="datasheet-features-type "><?php echo $row_de['price_tran'] * $row_de['num_item'] ?></span> บาท
+                                    <label class="">รวม :</label> <span class="datasheet-features-type "><?php echo $row_de['price_tran'] * $row_de['num_item'] ?></span> บาท
                                 </div>
                             </div>
                         <?php

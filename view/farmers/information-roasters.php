@@ -109,7 +109,7 @@ include_once('./navbar.php');
 
 
 
-            var content = "<?php echo $row_data['address_office']. $row_data['name_provinces'] . " " . $row_data['code_provinces'] ; ?> <a href='./directions-map-roa.php?lat=<?php echo $row_data['lat_roasters']?>&lng=<?php echo $row_data['lng_roasters']?>'>ค้นหาเส้นทาง</a>";
+            var content = "<?php echo $row_data['address_office']. $row_data['name_provinces'] . " " . $row_data['code_provinces'] ; ?> <a href='./directions-map-roa.php?id=<?php echo $_GET['inroa']?>&lat=<?php echo $row_data['lat_roasters']?>&lng=<?php echo $row_data['lng_roasters']?>'>ค้นหาเส้นทาง</a>";
             var infowindow = new google.maps.InfoWindow()
 
 
@@ -148,13 +148,7 @@ include_once('./navbar.php');
                 <li><a href="index.html">Home</a></li>
                 <li class="active">ข้อมูลโรงคั่วกาแฟ</li>
             </ul>
-            <!-- BEGIN SIDEBAR & CONTENT -->
             <div class="row margin-bottom-40">
-                <!-- BEGIN SIDEBAR -->
-
-                <!-- END SIDEBAR -->
-
-                <!-- BEGIN CONTENT -->
                 <div class="col-md-12 col-sm-12">
                     <div class="product-page">
                         <h1>ข้อมูลทั่วไป</h1>
@@ -191,6 +185,14 @@ include_once('./navbar.php');
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-lg-8">
                                         <p class="text-capitalize   "> <?php echo $row_data['name_entrep'] ?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-lg-4">
+                                        <label>เบอร์ติดต่อ</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-8">
+                                        <p class="text-capitalize   "> <?php echo $row_data['tel_roasters'] ?></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -238,6 +240,10 @@ include_once('./navbar.php');
                                             <tr>
                                                 <td class="datasheet-features-type">อีเมลโรงคั่วกาแฟ</td>
                                                 <td class="text-capitalize"><?php echo $row_data['e_mail_roasters']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="datasheet-features-type">เบอร์ติดต่อ</td>
+                                                <td class="text-capitalize"><?php echo $row_data['tel_roasters']; ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="datasheet-features-type">ละติจูดโรงคั่วกาแฟ</td>

@@ -67,7 +67,6 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
                                     จำนวน : <?php echo $row_de['num_item'] ?> ชิ้น
                                 </div>
                                 <div class="col-sm-2 text-center margin-top-10 ">
-
                                     ราคารวม : <span class="datasheet-features-type "><?php echo $row_de['price_tran'] * $row_de['num_item'] ?></span> บาท
                                 </div>
                             </div>

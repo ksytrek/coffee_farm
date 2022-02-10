@@ -17,7 +17,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
 
 <style type="text/css" media="all">
     .title {
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .content {
@@ -35,60 +35,91 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
     <div id="div-product" class="goods-data ">
         <div id="div-product" class="goods-data clearfix">
             <?php
-
             $result = Database::query($sql_transale, PDO::FETCH_ASSOC);
             if ($result->rowCount() != 0) :
                 foreach ($result as $row) :
                     $id_transale = $row['id_transale'];
-                    $sql_select_transale_de = "SELECT * FROM `transalede` AS trade INNER JOIN products AS pro ON pro.id_products = trade.id_products WHERE trade.id_transale = '$id_transale' ";
+                    $sql_select_transale_de = "SELECT *, DATE_FORMAT(pro.harvest_date, '%e %M  %Y') AS date_time_harvest_date 
+                                                FROM `transalede` AS trade 
+                                                    INNER JOIN products AS pro ON pro.id_products = trade.id_products 
+                                                WHERE trade.id_transale = '$id_transale' ";
             ?>
                     <div class="col-md-12" style="margin-left: 0px; border: 1px solid red; margin-bottom: 10px;">
-                        <div class="row" style="padding:10px">
-                            ชื่อโรงคั่วกาแฟที่สั่งซื้อ : <span class="datasheet-features-type title"> <?php echo $row['name_roasters']; ?></span> &nbsp;&nbsp;&nbsp;
-                            <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูข้อมูลโรงคั่วกาแฟ</button>
+                        <div class="row" style="padding:5px">
+                            <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูข้อมูล</button>
+                            <button id="show_tran_de-<?php echo $row['id_transale']; ?>" class="btn btn-primary btn-sm" style="background-color: #CD5C5C;">แสดงรายละเอียด</button>
+                            <button style="display: none" id="hide_tran_de-<?php echo $row['id_transale']; ?>" class="btn btn-primary btn-sm" style="background-color: #A52A2A;">ย่อรายละเอียด</button>
 
-                            <br> วันที่สั่งซื้อ : <?php echo $row['date_time']; ?>
-                            <br> รหัสรายการสินค้า : <?php echo $row['id_transale']; ?>
-                            <hr>
+                            รหัสรายการสินค้า : <span class="datasheet-features-type title"><?php echo $row['id_transale']; ?></span>
+                            <br>ชื่อโรงคั่วกาแฟที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['name_roasters']; ?></span> &nbsp;&nbsp;&nbsp;
+                            <br>วันที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
+                            <br>จำนวน : <span class="datasheet-features-type title num_item_transale-<?php echo $row['id_transale']; ?>"></span>
+                            &nbsp;&nbsp;
+                            ราคารวม : <span class="datasheet-features-type title"><?php echo $row['sum_price'] ?> บาท</span>
+
+
+                            <hr id="hr_id-<?php echo $row['id_transale']; ?>" style="display: none;margin:6px">
+                            <script>
+                                var num_item_transale = 0;
+
+                                $("#show_tran_de-<?php echo $row['id_transale']; ?>").on("click", function() {
+                                    $("#tran_de_pro-<?php echo $row['id_transale']; ?>").show();
+                                    $("#hide_tran_de-<?php echo $row['id_transale']; ?>").show();
+                                    $("#show_tran_de-<?php echo $row['id_transale']; ?>").hide();
+                                    $("#hr_id-<?php echo $row['id_transale']; ?>").show();
+                                });
+                                $("#hide_tran_de-<?php echo $row['id_transale']; ?>").on("click", function() {
+                                    $("#tran_de_pro-<?php echo $row['id_transale']; ?>").hide();
+                                    $("#hide_tran_de-<?php echo $row['id_transale']; ?>").hide();
+                                    $("#show_tran_de-<?php echo $row['id_transale']; ?>").show();
+                                    $("#hr_id-<?php echo $row['id_transale']; ?>").hide();
+
+                                });
+                            </script>
                         </div>
-                        <?php
-                        foreach (Database::query($sql_select_transale_de, PDO::FETCH_ASSOC) as $row_de) :
-                        ?>
-                            <div class="row product-item">
-                                <div class="col-sm-3 text-center">
-                                    <img width="70%" height="100px" src="../../pictures/product/<?php echo $row_de['image_pro'] ?>">
+                        <div id="tran_de_pro-<?php echo $row['id_transale']; ?>" style="display: none;">
+                            <?php
+                            foreach (Database::query($sql_select_transale_de, PDO::FETCH_ASSOC) as $row_de) :
+                            ?>
+                                <div class="row product-item" style="margin-bottom: 6px;">
+                                    <div class="col-sm-3 text-left ">
+                                        ชื่อสินค้า : <?php echo $row_de['name_products'] ?>
+                                    </div>
+                                    <div class="col-sm-3 text-left ">
+                                        เก็บเกี่ยว : <?php echo $row_de['date_time_harvest_date'] ?>
+                                    </div>
+                                    <div class="col-sm-2 text-left ">
+                                        ราคา : <?php echo $row_de['price_tran'] ?> บาท/Kg.
+                                    </div>
+                                    <div class="col-sm-2 text-left ">
+                                        จำนวน : <?php echo $row_de['num_item'] ?> Kg.
+                                    </div>
+                                    <div class="col-sm-2 text-center  ">
+                                        ราคารวม : <span class="datasheet-features-type "><?php echo $row_de['price_tran'] * $row_de['num_item'] ?></span> บาท
+                                    </div>
                                 </div>
-                                <div class="col-sm-3 text-left margin-top-10">
-                                    ชื่อสินค้า : <?php echo $row_de['name_products'] ?>
-                                </div>
-                                <div class="col-sm-2 text-left margin-top-10">
-                                    ราคาต่อชิ้น : <?php echo $row_de['price_tran'] ?> บาท
-                                </div>
-                                <div class="col-sm-2 text-left margin-top-10">
-                                    จำนวน : <?php echo $row_de['num_item'] ?> ชิ้น
-                                </div>
-                                <div class="col-sm-2 text-center margin-top-10 ">
-
-                                    ราคารวม : <span class="datasheet-features-type "><?php echo $row_de['price_tran'] * $row_de['num_item'] ?></span> บาท
+                                <script>
+                                    num_item_transale += <?php echo $row_de['num_item'] ?>;
+                                </script>
+                            <?php
+                            endforeach;
+                            ?>
+                            <div class="col-md-12 text-right  margin-bottom-35 ">
+                                <div class="underline">
+                                    ยอดคำสั่งซื้อทั้งหมด : <span class="datasheet-features-type title"><?php echo $row['sum_price'] ?></span>
                                 </div>
                             </div>
-                        <?php
-                        endforeach;
-                        ?>
-                        <div class="col-md-12 text-right  margin-bottom-35 ">
-
-                            <div class="underline">
-                                ยอดคำสั่งซื้อทั้งหมด : <span class="datasheet-features-type title"><?php echo $row['sum_price'] ?></span>
-                            </div>
-
                         </div>
                     </div>
+                    <script>
+                        $(".num_item_transale-<?php echo $row['id_transale']; ?>").html(num_item_transale + " " + "Kg.");
+                    </script>
                 <?php
                 endforeach;
             else :
                 ?>
                 <div>
-                    ไม่มีรายการยกเลิกสินค้า
+                    ไม่พบรายการสั่งซื้อขายเสร็จสิ้น</a>
                 </div>
             <?php
             endif;

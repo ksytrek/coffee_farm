@@ -24,6 +24,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['key'] == 'roasters') {
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" href="../../script/assets/img/logos/Logo_n.png" type="image/x-icon">
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

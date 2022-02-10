@@ -64,7 +64,7 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
 
                     </div>
                     <div class="pull-right">
-                        <label class="control-label" style="padding-top: 5px; margin-right: 5px;">ดูประวัติย้อนหลัง :</label>
+                        <label class="control-label" style="padding-top: 5px; margin-right: 5px;">แสดงย้อนหลังถึงวันที่ :</label>
                     </div>
 
                 </div>
@@ -82,15 +82,14 @@ $sql_transale = "SELECT *, DATE_FORMAT(trn.date_transale, '%H:%i:%s น. %e %M  
             ?>
                     <div class="col-md-12" style="margin-left: 0px; border: 1px solid red; margin-bottom: 10px;">
                         <div class="row" style="padding:5px">
-                            <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูร้านค้า</button>
+                            <button onclick="do_roa('<?php echo $row['id_roasters'] ?>')" class="btn btn-primary btn-sm">ดูข้อมูล</button>
                             <button id="show_tran_de-<?php echo $row['id_transale']; ?>" class="btn btn-primary btn-sm" style="background-color: #CD5C5C;">แสดงรายละเอียด</button>
                             <button style="display: none" id="hide_tran_de-<?php echo $row['id_transale']; ?>" class="btn btn-primary btn-sm" style="background-color: #A52A2A;">ย่อรายละเอียด</button>
-
                             รหัสรายการสินค้า : <span class="datasheet-features-type title"><?php echo $row['id_transale']; ?></span>
                             <br>
-                            ชื่อโรงคั่วกาแฟที่สั่งซื้อ : <span class="datasheet-features-type title"><span class="datasheet-features-type title"> <?php echo $row['name_roasters']; ?></span> &nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp; วันที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
-                            <br>จำนวน : <span class="datasheet-features-type title num_item_transale-<?php echo $row['id_transale']; ?>">2580 Kg.</span>
+                            ชื่อโรงคั่วกาแฟที่สั่งซื้อ : <span class="datasheet-features-type title"><?php echo $row['name_roasters']; ?></span> &nbsp;&nbsp;&nbsp;
+                            <br>วันที่สั่งซื้อ :<span class="datasheet-features-type title"><?php echo $row['date_time']; ?></span>
+                            <br>จำนวน :<span class="datasheet-features-type title num_item_transale-<?php echo $row['id_transale']; ?>">2580 Kg.</span>
                             &nbsp;&nbsp;
                             ราคารวม : <span class="datasheet-features-type title"><?php echo $row['sum_price'] ?> บาท</span>
 

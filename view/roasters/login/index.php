@@ -3,6 +3,8 @@
 
 <head>
 	<title>เข้าสู่ระบบสำหรับโรงคั่วกาแฟ</title>
+    <link rel="icon" href="../../../script/assets/img/logos/Logo_n.png" type="image/x-icon">
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
