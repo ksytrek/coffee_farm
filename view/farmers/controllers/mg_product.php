@@ -9,10 +9,10 @@ if(isset($_POST['key']) && $_POST['key'] == "form_addProduct"){
 
     $values = $_POST['data'];
 
-    $name_products = $values['name_products'];
-    $id_typepro = $values['id_typepro'];
-    $num_stock = $values['num_stock'];
-    $price_unit = $values['price_unit'];
+    $name_products = htmlspecialchars($values['name_products']);
+    $id_typepro = htmlspecialchars($values['id_typepro']);
+    $num_stock = htmlspecialchars($values['num_stock']);
+    $price_unit = htmlspecialchars($values['price_unit']);
     $id_farmers = $values['id_farmers'];
     $image_pro = $values['image_pro'];
     $harvest_date = $values['harvest_date'];

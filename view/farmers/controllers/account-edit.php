@@ -20,14 +20,14 @@ if(isset($_POST['key']) && $_POST['key'] == 'edit_account_submit'){
     $input = $_POST['data'];
     $id_farmers = $_POST['id_farmers'];
 
-    $name_farmers = $input['input-name_farmers'];
-    $email_farmers = $input['input-email_farmers'];
-    $tel_farmers = $input['input-tel_farmers'];
-    $line_farmers = $input['input-line_farmers'];
-    $face_farmers = $input['input-face_farmers'];
+    $name_farmers = htmlspecialchars($input['input-name_farmers']);
+    $email_farmers = htmlspecialchars($input['input-email_farmers']);
+    $tel_farmers = htmlspecialchars($input['input-tel_farmers']);
+    $line_farmers = htmlspecialchars($input['input-line_farmers']);
+    $face_farmers = htmlspecialchars($input['input-face_farmers']);
     $image_farmers = $input['input-image_farmers'];
     $name_img = null;
-    $detail_farm = $input['input-detail_farm'];
+    $detail_farm = htmlspecialchars($input['input-detail_farm']);
 
     $sql_search_farm = "SELECT * FROM farmers WHERE `id_farmers` = '$id_farmers' ";
     $search_result = Database::query($sql_search_farm, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
@@ -65,11 +65,11 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-payment-address'){
     $input = $_POST['data'];
     $id_farmers = $_POST['id_farmers'];
 
-    $address_farmers = $input['input-address_farmers'];
-    $id_provinces  = $input['input-id_provinces'];
-    $code_provinces = $input['input-code_provinces'];
-    $lat_farm = $input['input-lat_farm'];
-    $lng_farm = $input['input-lng_farm'];
+    $address_farmers = htmlspecialchars($input['input-address_farmers']);
+    $id_provinces  = htmlspecialchars($input['input-id_provinces']);
+    $code_provinces = htmlspecialchars($input['input-code_provinces']);
+    $lat_farm = htmlspecialchars($input['input-lat_farm']);
+    $lng_farm = htmlspecialchars($input['input-lng_farm']);
 
     $sql_update_address = "UPDATE `farmers` SET 
                                 `address_farmers` = '$address_farmers', 
@@ -94,11 +94,11 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-change-password'){
     $input = $_POST['data'];
     $id_farmers = $_POST['id_farmers'];
 
-    $con_pass_farmers_new = $input['input-con_pass_farmers_new'];
-    $pass_farmers_new  = $input['input-pass_farmers_new'];
+    $con_pass_farmers_new = htmlspecialchars($input['input-con_pass_farmers_new']);
+    $pass_farmers_new  = htmlspecialchars($input['input-pass_farmers_new']);
 
 
-    $pass_farmers = $input['input-pass_farmers'];
+    $pass_farmers = htmlspecialchars($input['input-pass_farmers']);
 
 
     $sql_update_account = "UPDATE `farmers` SET `pass_farmers` = '$pass_farmers_new' WHERE `farmers`.`id_farmers` = '$id_farmers';";

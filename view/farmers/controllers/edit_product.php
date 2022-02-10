@@ -6,13 +6,13 @@ if(isset($_POST['key']) && $_POST['key'] == 'form_edit_Product'){
     $value = $_POST['data'];
 
     $id_products = $value['id_products'];
-    $name_products = $value['name_products'];
-    $id_typepro = $value['id_typepro'];
-    $num_stock = $value['num_stock'];
-    $price_unit = $value['price_unit'];
+    $name_products = htmlspecialchars($value['name_products']);
+    $id_typepro = htmlspecialchars($value['id_typepro']);
+    $num_stock = htmlspecialchars($value['num_stock']);
+    $price_unit = htmlspecialchars($value['price_unit']);
     $image_pro = $value['image_pro'];
     // $harvest_date = $values['harvest_date'];
-    $harvest_date = $value['harvest_date'];
+    $harvest_date = htmlspecialchars($value['harvest_date']);
     $name_image = null;
 
     $sql_select =  "SELECT * FROM `products` WHERE id_products = '$id_products'";

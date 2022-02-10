@@ -23,13 +23,11 @@ if(isset($_POST['key']) && $_POST['key'] == 'edit_account_submit'){
                                 `tel_roasters` = '$tel_roasters', 
                                 `e_mail_roasters` = '$e_mail_roasters' 
                             WHERE `roasters`.`id_roasters` = '$id_roasters';";
-    // print_r($input);
     if(Database::query($sql_update_account,PDO::FETCH_ASSOC)){
         echo "success";
     }else{
         echo "error";
     }
-
 
 }
 
@@ -39,11 +37,11 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-payment-address'){
     $input = $_POST['data'];
     $id_roasters = $_POST['id_roasters'];
 
-    $address_office = $input['input-address_office'];
-    $id_provinces  = $input['input-id_provinces'];
-    $code_provinces = $input['input-code_provinces'];
-    $lat_roasters = $input['input-lat_roasters'];
-    $lng_roasters = $input['input-lng_roasters'];
+    $address_office = htmlspecialchars($input['input-address_office']);
+    $id_provinces  = htmlspecialchars($input['input-id_provinces']);
+    $code_provinces = htmlspecialchars($input['input-code_provinces']);
+    $lat_roasters = htmlspecialchars($input['input-lat_roasters']);
+    $lng_roasters = htmlspecialchars($input['input-lng_roasters']);
 
     $sql_update_account = "UPDATE `roasters` SET 
                                 `address_office` = '$address_office', 
@@ -58,8 +56,6 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-payment-address'){
     }else{
         echo "error";
     }
-
-
 }
 
 // button-change-password
@@ -68,11 +64,11 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-change-password'){
     $input = $_POST['data'];
     $id_roasters = $_POST['id_roasters'];
 
-    $con_pass_new = $input['input-con_pass_new'];
-    $pass_new  = $input['input-pass_new'];
+    $con_pass_new = htmlspecialchars($input['input-con_pass_new']);
+    $pass_new  = htmlspecialchars($input['input-pass_new']);
 
 
-    $password = $input['input-password'];
+    $password = htmlspecialchars($input['input-password']);
 
 
     $sql_update_account = "UPDATE `roasters` SET `pass_roasters` = '$pass_new' WHERE `roasters`.`id_roasters` = '$id_roasters';";
@@ -96,7 +92,6 @@ if(isset($_POST['key']) && $_POST['key'] == 'button-change-password'){
 
 
 }
-
 
 if(isset($_POST['key']) && $_POST['key'] == 'check_num_trade_reg'){
     // echo 'Please';
@@ -126,8 +121,8 @@ if(isset($_POST['key']) && $_POST['key'] == 'check_num_trade_reg'){
 
 if(isset($_POST['key']) && $_POST['key'] == 'check_e_mail_roasters'){
     // echo 'Please';
-    $e_mail_roasters = $_POST["e_mail_roasters"];
-    $id_roasters = $_POST["id_roasters"];
+    $e_mail_roasters = htmlspecialchars($_POST["e_mail_roasters"]);
+    $id_roasters = htmlspecialchars($_POST["id_roasters"]);
 
     $sql_search_roasters = "SELECT * FROM `roasters` WHERE $id_roasters = '$id_roasters'";
     $resu_row = Database::query($sql_search_roasters, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
