@@ -19,7 +19,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD1f4vUGxabEU5Ayz4D6fiHLyV_iC2f0-E&v=weekly&sensor=false&language=th"></script>
  -->
 <?php
-include_once(__DIR__.'./navbar.php');
+include_once('./navbar.php');
 ?>
 <style type="text/css" media="all">
     /* body {
@@ -160,7 +160,7 @@ include_once(__DIR__.'./navbar.php');
                                     <div class="col-md-12 col-sm-12">
                                         <h3>เข้าสู่ระบบเกษตรกร</h3>
                                         <!-- <p>I am a returning customer.</p> -->
-                                        <form id="form_loging" role="form" action="javascript:void(0);">
+                                        <form id="form_loging" role="form" action="javascript:void(0);" method="post">
                                             <div class="form-group">
                                                 <label for="email-login">ที่อยู่อีเมล<span class="require">*</span></label>
                                                 <input type="email" id="email-login" class="form-control" required>

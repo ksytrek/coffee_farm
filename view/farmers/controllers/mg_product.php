@@ -1,7 +1,7 @@
 <?php 
 
 // include (dirname(__FILE__)."../../../../config/connectdb.php");
-include_once(__DIR__.'../../../../config/connectdb.php');
+include_once('../../../../config/connectdb.php');
 // include_once("../../../config/connectdb.php");
 
 if(isset($_POST['key']) && $_POST['key'] == "form_addProduct"){

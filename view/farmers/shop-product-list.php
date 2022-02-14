@@ -13,9 +13,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
+<!--<!endif]-->
 <?php
-include_once(__DIR__.'./navbar.php');
+include_once('./navbar.php');
 ?>
 <!-- Head BEGIN -->
 
